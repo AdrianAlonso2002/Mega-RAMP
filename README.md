@@ -46,9 +46,9 @@ Juego de plataformas 3D y bola rodante inspirado en el clásico **Super Monkey B
 
 En el repositorio, entra en **Settings → Pages → Build and deployment → Source**
 y selecciona **GitHub Actions**. El flujo `.github/workflows/pages.yml` compila el
-juego y publica únicamente `dist` al subir cambios a `main`. También se puede
+juego y publica únicamente `dist` al subir cambios a `develop`, la rama usada
+para esta web. También se puede
 ejecutar manualmente desde **Actions → Publicar Mega RAMP → Run workflow**.
-Si trabajas en `develop`, integra primero los cambios en `main` para publicarlos.
 No publiques directamente el código fuente: GitHub Pages no compila TypeScript.
 
 La compilación utiliza rutas relativas para que imágenes, música, manifiesto y
