@@ -1,0 +1,13 @@
+<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vista de coleccionables</title><style>body{margin:0;background:#111a2a;color:#edf4ff;font:16px system-ui}main{max-width:1040px;margin:20px auto;padding:20px}h1{font-size:24px}h2{font-size:17px;color:#bfd0e5}.icons,.names{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;align-items:center}.icons canvas{margin:auto}.names{color:#b8c9df;font-size:13px}.row{border:1px solid #30405b;border-radius:16px;margin:20px 0;padding:16px;background:#192539}.row>canvas{width:100%;height:auto;display:block}</style></head><body><main><h1>Coleccionables · Mega RAMP</h1><div class="row"><h2>Iconos compartidos por los menús y los gráficos bajos</h2><div class="icons" id="icons"></div><div class="names"><span>Pico de pan cortado</span><span>Cuatro estrellas</span><span>Dos lonchas de pavo</span><span>Varita de estrella</span></div></div><div id="models"></div></main><script type="module">
+import * as THREE from 'three';
+import {SpriteTextures} from '/src/rendering/SpriteTextures.ts';import {CollectibleVisual} from '/src/rendering/CollectibleVisual.ts';
+const ids=['pan','dragon_ball','lonchas_pavo','varitas_estrella'];
+for(const id of ids)document.querySelector('#icons').appendChild(SpriteTextures.getCollectibleCanvas(id,105));
+for(const quality of ['medium','high']){
+ const row=document.createElement('div');row.className='row';row.innerHTML='<h2>'+({medium:'Gráficos medios · modelos 3D',high:'Gráficos altos · modelos 3D con más detalle'})[quality]+'</h2>';
+ const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setSize(1000,230);renderer.setPixelRatio(1.5);renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;row.appendChild(renderer.domElement);document.querySelector('#models').appendChild(row);
+ const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(24,1000/230,.1,50);camera.position.set(0,2.5,9.5);camera.lookAt(0,0,0);scene.add(new THREE.HemisphereLight('#d6eaff','#514332',2.2));const sun=new THREE.DirectionalLight('#ffefcf',3);sun.position.set(-3,5,7);scene.add(sun);
+ ids.forEach((id,i)=>{const item=new CollectibleVisual(id,quality);item.position.x=(i-1.5)*2.5;item.scale.setScalar(1.6);scene.add(item);});renderer.render(scene,camera);
+}
+</script></body></html>
+

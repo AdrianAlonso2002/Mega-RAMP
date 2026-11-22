@@ -1,0 +1,39 @@
+.cloud-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: auto;
+  touch-action: none;
+}
+.cloud-transition[hidden] {
+  display: none;
+}
+.cloud-transition-wing {
+  position: absolute;
+  top: -8%;
+  height: 116%;
+  width: 74%;
+  will-change: transform;
+}
+.cloud-transition-wing:first-child {
+  left: -12%;
+}
+.cloud-transition-wing:last-child {
+  right: -12%;
+}
+.cloud-transition-wing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/assets/ui/cloud-bank.svg") center/100% 100% no-repeat;
+}
+.cloud-transition-wing:last-child::before {
+  transform: scaleX(-1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cloud-transition-wing {
+    will-change: opacity;
+  }
+}

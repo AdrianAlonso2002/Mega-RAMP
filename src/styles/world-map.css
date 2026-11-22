@@ -1,0 +1,125 @@
+/* Cartographic treatment, isolated from the game HUD and main menu. */
+.overworld-container {
+  --map-ink: #152a36;
+  --map-gold: #e6cf9f;
+  font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  color: #f4efe4;
+}
+.overworld-container .map-bg-image,
+.overworld-container .map-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: auto;
+}
+.overworld-container .map-bg-image { z-index: 0; }
+.overworld-container .map-bg-video { z-index: 1; opacity: 0; transition: opacity .3s ease; }
+.overworld-container .map-distant-birds { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.overworld-container .map-bird-anchor { position: absolute; width: 0; height: 0; }
+.overworld-container .map-bird-orbit {
+  position: absolute; width: 0; height: 0;
+  animation: map-bird-circle var(--bird-period) linear var(--bird-phase) infinite var(--bird-direction);
+}
+.overworld-container .map-distant-bird {
+  position: absolute; left: 0; top: 0;
+  width: var(--bird-size); height: calc(var(--bird-size) * .8);
+  transform: translate(-50%, -50%) rotate(var(--bird-heading));
+  fill: #24303d; opacity: .48;
+}
+.overworld-container.map-ambient-paused .map-bird-orbit { animation-play-state: paused; }
+@keyframes map-bird-circle {
+  from { transform: rotate(0deg) translateX(var(--bird-radius)); }
+  to { transform: rotate(360deg) translateX(var(--bird-radius)); }
+}
+.overworld-container .map-video-crt-overlay {
+  /* Static phosphor mask and scanlines: no animated flicker or full-map blur. */
+  background:
+    radial-gradient(ellipse at 50% 45%, transparent 40%, #10202c55 100%),
+    linear-gradient(180deg, transparent 50%, #0a13262d 50%),
+    linear-gradient(90deg, #ef8b8b09 0 33.33%, #9eddb707 33.33% 66.66%, #89abeb0b 66.66% 100%);
+  background-size: 100% 100%, 100% var(--map-crt-line, 4px), var(--map-crt-mask, 3px) 100%;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+.overworld-container .map-controls-hud { gap: 8px; top: 22px; left: 22px; }
+.overworld-container .btn-map-hud {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #e4d8b83b;
+  border-radius: 13px;
+  background: #142a37ef;
+  color: #f2e9d5;
+  gap: 9px;
+  font-weight: 600;
+  box-shadow: 0 5px 18px #07172136;
+  transition: background .18s, border-color .18s, transform .18s;
+}
+.overworld-container .btn-map-hud svg { width: 21px; height: 21px; flex: none; }
+.overworld-container .btn-map-hud:hover:not(:disabled) { background: #294453; border-color: #e6cf9f; color: #fff3d8; box-shadow: 0 5px 18px #07172136; }
+.overworld-container .map-breadcrumb-badge { top: 22px; border: 1px solid #e4d8b83b; background: #142a37ed; box-shadow: 0 5px 18px #07172136; backdrop-filter: blur(8px); padding: 8px 20px 8px 10px; }
+.overworld-container .breadcrumb-icon { width: 43px; height: 43px; display: inline-flex; }
+.overworld-container .breadcrumb-title { font-family: Georgia, Cambria, serif; font-size: 1.3rem; font-weight: 500; color: #f2dfb5; letter-spacing: .015em; }
+.overworld-container .breadcrumb-sub { font-size: .72rem; margin-top: 4px; color: #c6d1d2; }
+.overworld-container .hub-pin-emblem { width: 78px; height: 78px; padding: 3px; border: 2px solid var(--map-world-color, #f3e6c7); border-radius: 50%; background: var(--map-world-color, #fbf0d8) !important; box-shadow: 0 5px 14px #14263766; }
+.overworld-container .hub-icon { width: 68px; height: 68px; display: block; font-size: 0; border-radius: 50%; overflow: hidden; }
+.overworld-container .world-art-icon { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 45%; border-radius: 50%; }
+.overworld-container .breadcrumb-icon { overflow: hidden; border-radius: 50%; border: 1px solid #e4d8b880; }
+.overworld-container .map-world-hub.active-hub .hub-pin-emblem { border-color: var(--map-world-color, #ffe4a4); box-shadow: 0 0 0 4px #ead5a835, 0 5px 12px #14263766; }
+.overworld-container .hub-pin-pulse,
+.overworld-container .node-pin-pulse { display: none; }
+.overworld-container .hub-label,
+.overworld-container .node-label { border: 1px solid #eee1bd75; background: #18303fee; backdrop-filter: none; box-shadow: 0 3px 8px #12232d40; border-radius: 9px; text-shadow: none; }
+.overworld-container .hub-label { padding: 7px 11px; gap: 8px; margin-top: 7px; }
+.overworld-container .hub-label-text { font-family: Georgia, Cambria, serif; font-size: 1rem; font-weight: 500; letter-spacing: .015em; color: #fff2d4; }
+.overworld-container .hub-label-badge { background: transparent; color: #c7d5d4; font-size: .62rem; font-weight: 500; border-left: 1px solid #e4d8b850; padding: 1px 0 1px 8px; border-radius: 0; }
+.overworld-container .node-pin-body { width: 42px; height: 42px; border: 2px solid #fff7e9; box-shadow: 0 4px 10px #10273555; background-image: linear-gradient(150deg, #ffffff28, transparent) !important; }
+.overworld-container .node-badge-text { font-family: "Segoe UI", system-ui, sans-serif; font-size: 1.08rem; color: #2b3c49; text-shadow: none; font-weight: 800; }
+.overworld-container .node-label { padding: 5px 10px; gap: 5px; margin-top: 5px; }
+.overworld-container .node-label-num { color: #c8d1cb; background: transparent; border-right: 1px solid #e4d8b850; border-radius: 0; padding: 0 6px 0 0; font-weight: 500; font-size: .6rem; letter-spacing: .04em; }
+.overworld-container .node-label-title { color: #f5ebd7; font-weight: 600; font-size: .8rem; }
+.overworld-container .map-node.selected .node-pin-body { border-color: #fff2c2; box-shadow: 0 0 0 4px #f3dbab45, 0 4px 10px #10273570; }
+.overworld-container .map-node,
+.overworld-container .map-world-hub { transform: translate(-50%, -50%) scale(var(--map-marker-scale, 1)); animation: none; transition: transform .2s ease; }
+.overworld-container .map-node:hover,
+.overworld-container .map-node.selected,
+.overworld-container .map-world-hub:hover,
+.overworld-container .map-world-hub.active-hub { transform: translate(-50%, -50%) scale(calc(var(--map-marker-scale, 1) * 1.08)); }
+.overworld-container .hub-crown,
+.overworld-container .node-crown { color: #ffe2a0; background: #233b49; border-radius: 50%; width: 22px; height: 22px; padding: 3px; font-size: 0; filter: none; }
+.overworld-container .hub-crown svg,
+.overworld-container .node-crown svg { width: 100%; height: 100%; }
+.overworld-container .map-detail-sidebar { background: linear-gradient(155deg, #213b49fa, #122936fa); border: 1px solid #e4d8b84d; box-shadow: 0 12px 40px #07172155; backdrop-filter: blur(10px); padding: 25px; transition: transform .28s ease, opacity .24s ease; scrollbar-width: thin; scrollbar-color: #82969a #142a37; }
+.overworld-container .sidebar-title { font-family: Georgia, Cambria, serif; font-size: 1.85rem; font-weight: 500; color: #fff1d3; padding-right: 16px; }
+.overworld-container .sidebar-badge { background: transparent !important; padding: 0; display: inline-flex; align-items: center; gap: 7px; letter-spacing: .07em; font-size: .67rem; font-weight: 600; color: #c0d4d3; margin-bottom: 12px; }
+.overworld-container .sidebar-badge .world-art-icon { width: 30px; height: 30px; }
+.overworld-container .sidebar-subtitle { color: #d8c7a0; font-size: .85rem; font-weight: 500; line-height: 1.5; }
+.overworld-container .sidebar-preview-box { border: 1px solid #e4d8b84d; box-shadow: 0 6px 18px #07172140; margin-top: 4px; aspect-ratio: 16 / 10; }
+.overworld-container .sidebar-preview-img { image-rendering: auto; filter: saturate(1.06) contrast(1.035); }
+.overworld-container .sidebar-preview-crt-overlay {
+  background:
+    linear-gradient(180deg, transparent 50%, #0c142c3d 50%),
+    linear-gradient(90deg, #fa55550b, #83eaa806, #739af50c),
+    radial-gradient(ellipse at center, transparent 45%, #0813213d);
+  background-size: 100% 4px, 3px 100%, 100% 100%;
+  box-shadow: inset 0 0 20px #09142170;
+}
+.overworld-container .sidebar-description { font-size: .88rem; line-height: 1.65; color: #d9e0de; }
+.overworld-container .btn-play-map { background: linear-gradient(135deg, #efdbad, #c9ab71); color: #172f3d; border: 1px solid #efdfb5; box-shadow: 0 5px 15px #06151c40; font-weight: 800; letter-spacing: .04em; animation: none; }
+.overworld-container .btn-play-map svg { width: 20px; height: 20px; vertical-align: middle; margin-right: 6px; }
+.overworld-container :is(.record-label, .record-panel-title, .sidebar-preview-overlay) svg { width: 16px; height: 16px; vertical-align: -3px; margin-right: 4px; }
+.overworld-container .record-panel-title { color: #dfcda5; font-weight: 600; font-size: .76rem; letter-spacing: .05em; }
+.overworld-container .sidebar-records-panel { background: #10243180; border-color: #ddd2b61a; }
+.overworld-container .record-card { background: #34505c55; }
+.overworld-container .highlight-gold { color: #efdaaf; }
+.overworld-container .highlight-cyan { color: #afdad4; }
+.overworld-container .btn-test-clear { background: transparent; color: #bfcecd; border-color: #bfcecd40; box-shadow: none; }
+.overworld-container :is(button, [role="button"]):focus-visible { outline: 3px solid #fff1bd; outline-offset: 5px; }
+@media (max-width: 650px) {
+  .overworld-container .map-controls-hud { top: 12px; left: 12px; }
+  .overworld-container .btn-map-hud { padding: 9px 11px; font-size: .8rem; }
+  .overworld-container .map-detail-sidebar { top: 72px; bottom: 12px; right: 12px; width: min(340px, calc(100vw - 24px)); padding: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .overworld-container *, .overworld-container *::before, .overworld-container *::after { transition: none !important; animation: none !important; }
+}

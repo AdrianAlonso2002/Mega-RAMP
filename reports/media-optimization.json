@@ -1,0 +1,536 @@
+{
+  "files": 105,
+  "before": 94180239,
+  "after": 47265233,
+  "images": [
+    {
+      "file": "assets/characters/adri_especial_happy.png",
+      "before": 186727,
+      "after": 181864
+    },
+    {
+      "file": "assets/characters/adri_especial_move1.png",
+      "before": 179377,
+      "after": 175462
+    },
+    {
+      "file": "assets/characters/adri_especial_move2.png",
+      "before": 177403,
+      "after": 173616
+    },
+    {
+      "file": "assets/characters/adri_especial_normal.png",
+      "before": 183236,
+      "after": 179024
+    },
+    {
+      "file": "assets/characters/adri_especial_scary1.png",
+      "before": 190917,
+      "after": 185799
+    },
+    {
+      "file": "assets/characters/adri_especial_scary2.png",
+      "before": 190883,
+      "after": 185828
+    },
+    {
+      "file": "assets/characters/adri_happy.png",
+      "before": 1738744,
+      "after": 580322
+    },
+    {
+      "file": "assets/characters/adri_move1.png",
+      "before": 1600019,
+      "after": 538345
+    },
+    {
+      "file": "assets/characters/adri_move2.png",
+      "before": 1593187,
+      "after": 542743
+    },
+    {
+      "file": "assets/characters/adri_scary1.png",
+      "before": 1816584,
+      "after": 614895
+    },
+    {
+      "file": "assets/characters/adri_scary2.png",
+      "before": 1815405,
+      "after": 617275
+    },
+    {
+      "file": "assets/characters/adri_ssj_happy.png",
+      "before": 227767,
+      "after": 225297
+    },
+    {
+      "file": "assets/characters/adri_ssj_move1.png",
+      "before": 220577,
+      "after": 218451
+    },
+    {
+      "file": "assets/characters/adri_ssj_move2.png",
+      "before": 222838,
+      "after": 220675
+    },
+    {
+      "file": "assets/characters/adri_ssj_normal.png",
+      "before": 222566,
+      "after": 220266
+    },
+    {
+      "file": "assets/characters/adri_ssj_scary1.png",
+      "before": 226033,
+      "after": 223775
+    },
+    {
+      "file": "assets/characters/adri_ssj_scary2.png",
+      "before": 226087,
+      "after": 223827
+    },
+    {
+      "file": "assets/characters/misi_bebe_happy.png",
+      "before": 149059,
+      "after": 147672
+    },
+    {
+      "file": "assets/characters/misi_bebe_move1.png",
+      "before": 153733,
+      "after": 153068
+    },
+    {
+      "file": "assets/characters/misi_bebe_move2.png",
+      "before": 153471,
+      "after": 152726
+    },
+    {
+      "file": "assets/characters/misi_bebe_normal.png",
+      "before": 154005,
+      "after": 153308
+    },
+    {
+      "file": "assets/characters/misi_bebe_scary1.png",
+      "before": 152917,
+      "after": 151665
+    },
+    {
+      "file": "assets/characters/misi_bebe_scary2.png",
+      "before": 152987,
+      "after": 151712
+    },
+    {
+      "file": "assets/characters/misi_happy.png",
+      "before": 788957,
+      "after": 783680
+    },
+    {
+      "file": "assets/characters/misi_negra_happy.png",
+      "before": 201414,
+      "after": 197379
+    },
+    {
+      "file": "assets/characters/misi_negra_move1.png",
+      "before": 203744,
+      "after": 199833
+    },
+    {
+      "file": "assets/characters/misi_negra_move2.png",
+      "before": 203731,
+      "after": 200031
+    },
+    {
+      "file": "assets/characters/misi_negra_normal.png",
+      "before": 204870,
+      "after": 201027
+    },
+    {
+      "file": "assets/characters/misi_negra_scary1.png",
+      "before": 200079,
+      "after": 196178
+    },
+    {
+      "file": "assets/characters/misi_negra_scary2.png",
+      "before": 200106,
+      "after": 196146
+    },
+    {
+      "file": "assets/characters/misi_scary1.png",
+      "before": 2282616,
+      "after": 738965
+    },
+    {
+      "file": "assets/characters/misi_scary2.png",
+      "before": 2403248,
+      "after": 766482
+    },
+    {
+      "file": "assets/characters/pao_especial_happy.png",
+      "before": 180570,
+      "after": 177467
+    },
+    {
+      "file": "assets/characters/pao_especial_move1.png",
+      "before": 183691,
+      "after": 180438
+    },
+    {
+      "file": "assets/characters/pao_especial_move2.png",
+      "before": 183639,
+      "after": 180294
+    },
+    {
+      "file": "assets/characters/pao_especial_normal.png",
+      "before": 185939,
+      "after": 182810
+    },
+    {
+      "file": "assets/characters/pao_especial_scary1.png",
+      "before": 187724,
+      "after": 184023
+    },
+    {
+      "file": "assets/characters/pao_especial_scary2.png",
+      "before": 187709,
+      "after": 183962
+    },
+    {
+      "file": "assets/characters/pao_happy.png",
+      "before": 2124484,
+      "after": 712058
+    },
+    {
+      "file": "assets/characters/pao_hp_happy.png",
+      "before": 227215,
+      "after": 222267
+    },
+    {
+      "file": "assets/characters/pao_hp_move1.png",
+      "before": 230123,
+      "after": 225141
+    },
+    {
+      "file": "assets/characters/pao_hp_move2.png",
+      "before": 228551,
+      "after": 223498
+    },
+    {
+      "file": "assets/characters/pao_hp_normal.png",
+      "before": 228984,
+      "after": 224067
+    },
+    {
+      "file": "assets/characters/pao_hp_scary1.png",
+      "before": 229679,
+      "after": 224620
+    },
+    {
+      "file": "assets/characters/pao_hp_scary2.png",
+      "before": 229595,
+      "after": 224548
+    },
+    {
+      "file": "assets/characters/pao_move1.png",
+      "before": 2120747,
+      "after": 702065
+    },
+    {
+      "file": "assets/characters/pao_move2.png",
+      "before": 2120763,
+      "after": 704362
+    },
+    {
+      "file": "assets/characters/pao_scary1.png",
+      "before": 2001555,
+      "after": 688074
+    },
+    {
+      "file": "assets/characters/pao_scary2.png",
+      "before": 2001255,
+      "after": 691108
+    },
+    {
+      "file": "assets/characters/rony_bebe_happy.png",
+      "before": 185775,
+      "after": 182779
+    },
+    {
+      "file": "assets/characters/rony_bebe_move1.png",
+      "before": 184108,
+      "after": 181531
+    },
+    {
+      "file": "assets/characters/rony_bebe_move2.png",
+      "before": 184331,
+      "after": 181517
+    },
+    {
+      "file": "assets/characters/rony_bebe_normal.png",
+      "before": 186826,
+      "after": 183831
+    },
+    {
+      "file": "assets/characters/rony_bebe_scary1.png",
+      "before": 179090,
+      "after": 176526
+    },
+    {
+      "file": "assets/characters/rony_bebe_scary2.png",
+      "before": 179334,
+      "after": 176776
+    },
+    {
+      "file": "assets/characters/rony_blue_happy.png",
+      "before": 270960,
+      "after": 268321
+    },
+    {
+      "file": "assets/characters/rony_blue_move1.png",
+      "before": 263736,
+      "after": 261337
+    },
+    {
+      "file": "assets/characters/rony_blue_move2.png",
+      "before": 263681,
+      "after": 261313
+    },
+    {
+      "file": "assets/characters/rony_blue_normal.png",
+      "before": 265547,
+      "after": 263309
+    },
+    {
+      "file": "assets/characters/rony_blue_scary1.png",
+      "before": 261328,
+      "after": 258596
+    },
+    {
+      "file": "assets/characters/rony_blue_scary2.png",
+      "before": 261340,
+      "after": 258650
+    },
+    {
+      "file": "assets/characters/rony_happy.png",
+      "before": 2525778,
+      "after": 837175
+    },
+    {
+      "file": "assets/characters/rony_scary1.png",
+      "before": 2824165,
+      "after": 912758
+    },
+    {
+      "file": "assets/characters/rony_scary2.png",
+      "before": 2819008,
+      "after": 910856
+    },
+    {
+      "file": "assets/maps/overworld_master.jpg",
+      "before": 2460826,
+      "after": 2212139
+    },
+    {
+      "file": "assets/maps/world1.jpg",
+      "before": 1143123,
+      "after": 448046
+    },
+    {
+      "file": "assets/maps/world1level1.jpg",
+      "before": 1158255,
+      "after": 357111
+    },
+    {
+      "file": "assets/maps/world1level2.jpg",
+      "before": 1036319,
+      "after": 334043
+    },
+    {
+      "file": "assets/maps/world1level3.jpg",
+      "before": 1077619,
+      "after": 376182
+    },
+    {
+      "file": "assets/maps/world1level4.jpg",
+      "before": 1143123,
+      "after": 368116
+    },
+    {
+      "file": "assets/maps/world2.jpg",
+      "before": 1022647,
+      "after": 416863
+    },
+    {
+      "file": "assets/maps/world2level1.jpg",
+      "before": 1022647,
+      "after": 323596
+    },
+    {
+      "file": "assets/maps/world2level2.jpg",
+      "before": 1022647,
+      "after": 442409
+    },
+    {
+      "file": "assets/maps/world2level3.jpg",
+      "before": 1022647,
+      "after": 321460
+    },
+    {
+      "file": "assets/maps/world2level4.jpg",
+      "before": 1022647,
+      "after": 339024
+    },
+    {
+      "file": "assets/maps/world3.jpg",
+      "before": 1110439,
+      "after": 436498
+    },
+    {
+      "file": "assets/maps/world3level1.jpg",
+      "before": 1110439,
+      "after": 356320
+    },
+    {
+      "file": "assets/maps/world3level2.jpg",
+      "before": 1110439,
+      "after": 505081
+    },
+    {
+      "file": "assets/maps/world3level3.jpg",
+      "before": 1110439,
+      "after": 429516
+    },
+    {
+      "file": "assets/maps/world3level4.jpg",
+      "before": 1110439,
+      "after": 499082
+    },
+    {
+      "file": "assets/maps/world4.jpg",
+      "before": 960963,
+      "after": 375650
+    },
+    {
+      "file": "assets/maps/world4level1.jpg",
+      "before": 960963,
+      "after": 436728
+    },
+    {
+      "file": "assets/maps/world4level2.jpg",
+      "before": 960963,
+      "after": 415837
+    },
+    {
+      "file": "assets/maps/world4level3.jpg",
+      "before": 960963,
+      "after": 281155
+    },
+    {
+      "file": "assets/maps/world4level4.jpg",
+      "before": 960963,
+      "after": 457336
+    },
+    {
+      "file": "assets/maps/world5.jpg",
+      "before": 971281,
+      "after": 372723
+    },
+    {
+      "file": "assets/maps/world5level1.jpg",
+      "before": 971281,
+      "after": 329855
+    },
+    {
+      "file": "assets/maps/world5level2.jpg",
+      "before": 971281,
+      "after": 314790
+    },
+    {
+      "file": "assets/maps/world5level3.jpg",
+      "before": 971281,
+      "after": 406059
+    },
+    {
+      "file": "assets/maps/world5level4.jpg",
+      "before": 971281,
+      "after": 339691
+    },
+    {
+      "file": "assets/maps/world6.jpg",
+      "before": 979796,
+      "after": 376293
+    },
+    {
+      "file": "assets/maps/world6level1.jpg",
+      "before": 979796,
+      "after": 292900
+    },
+    {
+      "file": "assets/maps/world6level2.jpg",
+      "before": 979796,
+      "after": 516213
+    },
+    {
+      "file": "assets/maps/world6level3.jpg",
+      "before": 979796,
+      "after": 475543
+    },
+    {
+      "file": "assets/maps/world6level4.jpg",
+      "before": 979796,
+      "after": 347992
+    },
+    {
+      "file": "assets/maps/world7.jpg",
+      "before": 1108797,
+      "after": 448463
+    },
+    {
+      "file": "assets/maps/world7level1.jpg",
+      "before": 1108797,
+      "after": 574628
+    },
+    {
+      "file": "assets/maps/world7level2.jpg",
+      "before": 1108797,
+      "after": 562157
+    },
+    {
+      "file": "assets/maps/world7level3.jpg",
+      "before": 1108797,
+      "after": 644023
+    },
+    {
+      "file": "assets/maps/world7level4.jpg",
+      "before": 1108797,
+      "after": 544301
+    },
+    {
+      "file": "assets/maps/world8.jpg",
+      "before": 948597,
+      "after": 339806
+    },
+    {
+      "file": "assets/maps/world8level1.jpg",
+      "before": 948597,
+      "after": 360003
+    },
+    {
+      "file": "assets/maps/world8level2.jpg",
+      "before": 948597,
+      "after": 327651
+    },
+    {
+      "file": "assets/maps/world8level3.jpg",
+      "before": 948597,
+      "after": 550991
+    },
+    {
+      "file": "assets/maps/world8level4.jpg",
+      "before": 948597,
+      "after": 357973
+    }
+  ],
+  "audio": {
+    "before": 8317857,
+    "after": 7707573
+  }
+}

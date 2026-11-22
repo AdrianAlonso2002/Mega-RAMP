@@ -1,0 +1,90 @@
+
+ RUN  v3.2.7 C:/Users/Helio/OneDrive/Documentos/GitHub/Mega RAMP
+
+ ✓ tests/museum.test.ts (20 tests) 7986ms
+   ✓ Museum definitions and shared models > builds finite models including all ten articulated prehistoric species and Santa's T-Rex  681ms
+   ✓ Museum definitions and shared models > builds and destroys all ten full scenes including their colliders, moving goals and camera blockers  769ms
+   ✓ Museum physics and challenges > can ascend the eight timed pyramid levels without requiring a jump button  1332ms
+   ✓ Museum physics and challenges > can evade the moving prehistoric animals and finish the full chase  2300ms
+   ✓ Museum physics and challenges > keeps the unobstructed run close to a minute and frames both the ball and chasing T-Rex  1852ms
+ ✓ tests/oxford.test.ts (25 tests) 3809ms
+   ✓ Oxford shared stages, geometry and editor data > builds finite batched models and all ten complete physics scenes  1114ms
+   ✓ Oxford interactive physics > offers a complete pursuit through three lanes to the open Oxford train  427ms
+   ✓ Oxford interactive physics > can traverse the campus run and undulating road using ordinary ball controls  375ms
+ ✓ tests/sella-canoe.test.ts (59 tests) 12713ms
+   ✓ Sella: ten stages and shared models > builds all ten complete game scenes with their vehicle, collisions and collectibles  484ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 30 fps without sinking  1312ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 60 fps without sinking  840ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 120 fps without sinking  539ms
+   ✓ Sella canoe real physics > drifts at 60 km/h, reaches 100 by rowing, and keeps carrying a braking canoe  2470ms
+   ✓ Sella canoe real physics > returns progressively to the current's 60 km/h after releasing both paddles  882ms
+   ✓ Sella canoe real physics > can follow the original Bajada al Descenso curves using paddle corrections  1542ms
+   ✓ Sella canoe real physics > gives time to react after boarding a descent and then moderates downhill speed  697ms
+   ✓ Sella canoe real physics > floats, gains speed with strokes, crosses the tutorial goal and resets cleanly  363ms
+   ✓ Sella canoe real physics > falls from the waterfall and wins on contacting the lower basin  523ms
+   ✓ Sella canoe real physics > can land through the moving SuperBajada goal  582ms
+   ✓ Sella canoe real physics > gulls lift the passenger out of the canoe, throw them off the river and return  324ms
+ ✓ tests/covadonga.test.ts (15 tests) 2890ms
+   ✓ Covadonga stage definitions and shared editor models > creates finite shared models with batched landscape and actual fountain holes  1014ms
+   ✓ Covadonga stage definitions and shared editor models > builds all complete game scenes with collisions and runtime hooks  881ms
+ ✓ tests/bike-courses.test.ts (5 tests) 3264ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici: can ride each translating wheel to the next platform and either pedal to the front frame  1336ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici2: can ride each translating wheel to the next platform and either pedal to the front frame  930ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici3: can ride each translating wheel to the next platform and either pedal to the front frame  990ms
+ ✓ tests/collectible-visuals.test.ts (7 tests) 2622ms
+   ✓ Collectible quality and character changes > keeps pan finite and within pickup bounds with one draw per object at each quality  880ms
+   ✓ Collectible quality and character changes > keeps cached model instances independent and resolves every UI alias to the same design  1225ms
+ ✓ tests/london.test.ts (14 tests) 2713ms
+   ✓ London stage definitions and models > creates finite batched models and leaves all train doorways physically open in the shell  586ms
+   ✓ London stage definitions and models > builds and releases all ten complete game scenes with London runtimes  638ms
+   ✓ London mechanics > flies exactly four full slow laps before landing and releasing the player beside the goal  303ms
+   ✓ London mechanics > carries the ball and the three collectibles with each train and requires all three complete journeys  326ms
+   ✓ London mechanics > lets Adri reach the cold goal in ten seconds and leave the hot plate before its eleven-second snap  314ms
+ ✓ tests/water-appearance.test.ts (2 tests) 1433ms
+   ✓ Natural water appearance > creates an opaque blue-green texture with subtle contrast and no drawn circles  1427ms
+ ✓ tests/graphics-quality.test.ts (8 tests) 930ms
+   ✓ Visual quality profiles > preserves every collider, actor, position and collision mesh when selecting or switching quality  868ms
+ ✓ tests/world5-level2-physics.test.ts (24 tests) 881ms
+ ✓ tests/big-ben.test.ts (18 tests) 1312ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > builds and destroys all ten complete collision scenes and all sixteen editor models  430ms
+ ✓ tests/sella-river-alignment.test.ts (2 tests) 803ms
+   ✓ Rendered Sella river / current alignment > matches water height, slope and flow across the full width of every MegaBajada section  801ms
+ ✓ tests/collectible-support.test.ts (1 test) 783ms
+   ✓ places the new rest-stage rewards above actual physical surfaces, including the canoe rest river  780ms
+ ✓ tests/covadonga-scenery.test.ts (10 tests) 495ms
+ ✓ tests/character-skin-assets.test.js (2 tests) 497ms
+   ✓ Production character skin assets > ships all 48 nonempty, distinct, padded RGBA animations and valid portrait crops  330ms
+ ✓ tests/collectible-balance.test.ts (5 tests) 404ms
+ ✓ tests/world4-level4.test.ts (13 tests) 272ms
+ ✓ tests/world4-level2.test.ts (17 tests) 258ms
+ ✓ tests/world4-levels.test.ts (21 tests) 191ms
+ ✓ tests/prepared-level.test.ts (4 tests) 187ms
+ ✓ tests/world3-levels.test.ts (23 tests) 86ms
+ ✓ tests/world4-level3.test.ts (22 tests) 153ms
+ ✓ tests/camera-and-lives.test.ts (15 tests) 26ms
+ ✓ tests/water-simulator.test.ts (7 tests) 106ms
+ ✓ tests/art-presentation.test.ts (7 tests) 37ms
+ ✓ tests/block-fusion.test.ts (3 tests) 39ms
+ ✓ tests/cangas-saved-updates.test.ts (9 tests) 37ms
+ ✓ tests/character-skins.test.ts (4 tests) 36ms
+ ✓ tests/loading-tips.test.ts (5 tests) 31ms
+ ✓ tests/progression.test.ts (21 tests) 21ms
+ ✓ tests/skin-rewards.test.ts (13 tests) 20ms
+ ✓ tests/camera-heading.test.ts (9 tests) 16ms
+ ✓ tests/game-loading.test.ts (5 tests) 17ms
+ ✓ tests/loading-transition.test.ts (5 tests) 14ms
+ ✓ tests/audio-activation.test.ts (2 tests) 15ms
+ ✓ tests/water-contact-visuals.test.ts (4 tests) 11ms
+ ✓ tests/ui-assets.test.ts (3 tests) 15ms
+ ✓ tests/skin-reward-notice.test.ts (3 tests) 11ms
+ ✓ tests/world2-level4.test.ts (13 tests) 10ms
+ ✓ tests/character-frame-loading.test.ts (4 tests) 8ms
+ ✓ tests/world2-level3.test.ts (12 tests) 9ms
+ ✓ tests/world2-level2.test.ts (5 tests) 7ms
+ ✓ tests/speed-display.test.ts (3 tests) 4ms
+
+ Test Files  43 passed (43)
+      Tests  469 passed (469)
+   Start at  23:55:47
+   Duration  39.43s (transform 3.23s, setup 0ms, collect 16.50s, tests 45.17s, environment 9ms, prepare 5.83s)
+

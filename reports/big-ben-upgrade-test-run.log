@@ -1,0 +1,56 @@
+
+ RUN  v3.2.7 C:/Users/Helio/OneDrive/Documentos/GitHub/Mega RAMP
+
+ ❯ tests/big-ben.test.ts (23 tests | 1 failed) 2222ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > groups guard phases symmetrically and covers a complete lane with each formation 26ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > narrows the final chocolate loop and the Thames while retaining their central routes 0ms
+   × Big Ben: definitions, graphics and shared editor assets > increases trap counts by floor and leaves actual wall openings around the complete block 85ms
+     → floor 10, edge 2: expected [ { …(7) }, { …(7) } ] to have a length of +0 but got 2
+   ✓ Big Ben: definitions, graphics and shared editor assets > keeps adjacent upright cabins separated throughout the full wheel cycle 33ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > registers all ten stages with one goal, finite transforms and distinct IDs 29ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > updates old drafts and preserves current editor saves and custom additions 3ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > builds and destroys all ten complete collision scenes and all sixteen editor models  446ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > has a twelve-floor continuous ascent, flat corner landings and narrower clock levels 10ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > creates two separate intertwined chocolate routes with real step drops and no large discontinuities 11ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > offers synchronized transfers between the three toy planes while their decks stay upright 4ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > continues turning past the top while supports and cabins stay upright 3ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > gives clock traps three-second cycles with a clear rest and quick extension 0ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > keeps every Thames section continuous and the uphill wave gentle enough to paddle 5ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > supports landings on cabin roofs and blocks movement through the glass side panels 204ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > boards the Thames canoe and actually carries its passenger down the river 225ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > teleports only through column nine and resets cleanly 26ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > requires a real horizontal speed of at least 50 km/h at the column 19ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > lowers saved Hamleys planes and goal without replacing unrelated editor changes 1ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > carries a stationary passenger around a full toy-plane orbit without bouncing away 82ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > turns before boarding and carries a stationary passenger through a full uninterrupted orbit  914ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > matches cockpit, wing and tail collision heights to the actual plane surfaces 18ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > mounted guards push the ball sideways and upward rather than immediately killing it 45ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > treats the falling hot chocolate as a hazard while leaving both stairways usable 26ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/big-ben.test.ts > Big Ben: definitions, graphics and shared editor assets > increases trap counts by floor and leaves actual wall openings around the complete block
+AssertionError: floor 10, edge 2: expected [ { …(7) }, { …(7) } ] to have a length of +0 but got 2
+
+- Expected
++ Received
+
+- 0
++ 2
+
+ ❯ tests/big-ben.test.ts:53:144
+     51|       for(const x of [-1.48,1.48])for(const y of [-.64,.64]){
+     52|         const origin=trap.position.clone().addScaledVector(trap.direct…
+     53|         expect(new THREE.Raycaster(origin,trap.direction,0,2.5).inters…
+       |                                                                                                                                                ^
+     54|       }
+     55|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 22 passed (23)
+   Start at  00:56:14
+   Duration  4.93s (transform 1.64s, setup 0ms, collect 2.27s, tests 2.22s, environment 0ms, prepare 134ms)
+

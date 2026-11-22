@@ -1,0 +1,660 @@
+{
+  "id": "world-01-level-02-stage-01",
+  "world": 1,
+  "level": 2,
+  "stage": 1,
+  "name": "Autobús a Santa Catalina",
+  "theme": "countryside",
+  "musicTrack": "jungle_groove",
+  "timeLimit": 60,
+  "spawn": {
+    "x": 0,
+    "y": 1.2,
+    "z": 0.5
+  },
+  "objects": [
+    {
+      "id": "road-asphalt-1",
+      "type": "platform",
+      "position": { "x": 0, "y": 0.0, "z": -8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 8.0, "y": 0.4, "z": 28.0 },
+      "properties": { "theme": "custom_color", "customColor": "#263238" }
+    },
+    {
+      "id": "road-curb-left-1",
+      "type": "platform",
+      "position": { "x": -4.2, "y": 0.1, "z": -8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.4, "y": 0.6, "z": 28.0 },
+      "properties": { "theme": "custom_color", "customColor": "#cfd8dc" }
+    },
+    {
+      "id": "road-curb-right-1",
+      "type": "platform",
+      "position": { "x": 4.2, "y": 0.1, "z": -8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.4, "y": 0.6, "z": 28.0 },
+      "properties": { "theme": "custom_color", "customColor": "#cfd8dc" }
+    },
+    {
+      "id": "road-grass-left-1",
+      "type": "platform",
+      "position": { "x": -5.7, "y": 0.0, "z": -8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 2.6, "y": 0.4, "z": 28.0 },
+      "properties": { "theme": "custom_color", "customColor": "#388e3c" }
+    },
+    {
+      "id": "road-grass-right-1",
+      "type": "platform",
+      "position": { "x": 5.7, "y": 0.0, "z": -8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 2.6, "y": 0.4, "z": 28.0 },
+      "properties": { "theme": "custom_color", "customColor": "#388e3c" }
+    },
+    {
+      "id": "bridge-deck",
+      "type": "platform",
+      "position": { "x": 0, "y": 0.0, "z": -34 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 8.0, "y": 0.5, "z": 24.0 },
+      "properties": { "theme": "villamanta" }
+    },
+    {
+      "id": "bridge-parapet-left",
+      "type": "platform",
+      "position": { "x": -4.2, "y": 0.55, "z": -34 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.45, "y": 0.75, "z": 24.0 },
+      "properties": { "theme": "custom_color", "customColor": "#8d6e63" }
+    },
+    {
+      "id": "bridge-parapet-right",
+      "type": "platform",
+      "position": { "x": 4.2, "y": 0.55, "z": -34 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.45, "y": 0.75, "z": 24.0 },
+      "properties": { "theme": "custom_color", "customColor": "#8d6e63" }
+    },
+    {
+      "id": "river-alberche-water",
+      "type": "water",
+      "position": { "x": 0, "y": -2.0, "z": -34 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 28.0, "y": 1.0, "z": 18.0 }
+    },
+    {
+      "id": "road-asphalt-3",
+      "type": "platform",
+      "position": { "x": 0, "y": 0.0, "z": -55 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 8.0, "y": 0.4, "z": 18.0 },
+      "properties": { "theme": "custom_color", "customColor": "#263238" }
+    },
+    {
+      "id": "road-curb-left-3",
+      "type": "platform",
+      "position": { "x": -4.2, "y": 0.1, "z": -55 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.4, "y": 0.6, "z": 18.0 },
+      "properties": { "theme": "custom_color", "customColor": "#cfd8dc" }
+    },
+    {
+      "id": "road-curb-right-3",
+      "type": "platform",
+      "position": { "x": 4.2, "y": 0.1, "z": -55 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.4, "y": 0.6, "z": 18.0 },
+      "properties": { "theme": "custom_color", "customColor": "#cfd8dc" }
+    },
+    {
+      "id": "road-grass-left-3",
+      "type": "platform",
+      "position": { "x": -5.7, "y": 0.0, "z": -55 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 2.6, "y": 0.4, "z": 18.0 },
+      "properties": { "theme": "custom_color", "customColor": "#388e3c" }
+    },
+    {
+      "id": "road-grass-right-3",
+      "type": "platform",
+      "position": { "x": 5.7, "y": 0.0, "z": -55 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 2.6, "y": 0.4, "z": 18.0 },
+      "properties": { "theme": "custom_color", "customColor": "#388e3c" }
+    },
+    {
+      "id": "terminal-plaza",
+      "type": "platform",
+      "position": { "x": 0, "y": 0.0, "z": -71 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 12.0, "y": 0.5, "z": 14.0 },
+      "properties": { "theme": "villamanta" }
+    },
+    {
+      "id": "shelter-roof",
+      "type": "platform",
+      "position": { "x": 3.8, "y": 2.6, "z": -69 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.2, "y": 0.2, "z": 5.0 },
+      "properties": { "theme": "custom_color", "customColor": "#2e7d32" }
+    },
+    {
+      "id": "shelter-wall-back",
+      "type": "platform",
+      "position": { "x": 5.2, "y": 1.4, "z": -69 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.2, "y": 2.2, "z": 4.8 },
+      "properties": { "theme": "custom_color", "customColor": "#90caf9" }
+    },
+    {
+      "id": "shelter-bench",
+      "type": "platform",
+      "position": { "x": 4.4, "y": 0.5, "z": -69 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.8, "y": 0.4, "z": 3.0 },
+      "properties": { "theme": "custom_color", "customColor": "#8d6e63" }
+    },
+    {
+      "id": "goal",
+      "type": "goal",
+      "position": { "x": 0, "y": 0.4, "z": -68.5 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 2.0, "y": 1.0, "z": 1.0 }
+    },
+    {
+      "id": "bus-chassis",
+      "type": "moving-platform",
+      "position": { "x": 0, "y": 0.5, "z": 0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.2, "y": 0.4, "z": 6.2 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#37474f",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-wall-left",
+      "type": "moving-platform",
+      "position": { "x": -1.5, "y": 1.4, "z": 0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.25, "y": 1.4, "z": 6.2 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#2e7d32",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-wall-right",
+      "type": "moving-platform",
+      "position": { "x": 1.5, "y": 1.4, "z": 0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.25, "y": 1.4, "z": 6.2 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#2e7d32",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-wall-rear",
+      "type": "moving-platform",
+      "position": { "x": 0, "y": 1.4, "z": 3.0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.2, "y": 1.4, "z": 0.25 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#2e7d32",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-front-hood",
+      "type": "moving-platform",
+      "position": { "x": 0, "y": 0.95, "z": -3.0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.2, "y": 0.55, "z": 0.25 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1b5e20",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-bumper-front",
+      "type": "moving-platform",
+      "position": { "x": 0, "y": 0.45, "z": -3.2 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.4, "y": 0.35, "z": 0.25 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#212121",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-bumper-rear",
+      "type": "moving-platform",
+      "position": { "x": 0, "y": 0.45, "z": 3.2 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.4, "y": 0.35, "z": 0.25 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#212121",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-light-l",
+      "type": "moving-platform",
+      "position": { "x": -1.2, "y": 0.8, "z": -3.15 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.45, "y": 0.25, "z": 0.15 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#fff59d",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-light-r",
+      "type": "moving-platform",
+      "position": { "x": 1.2, "y": 0.8, "z": -3.15 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.45, "y": 0.25, "z": 0.15 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#fff59d",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-taillight-l",
+      "type": "moving-platform",
+      "position": { "x": -1.2, "y": 0.8, "z": 3.15 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.45, "y": 0.25, "z": 0.15 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#f44336",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-taillight-r",
+      "type": "moving-platform",
+      "position": { "x": 1.2, "y": 0.8, "z": 3.15 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.45, "y": 0.25, "z": 0.15 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#f44336",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-wheel-fl",
+      "type": "moving-platform",
+      "position": { "x": -1.62, "y": 0.35, "z": -1.8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.25, "y": 0.5, "z": 1.1 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#111111",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-wheel-fr",
+      "type": "moving-platform",
+      "position": { "x": 1.62, "y": 0.35, "z": -1.8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.25, "y": 0.5, "z": 1.1 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#111111",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-wheel-rl",
+      "type": "moving-platform",
+      "position": { "x": -1.62, "y": 0.35, "z": 1.8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.25, "y": 0.5, "z": 1.1 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#111111",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-wheel-rr",
+      "type": "moving-platform",
+      "position": { "x": 1.62, "y": 0.35, "z": 1.8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.25, "y": 0.5, "z": 1.1 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#111111",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-seat-l1",
+      "type": "moving-platform",
+      "position": { "x": -0.85, "y": 0.85, "z": 1.4 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.65, "y": 0.35, "z": 0.75 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1565c0",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-seat-r1",
+      "type": "moving-platform",
+      "position": { "x": 0.85, "y": 0.85, "z": 1.4 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.65, "y": 0.35, "z": 0.75 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1565c0",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-seat-l2",
+      "type": "moving-platform",
+      "position": { "x": -0.85, "y": 0.85, "z": 0.0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.65, "y": 0.35, "z": 0.75 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1565c0",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-seat-r2",
+      "type": "moving-platform",
+      "position": { "x": 0.85, "y": 0.85, "z": 0.0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.65, "y": 0.35, "z": 0.75 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1565c0",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-seat-l3",
+      "type": "moving-platform",
+      "position": { "x": -0.85, "y": 0.85, "z": -1.4 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.65, "y": 0.35, "z": 0.75 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1565c0",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-seat-r3",
+      "type": "moving-platform",
+      "position": { "x": 0.85, "y": 0.85, "z": -1.4 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.65, "y": 0.35, "z": 0.75 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1565c0",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-roof-front",
+      "type": "moving-platform",
+      "position": { "x": 0, "y": 2.3, "z": -3.0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.2, "y": 0.2, "z": 0.25 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#2e7d32",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-roof-mid",
+      "type": "moving-platform",
+      "position": { "x": 0, "y": 2.3, "z": 0.0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.2, "y": 0.2, "z": 0.25 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#2e7d32",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-roof-rear",
+      "type": "moving-platform",
+      "position": { "x": 0, "y": 2.3, "z": 3.0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 3.2, "y": 0.2, "z": 0.25 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#2e7d32",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-canopy-bar-l",
+      "type": "moving-platform",
+      "position": { "x": -1.5, "y": 2.3, "z": 0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.2, "y": 0.2, "z": 6.2 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1b5e20",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "bus-canopy-bar-r",
+      "type": "moving-platform",
+      "position": { "x": 1.5, "y": 2.3, "z": 0 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 0.2, "y": 0.2, "z": 6.2 },
+      "properties": {
+        "theme": "custom_color",
+        "customColor": "#1b5e20",
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "col-bus-rear",
+      "type": "collectible",
+      "position": { "x": 0, "y": 1.25, "z": 1.8 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 1, "y": 1, z: 1 },
+      "properties": {
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "col-bus-front",
+      "type": "collectible",
+      "position": { "x": 0, "y": 1.25, "z": -0.6 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 1, "y": 1, "z": 1 },
+      "properties": {
+        "axis": "z",
+        "direction": -1,
+        "distance": 66.0,
+        "speed": 6.0,
+        "movementType": "forward",
+        "startDelay": 2.0
+      }
+    },
+    {
+      "id": "col-road-bridge",
+      "type": "collectible",
+      "position": { "x": 0, "y": 1.35, "z": -34 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 1, "y": 1, "z": 1 }
+    },
+    {
+      "id": "col-road-approach",
+      "type": "collectible",
+      "position": { "x": 0, "y": 1.35, "z": -52 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 1, "y": 1, "z": 1 }
+    },
+    {
+      "id": "col-terminal",
+      "type": "collectible",
+      "position": { "x": 2.2, "y": 1.25, "z": -68.5 },
+      "rotation": { "x": 0, "y": 0, "z": 0 },
+      "scale": { "x": 1, "y": 1, "z": 1 }
+    }
+  ]
+}
