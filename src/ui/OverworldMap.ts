@@ -1,3 +1,4 @@
+import { assetUrl } from "../core/AssetUrl";
 import { MapBackdrop } from "./MapBackdrop";
 import { mapBirdsMarkup } from "./MapBirds";
 import { worldMapColor, mapIcon, worldMapIcon } from "./MapIcons";
@@ -95,7 +96,7 @@ export class OverworldMap {
           <img
             id="map-bg-image"
             class="map-bg-image"
-            src="/assets/maps/overworld_master.jpg"
+            src="${assetUrl('/assets/maps/overworld_master.jpg')}"
             alt="Continente Mega RAMP"
             draggable="false"
           />
@@ -109,10 +110,10 @@ export class OverworldMap {
             muted
             playsinline
             preload="auto"
-            poster="/assets/maps/overworld_master.jpg"
+            poster="${assetUrl('/assets/maps/overworld_master.jpg')}"
             draggable="false"
           >
-            <source src="/assets/maps/overworld_master_loop.mp4" type="video/mp4" />
+            <source src="${assetUrl('/assets/maps/overworld_master_loop.mp4')}" type="video/mp4" />
           </video>
 
           <div class="map-distant-birds" aria-hidden="true">${mapBirdsMarkup(WORLDS)}</div>
@@ -497,7 +498,7 @@ export class OverworldMap {
         name: lvl.name,
         subtitle: lvl.subtitle,
         description: lvl.description,
-        image: lvl.image || worldDef.image || "/assets/maps/overworld_master.jpg",
+        image: lvl.image || worldDef.image || assetUrl("/assets/maps/overworld_master.jpg"),
         mapX: lvl.mapX,
         mapY: lvl.mapY
       });

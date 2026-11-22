@@ -1,3 +1,4 @@
+import { assetUrl } from "../core/AssetUrl";
 import * as THREE from "three";
 import {stageStartYaw} from '../rendering/StageHeading';
 import {fluidCameraSubmerged} from "../rendering/FluidContact";
@@ -1537,8 +1538,8 @@ export class SceneManager {
     this.applyTextureToScene(placeholderTexture);
 
     // Load level background image from assets
-    const primarySrc = `/assets/maps/world${world}level${level}.jpg`;
-    const fallbackSrc = `/assets/maps/world${world}.jpg`;
+    const primarySrc = assetUrl(`/assets/maps/world${world}level${level}.jpg`);
+    const fallbackSrc = assetUrl(`/assets/maps/world${world}.jpg`);
     const load=loadFirstUIImage([primarySrc,fallbackSrc]).then(img=>{
       if(!this.context){placeholderTexture.dispose();return;}
       if(img) {

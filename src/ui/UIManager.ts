@@ -1,3 +1,4 @@
+import { assetUrl } from "../core/AssetUrl";
 import {readProgressBackup} from '../progression/ProgressBackup';
 import { CHARACTERS, getCharacterById } from "../player/Characters";
 import { getWorldById } from "../levels/WorldDefinitions";
@@ -100,7 +101,7 @@ export class UIManager {
       if(!loaded){image.style.visibility='hidden';return;}
       if(image.decode)await image.decode().catch(()=>{});
     });
-    const pending:Promise<unknown>[]=[...this.screenReadiness,...imagePromises,loadUIImage('/assets/ui/cloud-bank.svg'),SpriteTextures.waitForUIPortraits()];
+    const pending:Promise<unknown>[]=[...this.screenReadiness,...imagePromises,loadUIImage(assetUrl('/assets/ui/cloud-bank.svg')),SpriteTextures.waitForUIPortraits()];
     if(document.fonts)pending.push(document.fonts.ready);
     if(screen==='character-select')pending.push(SpriteTextures.waitForCharacterSkin(this.state.selectedCharacter,this.state.selectedSkin));
     await Promise.allSettled(pending);
@@ -242,7 +243,7 @@ export class UIManager {
       ball.querySelector('.title-ball-face')!.appendChild(SpriteTextures.getCharacterAvatarCanvas(ball.dataset.orbitChar!,80,ball.dataset.orbitSkin!));
     });
     this.screenReadiness.push(revealUIBackdrop(this.root.querySelector<HTMLElement>('.menu-landscape')!,[
-      getWorldById(this.state.selectedWorld).image??'/assets/maps/overworld_master.jpg','/assets/maps/overworld_master.jpg'
+      getWorldById(this.state.selectedWorld).image??assetUrl('/assets/maps/overworld_master.jpg'),assetUrl('/assets/maps/overworld_master.jpg')
     ]));
 
     // Render active character sprite thumbnail on title
@@ -319,7 +320,7 @@ export class UIManager {
     this.root.querySelector('#loading-tip')!.textContent=this.loadingTips.next(world,level);
     this.root.querySelector('.loading-avatar-face')!.appendChild(SpriteTextures.getCharacterAvatarCanvas(character.id,128,skin.id));
     void revealUIBackdrop(this.root.querySelector<HTMLElement>('.loading-landscape')!,[
-      levelDef?.image??`/assets/maps/world${world}level${level}.jpg`,worldDef.image??`/assets/maps/world${world}.jpg`
+      levelDef?.image??assetUrl(`/assets/maps/world${world}level${level}.jpg`),worldDef.image??assetUrl(`/assets/maps/world${world}.jpg`)
     ]);
   }
 

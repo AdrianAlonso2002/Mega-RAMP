@@ -1,3 +1,4 @@
+import { assetUrl } from "../core/AssetUrl";
 import type { WorldDefinition } from "./LevelTypes";
 
 export interface SkyTheme {
@@ -38,7 +39,7 @@ export const WORLDS: WorldDefinition[] = [
     skyColor: "#81D4FA",
     horizonColor: "#C8E6C9",
     icon: "🏘️",
-    image: "/assets/maps/world1.jpg",
+    image: assetUrl("/assets/maps/world1.jpg"),
     mapX: 32.5,
     mapY: 63.0,
     levels: [
@@ -47,7 +48,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Calle Río Tajo",
         subtitle: "Casa de los Abuelos de Pao",
         description: "Una calle de unas cuantas que hay con nombres de ríos, pero esta en concreto es especial al existir la Casa de los Abuelos de Pao",
-        image: "/assets/maps/world1level1.jpg",
+        image: assetUrl("/assets/maps/world1level1.jpg"),
         mapX: 43.5,
         mapY: 68.0
       },
@@ -56,7 +57,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Parroquia Santa Catalina",
         subtitle: "Religión y fuegos articiales",
         description: "La majestuosa iglesia de piedra con su emblemático campanario, arcos rústicos y fuegos artificiales.",
-        image: "/assets/maps/world1level2.jpg",
+        image: assetUrl("/assets/maps/world1level2.jpg"),
         mapX: 35.5,
         mapY: 56.5
       },
@@ -65,7 +66,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Polideportivo Villmanta",
         subtitle: "Restaurado después de la Dana",
         description: "El complejo deportivo municipal con pistas de pádel, fútbol y piscina",
-        image: "/assets/maps/world1level3.jpg",
+        image: assetUrl("/assets/maps/world1level3.jpg"),
         mapX: 45.0,
         mapY: 59.0
       },
@@ -74,7 +75,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Plaza de villamanta",
         subtitle: "Plaza Mayor y ayuntamiento",
         description: "El corazón del pueblo con suelo de piedras, conciertos y banderitas de España.",
-        image: "/assets/maps/world1level4.jpg",
+        image: assetUrl("/assets/maps/world1level4.jpg"),
         mapX: 39.0,
         mapY: 63.5
       }
@@ -96,7 +97,7 @@ export const WORLDS: WorldDefinition[] = [
     skyColor: "#4FC3F7",
     horizonColor: "#FFF176",
     icon: "🏖️",
-    image: "/assets/maps/world2.jpg",
+    image: assetUrl("/assets/maps/world2.jpg"),
     mapX: 60.0,
     mapY: 68.0,
     levels: [
@@ -105,7 +106,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Apartamento",
         subtitle: "Un noveno",
         description: "Un apartamento en un noveno piso con piscina.",
-        image: "/assets/maps/world2level1.jpg",
+        image: assetUrl("/assets/maps/world2level1.jpg"),
         mapX: 65.0,
         mapY: 59.0
       },
@@ -114,7 +115,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Alicante",
         subtitle: "Puerto y mucho más",
         description: "Paseo por las icónicas avenidas costeras de mosaicos ondulados con vistas al mar y la bahía alicantina.",
-        image: "/assets/maps/world2level2.jpg",
+        image: assetUrl("/assets/maps/world2level2.jpg"),
         mapX: 53.0,
         mapY: 74.0
       },
@@ -123,7 +124,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Playa San Juan",
         subtitle: "Aguas Cristalinas e Hippies",
         description: "Kilómetros de arena fina bañada por olas cristalinas y de noche puestos llamados Hippies.",
-        image: "/assets/maps/world2level3.jpg",
+        image: assetUrl("/assets/maps/world2level3.jpg"),
         mapX: 66.0,
         mapY: 69.0
       },
@@ -132,7 +133,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Fontana",
         subtitle: "Mercado famoso de San Juan",
         description: "El mítico mercado de la playa de San Juan, con sus animados puestos, terrazas al aire libre y tiendas mediterráneas.",
-        image: "/assets/maps/world2level4.jpg",
+        image: assetUrl("/assets/maps/world2level4.jpg"),
         mapX: 58.0,
         mapY: 78.0
       }
@@ -154,7 +155,7 @@ export const WORLDS: WorldDefinition[] = [
     skyColor: "#A5D6A7",
     horizonColor: "#81C784",
     icon: "🌲",
-    image: "/assets/maps/world3.jpg",
+    image: assetUrl("/assets/maps/world3.jpg"),
     mapX: 13.0,
     mapY: 57.0,
     levels: [
@@ -163,7 +164,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "La casina",
         subtitle: "Entre las callejuelas y pequeñina",
         description: "Casita pequeña donde se encuentran animales de todo tipo como Misi",
-        image: "/assets/maps/world3level1.jpg",
+        image: assetUrl("/assets/maps/world3level1.jpg"),
         mapX: 8.5,
         mapY: 48.0
       },
@@ -172,7 +173,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "La Era",
         subtitle: "Lugar muy antiguo",
         description: "Antigua era circular de piedra donde se celebra la Carvochá.",
-        image: "/assets/maps/world3level2.jpg",
+        image: assetUrl("/assets/maps/world3level2.jpg"),
         mapX: 17.5,
         mapY: 49.0
       },
@@ -181,7 +182,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Pinofranqueado",
         subtitle: "Piscina Natural y Mirador",
         description: "Paso junto al caudaloso río de aguas bravas y un mirador que domina todo el valle verde.",
-        image: "/assets/maps/world3level3.jpg",
+        image: assetUrl("/assets/maps/world3level3.jpg"),
         mapX: 26.5,
         mapY: 48.0
       },
@@ -190,7 +191,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Chorrito de Ovejuela",
         subtitle: "Cascada Escondida en la naturaleza",
         description: "Espectacular salto de agua entre cañones estrechos sin cobertura.",
-        image: "/assets/maps/world3level4.jpg",
+        image: assetUrl("/assets/maps/world3level4.jpg"),
         mapX: 20.0,
         mapY: 68.0
       }
@@ -212,7 +213,7 @@ export const WORLDS: WorldDefinition[] = [
     skyColor: "#FFE082",
     horizonColor: "#B0BEC5",
     icon: "🏙️",
-    image: "/assets/maps/world4.jpg",
+    image: assetUrl("/assets/maps/world4.jpg"),
     mapX: 51.0,
     mapY: 45.0,
     levels: [
@@ -221,7 +222,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Piqueñas",
         subtitle: "Calle transitada",
         description: "Tiendas, pisos y sobre todo un pinar.",
-        image: "/assets/maps/world4level1.jpg",
+        image: assetUrl("/assets/maps/world4level1.jpg"),
         mapX: 43.5,
         mapY: 43.0
       },
@@ -230,7 +231,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "San Melitón",
         subtitle: "Calle jitana",
         description: "Jitanos y perros encontraras.",
-        image: "/assets/maps/world4level2.jpg",
+        image: assetUrl("/assets/maps/world4level2.jpg"),
         mapX: 47.5,
         mapY: 37.0
       },
@@ -239,7 +240,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Las Cruces",
         subtitle: "Gran Parque y Lago",
         description: "Gran explanada de naturaleza y un lago icónico en el centro",
-        image: "/assets/maps/world4level3.jpg",
+        image: assetUrl("/assets/maps/world4level3.jpg"),
         mapX: 54.0,
         mapY: 53.0
       },
@@ -248,7 +249,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Islazul",
         subtitle: "Centro Comercial Islazul",
         description: "El icónico centro comercial de Carabanchel lleno de tiendas y muy transitada",
-        image: "/assets/maps/world4level4.jpg",
+        image: assetUrl("/assets/maps/world4level4.jpg"),
         mapX: 61.0,
         mapY: 41.0
       }
@@ -270,7 +271,7 @@ export const WORLDS: WorldDefinition[] = [
     skyColor: "#80CBC4",
     horizonColor: "#C8E6C9",
     icon: "⛰️",
-    image: "/assets/maps/world5.jpg",
+    image: assetUrl("/assets/maps/world5.jpg"),
     mapX: 27.0,
     mapY: 27.0,
     levels: [
@@ -279,7 +280,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Oviedo",
         subtitle: "Casco Histórico y Catedral",
         description: "Calles señoriales de adoquines pulidos, estatuas de bronce y elegantes plazas rodeadas de sidrerías tradicionales.",
-        image: "/assets/maps/world5level1.jpg",
+        image: assetUrl("/assets/maps/world5level1.jpg"),
         mapX: 21.0,
         mapY: 31.0
       },
@@ -288,7 +289,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Cangas de Onis",
         subtitle: "Puente Romano y Cruz de la Victoria",
         description: "Puente monumental de piedra sobre las aguas cantarinas del Sella con un trazado de curvas de gran peralte.",
-        image: "/assets/maps/world5level2.jpg",
+        image: assetUrl("/assets/maps/world5level2.jpg"),
         mapX: 30.0,
         mapY: 34.5
       },
@@ -297,7 +298,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Descenso del Sella",
         subtitle: "Cañón Fluvial y Rápidos",
         description: "Descenso trepidante siguiendo el curso del río entre rocas mojadas, canoas de colores y corrientes rápidas.",
-        image: "/assets/maps/world5level3.jpg",
+        image: assetUrl("/assets/maps/world5level3.jpg"),
         mapX: 32.5,
         mapY: 42.0
       },
@@ -306,7 +307,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Picos de Covadonga",
         subtitle: "Santuario y Lagos Enol y Ercina",
         description: "Ascensión mítica hacia los lagos glaciares rodeados de vacas asturianas y niebla mágica entre cumbres alpinas.",
-        image: "/assets/maps/world5level4.jpg",
+        image: assetUrl("/assets/maps/world5level4.jpg"),
         mapX: 26.0,
         mapY: 19.0
       }
@@ -328,7 +329,7 @@ export const WORLDS: WorldDefinition[] = [
     skyColor: "#90CAF9",
     horizonColor: "#E0E0E0",
     icon: "🕰️",
-    image: "/assets/maps/world6.jpg",
+    image: assetUrl("/assets/maps/world6.jpg"),
     mapX: 80.0,
     mapY: 33.0,
     levels: [
@@ -337,7 +338,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Queens Park",
         subtitle: "Undergraund y zonas reconocidas",
         description: "Parque inglés cubierto por un fino manto de nieve con quiosco de música iluminado y ambiente invernal.",
-        image: "/assets/maps/world6level1.jpg",
+        image: assetUrl("/assets/maps/world6level1.jpg"),
         mapX: 73.0,
         mapY: 41.0
       },
@@ -346,7 +347,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Museum",
         subtitle: "Arte e historia de todas las culturas",
         description: "Bibliotecas monumentales, galerías de arte y salas de la Antigüedad. Una visita navideña que termina huyendo de un T-Rex con gorro de Santa Claus.",
-        image: "/assets/maps/world6level2.jpg",
+        image: assetUrl("/assets/maps/world6level2.jpg"),
         mapX: 68.5,
         mapY: 33.0
       },
@@ -355,7 +356,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Oxford",
         subtitle: "Torres Universitarias y Bibliotecas",
         description: "Claustros góticos ancestrales, puentes de piedra sobre el Támesis y pasarelas de madera noble.",
-        image: "/assets/maps/world6level3.jpg",
+        image: assetUrl("/assets/maps/world6level3.jpg"),
         mapX: 75.0,
         mapY: 23.5
       },
@@ -364,7 +365,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Big Ben",
         subtitle: "Londres y todo su encanto",
         description: "Circuito de altura alrededor de la célebre esfera dorada del reloj con las campanadas resonando sobre el Támesis.",
-        image: "/assets/maps/world6level4.jpg",
+        image: assetUrl("/assets/maps/world6level4.jpg"),
         mapX: 83.5,
         mapY: 22.0
       }
@@ -386,7 +387,7 @@ export const WORLDS: WorldDefinition[] = [
     skyColor: "#F48FB1",
     horizonColor: "#FFF9C4",
     icon: "🌸",
-    image: "/assets/maps/world7.jpg",
+    image: assetUrl("/assets/maps/world7.jpg"),
     mapX: 75.0,
     mapY: 64.0,
     levels: [
@@ -395,7 +396,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Kioto",
         subtitle: "Bosque de Bambú y Santuario Fushimi",
         description: "Túneles infinitos de toriis rojos y cañas de bambú gigantes susurrando con el viento al compás de la bola.",
-        image: "/assets/maps/world7level1.jpg",
+        image: assetUrl("/assets/maps/world7level1.jpg"),
         mapX: 80.0,
         mapY: 72.0
       },
@@ -404,7 +405,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Nara",
         subtitle: "Parque de los Ciervos Sagrados",
         description: "Caminos bordeados por linternas de piedra y ciervos mansos entre jardines zen meticulosamente cuidados.",
-        image: "/assets/maps/world7level2.jpg",
+        image: assetUrl("/assets/maps/world7level2.jpg"),
         mapX: 71.0,
         mapY: 55.0
       },
@@ -413,7 +414,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Osaka",
         subtitle: "Castillo Dorado y Dotonbori",
         description: "Murallas ciclópeas del castillo feudal contrastadas con vibrantes letreros de neón y canales festivos.",
-        image: "/assets/maps/world7level3.jpg",
+        image: assetUrl("/assets/maps/world7level3.jpg"),
         mapX: 83.0,
         mapY: 58.0
       },
@@ -422,7 +423,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Tokio",
         subtitle: "Cruce de Shibuya y Torre de Tokio",
         description: "Rascacielos vanguardistas coronados por pistas flotantes de neón con el Monte Fuji recortado en el horizonte.",
-        image: "/assets/maps/world7level4.jpg",
+        image: assetUrl("/assets/maps/world7level4.jpg"),
         mapX: 90.0,
         mapY: 51.0
       }
@@ -444,7 +445,7 @@ export const WORLDS: WorldDefinition[] = [
     skyColor: "#0D1B2A",
     horizonColor: "#1DE9B6",
     icon: "🌌",
-    image: "/assets/maps/world8.jpg",
+    image: assetUrl("/assets/maps/world8.jpg"),
     mapX: 54.0,
     mapY: 15.0,
     levels: [
@@ -453,7 +454,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Picos y Montañas",
         subtitle: "Crestas Heladas y Agujas de Roca",
         description: "Caminos tallados en roca alpina cubierta de nieve polvo con pendientes de aceleración vertiginosa.",
-        image: "/assets/maps/world8level1.jpg",
+        image: assetUrl("/assets/maps/world8level1.jpg"),
         mapX: 46.5,
         mapY: 12.0
       },
@@ -462,7 +463,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Fiordos",
         subtitle: "Aguas Glaciares y Cabañas Rorbu",
         description: "Pasarelas de madera sobre aguas azul zafiro entre paredes verticales de roca que caen al abismo marino.",
-        image: "/assets/maps/world8level2.jpg",
+        image: assetUrl("/assets/maps/world8level2.jpg"),
         mapX: 52.5,
         mapY: 22.0
       },
@@ -471,7 +472,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Oslo",
         subtitle: "Trampolín de Holmenkollen y Ópera",
         description: "La rampa de salto de esquí más famosa del mundo convertida en una pista de lanzamiento aéreo a gran velocidad.",
-        image: "/assets/maps/world8level3.jpg",
+        image: assetUrl("/assets/maps/world8level3.jpg"),
         mapX: 61.5,
         mapY: 17.0
       },
@@ -480,7 +481,7 @@ export const WORLDS: WorldDefinition[] = [
         name: "Auroras Boreales",
         subtitle: "Danza Celestial de Luz Esmeralda y Violeta",
         description: "La cima absoluta del juego: un circuito cósmico iluminado únicamente por cortinas ondulantes de Aurora Borealis.",
-        image: "/assets/maps/world8level4.jpg",
+        image: assetUrl("/assets/maps/world8level4.jpg"),
         mapX: 57.0,
         mapY: 6.5
       }

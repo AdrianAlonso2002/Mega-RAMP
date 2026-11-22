@@ -1,3 +1,4 @@
+import { assetUrl } from "../core/AssetUrl";
 import {levelSound,soundFromId,type LevelSound} from './LevelSound';
 /**
  * Retro Web Audio API sound synthesizer & BGM Sequencer.
@@ -493,8 +494,8 @@ export class AudioManager {
   private playMenuAudio(): void {
     if(!this.menuRequested||this.isMuted||this.menuPlayPending)return;
     if(!this.menuAudio){
-      this.menuAudio=new Audio('/audio/menu1.mp3');
-      if(this.menuAudio.canPlayType?.('audio/webm; codecs=opus'))this.menuAudio.src='/audio/menu1.webm';
+      this.menuAudio=new Audio(assetUrl('/audio/menu1.mp3'));
+      if(this.menuAudio.canPlayType?.('audio/webm; codecs=opus'))this.menuAudio.src=assetUrl('/audio/menu1.webm');
       this.menuAudio.loop=true;
       this.menuAudio.preload='metadata';
       this.menuAudio.volume=this.bgmVolume;

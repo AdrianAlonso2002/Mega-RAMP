@@ -1,7 +1,8 @@
+import { assetUrl } from "../core/AssetUrl";
 /** Illustrated medallions reuse the game's world artwork and browser image cache. */
 export function worldMapIcon(world: number): string {
   const id = Number.isInteger(world) && world >= 1 && world <= 8 ? world : 1;
-  return `<img class="world-art-icon" src="/assets/maps/world${id}.jpg" alt="" width="80" height="80" decoding="async" draggable="false" />`;
+  return `<img class="world-art-icon" src="${assetUrl(`/assets/maps/world${id}.jpg`)}" alt="" width="80" height="80" decoding="async" draggable="false" />`;
 }
 
 /** Each world keeps its own pastel across its hub and all its levels. */

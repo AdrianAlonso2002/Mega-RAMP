@@ -1,3 +1,4 @@
+import { assetUrl } from "../core/AssetUrl";
 import crops from './CharacterSkinCrops.json';
 
 export interface CharacterSkin {
@@ -49,5 +50,5 @@ export function getCharacterSkin(characterId: string, skinId = 'normal'): Charac
 }
 
 export function characterSpritePath(characterId: string, skinId = 'normal', state = 'normal'): string {
-  return `/assets/characters/${getCharacterSkin(characterId, skinId).spriteBase}_${state}.png`;
+  return assetUrl(`/assets/characters/${getCharacterSkin(characterId, skinId).spriteBase}_${state}.png`);
 }

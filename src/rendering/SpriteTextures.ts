@@ -1,3 +1,4 @@
+import { assetUrl } from "../core/AssetUrl";
 import {collectibleKind,drawCollectibleArt} from './CollectibleArt';
 import * as THREE from "three";
 import {SharedTextureCache} from './StageResources';
@@ -2860,7 +2861,7 @@ export class SpriteTextures {
     }
 
     const fallbackCanvas = this.createProceduralColoringPageCanvas(pageNum);
-    const url = `/assets/drawings/coloring_page_${pageNum}.jpg`;
+    const url = assetUrl(`/assets/drawings/coloring_page_${pageNum}.jpg`);
 
     // Always visible and fixed-size; asynchronous uploads never resize GPU storage.
     const texture=new THREE.CanvasTexture(fallbackCanvas);
