@@ -1,0 +1,41 @@
+{
+  "generator": "Built-in image_gen",
+  "revision": 4,
+  "reference": "art/character-skins/scary-reference-v4.png",
+  "steps": "art/character-skins/scary-step-v4.png",
+  "prompt": "Edit the supplied transparent 4-column by 2-row game sprite atlas, keeping EXACT cell positions, scale, character identity, colours, outfits and front-facing camera. Output same 2048x1024 layout, all 8 figures in same order. This is an ALTERNATE RUNNING FRAME, not a redesign. Change ONLY the legs or front paws BELOW the hips/sleeve cuffs: make a small believable running step, one leg/paw slightly lifted toward the camera and the other planted, with a subtly bent knee or wrist. Human bodies and pets stay upright/frontal, pets stay quadrupedal, no standing on hind legs. The entire head and face MUST remain identical to reference: exact eyes, pupils, eyebrows, mouth, ears, hair, neck and head position. Keep torso and hands identical too. Do not change scared expressions at all. No leaning, no spinning, no head bob, no asymmetrical face, no extra limbs, no motion marks. Important row 2 small white kitten and small black-and-tan puppy keep their smaller size and baby proportions. Blue dog retains blue jacket with red electric guitars. Only two front legs/paws take an alternating step in each animal; back paws remain supporting. Transparent alpha background, no shadow, no floor, no labels. Keep all bottommost pixels at same ground baseline within each cell and transparent gutters. Fine clean cel-shaded game art exactly matching input.",
+  "assets": [
+    {
+      "key": "adri_especial",
+      "lockThrough": 374
+    },
+    {
+      "key": "adri_ssj",
+      "lockThrough": 397
+    },
+    {
+      "key": "pao_especial",
+      "lockThrough": 390
+    },
+    {
+      "key": "pao_hp",
+      "lockThrough": 416
+    },
+    {
+      "key": "misi_bebe",
+      "lockThrough": 421
+    },
+    {
+      "key": "misi_negra",
+      "lockThrough": 340
+    },
+    {
+      "key": "rony_bebe",
+      "lockThrough": 431
+    },
+    {
+      "key": "rony_blue",
+      "lockThrough": 414
+    }
+  ]
+}

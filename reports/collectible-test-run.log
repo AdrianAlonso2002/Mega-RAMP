@@ -1,0 +1,175 @@
+
+ RUN  v3.2.7 C:/Users/Helio/OneDrive/Documentos/GitHub/Mega RAMP
+
+ ✓ tests/oxford.test.ts (25 tests) 3816ms
+   ✓ Oxford shared stages, geometry and editor data > builds finite batched models and all ten complete physics scenes  1216ms
+   ✓ Oxford interactive physics > offers a complete pursuit through three lanes to the open Oxford train  413ms
+   ✓ Oxford interactive physics > can traverse the campus run and undulating road using ordinary ball controls  392ms
+ ✓ tests/covadonga.test.ts (15 tests) 2904ms
+   ✓ Covadonga stage definitions and shared editor models > creates finite shared models with batched landscape and actual fountain holes  995ms
+   ✓ Covadonga stage definitions and shared editor models > builds all complete game scenes with collisions and runtime hooks  856ms
+ ✓ tests/big-ben.test.ts (18 tests) 1257ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > builds and destroys all ten complete collision scenes and all sixteen editor models  417ms
+ ✓ tests/collectible-support.test.ts (1 test) 753ms
+   ✓ places the new rest-stage rewards above actual physical surfaces, including the canoe rest river  751ms
+ ✓ tests/world4-level4.test.ts (13 tests) 242ms
+ ✓ tests/sella-canoe.test.ts (59 tests) 13304ms
+   ✓ Sella: ten stages and shared models > builds all ten complete game scenes with their vehicle, collisions and collectibles  523ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 30 fps without sinking  1338ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 60 fps without sinking  853ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 120 fps without sinking  547ms
+   ✓ Sella canoe real physics > drifts at 60 km/h, reaches 100 by rowing, and keeps carrying a braking canoe  2615ms
+   ✓ Sella canoe real physics > returns progressively to the current's 60 km/h after releasing both paddles  928ms
+   ✓ Sella canoe real physics > can follow the original Bajada al Descenso curves using paddle corrections  1605ms
+   ✓ Sella canoe real physics > gives time to react after boarding a descent and then moderates downhill speed  719ms
+   ✓ Sella canoe real physics > floats, gains speed with strokes, crosses the tutorial goal and resets cleanly  377ms
+   ✓ Sella canoe real physics > falls from the waterfall and wins on contacting the lower basin  526ms
+   ✓ Sella canoe real physics > can land through the moving SuperBajada goal  609ms
+   ✓ Sella canoe real physics > gulls lift the passenger out of the canoe, throw them off the river and return  381ms
+ ❯ tests/world4-level2.test.ts (17 tests | 1 failed) 254ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify all 10 stages exist and match exact required names 3ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify each stage has valid spawn, exactly 1 goal, and correct collectibles count 1ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify all 10 stages are properly registered in BAKED_STAGES 1ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E1 ('Bus34') narrow street, yellow/orange buildings, Bus 34 and cinematic camera 2ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E2 ('Salto4') 4 escalating rooftop jump sections 0ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E3 ('Padel2') double sized padel court and 2x padel racket 0ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E4 ('La Mina') 44x44m alley labyrinth and cinematic overview camera 0ms
+   × World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E5 ('Objetos14') twenty collectibles in distinct layout 10ms
+     → expected 20 to be 6 // Object.is equality
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E6 ('Galway') blackboard platform and giant green clapping gloves 4ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E7 ('13 2B') 2-stop elevator, door, and Real Madrid + tiger dress duo 0ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E8 ('Rony') Yorkshire terrier statue with >= 30m continuous tongue and mouth launch 21ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E9 ('Pao') Floo fireplace with 5s still trigger, green flame and high rooftop alley 3ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E10 ('Ninanos') 6 hooded men and 3 dogs with eliminatesPlayer = true 1ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should build 3D meshes without errors for all 10 stages of World 4 Level 2 158ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should preserve custom stages for World 4 Level 2 in LevelLoader 1ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should preserve custom position, rotation, and apply directional launch for padel_racket 5ms
+   ✓ World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E4 ('La Mina') maze walls in LevelEditor use 6-face multi-material preserving red brick side textures 38ms
+stderr | tests/world4-levels.test.ts > World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E9 ('Adri') giant Super Saiyan Goku statue and continuous connected Kamehameha beam >= 100m with circular physics
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+
+stderr | tests/world4-levels.test.ts > World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should build all 12 Madrid Carabanchel decorations without errors
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+
+stderr | tests/world4-levels.test.ts > World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify LevelEditor saveCurrentLevel persists edits on M4-N1-E10 through stage transitions
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+
+ ✓ tests/world4-levels.test.ts (21 tests) 231ms
+ ✓ tests/world4-level3.test.ts (22 tests) 173ms
+ ✓ tests/progression.test.ts (21 tests) 24ms
+ ✓ tests/world3-levels.test.ts (23 tests) 83ms
+ ✓ tests/world2-level4.test.ts (13 tests) 9ms
+ ✓ tests/world2-level3.test.ts (12 tests) 9ms
+ ✓ tests/world2-level2.test.ts (5 tests) 8ms
+ ✓ tests/bike-courses.test.ts (5 tests) 3878ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici: can ride each translating wheel to the next platform and either pedal to the front frame  1897ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici2: can ride each translating wheel to the next platform and either pedal to the front frame  987ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici3: can ride each translating wheel to the next platform and either pedal to the front frame  985ms
+ ✓ tests/london.test.ts (14 tests) 2662ms
+   ✓ London stage definitions and models > creates finite batched models and leaves all train doorways physically open in the shell  593ms
+   ✓ London stage definitions and models > builds and releases all ten complete game scenes with London runtimes  643ms
+   ✓ London mechanics > carries the ball and the three collectibles with each train and requires all three complete journeys  348ms
+ ✓ tests/museum.test.ts (20 tests) 9599ms
+   ✓ Museum definitions and shared models > builds finite models including all ten articulated prehistoric species and Santa's T-Rex  989ms
+   ✓ Museum definitions and shared models > builds and destroys all ten full scenes including their colliders, moving goals and camera blockers  1093ms
+   ✓ Museum physics and challenges > can ascend the eight timed pyramid levels without requiring a jump button  1383ms
+   ✓ Museum physics and challenges > can evade the moving prehistoric animals and finish the full chase  2533ms
+   ✓ Museum physics and challenges > keeps the unobstructed run close to a minute and frames both the ball and chasing T-Rex  2417ms
+ ✓ tests/water-appearance.test.ts (2 tests) 1739ms
+   ✓ Natural water appearance > creates an opaque blue-green texture with subtle contrast and no drawn circles  1733ms
+ ✓ tests/graphics-quality.test.ts (8 tests) 1307ms
+   ✓ Visual quality profiles > preserves every collider, actor, position and collision mesh when selecting or switching quality  1244ms
+ ✓ tests/world5-level2-physics.test.ts (24 tests) 1069ms
+ ✓ tests/covadonga-scenery.test.ts (10 tests) 523ms
+ ✓ tests/sella-river-alignment.test.ts (2 tests) 942ms
+   ✓ Rendered Sella river / current alignment > matches water height, slope and flow across the full width of every MegaBajada section  935ms
+ ✓ tests/character-skin-assets.test.js (2 tests) 599ms
+   ✓ Production character skin assets > ships all 48 nonempty, distinct, padded RGBA animations and valid portrait crops  409ms
+ ✓ tests/collectible-balance.test.ts (5 tests) 450ms
+ ✓ tests/prepared-level.test.ts (4 tests) 177ms
+ ✓ tests/water-simulator.test.ts (7 tests) 114ms
+ ✓ tests/cangas-saved-updates.test.ts (9 tests) 40ms
+ ✓ tests/block-fusion.test.ts (3 tests) 42ms
+ ✓ tests/art-presentation.test.ts (7 tests) 47ms
+ ✓ tests/character-skins.test.ts (4 tests) 35ms
+ ✓ tests/camera-and-lives.test.ts (15 tests) 27ms
+ ✓ tests/ui-assets.test.ts (3 tests) 31ms
+ ✓ tests/camera-heading.test.ts (9 tests) 18ms
+ ✓ tests/game-loading.test.ts (5 tests) 19ms
+ ✓ tests/audio-activation.test.ts (2 tests) 15ms
+ ✓ tests/loading-transition.test.ts (5 tests) 16ms
+ ✓ tests/character-frame-loading.test.ts (4 tests) 8ms
+ ✓ tests/speed-display.test.ts (3 tests) 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/world4-level2.test.ts > World 4: Carabanchel - Level 2: San Melitón (10 Stages Validation) > should verify M4-N2-E5 ('Objetos14') twenty collectibles in distinct layout
+AssertionError: expected 20 to be 6 // Object.is equality
+
+- Expected
++ Received
+
+- 6
++ 20
+
+ ❯ tests/world4-level2.test.ts:239:34
+    237|     // Distinct positions and heights
+    238|     const uniquePositions = new Set(collectibles.map(c => `${c.positio…
+    239|     expect(uniquePositions.size).toBe(6);
+       |                                  ^
+    240|   });
+    241| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 37 passed (38)
+      Tests  1 failed | 436 passed (437)
+   Start at  14:12:36
+   Duration  38.67s (transform 2.97s, setup 0ms, collect 15.34s, tests 46.43s, environment 8ms, prepare 5.56s)
+

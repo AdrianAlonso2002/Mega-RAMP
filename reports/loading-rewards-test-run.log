@@ -1,0 +1,141 @@
+
+ RUN  v3.2.7 C:/Users/Helio/OneDrive/Documentos/GitHub/Mega RAMP
+
+ ✓ tests/museum.test.ts (20 tests) 8029ms
+   ✓ Museum definitions and shared models > builds finite models including all ten articulated prehistoric species and Santa's T-Rex  758ms
+   ✓ Museum definitions and shared models > builds and destroys all ten full scenes including their colliders, moving goals and camera blockers  762ms
+   ✓ Museum physics and challenges > can ascend the eight timed pyramid levels without requiring a jump button  1313ms
+   ✓ Museum physics and challenges > can evade the moving prehistoric animals and finish the full chase  2308ms
+   ✓ Museum physics and challenges > keeps the unobstructed run close to a minute and frames both the ball and chasing T-Rex  1822ms
+ ✓ tests/oxford.test.ts (25 tests) 3699ms
+   ✓ Oxford shared stages, geometry and editor data > builds finite batched models and all ten complete physics scenes  1101ms
+   ✓ Oxford interactive physics > offers a complete pursuit through three lanes to the open Oxford train  399ms
+   ✓ Oxford interactive physics > can traverse the campus run and undulating road using ordinary ball controls  359ms
+ ✓ tests/sella-canoe.test.ts (59 tests) 12855ms
+   ✓ Sella: ten stages and shared models > builds all ten complete game scenes with their vehicle, collisions and collectibles  555ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 30 fps without sinking  1329ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 60 fps without sinking  814ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 120 fps without sinking  552ms
+   ✓ Sella canoe real physics > drifts at 60 km/h, reaches 100 by rowing, and keeps carrying a braking canoe  2447ms
+   ✓ Sella canoe real physics > returns progressively to the current's 60 km/h after releasing both paddles  888ms
+   ✓ Sella canoe real physics > can follow the original Bajada al Descenso curves using paddle corrections  1582ms
+   ✓ Sella canoe real physics > gives time to react after boarding a descent and then moderates downhill speed  683ms
+   ✓ Sella canoe real physics > floats, gains speed with strokes, crosses the tutorial goal and resets cleanly  358ms
+   ✓ Sella canoe real physics > falls from the waterfall and wins on contacting the lower basin  499ms
+   ✓ Sella canoe real physics > can land through the moving SuperBajada goal  588ms
+   ✓ Sella canoe real physics > gulls lift the passenger out of the canoe, throw them off the river and return  357ms
+ ✓ tests/london.test.ts (14 tests) 2560ms
+   ✓ London stage definitions and models > creates finite batched models and leaves all train doorways physically open in the shell  608ms
+   ✓ London stage definitions and models > builds and releases all ten complete game scenes with London runtimes  635ms
+   ✓ London mechanics > carries the ball and the three collectibles with each train and requires all three complete journeys  303ms
+ ✓ tests/bike-courses.test.ts (5 tests) 3156ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici: can ride each translating wheel to the next platform and either pedal to the front frame  1254ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici2: can ride each translating wheel to the next platform and either pedal to the front frame  899ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici3: can ride each translating wheel to the next platform and either pedal to the front frame  995ms
+ ✓ tests/water-appearance.test.ts (2 tests) 1428ms
+   ✓ Natural water appearance > creates an opaque blue-green texture with subtle contrast and no drawn circles  1423ms
+ ✓ tests/covadonga.test.ts (15 tests) 3358ms
+   ✓ Covadonga stage definitions and shared editor models > creates finite shared models with batched landscape and actual fountain holes  1017ms
+   ✓ Covadonga stage definitions and shared editor models > builds all complete game scenes with collisions and runtime hooks  898ms
+   ✓ Covadonga gameplay > the mine starts slowly for ten seconds and permits a complete correct route lasting at least a minute  306ms
+ ✓ tests/big-ben.test.ts (18 tests) 1642ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > builds and destroys all ten complete collision scenes and all sixteen editor models  551ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > boards the Thames canoe and actually carries its passenger down the river  321ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > waits for boarding, carries the first cabin to the top, then leaves the wheel stopped  379ms
+ ✓ tests/world5-level2-physics.test.ts (24 tests) 1028ms
+ ✓ tests/graphics-quality.test.ts (8 tests) 1083ms
+   ✓ Visual quality profiles > preserves every collider, actor, position and collision mesh when selecting or switching quality  1022ms
+ ✓ tests/collectible-support.test.ts (1 test) 832ms
+   ✓ places the new rest-stage rewards above actual physical surfaces, including the canoe rest river  826ms
+ ✓ tests/sella-river-alignment.test.ts (2 tests) 899ms
+   ✓ Rendered Sella river / current alignment > matches water height, slope and flow across the full width of every MegaBajada section  896ms
+ ✓ tests/character-skin-assets.test.js (2 tests) 556ms
+   ✓ Production character skin assets > ships all 48 nonempty, distinct, padded RGBA animations and valid portrait crops  388ms
+ ✓ tests/covadonga-scenery.test.ts (10 tests) 512ms
+ ✓ tests/collectible-balance.test.ts (5 tests) 430ms
+ ✓ tests/world4-level4.test.ts (13 tests) 253ms
+ ✓ tests/prepared-level.test.ts (4 tests) 121ms
+ ✓ tests/world4-level2.test.ts (17 tests) 242ms
+stderr | tests/world4-levels.test.ts > World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E9 ('Adri') giant Super Saiyan Goku statue and continuous connected Kamehameha beam >= 100m with circular physics
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+
+stderr | tests/world4-levels.test.ts > World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should build all 12 Madrid Carabanchel decorations without errors
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+
+stderr | tests/world4-levels.test.ts > World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify LevelEditor saveCurrentLevel persists edits on M4-N1-E10 through stage transitions
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+THREE.Material: parameter 'emissive' has value of undefined.
+
+ ✓ tests/world4-levels.test.ts (21 tests) 238ms
+ ✓ tests/world4-level3.test.ts (22 tests) 176ms
+ ✓ tests/water-simulator.test.ts (7 tests) 139ms
+ ✓ tests/world3-levels.test.ts (23 tests) 94ms
+ ✓ tests/art-presentation.test.ts (7 tests) 43ms
+ ✓ tests/character-skins.test.ts (4 tests) 40ms
+ ✓ tests/block-fusion.test.ts (3 tests) 40ms
+ ✓ tests/loading-tips.test.ts (3 tests) 26ms
+ ✓ tests/cangas-saved-updates.test.ts (9 tests) 40ms
+ ✓ tests/ui-assets.test.ts (3 tests) 23ms
+ ✓ tests/camera-and-lives.test.ts (15 tests) 29ms
+ ✓ tests/progression.test.ts (21 tests) 24ms
+ ✓ tests/skin-rewards.test.ts (13 tests) 23ms
+ ✓ tests/camera-heading.test.ts (9 tests) 19ms
+ ✓ tests/audio-activation.test.ts (2 tests) 16ms
+ ✓ tests/game-loading.test.ts (5 tests) 22ms
+ ✓ tests/loading-transition.test.ts (5 tests) 16ms
+ ✓ tests/world2-level2.test.ts (5 tests) 7ms
+ ✓ tests/skin-reward-notice.test.ts (3 tests) 12ms
+ ✓ tests/world2-level4.test.ts (13 tests) 8ms
+ ✓ tests/world2-level3.test.ts (12 tests) 9ms
+ ✓ tests/character-frame-loading.test.ts (4 tests) 10ms
+ ✓ tests/speed-display.test.ts (3 tests) 4ms
+
+ Test Files  41 passed (41)
+      Tests  456 passed (456)
+   Start at  14:47:00
+   Duration  38.83s (transform 3.06s, setup 0ms, collect 16.48s, tests 43.74s, environment 9ms, prepare 6.00s)
+

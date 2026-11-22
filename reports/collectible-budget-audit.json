@@ -1,0 +1,1922 @@
+[
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 1,
+    "name": "Cuadrado1",
+    "before": 3,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 2,
+    "name": "Piscina",
+    "before": 3,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 3,
+    "name": "Guitarra",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 4,
+    "name": "Río",
+    "before": 5,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 5,
+    "name": "Objetos1",
+    "before": 16,
+    "after": 20
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 6,
+    "name": "Parque",
+    "before": 3,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 7,
+    "name": "Toros",
+    "before": 5,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 8,
+    "name": "Membrillo",
+    "before": 5,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 9,
+    "name": "Blue",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 1,
+    "stage": 10,
+    "name": "Garaje",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 1,
+    "name": "Autobús a Santa Catalina",
+    "before": 5,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 2,
+    "name": "Salto1",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 3,
+    "name": "Escaleras",
+    "before": 5,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 4,
+    "name": "Parque2",
+    "before": 5,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 5,
+    "name": "Objetos2",
+    "before": 12,
+    "after": 20
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 6,
+    "name": "Rejas",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 7,
+    "name": "Capilla",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 8,
+    "name": "Barras",
+    "before": 5,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 9,
+    "name": "Tirolina",
+    "before": 3,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 2,
+    "stage": 10,
+    "name": "Fuegos Artificiales",
+    "before": 5,
+    "after": 12
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 1,
+    "name": "Arroyo",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 2,
+    "name": "Callejón",
+    "before": 3,
+    "after": 6
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 3,
+    "name": "Correr1",
+    "before": 4,
+    "after": 12
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 4,
+    "name": "Feria",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 5,
+    "name": "Objetos3",
+    "before": 8,
+    "after": 20
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 6,
+    "name": "Chiringuito",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 7,
+    "name": "Piscina2",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 8,
+    "name": "Futbol",
+    "before": 4,
+    "after": 6
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 9,
+    "name": "Padel",
+    "before": 4,
+    "after": 6
+  },
+  {
+    "world": 1,
+    "level": 3,
+    "stage": 10,
+    "name": "Dana",
+    "before": 5,
+    "after": 14
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 1,
+    "name": "Bar",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 2,
+    "name": "Panadería",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 3,
+    "name": "Cuesta",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 4,
+    "name": "Muro1",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 5,
+    "name": "Objetos4",
+    "before": 8,
+    "after": 20
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 6,
+    "name": "Día",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 7,
+    "name": "Ayuntamiento",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 8,
+    "name": "Cojera",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 9,
+    "name": "Concierto",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 1,
+    "level": 4,
+    "stage": 10,
+    "name": "Banderitas",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 1,
+    "name": "Cuadrado2",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 2,
+    "name": "Arpón",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 3,
+    "name": "Piscina3",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 4,
+    "name": "Socorrista",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 5,
+    "name": "Objetos5",
+    "before": 8,
+    "after": 20
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 6,
+    "name": "Erizo",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 7,
+    "name": "Ascensor",
+    "before": 8,
+    "after": 6
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 8,
+    "name": "Noveno",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 9,
+    "name": "Colchón",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 1,
+    "stage": 10,
+    "name": "Ventilador",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 1,
+    "name": "Parque3",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 2,
+    "name": "Salto2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 3,
+    "name": "Cuesta2",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 4,
+    "name": "Tranvia",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 5,
+    "name": "Objetos6",
+    "before": 10,
+    "after": 20
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 6,
+    "name": "Bici",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 7,
+    "name": "Casino",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 8,
+    "name": "Centro Comercial",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 9,
+    "name": "Mercadillo",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 2,
+    "stage": 10,
+    "name": "Puerto",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 1,
+    "name": "Kiosko",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 2,
+    "name": "Bajada",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 3,
+    "name": "Correr2",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 4,
+    "name": "Tablones",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 5,
+    "name": "Objetos7",
+    "before": 10,
+    "after": 20
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 6,
+    "name": "Sombrilla",
+    "before": 10,
+    "after": 6
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 7,
+    "name": "Toalla",
+    "before": 10,
+    "after": 6
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 8,
+    "name": "Paseo",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 9,
+    "name": "Hippies",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 3,
+    "stage": 10,
+    "name": "Playa",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 1,
+    "name": "Tranvia2",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 2,
+    "name": "Palmeras",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 3,
+    "name": "Mercadona",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 4,
+    "name": "Muro2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 5,
+    "name": "Objetos8",
+    "before": 10,
+    "after": 20
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 6,
+    "name": "Mercado",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 7,
+    "name": "Bazar",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 8,
+    "name": "Ropa",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 9,
+    "name": "Popeye",
+    "before": 10,
+    "after": 6
+  },
+  {
+    "world": 2,
+    "level": 4,
+    "stage": 10,
+    "name": "Helado",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 1,
+    "name": "Cuadrado3",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 2,
+    "name": "Callejuela",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 3,
+    "name": "Fuente",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 4,
+    "name": "Almacen",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 5,
+    "name": "Objetos9",
+    "before": 10,
+    "after": 20
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 6,
+    "name": "Escaleras2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 7,
+    "name": "Salamandra",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 8,
+    "name": "Ventilador2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 9,
+    "name": "Puertas Blancas",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 1,
+    "stage": 10,
+    "name": "Misina",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 1,
+    "name": "Callejuela2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 2,
+    "name": "Salto3",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 3,
+    "name": "Perros",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 4,
+    "name": "Miel",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 5,
+    "name": "Objetos10",
+    "before": 10,
+    "after": 20
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 6,
+    "name": "Plaza",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 7,
+    "name": "Dibujos",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 8,
+    "name": "Niñas",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 9,
+    "name": "Bajada2",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 2,
+    "stage": 10,
+    "name": "La Era",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 1,
+    "name": "Camino",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 2,
+    "name": "Polideportivo",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 3,
+    "name": "Correr3",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 4,
+    "name": "Cuatro Caminos",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 5,
+    "name": "Objetos11",
+    "before": 10,
+    "after": 20
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 6,
+    "name": "Plaza2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 7,
+    "name": "Spar",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 8,
+    "name": "Río Los Ángeles",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 9,
+    "name": "Turrón",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 3,
+    "stage": 10,
+    "name": "Mirador",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 1,
+    "name": "Bazar Gigante",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 2,
+    "name": "Cuesta3",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 3,
+    "name": "Niños",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 4,
+    "name": "Muro3",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 5,
+    "name": "Objetos12",
+    "before": 10,
+    "after": 20
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 6,
+    "name": "Curvas",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 7,
+    "name": "Sin Cobertura",
+    "before": 10,
+    "after": 6
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 8,
+    "name": "Cuesta4",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 9,
+    "name": "Ruta Nocturna",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 3,
+    "level": 4,
+    "stage": 10,
+    "name": "Chorrito",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 1,
+    "name": "Cuadrado4",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 2,
+    "name": "Bus35",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 3,
+    "name": "Día2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 4,
+    "name": "Droguería",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 5,
+    "name": "Objetos13",
+    "before": 10,
+    "after": 20
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 6,
+    "name": "Misina2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 7,
+    "name": "vidas tiene el gato",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 8,
+    "name": "Litos",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 9,
+    "name": "Adri",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 4,
+    "level": 1,
+    "stage": 10,
+    "name": "Pinar",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 1,
+    "name": "Bus34",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 2,
+    "name": "Salto4",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 3,
+    "name": "Padel2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 4,
+    "name": "La Mina",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 5,
+    "name": "Objetos14",
+    "before": 6,
+    "after": 20
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 6,
+    "name": "Galway",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 7,
+    "name": "13 2B",
+    "before": 10,
+    "after": 6
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 8,
+    "name": "Rony",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 9,
+    "name": "Pao",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 2,
+    "stage": 10,
+    "name": "Ninanos",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 1,
+    "name": "Bici2",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 2,
+    "name": "Alba de Tormes",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 3,
+    "name": "Correr4",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 4,
+    "name": "Padel3",
+    "before": 10,
+    "after": 6
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 5,
+    "name": "Objetos15",
+    "before": 5,
+    "after": 20
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 6,
+    "name": "Parque Pirata",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 7,
+    "name": "Carrefour",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 8,
+    "name": "Escaleras Republicanas",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 9,
+    "name": "Parque Aluche",
+    "before": 5,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 3,
+    "stage": 10,
+    "name": "Lago",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 1,
+    "name": "2Bus35",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 2,
+    "name": "Primark",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 3,
+    "name": "ToyPlanet",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 4,
+    "name": "Muro4",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 5,
+    "name": "Objetos16",
+    "before": 8,
+    "after": 20
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 6,
+    "name": "Rodilla",
+    "before": 10,
+    "after": 12
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 7,
+    "name": "TacoBell",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 8,
+    "name": "TGB",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 9,
+    "name": "YelmoCines",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 4,
+    "level": 4,
+    "stage": 10,
+    "name": "VivaGYM",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 1,
+    "name": "Cuadrado5",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 2,
+    "name": "Bajada Autopista",
+    "before": 4,
+    "after": 10
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 3,
+    "name": "Picos",
+    "before": 8,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 4,
+    "name": "Aparcamiento",
+    "before": 4,
+    "after": 4
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 5,
+    "name": "Objetos17",
+    "before": 14,
+    "after": 20
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 6,
+    "name": "Gijón",
+    "before": 10,
+    "after": 10
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 7,
+    "name": "Alimerka",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 8,
+    "name": "Tallarines",
+    "before": 43,
+    "after": 16
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 9,
+    "name": "Mafalda",
+    "before": 10,
+    "after": 6
+  },
+  {
+    "world": 5,
+    "level": 1,
+    "stage": 10,
+    "name": "Cachopo",
+    "before": 11,
+    "after": 10
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 1,
+    "name": "Giros Inesperados",
+    "before": 12,
+    "after": 10
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 2,
+    "name": "Salto5",
+    "before": 12,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 3,
+    "name": "Aire Acondicionado",
+    "before": 7,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 4,
+    "name": "Imanes",
+    "before": 10,
+    "after": 6
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 5,
+    "name": "Objetos18",
+    "before": 14,
+    "after": 20
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 6,
+    "name": "Helado2",
+    "before": 13,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 7,
+    "name": "Sendero",
+    "before": 13,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 8,
+    "name": "Hórreo",
+    "before": 12,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 9,
+    "name": "Fabada",
+    "before": 9,
+    "after": 10
+  },
+  {
+    "world": 5,
+    "level": 2,
+    "stage": 10,
+    "name": "Puente",
+    "before": 21,
+    "after": 14
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 1,
+    "name": "Canoa",
+    "before": 28,
+    "after": 6
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 2,
+    "name": "Sin Bañador",
+    "before": 17,
+    "after": 4
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 3,
+    "name": "Correr5",
+    "before": 23,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 4,
+    "name": "Bajada al Descenso",
+    "before": 17,
+    "after": 10
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 5,
+    "name": "Objetos19",
+    "before": 31,
+    "after": 24
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 6,
+    "name": "Recta del Descenso",
+    "before": 19,
+    "after": 10
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 7,
+    "name": "SuperBajada",
+    "before": 23,
+    "after": 6
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 8,
+    "name": "Piedras",
+    "before": 18,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 9,
+    "name": "Caída Libre",
+    "before": 31,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 3,
+    "stage": 10,
+    "name": "MegaBajada",
+    "before": 18,
+    "after": 16
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 1,
+    "name": "Bus Asturiano",
+    "before": 26,
+    "after": 6
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 2,
+    "name": "Curvas en Bus",
+    "before": 26,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 3,
+    "name": "Curvas y Vacas en Bus",
+    "before": 26,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 4,
+    "name": "Muro5",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 5,
+    "name": "Objetos20",
+    "before": 14,
+    "after": 20
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 6,
+    "name": "Mina",
+    "before": 60,
+    "after": 18
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 7,
+    "name": "Vaques",
+    "before": 26,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 8,
+    "name": "Fuente 7 caños",
+    "before": 7,
+    "after": 8
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 9,
+    "name": "Covadonga",
+    "before": 6,
+    "after": 4
+  },
+  {
+    "world": 5,
+    "level": 4,
+    "stage": 10,
+    "name": "Picos de Covadonga",
+    "before": 25,
+    "after": 12
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 1,
+    "name": "Cuadrado6",
+    "before": 14,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 2,
+    "name": "Airport",
+    "before": 3,
+    "after": 4
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 3,
+    "name": "Underground",
+    "before": 9,
+    "after": 9
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 4,
+    "name": "M&S",
+    "before": 15,
+    "after": 10
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 5,
+    "name": "Objetos21",
+    "before": 20,
+    "after": 20
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 6,
+    "name": "Freaking Cold",
+    "before": 18,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 7,
+    "name": "Crows",
+    "before": 24,
+    "after": 12
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 8,
+    "name": "Primo Punch",
+    "before": 5,
+    "after": 5
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 9,
+    "name": "Plancha de pelo",
+    "before": 20,
+    "after": 10
+  },
+  {
+    "world": 6,
+    "level": 1,
+    "stage": 10,
+    "name": "Tinieblas",
+    "before": 16,
+    "after": 14
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 1,
+    "name": "Library",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 2,
+    "name": "Salto6",
+    "before": 15,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 3,
+    "name": "Ancient Egypt",
+    "before": 8,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 4,
+    "name": "Ancient Greece",
+    "before": 24,
+    "after": 10
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 5,
+    "name": "Objetos22",
+    "before": 20,
+    "after": 20
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 6,
+    "name": "Ancient Roma",
+    "before": 36,
+    "after": 12
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 7,
+    "name": "Museum Café",
+    "before": 15,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 8,
+    "name": "Art Paintings",
+    "before": 8,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 9,
+    "name": "Precious Gems",
+    "before": 3,
+    "after": 6
+  },
+  {
+    "world": 6,
+    "level": 2,
+    "stage": 10,
+    "name": "Night at the Museum",
+    "before": 55,
+    "after": 12
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 1,
+    "name": "Missed Train",
+    "before": 11,
+    "after": 10
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 2,
+    "name": "BuzzBallz",
+    "before": 3,
+    "after": 6
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 3,
+    "name": "Correr6",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 4,
+    "name": "Bici3",
+    "before": 12,
+    "after": 10
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 5,
+    "name": "Objetos23",
+    "before": 9,
+    "after": 20
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 6,
+    "name": "Souvenir Shop",
+    "before": 12,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 7,
+    "name": "The Bear Inn 1242",
+    "before": 5,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 8,
+    "name": "Moo-Moos",
+    "before": 20,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 9,
+    "name": "University",
+    "before": 9,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 3,
+    "stage": 10,
+    "name": "The Great Hall",
+    "before": 8,
+    "after": 14
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 1,
+    "name": "King’s Cross",
+    "before": 3,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 2,
+    "name": "Hamleys",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 3,
+    "name": "Oxford Street",
+    "before": 4,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 4,
+    "name": "Muro6",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 5,
+    "name": "Objetos24",
+    "before": 21,
+    "after": 20
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 6,
+    "name": "Expensive Chocolate",
+    "before": 12,
+    "after": 10
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 7,
+    "name": "Buckingham Palace",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 8,
+    "name": "River Thames",
+    "before": 10,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 9,
+    "name": "London Eye",
+    "before": 6,
+    "after": 8
+  },
+  {
+    "world": 6,
+    "level": 4,
+    "stage": 10,
+    "name": "Big Ben",
+    "before": 20,
+    "after": 14
+  }
+]

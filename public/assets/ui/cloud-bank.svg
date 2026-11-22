@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2=".6" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#fffdf4"/><stop offset=".5" stop-color="#f4fcff"/><stop offset="1" stop-color="#c9e6f2"/></linearGradient>
+    <radialGradient id="puff" cx=".35" cy=".25" r=".8"><stop stop-color="#fffef8"/><stop offset=".6" stop-color="#f4fcff"/><stop offset="1" stop-color="#d8eef7"/></radialGradient>
+  </defs>
+  <path fill="url(#body)" d="M80-120H920V-10C1030-20 1050 100 940 130C1030 160 1040 270 920 290C1010 310 1040 430 930 460C1040 490 1030 600 920 620C1030 660 1035 760 930 790C1030 830 1030 950 920 970V1120H80V990C-30 970-40 850 70 820C-35 790-35 670 80 640C-40 610-30 490 65 470C-40 440-30 320 80 300C-30 270-35 150 70 120C-30 90-20-20 80-10Z"/>
+  <g fill="url(#puff)">
+    <ellipse cx="190" cy="80" rx="165" ry="95"/><ellipse cx="450" cy="35" rx="205" ry="110"/><ellipse cx="790" cy="90" rx="195" ry="125"/>
+    <ellipse cx="100" cy="240" rx="140" ry="80"/><ellipse cx="330" cy="220" rx="180" ry="115"/><ellipse cx="650" cy="220" rx="210" ry="100"/>
+    <ellipse cx="900" cy="365" rx="130" ry="105"/><ellipse cx="690" cy="400" rx="190" ry="125"/><ellipse cx="370" cy="410" rx="200" ry="140"/><ellipse cx="90" cy="445" rx="125" ry="100"/>
+    <ellipse cx="180" cy="640" rx="185" ry="135"/><ellipse cx="480" cy="610" rx="200" ry="120"/><ellipse cx="810" cy="650" rx="200" ry="145"/>
+    <ellipse cx="80" cy="860" rx="125" ry="100"/><ellipse cx="350" cy="870" rx="210" ry="160"/><ellipse cx="680" cy="880" rx="180" ry="130"/><ellipse cx="930" cy="890" rx="115" ry="100"/>
+    <ellipse cx="490" cy="1080" rx="420" ry="150"/>
+  </g>
+  <g fill="none" stroke="#fffef8" stroke-linecap="round" opacity=".75" stroke-width="9">
+    <path d="M155 65C205 16 295 38 310 78M540 190C580 145 675 150 705 189M250 385C285 337 363 334 398 365M660 565C704 516 795 534 819 572M210 820C259 763 356 780 388 820M601 870C636 833 697 839 721 871"/>
+  </g>
+</svg>

@@ -1,0 +1,5838 @@
+[
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 1,
+    "name": "Cuadrado1",
+    "current": 3,
+    "timeLimit": 60,
+    "span": [
+      0,
+      5
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 2,
+    "name": "Piscina",
+    "current": 3,
+    "timeLimit": 60,
+    "span": [
+      8,
+      9
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.2,
+        "z": -15
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "water",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 3,
+    "name": "Guitarra",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      0,
+      23
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -26.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 4,
+    "name": "Río",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      10,
+      21
+    ],
+    "goal": [
+      {
+        "x": -6,
+        "y": 0.4,
+        "z": -17
+      }
+    ],
+    "properties": {},
+    "types": [
+      "water",
+      "platform",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 5,
+    "name": "Objetos1",
+    "current": 16,
+    "timeLimit": 60,
+    "span": [
+      12,
+      12
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -9
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 6,
+    "name": "Parque",
+    "current": 3,
+    "timeLimit": 60,
+    "span": [
+      4,
+      11
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -11
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "ramp",
+      "bumper",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 7,
+    "name": "Toros",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      4,
+      31
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -20.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "bumper",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 8,
+    "name": "Membrillo",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      0,
+      20
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 3.4,
+        "z": -18
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "ramp",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 9,
+    "name": "Blue",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      0,
+      19
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -17
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "bumper",
+      "ramp",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 1,
+    "levelName": "Calle Río Tajo",
+    "stage": 10,
+    "name": "Garaje",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      11,
+      6
+    ],
+    "goal": [
+      {
+        "x": -5.5,
+        "y": 5.2,
+        "z": 3.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 1,
+    "name": "Autobús a Santa Catalina",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      2,
+      70
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -68.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "cylinder",
+      "goal",
+      "moving-platform",
+      "collectible"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 2,
+    "name": "Salto1",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      0,
+      8
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -15
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 3,
+    "name": "Escaleras",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      2,
+      19
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -14.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 4,
+    "name": "Parque2",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      10,
+      19
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -14
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "ramp",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 5,
+    "name": "Objetos2",
+    "current": 12,
+    "timeLimit": 60,
+    "span": [
+      12,
+      12
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -9.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 6,
+    "name": "Rejas",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      0,
+      30
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -18.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 7,
+    "name": "Capilla",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      0,
+      18
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -10.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 8,
+    "name": "Barras",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      4,
+      20
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -14.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 9,
+    "name": "Tirolina",
+    "current": 3,
+    "timeLimit": 60,
+    "span": [
+      0,
+      28
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -17.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 2,
+    "levelName": "Parroquia Santa Catalina",
+    "stage": 10,
+    "name": "Fuegos Artificiales",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      5,
+      13
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -11
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 1,
+    "name": "Arroyo",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      4,
+      36
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -41.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "bumper",
+      "collectible",
+      "decoration",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 2,
+    "name": "Callejón",
+    "current": 3,
+    "timeLimit": 60,
+    "span": [
+      14,
+      15
+    ],
+    "goal": [
+      {
+        "x": -7,
+        "y": 0.8,
+        "z": 15.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 3,
+    "name": "Correr1",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      0,
+      45
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -30
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "bumper",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 4,
+    "name": "Feria",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      14,
+      24
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": -1.2,
+        "z": -14.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 5,
+    "name": "Objetos3",
+    "current": 8,
+    "timeLimit": 60,
+    "span": [
+      15,
+      15
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -11
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 6,
+    "name": "Chiringuito",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      7,
+      22
+    ],
+    "goal": [
+      {
+        "x": 4.8,
+        "y": 0.8,
+        "z": -15.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 7,
+    "name": "Piscina2",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      7,
+      25
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2.4,
+        "z": -17.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "bumper",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 8,
+    "name": "Futbol",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      3,
+      0
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -20.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "bumper",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 9,
+    "name": "Padel",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      0,
+      13
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -7.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 3,
+    "levelName": "Polideportivo Villmanta",
+    "stage": 10,
+    "name": "Dana",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      5,
+      52
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -47.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "collectible",
+      "bumper",
+      "decoration",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 1,
+    "name": "Bar",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      7,
+      6
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -7
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 2,
+    "name": "Panadería",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      4,
+      18
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -13.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 3,
+    "name": "Cuesta",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      3,
+      30
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 13.8,
+        "z": -17.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 4,
+    "name": "Muro1",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      8,
+      11
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -9
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 5,
+    "name": "Objetos4",
+    "current": 8,
+    "timeLimit": 60,
+    "span": [
+      12,
+      10
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -10.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 6,
+    "name": "Día",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      3,
+      21
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -18.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 7,
+    "name": "Ayuntamiento",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      12,
+      12
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -11.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 8,
+    "name": "Cojera",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      6,
+      24
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -16
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 9,
+    "name": "Concierto",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      7,
+      11
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1,
+        "z": -8.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 1,
+    "worldName": "Villamanta",
+    "level": 4,
+    "levelName": "Plaza de villamanta",
+    "stage": 10,
+    "name": "Banderitas",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      9,
+      7
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -13
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 1,
+    "name": "Cuadrado2",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      10,
+      10
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -5.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 2,
+    "name": "Arpón",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      3,
+      25
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2,
+        "z": -20.2
+      }
+    ],
+    "properties": {},
+    "types": [
+      "water",
+      "platform",
+      "decoration",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 3,
+    "name": "Piscina3",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      3,
+      26
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -20
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 4,
+    "name": "Socorrista",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      6,
+      20
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -15
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 5,
+    "name": "Objetos5",
+    "current": 8,
+    "timeLimit": 60,
+    "span": [
+      10,
+      12
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -9.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 6,
+    "name": "Erizo",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      4,
+      22
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -16.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 7,
+    "name": "Ascensor",
+    "current": 8,
+    "timeLimit": 90,
+    "span": [
+      0,
+      0
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 28.8,
+        "z": -5.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "decoration",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 8,
+    "name": "Noveno",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      9,
+      21
+    ],
+    "goal": [
+      {
+        "x": -5,
+        "y": 28.3,
+        "z": -17.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 9,
+    "name": "Colchón",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      6,
+      14
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.8,
+        "z": -15.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 1,
+    "levelName": "Apartamento",
+    "stage": 10,
+    "name": "Ventilador",
+    "current": 4,
+    "timeLimit": 60,
+    "span": [
+      3,
+      16
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -14
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 1,
+    "name": "Parque3",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      9,
+      25
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.5,
+        "z": -17.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 2,
+    "name": "Salto2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      6,
+      47
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.5,
+        "z": -29.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "collectible",
+      "decoration",
+      "water",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 3,
+    "name": "Cuesta2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      10,
+      57
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 15,
+        "z": -36
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 4,
+    "name": "Tranvia",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      24,
+      24
+    ],
+    "goal": [
+      {
+        "x": -12,
+        "y": 0.4,
+        "z": 6
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "water",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 5,
+    "name": "Objetos6",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      18,
+      32
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.5,
+        "z": -21
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 6,
+    "name": "Bici",
+    "current": 10,
+    "timeLimit": 110,
+    "span": [
+      5,
+      76
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 8.1,
+        "z": -41
+      }
+    ],
+    "properties": {
+      "bikeRevision": "reachable-transfers-v2"
+    },
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 7,
+    "name": "Casino",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      10,
+      19
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.5,
+        "z": -2.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "moving-platform",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 8,
+    "name": "Centro Comercial",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      15,
+      36
+    ],
+    "goal": [
+      {
+        "x": 7.5,
+        "y": 1.2,
+        "z": -12
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 9,
+    "name": "Mercadillo",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      12,
+      60
+    ],
+    "goal": [
+      {
+        "x": 5.8,
+        "y": 1.5,
+        "z": -25
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 2,
+    "levelName": "Alicante",
+    "stage": 10,
+    "name": "Puerto",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      9,
+      52
+    ],
+    "goal": [
+      {
+        "x": 10,
+        "y": 1.5,
+        "z": -26
+      }
+    ],
+    "properties": {},
+    "types": [
+      "water",
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 1,
+    "name": "Kiosko",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      5,
+      28
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -18.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 2,
+    "name": "Bajada",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      7,
+      39
+    ],
+    "goal": [
+      {
+        "x": 5,
+        "y": 0.4,
+        "z": -26
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "water",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 3,
+    "name": "Correr2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      2,
+      53
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -33.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "bumper",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 4,
+    "name": "Tablones",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      0,
+      39
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.9,
+        "z": -25
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 5,
+    "name": "Objetos7",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      14,
+      28
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.5,
+        "z": -20.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 6,
+    "name": "Sombrilla",
+    "current": 10,
+    "timeLimit": 65,
+    "span": [
+      12,
+      9
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.4,
+        "z": -12.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 7,
+    "name": "Toalla",
+    "current": 10,
+    "timeLimit": 65,
+    "span": [
+      3,
+      23
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1,
+        "z": -15
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 8,
+    "name": "Paseo",
+    "current": 10,
+    "timeLimit": 70,
+    "span": [
+      3,
+      48
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -29.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 9,
+    "name": "Hippies",
+    "current": 10,
+    "timeLimit": 85,
+    "span": [
+      12,
+      52
+    ],
+    "goal": [
+      {
+        "x": -6.2,
+        "y": 0.4,
+        "z": -14.4
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 3,
+    "levelName": "Playa San Juan",
+    "stage": 10,
+    "name": "Playa",
+    "current": 10,
+    "timeLimit": 80,
+    "span": [
+      2,
+      47
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.6,
+        "z": -28
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 1,
+    "name": "Tranvia2",
+    "current": 10,
+    "timeLimit": 90,
+    "span": [
+      2,
+      140
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -83
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 2,
+    "name": "Palmeras",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      4,
+      50
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.4,
+        "z": -31.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 3,
+    "name": "Mercadona",
+    "current": 10,
+    "timeLimit": 85,
+    "span": [
+      25,
+      26
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -22.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 4,
+    "name": "Muro2",
+    "current": 10,
+    "timeLimit": 80,
+    "span": [
+      8,
+      28
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 7.2,
+        "z": -24
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 5,
+    "name": "Objetos8",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      10,
+      38
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -24.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 6,
+    "name": "Mercado",
+    "current": 10,
+    "timeLimit": 85,
+    "span": [
+      5,
+      42
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -26
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 7,
+    "name": "Bazar",
+    "current": 10,
+    "timeLimit": 90,
+    "span": [
+      18,
+      36
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -19.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 8,
+    "name": "Ropa",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      4,
+      48
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.4,
+        "z": -28
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 9,
+    "name": "Popeye",
+    "current": 10,
+    "timeLimit": 85,
+    "span": [
+      10,
+      14
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2.8,
+        "z": -12.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 2,
+    "worldName": "San Juan",
+    "level": 4,
+    "levelName": "Fontana",
+    "stage": 10,
+    "name": "Helado",
+    "current": 10,
+    "timeLimit": 90,
+    "span": [
+      13,
+      16
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 16,
+        "z": 0
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 1,
+    "name": "Cuadrado3",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      9,
+      9
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -6
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 2,
+    "name": "Callejuela",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      2,
+      40
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -22.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 3,
+    "name": "Fuente",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      10,
+      16
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": -1.2,
+        "z": 0
+      }
+    ],
+    "properties": {},
+    "types": [
+      "ramp",
+      "platform",
+      "water",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 4,
+    "name": "Almacen",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      4,
+      42
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -28.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 5,
+    "name": "Objetos9",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      16,
+      15
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -10
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 6,
+    "name": "Escaleras2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      11,
+      22
+    ],
+    "goal": [
+      {
+        "x": -0.5,
+        "y": 10.8,
+        "z": -2.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 7,
+    "name": "Salamandra",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      18,
+      68
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -74
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 8,
+    "name": "Ventilador2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      3,
+      36
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -19
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 9,
+    "name": "Puertas Blancas",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      0,
+      31
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -19
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 1,
+    "levelName": "La casina",
+    "stage": 10,
+    "name": "Misina",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      2,
+      39
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2.6,
+        "z": -25.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 1,
+    "name": "Callejuela2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      3,
+      41
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 3.8,
+        "z": 23
+      }
+    ],
+    "properties": {},
+    "types": [
+      "ramp",
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 2,
+    "name": "Salto3",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      0,
+      50
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 5,
+        "z": -28
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 3,
+    "name": "Perros",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      7,
+      37
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -21
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 4,
+    "name": "Miel",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      12,
+      24
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -13.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "honey",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 5,
+    "name": "Objetos10",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      12,
+      12
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -9.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 6,
+    "name": "Plaza",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      12,
+      23
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -14
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 7,
+    "name": "Dibujos",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      0,
+      32
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.08,
+        "z": -20.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 8,
+    "name": "Niñas",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      4,
+      34
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -19.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 9,
+    "name": "Bajada2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      6,
+      49
+    ],
+    "goal": [
+      {
+        "x": -1,
+        "y": 0.8,
+        "z": -28.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 2,
+    "levelName": "La Era",
+    "stage": 10,
+    "name": "La Era",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      35,
+      43
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": 0
+      }
+    ],
+    "properties": {},
+    "types": [
+      "honey",
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 1,
+    "name": "Camino",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      3,
+      52
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -29.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 2,
+    "name": "Polideportivo",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      6,
+      50
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 3.3,
+        "z": -27.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 3,
+    "name": "Correr3",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      5,
+      47
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -25
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 4,
+    "name": "Cuatro Caminos",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      16,
+      18
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": -3.2,
+        "z": -11.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 5,
+    "name": "Objetos11",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      11,
+      15
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -10
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 6,
+    "name": "Plaza2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      16,
+      29
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -16
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 7,
+    "name": "Spar",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      3,
+      32
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -18
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 8,
+    "name": "Río Los Ángeles",
+    "current": 10,
+    "timeLimit": 85,
+    "span": [
+      9,
+      51
+    ],
+    "goal": [
+      {
+        "x": 7.5,
+        "y": 0.8,
+        "z": 8.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 9,
+    "name": "Turrón",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      2,
+      38
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -21.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "water",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 3,
+    "levelName": "Pinofranqueado",
+    "stage": 10,
+    "name": "Mirador",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      11,
+      32
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 3.6,
+        "z": -18.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 1,
+    "name": "Bazar Gigante",
+    "current": 10,
+    "timeLimit": 90,
+    "span": [
+      20,
+      38
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -21
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 2,
+    "name": "Cuesta3",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      5,
+      50
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 13.2,
+        "z": -30
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 3,
+    "name": "Niños",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      4,
+      34
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -19.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 4,
+    "name": "Muro3",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      0,
+      38
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 11.3,
+        "z": -22.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 5,
+    "name": "Objetos12",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      12,
+      12
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -10
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 6,
+    "name": "Curvas",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      4,
+      59
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -34
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 7,
+    "name": "Sin Cobertura",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      6,
+      2
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2,
+        "z": -5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 8,
+    "name": "Cuesta4",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      0,
+      43
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 16.8,
+        "z": -22.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 9,
+    "name": "Ruta Nocturna",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      5,
+      40
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 3.2,
+        "z": -25.5
+      }
+    ],
+    "properties": {
+      "pitchBlack": true,
+      "darknessMode": "spotlight_under"
+    },
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 3,
+    "worldName": "Mesegal",
+    "level": 4,
+    "levelName": "Chorrito de Ovejuela",
+    "stage": 10,
+    "name": "Chorrito",
+    "current": 10,
+    "timeLimit": 90,
+    "span": [
+      8,
+      27
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2.6,
+        "z": -18
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 1,
+    "name": "Cuadrado4",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      10,
+      10
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -7
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 2,
+    "name": "Bus35",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      4,
+      79
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.2,
+        "z": -44
+      }
+    ],
+    "properties": {
+      "cameraMode": "cinematic_bus35"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 3,
+    "name": "Día2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      4,
+      51
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -30
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 4,
+    "name": "Droguería",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      7,
+      43
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -26
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 5,
+    "name": "Objetos13",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      4,
+      43
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -26
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "bumper",
+      "rotating-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 6,
+    "name": "Misina2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      2,
+      55
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 3,
+        "z": -37.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 7,
+    "name": "vidas tiene el gato",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      5,
+      28
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -15.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 8,
+    "name": "Litos",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      2,
+      32
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -20
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 9,
+    "name": "Adri",
+    "current": 10,
+    "timeLimit": 90,
+    "span": [
+      12,
+      103
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.4,
+        "z": -94
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 1,
+    "levelName": "Piqueñas",
+    "stage": 10,
+    "name": "Pinar",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      4,
+      61
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -42
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 1,
+    "name": "Bus34",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      2,
+      84
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -66
+      }
+    ],
+    "properties": {
+      "cameraMode": "cinematic_bus34"
+    },
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 2,
+    "name": "Salto4",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      0,
+      68
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 7.4,
+        "z": -50
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "bumper",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 3,
+    "name": "Padel2",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      10,
+      30
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -18.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 4,
+    "name": "La Mina",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      36,
+      30
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -19.5
+      }
+    ],
+    "properties": {
+      "cameraMode": "cinematic_mina"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 5,
+    "name": "Objetos14",
+    "current": 6,
+    "timeLimit": 60,
+    "span": [
+      10,
+      48
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -28
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "bumper",
+      "cylinder",
+      "rotating-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 6,
+    "name": "Galway",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      5,
+      29
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -18
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 7,
+    "name": "13 2B",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      3,
+      29
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 9.8,
+        "z": -21
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 8,
+    "name": "Rony",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      4,
+      53
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2.2,
+        "z": -23
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 9,
+    "name": "Pao",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      5,
+      45
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 28.8,
+        "z": -46
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "cylinder",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 2,
+    "levelName": "San Melitón",
+    "stage": 10,
+    "name": "Ninanos",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      4,
+      78
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -64
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 1,
+    "name": "Bici2",
+    "current": 10,
+    "timeLimit": 110,
+    "span": [
+      5,
+      76
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.1,
+        "z": -41
+      }
+    ],
+    "properties": {
+      "bikeRevision": "reachable-transfers-v2"
+    },
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 2,
+    "name": "Alba de Tormes",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      25,
+      24
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 3,
+    "name": "Correr4",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      7,
+      96
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2.6,
+        "z": -53
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 4,
+    "name": "Padel3",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      7,
+      19
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 26.8,
+        "z": -5
+      }
+    ],
+    "properties": {
+      "cameraMode": "fixed_padel"
+    },
+    "types": [
+      "platform",
+      "moving-platform",
+      "bumper",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 5,
+    "name": "Objetos15",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      9,
+      50
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2,
+        "z": -30
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "rotating-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 6,
+    "name": "Parque Pirata",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      6,
+      47
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2.6,
+        "z": -26
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 7,
+    "name": "Carrefour",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      84,
+      40
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -23
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 8,
+    "name": "Escaleras Republicanas",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      0,
+      42
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -16.1
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "goal",
+      "water",
+      "decoration",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 9,
+    "name": "Parque Aluche",
+    "current": 5,
+    "timeLimit": 60,
+    "span": [
+      0,
+      35
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 30,
+        "z": -43
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 3,
+    "levelName": "Las Cruces",
+    "stage": 10,
+    "name": "Lago",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      3,
+      23
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 15.5,
+        "z": 0
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "moving-platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 1,
+    "name": "2Bus35",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      10,
+      76
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -42
+      }
+    ],
+    "properties": {
+      "cameraMode": "cinematic_bus35"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "moving-platform",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 2,
+    "name": "Primark",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      44,
+      51
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -29.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 3,
+    "name": "ToyPlanet",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      7,
+      54
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 18.3,
+        "z": -29
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 4,
+    "name": "Muro4",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      8,
+      70
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 18.8,
+        "z": -49
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 5,
+    "name": "Objetos16",
+    "current": 8,
+    "timeLimit": 60,
+    "span": [
+      15,
+      42
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 2,
+        "z": -22
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "ramp",
+      "water",
+      "rotating-platform",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 6,
+    "name": "Rodilla",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      6,
+      158
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -83
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "bumper",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 7,
+    "name": "TacoBell",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      6,
+      68
+    ],
+    "goal": [
+      {
+        "x": 5.6,
+        "y": 5.5,
+        "z": -37
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 8,
+    "name": "TGB",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      8,
+      68
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 11.8,
+        "z": -38
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "bumper",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 9,
+    "name": "YelmoCines",
+    "current": 10,
+    "timeLimit": 60,
+    "span": [
+      12,
+      43
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.8,
+        "z": -24
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 4,
+    "worldName": "Carabanchel",
+    "level": 4,
+    "levelName": "Islazul",
+    "stage": 10,
+    "name": "VivaGYM",
+    "current": 10,
+    "timeLimit": 75,
+    "span": [
+      12,
+      75
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 1.2,
+        "z": -43
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "moving-platform",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 1,
+    "name": "Cuadrado5",
+    "current": 10,
+    "timeLimit": 65,
+    "span": [
+      10,
+      15
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.1,
+        "z": -10
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 2,
+    "name": "Bajada Autopista",
+    "current": 4,
+    "timeLimit": 95,
+    "span": [
+      18,
+      111
+    ],
+    "goal": [
+      {
+        "x": 23,
+        "y": 0.4,
+        "z": -160
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 3,
+    "name": "Picos",
+    "current": 8,
+    "timeLimit": 90,
+    "span": [
+      12,
+      56
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.12,
+        "z": -57
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 4,
+    "name": "Aparcamiento",
+    "current": 4,
+    "timeLimit": 70,
+    "span": [
+      6,
+      11
+    ],
+    "goal": [
+      {
+        "x": 2.85,
+        "y": -6.05,
+        "z": -3
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 5,
+    "name": "Objetos17",
+    "current": 14,
+    "timeLimit": 75,
+    "span": [
+      14,
+      20
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.13,
+        "z": -12
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 6,
+    "name": "Gijón",
+    "current": 10,
+    "timeLimit": 95,
+    "span": [
+      13,
+      57
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.18,
+        "z": -43
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "water",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 7,
+    "name": "Alimerka",
+    "current": 10,
+    "timeLimit": 150,
+    "span": [
+      27,
+      27
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.12,
+        "z": 0
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 8,
+    "name": "Tallarines",
+    "current": 43,
+    "timeLimit": 100,
+    "span": [
+      31,
+      58
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.25,
+        "z": -69
+      }
+    ],
+    "properties": {},
+    "types": [
+      "decoration",
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 9,
+    "name": "Mafalda",
+    "current": 10,
+    "timeLimit": 80,
+    "span": [
+      3,
+      54
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.12,
+        "z": -49
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 1,
+    "levelName": "Oviedo",
+    "stage": 10,
+    "name": "Cachopo",
+    "current": 11,
+    "timeLimit": 150,
+    "span": [
+      13,
+      79
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.12,
+        "z": -72.10000000000001
+      }
+    ],
+    "properties": {},
+    "types": [
+      "decoration",
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 1,
+    "name": "Giros Inesperados",
+    "current": 12,
+    "timeLimit": 105,
+    "span": [
+      26,
+      163
+    ],
+    "goal": [
+      {
+        "x": -3,
+        "y": 0.77,
+        "z": -198.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 2,
+    "name": "Salto5",
+    "current": 12,
+    "timeLimit": 80,
+    "span": [
+      0,
+      87
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 6.28,
+        "z": -78
+      }
+    ],
+    "properties": {
+      "cangasRequestedRevision": "cangas-physics-layout-2026-11-11-v1"
+    },
+    "types": [
+      "decoration",
+      "collectible",
+      "platform",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 3,
+    "name": "Aire Acondicionado",
+    "current": 7,
+    "timeLimit": 80,
+    "span": [
+      5,
+      60
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.08,
+        "z": -56
+      }
+    ],
+    "properties": {
+      "cangasRequestedRevision": "cangas-physics-layout-2026-11-11-v1"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 4,
+    "name": "Imanes",
+    "current": 10,
+    "timeLimit": 95,
+    "span": [
+      3,
+      65
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.1,
+        "z": -58
+      }
+    ],
+    "properties": {
+      "cangasRequestedRevision": "cangas-physics-layout-2026-11-11-v1",
+      "cangasPolishRevision": "cangas-magnets-icecream-honey-v2"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 5,
+    "name": "Objetos18",
+    "current": 14,
+    "timeLimit": 80,
+    "span": [
+      14,
+      22
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.1,
+        "z": -10
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 6,
+    "name": "Helado2",
+    "current": 13,
+    "timeLimit": 100,
+    "span": [
+      17,
+      16
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 22.2,
+        "z": -0.65
+      }
+    ],
+    "properties": {
+      "cangasRequestedRevision": "cangas-physics-layout-2026-11-11-v1",
+      "cangasPolishRevision": "cangas-magnets-icecream-honey-v2"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 7,
+    "name": "Sendero",
+    "current": 13,
+    "timeLimit": 100,
+    "span": [
+      27,
+      101
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 3.08,
+        "z": -100.5
+      }
+    ],
+    "properties": {
+      "cangasRequestedRevision": "cangas-physics-layout-2026-11-11-v1"
+    },
+    "types": [
+      "decoration",
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 8,
+    "name": "Hórreo",
+    "current": 12,
+    "timeLimit": 115,
+    "span": [
+      18,
+      17
+    ],
+    "goal": [
+      {
+        "x": -12,
+        "y": 0.55,
+        "z": -9.5
+      }
+    ],
+    "properties": {},
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 9,
+    "name": "Fabada",
+    "current": 9,
+    "timeLimit": 115,
+    "span": [
+      21,
+      26
+    ],
+    "goal": [
+      {
+        "x": 13.5,
+        "y": -4.1,
+        "z": -3
+      }
+    ],
+    "properties": {
+      "cangasRequestedRevision": "cangas-physics-layout-2026-11-11-v1",
+      "cangasPolishRevision": "cangas-magnets-icecream-honey-v2"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "honey",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 2,
+    "levelName": "Cangas de Onis",
+    "stage": 10,
+    "name": "Puente",
+    "current": 21,
+    "timeLimit": 125,
+    "span": [
+      67,
+      81
+    ],
+    "goal": [
+      {
+        "x": -35,
+        "y": 9.1,
+        "z": -10
+      }
+    ],
+    "properties": {
+      "cangasRequestedRevision": "cangas-physics-layout-2026-11-11-v1",
+      "cangasPolishRevision": "cangas-magnets-icecream-honey-v2"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "water",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 1,
+    "name": "Canoa",
+    "current": 28,
+    "timeLimit": 100,
+    "span": [
+      0,
+      135
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -119
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": true,
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 2,
+    "name": "Sin Bañador",
+    "current": 17,
+    "timeLimit": 90,
+    "span": [
+      0,
+      80
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -61.5
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": false,
+      "sellaE2Revision": "sella-land-short-v2",
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible",
+      "platform"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 3,
+    "name": "Correr5",
+    "current": 23,
+    "timeLimit": 85,
+    "span": [
+      17,
+      260
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 13.08,
+        "z": -250
+      }
+    ],
+    "properties": {
+      "sellaMode": "foot",
+      "boardAtSpawn": true,
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 4,
+    "name": "Bajada al Descenso",
+    "current": 17,
+    "timeLimit": 120,
+    "span": [
+      34,
+      312
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -322.00000000000006
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": true,
+      "sellaRocksRevision": "original-rocks-v3",
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 5,
+    "name": "Objetos19",
+    "current": 31,
+    "timeLimit": 120,
+    "span": [
+      0,
+      150
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -134
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": true,
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible",
+      "platform"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 6,
+    "name": "Recta del Descenso",
+    "current": 19,
+    "timeLimit": 160,
+    "span": [
+      0,
+      630
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -654
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": true,
+      "sellaRocksRevision": "original-rocks-v3",
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 7,
+    "name": "SuperBajada",
+    "current": 23,
+    "timeLimit": 105,
+    "span": [
+      0,
+      184
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -182
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": true,
+      "sellaRocksRevision": "original-rocks-v3",
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 8,
+    "name": "Piedras",
+    "current": 18,
+    "timeLimit": 160,
+    "span": [
+      33,
+      497
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -512
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": true,
+      "sellaRocksRevision": "original-rocks-v3",
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 9,
+    "name": "Caída Libre",
+    "current": 31,
+    "timeLimit": 120,
+    "span": [
+      0,
+      174
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -152
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": true,
+      "sellaRocksRevision": "original-rocks-v3",
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 3,
+    "levelName": "Descenso del Sella",
+    "stage": 10,
+    "name": "MegaBajada",
+    "current": 18,
+    "timeLimit": 480,
+    "span": [
+      132,
+      768
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 12.07,
+        "z": -855.9897127206073
+      }
+    ],
+    "properties": {
+      "sellaMode": "canoe",
+      "boardAtSpawn": true,
+      "sellaRocksRevision": "mega-mixed-rocks-v4",
+      "canoePace": 1.35,
+      "sellaMegaRevision": "mega-current-60-v5",
+      "sellaRouteRevision": "mega-aligned-river-v7",
+      "sellaRevision": "sella-canoe-v1"
+    },
+    "types": [
+      "water",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 1,
+    "name": "Bus Asturiano",
+    "current": 26,
+    "timeLimit": 100,
+    "span": [
+      8,
+      238
+    ],
+    "goal": [
+      {
+        "x": 0.28792118224158336,
+        "y": 19.973248658581106,
+        "z": -243.01045439175755
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2",
+      "covadongaMode": "bus",
+      "minimumTravelTime": 15,
+      "boardAtSpawn": false
+    },
+    "types": [
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 2,
+    "name": "Curvas en Bus",
+    "current": 26,
+    "timeLimit": 160,
+    "span": [
+      60,
+      340
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 115.92015980825565,
+        "z": -345.00399520639104
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2",
+      "covadongaMode": "bus",
+      "minimumTravelTime": 30,
+      "boardAtSpawn": true
+    },
+    "types": [
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 3,
+    "name": "Curvas y Vacas en Bus",
+    "current": 26,
+    "timeLimit": 170,
+    "span": [
+      60,
+      340
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 125.92015980825565,
+        "z": -345.00399520639104
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2",
+      "covadongaMode": "bus",
+      "minimumTravelTime": 30,
+      "boardAtSpawn": true
+    },
+    "types": [
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 4,
+    "name": "Muro5",
+    "current": 10,
+    "timeLimit": 110,
+    "span": [
+      8,
+      70
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 18.8,
+        "z": -49
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2"
+    },
+    "types": [
+      "platform",
+      "moving-platform",
+      "goal",
+      "collectible",
+      "decoration"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 5,
+    "name": "Objetos20",
+    "current": 14,
+    "timeLimit": 95,
+    "span": [
+      14,
+      22
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 0.1,
+        "z": -10
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 6,
+    "name": "Mina",
+    "current": 60,
+    "timeLimit": 130,
+    "span": [
+      83,
+      2273
+    ],
+    "goal": [
+      {
+        "x": 16.525452503695956,
+        "y": -16.62024672331267,
+        "z": -2917.5567848910987
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2",
+      "covadongaMode": "cart",
+      "minimumTravelTime": 60,
+      "boardAtSpawn": true,
+      "covadongaMineRevision": "paced-mine-v2"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 7,
+    "name": "Vaques",
+    "current": 26,
+    "timeLimit": 120,
+    "span": [
+      14,
+      223
+    ],
+    "goal": [
+      {
+        "x": -0.8566284027115385,
+        "y": 25.98208978811242,
+        "z": -225.07461271325485
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2"
+    },
+    "types": [
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 8,
+    "name": "Fuente 7 caños",
+    "current": 7,
+    "timeLimit": 180,
+    "span": [
+      6,
+      6
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 4.08,
+        "z": 0
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2"
+    },
+    "types": [
+      "decoration",
+      "platform",
+      "collectible",
+      "goal"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 9,
+    "name": "Covadonga",
+    "current": 6,
+    "timeLimit": 100,
+    "span": [
+      10,
+      8
+    ],
+    "goal": [
+      {
+        "x": 0,
+        "y": 39,
+        "z": -210
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2",
+      "covadongaMode": "cannon",
+      "boardAtSpawn": false
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "goal",
+      "collectible"
+    ]
+  },
+  {
+    "world": 5,
+    "worldName": "Asturias",
+    "level": 4,
+    "levelName": "Picos de Covadonga",
+    "stage": 10,
+    "name": "Picos de Covadonga",
+    "current": 25,
+    "timeLimit": 150,
+    "span": [
+      110,
+      92
+    ],
+    "goal": [
+      {
+        "x": -63.83999999999997,
+        "y": 28.12,
+        "z": -37.98
+      }
+    ],
+    "properties": {
+      "covadongaRevision": "picos-covadonga-v1",
+      "covadongaSceneryRevision": "grounded-picos-v2",
+      "backRoundRouteRevision": "ds-reference-v3"
+    },
+    "types": [
+      "platform",
+      "decoration",
+      "collectible",
+      "goal"
+    ]
+  }
+]

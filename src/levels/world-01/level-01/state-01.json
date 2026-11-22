@@ -1,0 +1,72 @@
+{
+  "id": "world-01-level-01-stage-01",
+  "world": 1,
+  "level": 1,
+  "stage": 1,
+  "name": "Primer Paso",
+  "timeLimit": 60,
+  "spawn": {
+    "x": 0,
+    "y": 2,
+    "z": 0
+  },
+  "objects": [
+    {
+      "id": "start-platform",
+      "type": "platform",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 10,
+        "y": 0.5,
+        "z": 10
+      }
+    },
+    {
+      "id": "goal",
+      "type": "goal",
+      "position": {
+        "x": 0,
+        "y": 1,
+        "z": -8
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "id": "collectible-01",
+      "type": "collectible",
+      "position": {
+        "x": 2,
+        "y": 1,
+        "z": -2
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    }
+  ]
+}

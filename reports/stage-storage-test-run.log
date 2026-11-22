@@ -1,0 +1,145 @@
+
+> super-monkey-ball-web@0.1.0 test
+> vitest run --maxWorkers=2
+
+
+ RUN  v3.2.7 C:/Users/Helio/OneDrive/Documentos/GitHub/Mega RAMP
+
+ ✓ tests/museum.test.ts (20 tests) 11326ms
+   ✓ Museum definitions and shared models > builds finite models including all ten articulated prehistoric species and Santa's T-Rex  1197ms
+   ✓ Museum definitions and shared models > builds and destroys all ten full scenes including their colliders, moving goals and camera blockers  1246ms
+   ✓ Museum physics and challenges > moves all 253 pyramid blocks independently using one instanced draw and synchronised box colliders  301ms
+   ✓ Museum physics and challenges > can ascend the eight timed pyramid levels without requiring a jump button  2471ms
+   ✓ Museum physics and challenges > can evade the moving prehistoric animals and finish the full chase  2430ms
+   ✓ Museum physics and challenges > keeps the unobstructed run close to a minute and frames both the ball and chasing T-Rex  2499ms
+ ✓ tests/sella-canoe.test.ts (59 tests) 15643ms
+   ✓ Sella: ten stages and shared models > builds all ten complete game scenes with their vehicle, collisions and collectibles  886ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 30 fps without sinking  2194ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 60 fps without sinking  1342ms
+   ✓ Sella canoe real physics > supports the canoe across every MegaBajada river section at 120 fps without sinking  881ms
+   ✓ Sella canoe real physics > drifts at 60 km/h, reaches 100 by rowing, and keeps carrying a braking canoe  2614ms
+   ✓ Sella canoe real physics > returns progressively to the current's 60 km/h after releasing both paddles  942ms
+   ✓ Sella canoe real physics > can follow the original Bajada al Descenso curves using paddle corrections  1672ms
+   ✓ Sella canoe real physics > gives time to react after boarding a descent and then moderates downhill speed  700ms
+   ✓ Sella canoe real physics > floats, gains speed with strokes, crosses the tutorial goal and resets cleanly  351ms
+   ✓ Sella canoe real physics > falls from the waterfall and wins on contacting the lower basin  524ms
+   ✓ Sella canoe real physics > can land through the moving SuperBajada goal  573ms
+   ✓ Sella canoe real physics > gulls lift the passenger out of the canoe, throw them off the river and return  322ms
+ ✓ tests/oxford.test.ts (25 tests) 3781ms
+   ✓ Oxford shared stages, geometry and editor data > builds finite batched models and all ten complete physics scenes  1100ms
+   ✓ Oxford interactive physics > offers a complete pursuit through three lanes to the open Oxford train  398ms
+   ✓ Oxford interactive physics > can traverse the campus run and undulating road using ordinary ball controls  366ms
+ ✓ tests/bike-courses.test.ts (5 tests) 3494ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici: can ride each translating wheel to the next platform and either pedal to the front frame  1407ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici2: can ride each translating wheel to the next platform and either pedal to the front frame  1006ms
+   ✓ Reachable Bici, Bici2 and Bici3 transfers > Bici3: can ride each translating wheel to the next platform and either pedal to the front frame  1071ms
+ ✓ tests/covadonga.test.ts (15 tests) 3010ms
+   ✓ Covadonga stage definitions and shared editor models > creates finite shared models with batched landscape and actual fountain holes  1043ms
+   ✓ Covadonga stage definitions and shared editor models > builds all complete game scenes with collisions and runtime hooks  909ms
+stderr | tests/kyoto.test.ts
+using deprecated parameters for the initialization function; pass a single object instead
+
+ ✓ tests/big-ben.test.ts (23 tests) 2965ms
+   ✓ Big Ben: definitions, graphics and shared editor assets > builds and destroys all ten complete collision scenes and all sixteen editor models  579ms
+   ✓ Big Ben: real passenger physics and stage mechanisms > turns before boarding and carries a stationary passenger through a full uninterrupted orbit  1298ms
+ ✓ tests/kyoto.test.ts (17 tests) 3212ms
+   ✓ Kioto: ten complete stages with shared visual and physical routes > has a continuous supported centreline, spawn, prizes and goal in E2  869ms
+   ✓ Kioto: ten complete stages with shared visual and physical routes > builds, changes quality and releases complete game scenes with supported spawns and correct goals  778ms
+ ✓ tests/collectible-visuals.test.ts (7 tests) 2568ms
+   ✓ Collectible quality and character changes > keeps pan finite and within pickup bounds with one draw per object at each quality  861ms
+   ✓ Collectible quality and character changes > keeps cached model instances independent and resolves every UI alias to the same design  1197ms
+ ✓ tests/london.test.ts (14 tests) 2762ms
+   ✓ London stage definitions and models > creates finite batched models and leaves all train doorways physically open in the shell  571ms
+   ✓ London stage definitions and models > builds and releases all ten complete game scenes with London runtimes  625ms
+   ✓ London mechanics > flies exactly four full slow laps before landing and releasing the player beside the goal  333ms
+   ✓ London mechanics > carries the ball and the three collectibles with each train and requires all three complete journeys  351ms
+   ✓ London mechanics > lets Adri reach the cold goal in ten seconds and leave the hot plate before its eleven-second snap  307ms
+ ✓ tests/water-appearance.test.ts (2 tests) 1476ms
+   ✓ Natural water appearance > creates an opaque blue-green texture with subtle contrast and no drawn circles  1471ms
+ ✓ tests/graphics-quality.test.ts (8 tests) 970ms
+   ✓ Visual quality profiles > preserves every collider, actor, position and collision mesh when selecting or switching quality  907ms
+ ✓ tests/sella-river-alignment.test.ts (2 tests) 997ms
+   ✓ Rendered Sella river / current alignment > matches water height, slope and flow across the full width of every MegaBajada section  994ms
+ ✓ tests/world5-level2-physics.test.ts (24 tests) 943ms
+ ✓ tests/coastal-interiors.test.ts (7 tests) 1001ms
+   ✓ San Juan casino and searchable interiors > keeps finite detailed models and ball-width entry routes in high quality  331ms
+ ✓ tests/collectible-support.test.ts (1 test) 779ms
+   ✓ places the new rest-stage rewards above actual physical surfaces, including the canoe rest river  776ms
+ ✓ tests/collectible-balance.test.ts (5 tests) 486ms
+ ✓ tests/covadonga-scenery.test.ts (10 tests) 553ms
+ ✓ tests/character-skin-assets.test.js (2 tests) 1442ms
+   ✓ Production character skin assets > ships all 48 nonempty, distinct, padded RGBA animations and valid portrait crops  1244ms
+ ✓ tests/stage-storage.test.ts (5 tests) 737ms
+   ✓ Editor storage under browser quota pressure > roundtrips full stages, Unicode and dictionary resets without losing coordinates  338ms
+ ✓ tests/kyoto-challenges.test.ts (8 tests) 395ms
+ ✓ tests/world4-level4.test.ts (13 tests) 249ms
+ ✓ tests/prepared-level.test.ts (4 tests) 149ms
+ ✓ tests/world4-level2.test.ts (17 tests) 362ms
+ ❯ tests/world4-levels.test.ts (21 tests | 1 failed) 307ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify all 10 stages exist and match exact required names 2ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify each stage has valid spawn, exactly 1 goal, and exactly 10 collectibles 1ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify all 10 stages are properly registered in BAKED_STAGES 1ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E1 ('Cuadrado4') Carabanchel urban square and Madrid decorations 1ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E2 ('Bus35') Calle Piqueñas length >= 80m and EMT Blue Bus 35 1ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify Camera cinematic mode 'bus35' settings and elevated framing 5ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E3 ('Día2') supermarket aisle with moving furniture/shelves 0ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E4 ('Droguería') Chinese bazaar with 3 distinct lanes 0ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E5 ('Objetos13') Carabanchel urban obstacle course 0ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E6 ('Misina2') course with spectacular final mega jump ramp and landing island 0ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E7 ('vidas tiene el gato') 4-terrace residential building drop 1ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E8 ('Litos') door and spring timing duo 12ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E9 ('Adri') giant Super Saiyan Goku statue and continuous connected Kamehameha beam >= 100m with circular physics 81ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify M4-N1-E10 ('Pinar') pine avenue and accelerating wall 0ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should build all 12 Madrid Carabanchel decorations without errors 11ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify litos_duo and accelerating_wall kinematic motion in LevelBuilder.build 18ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify standardized object IDs prefix w4s1 across all 10 stages (w4s11..w4s110) 3ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify LevelLoader correctly preserves user-edited M4-N1-E10 and does not overwrite with baked 2ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify LevelLoader preserves custom stages across any World 4 stage when custom objects are present 1ms
+   ✓ World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify syncOfficialStagesIfNeeded does not overwrite user customSaved stages 144ms
+   × World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify LevelEditor saveCurrentLevel persists edits on M4-N1-E10 through stage transitions 18ms
+     → Unexpected token '!', "!MR-LZW1!2"... is not valid JSON
+ ✓ tests/world4-level3.test.ts (22 tests) 157ms
+ ✓ tests/water-simulator.test.ts (7 tests) 99ms
+ ✓ tests/world3-levels.test.ts (23 tests) 81ms
+ ✓ tests/loading-tips.test.ts (5 tests) 29ms
+ ✓ tests/cangas-saved-updates.test.ts (9 tests) 66ms
+ ✓ tests/block-fusion.test.ts (3 tests) 52ms
+ ✓ tests/art-presentation.test.ts (7 tests) 67ms
+ ✓ tests/character-skins.test.ts (4 tests) 41ms
+ ✓ tests/camera-and-lives.test.ts (15 tests) 38ms
+ ✓ tests/ui-assets.test.ts (3 tests) 36ms
+ ✓ tests/stage-resource-lifetime.test.ts (3 tests) 24ms
+ ✓ tests/skin-rewards.test.ts (13 tests) 25ms
+ ✓ tests/audio-activation.test.ts (2 tests) 15ms
+ ✓ tests/progression.test.ts (21 tests) 32ms
+ ✓ tests/camera-heading.test.ts (9 tests) 21ms
+ ✓ tests/loading-transition.test.ts (6 tests) 20ms
+ ✓ tests/game-loading.test.ts (5 tests) 21ms
+ ✓ tests/water-contact-visuals.test.ts (4 tests) 14ms
+ ✓ tests/skin-reward-notice.test.ts (3 tests) 15ms
+ ✓ tests/character-frame-loading.test.ts (4 tests) 11ms
+ ✓ tests/world2-level4.test.ts (13 tests) 8ms
+ ✓ tests/world2-level3.test.ts (12 tests) 9ms
+ ✓ tests/world2-level2.test.ts (5 tests) 6ms
+ ✓ tests/speed-display.test.ts (3 tests) 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/world4-levels.test.ts > World 4: Carabanchel - Level 1: Piqueñas (10 Stages Validation) > should verify LevelEditor saveCurrentLevel persists edits on M4-N1-E10 through stage transitions
+SyntaxError: Unexpected token '!', "!MR-LZW1!2"... is not valid JSON
+ ❯ tests/world4-levels.test.ts:732:30
+    730|     const savedRaw = localStorage.getItem("custom_stage_4_1_10");
+    731|     expect(savedRaw).toBeDefined();
+    732|     const parsedSaved = JSON.parse(savedRaw!);
+       |                              ^
+    733|     expect(parsedSaved.customSaved).toBe(true);
+    734|     expect(parsedSaved.name).toBe("Pinar Con Cambios del Usuario");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 47 passed (48)
+      Tests  1 failed | 514 passed (515)
+   Start at  16:22:26
+   Duration  52.89s (transform 5.09s, setup 0ms, collect 23.28s, tests 60.50s, environment 10ms, prepare 7.72s)
+
