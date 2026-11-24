@@ -50,25 +50,27 @@ export class SpriteTextures {
   }
   static keepCharacterSkin(id:string,skinId='normal'):void{this.characterFrames?.keepSkin(id,skinId);}
 
-  static async prepareLevelAssets(stages:readonly LevelData[]):Promise<void> {
-    const drawings=new Set<number>(),sets=new Set<string>();
+  static async prepareLevelAssets(stages:readonly LevelData[],upload?:(texture:THREE.Texture)=>void):Promise<void> {
+    const drawings=new Set<number>(),sets=new Set<string>(),textures=new Set<THREE.Texture>();
     for(const stage of stages) {
       const key=`${stage.world}:${stage.level}`;
-      if(!sets.has(key)){this.getWorldBlockSet(stage.world,stage.level);sets.add(key);}
+      if(!sets.has(key)){const blocks=this.getWorldBlockSet(stage.world,stage.level);for(const texture of [blocks.top,blocks.sideX,blocks.sideZ,blocks.bottom])textures.add(texture);sets.add(key);}
       stage.objects.forEach((object,index)=>{
         const props=object.properties;
         if(props?.variant==='a4_sheet'||props?.theme==='drawing_sheet'||props?.theme==='coloring_sheet')drawings.add(Number(props.sheetIndex)||(index+1));
       });
     }
     const pending=[...drawings].map(index=>{
-      this.getColoringPageTexture(index);
+      textures.add(this.getColoringPageTexture(index));
       const page=((((index-1)%3)+3)%3)+1;
       return this.cachedColoringReady.get(`coloring_page_${page}`)??Promise.resolve();
     });
-    if(!pending.length)return;
-    let timer:ReturnType<typeof setTimeout>|undefined;
-    try {await Promise.race([Promise.all(pending),new Promise<void>(resolve=>{timer=setTimeout(resolve,8000);})]);}
-    finally {clearTimeout(timer);}
+    if(pending.length){
+      let timer:ReturnType<typeof setTimeout>|undefined;
+      try {await Promise.race([Promise.all(pending),new Promise<void>(resolve=>{timer=setTimeout(resolve,8000);})]);}
+      finally {clearTimeout(timer);}
+    }
+    if(upload)for(const texture of textures)upload(texture);
   }
 
   /**

@@ -46,3 +46,12 @@ describe('First website entry',()=>{
     const reduced=setup();reduced.ui.showScreen('title');reduced.ui.enterTitleMenu();vi.advanceTimersByTime(0);expect(reduced.play.focus).toHaveBeenCalledOnce();
   });
 });
+
+
+it('opens the installed-app menu even if the media API throws synchronously',()=>{
+  const f=setup();f.ui.showScreen('title');const warning=vi.spyOn(console,'warn').mockImplementation(()=>{});
+  f.audio.startMenuBGM.mockImplementation(()=>{throw new Error('Media unavailable in standalone');});
+  expect(()=>f.ui.enterTitleMenu()).not.toThrow();
+  expect(f.panel.inert).toBe(false);expect(f.panel.removeAttribute).toHaveBeenCalledWith('inert');
+  expect(f.screen.classList.remove).toHaveBeenCalledWith('is-title-intro');expect(warning).toHaveBeenCalledOnce();
+});

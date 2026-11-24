@@ -114,6 +114,17 @@ button:focus-visible,a:focus-visible{outline:3px solid #a0edeb;outline-offset:4p
 .has-title-entry .logo-mega,.has-title-entry .logo-ramp{transition:font-size .8s cubic-bezier(.22,.75,.2,1);}
 @media(prefers-reduced-motion:reduce){.has-title-entry .logo-mega,.has-title-entry .logo-ramp{transition:none;}}
 
+/* Installed phones usually start in landscape: keep Play inside the safe viewport. */
+@media(max-height:640px) and (min-width:721px){
+  .title-screen-refined{padding:max(12px,var(--safe-top)) max(24px,var(--safe-right)) max(12px,var(--safe-bottom)) max(24px,var(--safe-left));}
+  .title-menu-panel{max-height:calc(100svh - 24px - var(--safe-top) - var(--safe-bottom));overflow-y:auto;overscroll-behavior:contain;}
+  .title-logo-stage{height:clamp(160px,calc(100svh - 150px),350px);}
+  .title-screen-refined .logo-mega{font-size:clamp(42px,15svh,78px);}
+  .title-screen-refined .logo-ramp{font-size:clamp(48px,17svh,88px);}
+  .title-screen-refined.has-title-entry .title-entry-play{min-height:44px;}
+  .is-title-intro .title-brand{transform:translateX(calc(43.47826% + var(--title-gap)/2)) translateY(-36px) scale(1.06);}
+}
+
 .game-notice{position:fixed;z-index:12000;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(90vw,620px);padding:16px 22px;border:1px solid #ffd38b;border-radius:16px;background:#20283df2;color:#fff4d9;box-shadow:0 8px 30px #0006;text-align:center}
 .backup-options{display:flex;flex-wrap:wrap;gap:12px}.backup-options h3,.backup-options p{flex-basis:100%}.backup-options [hidden]{display:none}.backup-options label{cursor:pointer}
 .game-clear-screen{overflow:auto;background:radial-gradient(ellipse at 20% 10%,#238b8070,transparent 55%),radial-gradient(ellipse at 80% 35%,#8052bd60,transparent 60%),#10243b}.finale-card{max-width:760px!important;margin:auto;text-align:center;border:1px solid #80e8cc!important;box-shadow:0 0 70px #42bca329!important}.finale-card h1{font-size:clamp(2.5rem,8vw,4.8rem);color:#a6ffe0;letter-spacing:.06em;margin:8px 0}.finale-eyebrow{letter-spacing:.2em;color:#b9cde7}.finale-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin:24px 0}.finale-stats div{padding:16px;border:1px solid #729fbc70;border-radius:18px;background:#12253d80}.finale-stats strong,.finale-stats span{display:block}.finale-stats strong{font-size:1.5rem;color:#c8f5ff}.finale-stats span{margin-top:7px;font-size:.9rem}.finale-credits{margin:24px 0;color:#bdd1e0;font-size:.9rem}.finale-card .btn{margin:6px}@media(max-width:480px){.finale-stats{grid-template-columns:1fr 1fr;gap:8px}.finale-stats div{padding:10px}.finale-stats strong{font-size:1.1rem}}

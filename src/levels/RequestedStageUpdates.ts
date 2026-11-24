@@ -1,3 +1,4 @@
+import {applyPlazaFinale} from "./world-01/PlazaFinale";
 import {registeredLevel} from './StageRegistry';
 const WORLD_08_LEVEL_04_STAGES=registeredLevel(8,4);
 const WORLD_08_LEVEL_03_STAGES=registeredLevel(8,3);
@@ -28,7 +29,7 @@ import {TOKYO_POLISH_REVISION,TOKYO_MACHINE_REVISION,TOKYO_ARCADE_REVISION,TOKYO
 
 /** Apply requested adjustments to both the game and editor, including saved stages. */
 export function applyRequestedStageUpdates(data: LevelData, world: number, level: number, stage: number): LevelData {
-  return applyCoastalStageUpdates(applyCollectibleBalance(applyStageMechanicUpdates(data,world,level,stage),world,level,stage));
+  return applyPlazaFinale(applyCoastalStageUpdates(applyCollectibleBalance(applyStageMechanicUpdates(data,world,level,stage),world,level,stage)));
 }
 
 function applyStageMechanicUpdates(data: LevelData, world: number, level: number, stage: number): LevelData {

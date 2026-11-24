@@ -128,3 +128,12 @@ describe("Cloud curtain navigation", () => {
     expect(f.clouds.active).toBe(false);
   });
 });
+
+
+it('recovers a standalone browser animation whose finished promise never settles, without skipping readiness',async()=>{
+  const f=setup();for(const wing of f.wings)wing.animate.mockImplementation(()=>({finished:new Promise<void>(()=>{}),cancel:vi.fn()}));
+  let ready:()=>void=()=>{};const prepare=vi.fn(()=>new Promise<void>(resolve=>{ready=resolve;}));
+  const pending=f.clouds.run('forward',prepare);await vi.advanceTimersByTimeAsync(870);
+  expect(prepare).toHaveBeenCalledOnce();await vi.advanceTimersByTimeAsync(5000);expect(f.clouds.active).toBe(true);expect(f.overlay.hidden).toBe(false);
+  ready();await vi.advanceTimersByTimeAsync(870);await pending;expect(f.clouds.active).toBe(false);expect(f.overlay.hidden).toBe(true);expect(vi.getTimerCount()).toBe(0);
+});

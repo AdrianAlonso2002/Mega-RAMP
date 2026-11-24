@@ -335,7 +335,7 @@ export class ProgressionManager {
     this.data.levelRecords[key] = {
       completed: true,
       bestTime: prev.bestTime === null ? time : Math.min(prev.bestTime, time),
-      totalCollectibles: Math.max(prev.totalCollectibles, collectibles),
+      totalCollectibles: Math.min(this.getLevelMaxCollectibles(world, level), Math.max(0, Math.floor(collectibles))),
       completedCharacters: newCharacters,
       clearCount: (prev.clearCount || 0) + 1
     };
@@ -426,7 +426,7 @@ export class ProgressionManager {
         ...record,
         completed: true,
         bestTime: record.bestTime,
-        totalCollectibles: record.totalCollectibles,
+        totalCollectibles: Math.min(this.getLevelMaxCollectibles(world, level), Math.max(0, record.totalCollectibles)),
         completedCharacters: record.completedCharacters || [],
         clearCount: record.clearCount || 1
       };
@@ -438,7 +438,7 @@ export class ProgressionManager {
       return {
         completed: true,
         bestTime: sumTime > 0 ? sumTime : null,
-        totalCollectibles: sumCollectibles,
+        totalCollectibles: Math.min(this.getLevelMaxCollectibles(world, level), sumCollectibles),
         completedCharacters: [],
         clearCount: 1
       };

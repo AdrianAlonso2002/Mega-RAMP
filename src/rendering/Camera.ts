@@ -28,6 +28,28 @@ export class Camera {
   private lastMovingAngle = 0;
   private manualYawCooldown = 0;
   private readonly lookAhead = new THREE.Vector3();
+  private busView=false;
+  private busViewInitialized=false;
+  private readonly busOrigin=new THREE.Vector3();
+  private readonly busPrevious=new THREE.Vector3();
+  setBusView(origin:THREE.Vector3|null):void {
+    const active=origin!==null;
+    if(active!==this.busView){this.busViewInitialized=false;this.isInitialized=false;}
+    this.busView=active;
+    if(origin)this.busOrigin.copy(origin);
+  }
+  private followBus(delta:number):void {
+    if(this.busViewInitialized){
+      this.tempCheckVec.subVectors(this.busOrigin,this.busPrevious);
+      this.object.position.add(this.tempCheckVec);this.currentLookAt.add(this.tempCheckVec);
+    }
+    const height=Math.max(18,7/(Math.tan(this.object.fov*Math.PI/360)*Math.max(.4,this.object.aspect)));
+    this.desiredPos.set(this.busOrigin.x+7,this.busOrigin.y+height,this.busOrigin.z+12);
+    this.lookTarget.copy(this.busOrigin);this.lookTarget.y+=1;
+    const blend=this.busViewInitialized?1-Math.exp(-5*delta):1;
+    this.object.position.lerp(this.desiredPos,blend);this.currentLookAt.lerp(this.lookTarget,blend);
+    this.object.lookAt(this.currentLookAt);this.busPrevious.copy(this.busOrigin);this.busViewInitialized=true;
+  }
   private canoeFollowing=false;
   private canoeCinematic=false;
   private cannonScene=false;
@@ -249,6 +271,7 @@ export class Camera {
   }
 
   snapTo(target: THREE.Vector3, collidableMeshes?: THREE.Object3D[]): void {
+    if(this.busView){this.busViewInitialized=false;this.followBus(0);return;}
     this.chaseYawVelocity=0;
     this.steerHeadingHold=0;
     if(this.naraTrainView){this.naraTrainInitialized=false;this.follow(target,this.lookAhead.set(0,0,0),0,collidableMeshes);return;}
@@ -301,6 +324,7 @@ export class Camera {
     collidableMeshes?: THREE.Object3D[],
     horizontalInput=0
   ): void {
+    if(this.busView){this.followBus(delta);return;}
     if(this.naraTrainView) {
       // Travel compensation follows the fast train exactly; easing only adjusts the framing.
       if(this.naraTrainInitialized){this.tempCheckVec.subVectors(this.naraTrainOrigin,this.naraTrainPrevious);this.object.position.add(this.tempCheckVec);this.currentLookAt.add(this.tempCheckVec);}

@@ -9,6 +9,7 @@ beforeEach(()=>{
   vi.useFakeTimers();
   vi.stubGlobal('requestAnimationFrame',(callback:FrameRequestCallback)=>setTimeout(()=>callback(0),0));
   vi.spyOn(SpriteTextures,'waitForCharacterSkin').mockResolvedValue();
+  vi.spyOn(SpriteTextures,'prepareLevelAssets').mockResolvedValue();
 });
 afterEach(()=>{vi.useRealTimers();vi.unstubAllGlobals();vi.restoreAllMocks();});
 function setup(){
@@ -17,7 +18,7 @@ function setup(){
   state.selectedCharacter='pao';state.selectedSkin='hp';
   const ui={showLevelLoading:vi.fn(()=>{state.screen='loading';}),beginStageTransition:vi.fn(()=>{state.screen='loading';}),showScreen:vi.fn(screen=>{state.screen=screen;}),showLoadingError:vi.fn()};
   const scenes={scene:{},prepareLevel:vi.fn(async()=>{}),loadStage:vi.fn(async()=>{}),loadCustomLevel:vi.fn(),applyLevelEnvironment:vi.fn(async()=>{}),beginStageIntro:vi.fn()};
-  Object.assign(game,{state,ui,scenes,physics:{waitForReady:vi.fn(async()=>{})},hud:{setVisible:vi.fn()},touchControls:{setVisible:vi.fn()},renderer:{render:vi.fn()},camera:{object:{}},editor:null});
+  Object.assign(game,{state,ui,scenes,physics:{waitForReady:vi.fn(async()=>{})},hud:{setVisible:vi.fn()},touchControls:{setVisible:vi.fn()},renderer:{render:vi.fn(),prepareScene:vi.fn(async()=>{})},camera:{object:{}},editor:null});
   return {game,state,ui,scenes};
 }
 describe('Game entry is covered until ready',()=>{
@@ -62,4 +63,44 @@ describe('Game entry is covered until ready',()=>{
     expect(scenes.loadCustomLevel).toHaveBeenCalledWith(data,{deferIntro:true});expect(scenes.loadStage).not.toHaveBeenCalled();
     expect(state.screen).toBe('gameplay');expect(scenes.beginStageIntro).toHaveBeenCalledOnce();
   });
+});
+
+
+describe('independent level attempts',()=>{
+  it('clears the old run when testing an advanced editor stage and preserves only its continuation',async()=>{
+    const {game,state}=setup();
+    state.levelRunCollectibles=95;state.levelRunTime=120;state.runStageCollectibles[1]=10;state.runStageTimes[1]=12;
+    game.playtestCustomLevel({world:1,level:2,stage:7,objects:[]});
+    await vi.runAllTimersAsync();
+    expect(state.levelRunCollectibles).toBe(0);expect(state.runStageTimes).toEqual([]);
+    state.levelRunCollectibles=8;state.runStageCollectibles[7]=8;state.runStageTimes[7]=10;
+    const pending=game.startStage(1,2,8,true);await vi.runAllTimersAsync();await pending;
+    expect(state.levelRunCollectibles).toBe(8);expect(state.runStageCollectibles[7]).toBe(8);
+  });
+  it('does not mark skipped stages as completed when starting near the end',()=>{
+    const {game,state}=setup();state.selectedStage=10;state.runStageTimes[10]=8;state.runStageCollectibles[10]=5;
+    state.levelRunCollectibles=5;state.levelRunTime=8;
+    game.progression={completeStage:vi.fn(),recordLevelCompletion:vi.fn()};game.onStageClear();
+    expect(game.progression.completeStage).toHaveBeenCalledTimes(1);
+    expect(game.progression.completeStage).toHaveBeenCalledWith(1,1,10,8,5);
+    expect(game.progression.recordLevelCompletion).toHaveBeenCalledWith(1,1,8,5,'pao');
+  });
+  it('subtracts the current stage prizes before a manual stage restart',()=>{
+    const {game,state,scenes}=setup();state.levelRunCollectibles=30;state.stageCollectibles=8;
+    Object.assign(scenes,{restartCurrentStage:vi.fn(()=>state.resetStage())});game.restartStage();
+    expect(state.levelRunCollectibles).toBe(22);expect(state.stageCollectibles).toBe(0);
+  });
+});
+
+
+it('keeps the loading cover until all level data and GPU preparation have completed',async()=>{
+  const {game,state,scenes}=setup();let levelReady:()=>void=()=>{},gpuReady:()=>void=()=>{};
+  scenes.prepareLevel.mockImplementation(()=>new Promise<void>(resolve=>{levelReady=resolve;}));
+  game.renderer.prepareScene.mockImplementation(()=>new Promise<void>(resolve=>{gpuReady=resolve;}));
+  const pending=game.startStage(8,4,1);await vi.advanceTimersByTimeAsync(4000);
+  expect(state.screen).toBe('loading');expect(scenes.loadStage).not.toHaveBeenCalled();
+  levelReady();await vi.advanceTimersByTimeAsync(0);
+  expect(scenes.loadStage).toHaveBeenCalledOnce();expect(game.renderer.prepareScene).toHaveBeenCalledOnce();
+  expect(scenes.beginStageIntro).not.toHaveBeenCalled();expect(state.screen).toBe('loading');
+  gpuReady();await vi.runAllTimersAsync();await pending;expect(state.screen).toBe('gameplay');
 });

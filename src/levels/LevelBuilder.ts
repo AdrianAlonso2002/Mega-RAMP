@@ -1,3 +1,4 @@
+import {createConcertModel,concertLift,createPlazaGarland} from "./world-01/ConcertModel";
 import {createNorwayModel} from './world-08/NorwayModels';
 import {NorwayLevel} from './world-08/NorwayLevel';
 import * as THREE from "three";
@@ -2779,74 +2780,17 @@ export class LevelBuilder {
           // Concierto Stage Vibration & Equipment (M1-N4-E9)
           const isConcertVibe = obj.properties?.variant === "concert_vibe" || obj.properties?.movementType === "concert_vibe";
           if (isConcertVibe) {
-            const concertGroup = new THREE.Group();
-            concertGroup.position.set(obj.position.x, obj.position.y, obj.position.z);
-            concertGroup.rotation.copy(tempEuler);
-
-            const drumMat = new THREE.MeshStandardMaterial({ color: 0xd32f2f, metalness: 0.5, roughness: 0.3 });
-            const cymbalMat = new THREE.MeshStandardMaterial({ color: 0xffd54f, metalness: 0.85, roughness: 0.15 });
-            const standMat = new THREE.MeshStandardMaterial({ color: 0xb0bec5, metalness: 0.9, roughness: 0.2 });
-
-            const bassDrumGeo = new THREE.CylinderGeometry(0.9, 0.9, 0.8, 16);
-            bassDrumGeo.rotateX(Math.PI / 2);
-            bassDrumGeo.translate(0, 0.9, -4.5);
-            concertGroup.add(new THREE.Mesh(bassDrumGeo, drumMat));
-
-            const cymbal1Geo = new THREE.CylinderGeometry(0.55, 0.55, 0.02, 16);
-            cymbal1Geo.rotateX(0.2);
-            cymbal1Geo.translate(-1.4, 2.0, -4.2);
-            concertGroup.add(new THREE.Mesh(cymbal1Geo, cymbalMat));
-
-            const cymbal2Geo = new THREE.CylinderGeometry(0.55, 0.55, 0.02, 16);
-            cymbal2Geo.rotateX(-0.15);
-            cymbal2Geo.translate(1.4, 2.1, -4.2);
-            concertGroup.add(new THREE.Mesh(cymbal2Geo, cymbalMat));
-
-            const stand1Geo = new THREE.CylinderGeometry(0.03, 0.03, 1.6, 6);
-            stand1Geo.translate(-1.4, 1.2, -4.2);
-            concertGroup.add(new THREE.Mesh(stand1Geo, standMat));
-
-            const stand2Geo = new THREE.CylinderGeometry(0.03, 0.03, 1.6, 6);
-            stand2Geo.translate(1.4, 1.2, -4.2);
-            concertGroup.add(new THREE.Mesh(stand2Geo, standMat));
-
-            const guitarMat = new THREE.MeshStandardMaterial({ color: 0xf44336, metalness: 0.4, roughness: 0.3 });
-            const neckMat = new THREE.MeshStandardMaterial({ color: 0xd7ccc8, roughness: 0.6 });
-            const guitarBody = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.85, 0.1), guitarMat);
-            guitarBody.position.set(-3.8, 1.2, 1.5);
-            guitarBody.rotation.z = 0.2;
-            const guitarNeck = new THREE.Mesh(new THREE.BoxGeometry(0.12, 1.1, 0.08), neckMat);
-            guitarNeck.position.set(-3.95, 2.0, 1.5);
-            guitarNeck.rotation.z = 0.2;
-            concertGroup.add(guitarBody, guitarNeck);
-
-            const micStand = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 1.8, 6), standMat);
-            micStand.position.set(0, 1.2, 1.0);
-            const micHead = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 6), standMat);
-            micHead.position.set(0, 2.1, 1.0);
-            concertGroup.add(micStand, micHead);
-
-            root.add(concertGroup);
-
-            const kinematic = physics.createKinematicBox(
-              obj.position,
-              { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w },
-              { x: 2.0, y: 1.0, z: 2.0 },
-              0.8,
-              0.1
-            );
-            if (kinematic) {
-              movingPlatforms.push({
-                id: obj.id,
-                mesh: concertGroup as any,
-                body: kinematic.body,
-                basePosition: new THREE.Vector3(obj.position.x, obj.position.y, obj.position.z),
-                axis: "y",
-                distance: 0.12,
-                speed: 1.33,
-                movementType: "concert_vibe"
-              });
-            }
+            const model=createConcertModel(),concertGroup=model.group;
+            concertGroup.position.set(obj.position.x,obj.position.y,obj.position.z);concertGroup.rotation.copy(tempEuler);
+            root.add(concertGroup);collidableMeshes.push(...model.meshes);
+            const geometry=model.collisionGeometry;
+            const vertices=geometry.getAttribute('position').array as Float32Array;
+            const indices=Uint32Array.from({length:vertices.length/3},(_,i)=>i);
+            const kinematic=physics.createKinematicTrimesh(obj.position,vertices,indices,.015,.65,tempQuat);
+            geometry.dispose();
+            if(kinematic)movingPlatforms.push({id:obj.id,mesh:concertGroup as any,body:kinematic.body,
+              basePosition:new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z),axis:'y',distance:.045,
+              speed:Number(obj.properties?.speed??1.33),movementType:'concert_vibe'});
             break;
           }
 
@@ -5638,13 +5582,7 @@ export class LevelBuilder {
           p.body.setNextKinematicTranslation({ x: p.basePosition.x, y: p.basePosition.y, z: curZ });
           continue;
         } else if (p.movementType === "concert_vibe") {
-          const beatTime = 0.75;
-          const tInBeat = effectiveTime % beatTime;
-          const beatProgress = tInBeat / beatTime;
-          let yVibe = 0;
-          if (beatProgress < 0.25) {
-            yVibe = Math.sin(beatProgress * Math.PI * 4) * 0.08;
-          }
+          const yVibe=concertLift(effectiveTime,p.speed);
           const curY = p.basePosition.y + yVibe;
           p.mesh.position.set(p.basePosition.x, curY, p.basePosition.z);
           p.body.setNextKinematicTranslation({ x: p.basePosition.x, y: curY, z: p.basePosition.z });
@@ -7368,6 +7306,9 @@ export class LevelBuilder {
     context?: {world:number;level:number}
   ): { group: THREE.Group; decoration?: ActiveDecoration; meshes: THREE.Mesh[] } {
     if(context&&obj.properties?.subType==='nara_rotor')obj={...obj,properties:{...obj.properties,neonRotor:context.world===7&&(context.level===3||context.level===4),neonAccent:context.level===3?0xff79d5:0x73e5f2}};
+    if(obj.properties?.subType==='plaza_finale_garland'){
+      const result=createPlazaGarland(obj.scale.x);result.group.position.copy(obj.position);result.group.rotation.set(obj.rotation.x,obj.rotation.y,obj.rotation.z,'YXZ');return result;
+    }
     const norway=createNorwayModel(obj,quality);if(norway)return norway;
     const tokyo=createTokyoModel(obj,quality);if(tokyo)return tokyo;
     const osaka=createOsakaModel(obj,quality);if(osaka)return osaka;

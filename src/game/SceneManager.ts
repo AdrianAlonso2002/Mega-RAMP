@@ -1,3 +1,4 @@
+import { crossesGoalOpening } from "./GoalCrossing";
 import { assetUrl } from "../core/AssetUrl";
 import * as THREE from "three";
 import {stageStartYaw} from '../rendering/StageHeading';
@@ -98,6 +99,11 @@ export class SceneManager {
 
   // Pre-allocated vector for distance checks
   private readonly tempDiff = new THREE.Vector3();
+  private readonly previousGoalLocal = new THREE.Vector3();
+  private goalSampleValid = false;
+  private goalTeleportVersion=-1;
+  private busCameraMesh: THREE.Object3D | null = null;
+  private readonly busCameraPosition = new THREE.Vector3();
   private readonly tempGoalInvQuat = new THREE.Quaternion();
   private readonly tempGoalQuat = new THREE.Quaternion();
   private readonly mergedInput: InputAxis = { horizontal: 0, vertical: 0 };
@@ -263,6 +269,7 @@ export class SceneManager {
       this.currentQuality
     );
     this.scene.add(this.currentLevel.group);
+    this.configureBusCamera();
 
     // 5. Create Player with glossy monkey ball & 2D billboard sprite
     this.player = new Player(
@@ -298,7 +305,9 @@ export class SceneManager {
   async prepareLevel(world:number,level:number,signal?:AbortSignal):Promise<void> {
     const stages=await this.preparedLevel.prepare(world,level,signal);
     if(signal?.aborted)return;
-    await Promise.all([this.applyLevelEnvironment(world,level),SpriteTextures.prepareLevelAssets(stages)]);
+    await Promise.all([this.applyLevelEnvironment(world,level),SpriteTextures.prepareLevelAssets(stages,texture=>{
+      if(!signal?.aborted)this.context?.renderer.object.initTexture(texture);
+    })]);
   }
 
   loadCustomLevel(data: LevelData,options:{deferIntro?:boolean}={}): void {
@@ -335,6 +344,7 @@ export class SceneManager {
       this.currentQuality
     );
     this.scene.add(this.currentLevel.group);
+    this.configureBusCamera();
 
     this.player = new Player(
       charDef,
@@ -445,6 +455,7 @@ export class SceneManager {
 
     // Fly-in cinematic 360 camera intro animation
     if (this.isIntroActive) {
+      this.goalSampleValid=false;
       this.player.respawn();
 
       // Check if user is rushing the intro with WASD, Arrow keys, screen touch or joystick
@@ -535,6 +546,7 @@ export class SceneManager {
 
     // Update Level animations (collectibles hover, goal ribbon, interactive padel racket)
     const stageRespawn = this.currentLevel.update(delta, false, playerPos, this.player);
+    if (stageRespawn) this.goalSampleValid=false;
     if (stageRespawn) this.context.camera.snapTo(playerPos, this.currentLevel.collidableMeshes);
     // Moving geometry must be current before probing camera obstructions.
     const cinematicCanoe=this.currentLevelData?.world===5 && this.currentLevelData.level===3 &&
@@ -547,6 +559,7 @@ export class SceneManager {
     const cannonScene=this.currentLevel.covadonga;
     this.context.camera.setCannonScene(cannonScene?.cannonSceneActive ? cannonScene.cannonSceneOrigin:null,
       cannonScene?.cannonSceneActive ? cannonScene.cannonSceneGoal??null:null);
+    this.context.camera.setBusView(this.busCameraMesh ? this.busCameraMesh.getWorldPosition(this.busCameraPosition) : null);
     this.context.camera.follow(playerPos,playerVel,delta,this.currentLevel.collidableMeshes,this.mergedInput.horizontal);
 
     // 1. Check Collectibles collision
@@ -585,19 +598,19 @@ export class SceneManager {
         this.tempDiff.applyQuaternion(this.tempGoalInvQuat);
       }
       if(goal.mesh.userData.searchHidden===true)this.tempDiff.divide(goal.mesh.scale);
-      const localX = this.tempDiff.x;
-      const localY = this.tempDiff.y;
-      const localZ = this.tempDiff.z;
+      const teleportVersion=this.player.getTeleportVersion();
+      if(teleportVersion!==this.goalTeleportVersion)this.goalSampleValid=false;
+      this.goalTeleportVersion=teleportVersion;
+      const crossed = crossesGoalOpening(this.goalSampleValid ? this.previousGoalLocal : this.tempDiff, this.tempDiff);
+      this.previousGoalLocal.copy(this.tempDiff);
+      this.goalSampleValid = true;
 
       // Crossing through portal frame opening:
       // Inner post clear width is |localX| <= 1.42
       // Vertical height opening is localY between 0.1 and 3.2
       // Half or more of the ball (radius 0.5) must cross the portal threshold: |localZ| <= 0.40
       if (
-        this.currentLevel.tokyo?.finishRequested || this.currentLevel.bigben?.finishRequested || this.currentLevel.oxford?.finishRequested || this.currentLevel.museum?.finishRequested || this.currentLevel.london?.finishRequested || this.currentLevel.covadonga?.finishRequested || this.currentLevel.canoe?.finishRequested || (!this.currentLevel.tokyo?.controlsGoal && !this.currentLevel.bigben?.failed && !this.currentLevel.bigben?.controlsGoal && !this.currentLevel.oxford?.failed && !this.currentLevel.oxford?.controlsGoal && !this.currentLevel.museum?.failed && !this.currentLevel.museum?.controlsGoal && !this.currentLevel.london?.failed && !this.currentLevel.london?.controlsGoal && !this.currentLevel.covadonga?.controlsGoal && Math.abs(localX) <= 1.42 &&
-        localY >= 0.1 &&
-        localY <= 3.2 &&
-        Math.abs(localZ) <= 0.40)
+        this.currentLevel.tokyo?.finishRequested || this.currentLevel.bigben?.finishRequested || this.currentLevel.oxford?.finishRequested || this.currentLevel.museum?.finishRequested || this.currentLevel.london?.finishRequested || this.currentLevel.covadonga?.finishRequested || this.currentLevel.canoe?.finishRequested || (!this.currentLevel.tokyo?.controlsGoal && !this.currentLevel.bigben?.failed && !this.currentLevel.bigben?.controlsGoal && !this.currentLevel.oxford?.failed && !this.currentLevel.oxford?.controlsGoal && !this.currentLevel.museum?.failed && !this.currentLevel.museum?.controlsGoal && !this.currentLevel.london?.failed && !this.currentLevel.london?.controlsGoal && !this.currentLevel.covadonga?.controlsGoal && crossed)
       ) {
         goal.reached = true;
         this.isStageCompleted = true;
@@ -958,6 +971,7 @@ export class SceneManager {
           this.flooFlameTimer = 0;
 
           const target = { x: 0.0, y: 28.5, z: -20.0 };
+          this.goalSampleValid=false;
           this.player?.teleportTo(target.x, target.y, target.z);
           if (this.player) {
             this.context.camera.snapTo(this.player.getPosition(), this.currentLevel?.collidableMeshes);
@@ -1019,6 +1033,13 @@ export class SceneManager {
     );
   }
 
+  private configureBusCamera(): void {
+    const data=this.currentLevelData;
+    const isBus=data?.world===1&&data.level===2&&data.stage===1;
+    this.busCameraMesh=isBus ? this.currentLevel?.movingPlatforms.find(platform=>platform.id==='bus-chassis')?.mesh??null : null;
+    this.context?.camera.setBusView(this.busCameraMesh ? this.busCameraMesh.getWorldPosition(this.busCameraPosition) : null);
+  }
+
   async restartCurrentStage(): Promise<void> {
     if (!this.context || !this.currentLevelData) return;
     this.context.state.lives = 5;
@@ -1031,6 +1052,9 @@ export class SceneManager {
   }
 
   cleanupCurrentStage(): void {
+    this.goalSampleValid=false;
+    this.busCameraMesh=null;
+    this.context?.camera.setBusView(null);
     this.updateKitsuneLighting(false);
     this.contactShadows.clear();
     if (this.gameOverTimeoutId !== null) {
@@ -1130,6 +1154,7 @@ export class SceneManager {
 
     if (isGameOver) {
       this.isGameOverTriggered = true;
+      this.goalSampleValid=false;
       this.player?.respawn();
       this.respawnCooldown = 999;
       this.context.hud.showBanner("¡FIN!", 2000, "#ff5252");
@@ -1145,6 +1170,7 @@ export class SceneManager {
       const bannerText = reason === "painting" ? "¡CUADRO INCORRECTO!":reason === "rex" ? "¡EL T-REX TE HA ALCANZADO!":reason === "cold" ? "❄️ ¡CONGELADO!":reason === "crush" ? "⚠️ ¡APLASTADO!":reason === "vehicle" ? "⚠️ ¡ACCIDENTE!" : reason === "canoe" ? "🛶 ¡CANOA ROTA!" : reason === "lava" ? "🔥 ¡QUEMADO EN LA LAVA!" : reason === "enemy" ? "⚠️ ¡TE HAN PILLADO!" : "¡CAÍDA!";
       const bannerColor = reason === "lava" ? "#ff3d00" : reason === "enemy" ? "#d32f2f" : "#ff5252";
       this.context.hud.showBanner(bannerText, 1400, bannerColor);
+      this.goalSampleValid=false;
       this.player?.respawn();
       if (this.player) {
         this.context.camera.snapTo(this.player.getPosition(), this.currentLevel?.collidableMeshes);
@@ -1374,6 +1400,7 @@ export class SceneManager {
     }
 
     if (this.player) {
+      this.goalSampleValid=false;
       this.player.respawn();
     }
 

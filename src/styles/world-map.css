@@ -73,12 +73,15 @@
 .overworld-container .hub-label { padding: 7px 11px; gap: 8px; margin-top: 7px; }
 .overworld-container .hub-label-text { font-family: Georgia, Cambria, serif; font-size: 1rem; font-weight: 500; letter-spacing: .015em; color: #fff2d4; }
 .overworld-container .hub-label-badge { background: transparent; color: #c7d5d4; font-size: .62rem; font-weight: 500; border-left: 1px solid #e4d8b850; padding: 1px 0 1px 8px; border-radius: 0; }
-.overworld-container .node-pin-body { width: 42px; height: 42px; border: 2px solid #fff7e9; box-shadow: 0 4px 10px #10273555; background-image: linear-gradient(150deg, #ffffff28, transparent) !important; }
+.overworld-container .node-pin-body { position:relative; width: 48px; height: 48px; box-sizing:border-box; border: 3px solid var(--map-world-color); border-radius: 9px; box-shadow: 0 4px 10px #10273555; background: var(--map-world-color); }
+.overworld-container .level-art-icon { width:100%; height:100%; display:block; object-fit:cover; border-radius:5px; pointer-events:none; }
+.overworld-container .level-pin .node-badge-text { position:absolute; right:-6px; bottom:-6px; display:grid; place-items:center; width:22px; height:22px; padding:0; border-radius:5px; background:var(--map-world-color); border:1px solid #142a3766; color:#142a37; font-size:12px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; }
 .overworld-container .node-badge-text { font-family: "Segoe UI", system-ui, sans-serif; font-size: 1.08rem; color: #2b3c49; text-shadow: none; font-weight: 800; }
 .overworld-container .node-label { padding: 5px 10px; gap: 5px; margin-top: 5px; }
 .overworld-container .node-label-num { color: #c8d1cb; background: transparent; border-right: 1px solid #e4d8b850; border-radius: 0; padding: 0 6px 0 0; font-weight: 500; font-size: .6rem; letter-spacing: .04em; }
 .overworld-container .node-label-title { color: #f5ebd7; font-weight: 600; font-size: .8rem; }
-.overworld-container .map-node.selected .node-pin-body { border-color: #fff2c2; box-shadow: 0 0 0 4px #f3dbab45, 0 4px 10px #10273570; }
+.overworld-container .map-node:hover .node-pin-body,
+.overworld-container .map-node.selected .node-pin-body { border-color: var(--map-world-color); box-shadow: 0 0 0 4px #f3dbab65, 0 4px 10px #10273570; }
 .overworld-container .map-node,
 .overworld-container .map-world-hub { transform: translate(-50%, -50%) scale(var(--map-marker-scale, 1)); animation: none; transition: transform .2s ease; }
 .overworld-container .map-node:hover,

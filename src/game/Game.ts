@@ -175,7 +175,7 @@ export class Game {
     this.state.selectedStage = stage;
     this.state.elapsedTime = 0;
     this.state.stageCollectibles = 0;
-    if (stage === 1) {
+    if (!continuation || stage === 1) {
       this.state.resetLevelRun();
     }
     this.hud.setVisible(false);
@@ -200,6 +200,8 @@ export class Game {
           ]);
           if (signal.aborted) return;
           await prepare(signal);
+          if (signal.aborted) return;
+          await this.renderer.prepareScene(this.scenes.scene,this.camera.object);
           if (signal.aborted) return;
           // Upload scene resources behind the cover, without advancing physics or the timer.
           this.renderer.render(this.scenes.scene, this.camera.object);
@@ -283,6 +285,10 @@ export class Game {
       data.stage || 1,
       async (signal) => {
         if (signal.aborted) return;
+        await this.scenes.prepareLevel(data.world||1,data.level||1,signal);
+        if(signal.aborted)return;
+        await SpriteTextures.prepareLevelAssets([data]);
+        if(signal.aborted)return;
         this.scenes.loadCustomLevel(data, { deferIntro: true });
         await this.scenes.applyLevelEnvironment(
           data.world || 1,
@@ -316,7 +322,6 @@ export class Game {
   private restartStage(): void {
     this.state.lives = 5;
     this.state.elapsedTime = 0;
-    this.state.stageCollectibles = 0;
     this.state.screen = "gameplay";
     this.ui.showScreen("gameplay");
     this.hud.setVisible(true);
@@ -371,6 +376,7 @@ export class Game {
       const l = this.state.selectedLevel;
 
       for (let s = 1; s <= 10; s++) {
+        if (this.state.runStageTimes[s] === undefined) continue;
         const stageTime = this.state.runStageTimes[s] ?? 0;
         const stageCol = this.state.runStageCollectibles[s] ?? 0;
         this.progression.completeStage(w, l, s, stageTime, stageCol);

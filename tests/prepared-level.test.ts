@@ -27,3 +27,13 @@ describe('Prepared ten-stage levels',()=>{
     await expect(cache.prepare(1,1,controller.signal)).rejects.toMatchObject({name:'AbortError'});expect(load).toHaveBeenCalledTimes(2);
   });
 });
+
+
+it('does not report readiness until the tenth stage finishes loading',async()=>{
+  let finish:()=>void=()=>{},reached:()=>void=()=>{},ready=false;
+  const tenthRequested=new Promise<void>(resolve=>{reached=resolve;});
+  const cache=new PreparedLevel(async(w,l,s)=>{if(s===10)await new Promise<void>(resolve=>{finish=resolve;reached();});return stage(w,l,s);},()=>null);
+  const pending=cache.prepare(8,4).then(stages=>{ready=true;return stages;});
+  await tenthRequested;expect(ready).toBe(false);
+  finish();expect(await pending).toHaveLength(10);expect(ready).toBe(true);
+});

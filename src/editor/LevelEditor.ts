@@ -1,3 +1,4 @@
+import {createConcertModel,concertLift} from "../levels/world-01/ConcertModel";
 import {AURORA_DECORATIONS} from '../levels/world-08/AuroraRoutes';
 import {OSLO_DECORATIONS} from '../levels/world-08/OsloRoutes';
 import {FJORD_DECORATIONS} from '../levels/world-08/FjordRoutes';
@@ -1411,6 +1412,8 @@ export class LevelEditor {
     const mov = obj.properties?.movementType as string | undefined;
     const theme = obj.properties?.theme as string | undefined;
 
+    if(v==='concert_vibe'||mov==='concert_vibe'){const model=createConcertModel();model.collisionGeometry.dispose();return model.group;}
+
     // 1. World 4 Level 4 (Islazul) Variants
     if (v === "islazul_mall_facade" || sub === "islazul_mall_facade") {
       return LevelBuilder.createIslazulMallFacadeMesh(obj.scale.x || 44.0, obj.scale.y || 18.0, obj.scale.z || 10.0, "medium").group;
@@ -1989,7 +1992,6 @@ export class LevelEditor {
     gridHelper.position.y = baseY;
     this.editorGroup.add(gridHelper);
 
-    const headingSolids:THREE.Object3D[]=[];
     this.levelData.objects.forEach((obj, idx) => {
       const isSelected = idx === this.selectedObjectIndex;
       let mesh: THREE.Mesh | THREE.Group;
@@ -2535,11 +2537,10 @@ export class LevelEditor {
 
       if(this.currentWorld===7&&(this.currentLevel===3||this.currentLevel===4)&&['platform','ramp','cylinder','moving-platform','rotating-platform'].includes(obj.type)){mesh.userData.neonSurface=obj.id;if(['platform','ramp','cylinder'].includes(obj.type))mesh.userData.neonPath=true;}
       this.editorGroup.add(mesh);
-      if(obj.properties?.hasCollision===true||(['platform','ramp','cylinder','moving-platform','rotating-platform','obstacle'].includes(obj.type)&&obj.properties?.hasCollision!==false))mesh.traverse(child=>{if(child instanceof THREE.Mesh)headingSolids.push(child);});
     });
     if(((this.currentWorld===7&&(this.currentLevel===3||this.currentLevel===4))||(this.currentWorld===8&&(this.currentLevel>=1&&this.currentLevel<=4))))stabilizeNeonSurfaces(this.editorGroup);
     this.editorGroup.updateMatrixWorld(true);
-    this.spawnHeading=stageStartYaw(this.levelData,headingSolids);
+    this.spawnHeading=stageStartYaw(this.levelData);
     this.editorGroup.add(createSpawnMarker(this.levelData.spawn,this.spawnHeading,this.selectedObjectIndex===SPAWN_SELECTION));
     const headingInput=this.container.querySelector<HTMLInputElement>('#inp-spawn-heading');
     if(headingInput&&document.activeElement!==headingInput&&this.levelData.properties?.spawnYaw===undefined)headingInput.value=(this.spawnHeading*180/Math.PI).toFixed(1);
@@ -4240,7 +4241,6 @@ export class LevelEditor {
               ${(['x','y','z'] as const).map(axis=>`<label style="display:block;margin:10px 0;">Posición ${axis.toUpperCase()}<input class="form-select" id="inp-spawn-${axis}" type="number" step="0.25" value="${this.levelData.spawn[axis]}" /></label>`).join('')}
               <label>Dirección de salida (grados)<input class="form-select" id="inp-spawn-heading" type="number" step="5" value="${(this.spawnHeading*180/Math.PI).toFixed(1)}" /></label>
               <p style="font-size:.75rem;opacity:.75;">0° hacia −Z · 90° hacia +X</p>
-              <button class="btn btn-secondary" id="btn-spawn-auto-heading">Orientar automáticamente al camino</button>
             </div>`
           : selected
           ? (() => {
@@ -4966,10 +4966,7 @@ export class LevelEditor {
     if(this.selectedObjectIndex===SPAWN_SELECTION) {
       for(const axis of ['x','y','z'] as const)bindInput(`#inp-spawn-${axis}`,value=>{this.levelData.spawn[axis]=value;});
       bindInput('#inp-spawn-heading',value=>{this.levelData.properties={...this.levelData.properties,spawnYaw:value*Math.PI/180};});
-      this.container.querySelector('#btn-spawn-auto-heading')?.addEventListener('click',()=>{
-        if(this.levelData.properties)delete this.levelData.properties.spawnYaw;
-        this.render3DObjects();this.renderUI();
-      });
+
     }
 
     if (this.selectedObjectIndex >= 0 && this.selectedObjectIndex < this.levelData.objects.length) {
@@ -5420,6 +5417,9 @@ export class LevelEditor {
       }
       if(obj.properties?.subType==="asturias_sella_river") {
         (group.userData.sellaWater as SellaWater|undefined)?.setCanoeTransform(previewCanoe?.matrixWorld??null);
+      }
+      if(obj.properties?.movementType==='concert_vibe'){
+        group.position.y=obj.position.y+concertLift(this.editorAnimTime,Number(obj.properties.speed??1.33));continue;
       }
       if (previewOviedoActor(obj, group, this.editorAnimTime)) continue;
       if (previewCangasActor(obj, group, this.editorAnimTime)) continue;

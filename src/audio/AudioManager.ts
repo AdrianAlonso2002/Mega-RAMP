@@ -58,6 +58,8 @@ export class AudioManager {
   private menuRequested = false;
   private menuAudio?: HTMLAudioElement;
   private menuPlayPending = false;
+  private audioUnlocked = false;
+  private menuRecoveryTimer?: number;
 
   private constructor() {
     // Restore saved volume preferences
@@ -74,11 +76,15 @@ export class AudioManager {
     const unlock = (event:Event) => {
       if (!event.isTrusted || this.isMuted) return;
       if(typeof navigator!=='undefined'&&navigator.userActivation&&!navigator.userActivation.isActive)return;
+      this.audioUnlocked = true;
       this.unlockContext();
       this.playMenuAudio();
     };
 
-    if(typeof document!=='undefined')document.addEventListener?.('visibilitychange',()=>{if(document.hidden){this.menuAudio?.pause();void this.ctx?.suspend().catch(()=>{});}});
+    if(typeof document!=='undefined')document.addEventListener?.('visibilitychange',()=>{
+      if(document.hidden){this.menuAudio?.pause();void this.ctx?.suspend().catch(()=>{});}
+      else if(this.audioUnlocked)this.playMenuAudio();
+    });
     // Capture creates/resumes audio inside the gesture, before button handlers and async scene loads.
     window.addEventListener("pointerdown", unlock, { passive: true, capture: true });
     window.addEventListener("keydown", unlock, { passive: true, capture: true });
@@ -484,7 +490,7 @@ export class AudioManager {
   // -------------------------------------------------------------
 
   startMenuBGM(fromGesture = false): void {
-    if(this.menuRequested)return;
+    if(this.menuRequested){if(this.audioUnlocked)this.playMenuAudio();return;}
     this.stopBGM();
     this.menuRequested=true;
     // The first trusted gesture unlocks playback; page loading never calls resume().
@@ -493,13 +499,29 @@ export class AudioManager {
 
   private playMenuAudio(): void {
     if(!this.menuRequested||this.isMuted||this.menuPlayPending)return;
+    if(typeof document!=='undefined'&&document.hidden)return;
     if(!this.menuAudio){
       this.menuAudio=new Audio(assetUrl('/audio/menu1.mp3'));
       if(this.menuAudio.canPlayType?.('audio/webm; codecs=opus'))this.menuAudio.src=assetUrl('/audio/menu1.webm');
       this.menuAudio.loop=true;
-      this.menuAudio.preload='metadata';
+      this.menuAudio.preload='auto';
       this.menuAudio.volume=this.bgmVolume;
+      this.menuAudio.addEventListener?.('ended',()=>{
+        if(!this.menuRequested)return;
+        this.menuAudio!.currentTime=0;
+        this.playMenuAudio();
+      });
+      this.menuAudio.addEventListener?.('error',()=>{
+        if(!this.menuAudio?.src.endsWith('.webm'))return;
+        this.menuAudio.src=assetUrl('/audio/menu1.mp3');
+        if(this.audioUnlocked)this.playMenuAudio();
+      });
     }
+    if(this.menuRecoveryTimer===undefined&&this.audioUnlocked){
+      this.menuRecoveryTimer=window.setInterval(()=>{if(this.audioUnlocked)this.playMenuAudio();},2500);
+    }
+    this.menuAudio.loop=true;
+    if(this.menuAudio.ended)this.menuAudio.currentTime=0;
     if(!this.menuAudio.paused)return;
     this.menuPlayPending=true;
     void this.menuAudio.play().catch(()=>{
@@ -509,6 +531,7 @@ export class AudioManager {
 
   stopMenuBGM(): void {
     this.menuRequested=false;
+    if(this.menuRecoveryTimer!==undefined){window.clearInterval(this.menuRecoveryTimer);this.menuRecoveryTimer=undefined;}
     if(this.menuAudio){this.menuAudio.pause();this.menuAudio.currentTime=0;}
   }
 

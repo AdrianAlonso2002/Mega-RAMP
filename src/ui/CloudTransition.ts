@@ -26,8 +26,10 @@ export class CloudTransition {
     if (signal.aborted) return;
     const reduce =
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+    const duration=reduce?100:620;
     const animations = this.wings
       .map((wing, i) => {
+        if(!reduce)wing.style.opacity='1';
         // Reduced motion changes visibility without a sweeping full-screen movement.
         const frames = reduce
           ? [
@@ -40,19 +42,35 @@ export class CloudTransition {
             ];
         if (!wing.animate) {
           wing.style.transform = `translateX(${to[i]}vw)`;
+          wing.style.opacity=reduce?(to[i]===0?'1':'0'):'1';
           return undefined;
         }
-        return wing.animate(frames, {
-          duration: reduce ? 100 : 620,
+        try{return wing.animate(frames, {
+          duration,
           easing: "cubic-bezier(.45,0,.2,1)",
           fill: "forwards",
-        });
+        });}catch{
+          wing.style.transform=`translateX(${to[i]}vw)`;
+          wing.style.opacity=to[i]===0?'1':'0';
+          return undefined;
+        }
       })
       .filter((a): a is Animation => Boolean(a));
     const previous = this.animations;
     this.animations = animations;
     previous.forEach((a) => a.cancel());
-    await Promise.all(animations.map((a) => a.finished.catch(() => {})));
+    // Some standalone WebKit windows fail to settle Animation.finished after suspension.
+    // Bound only the animation; asset preparation below must still finish before revealing.
+    await Promise.all(animations.map((animation)=>new Promise<void>(resolve=>{
+      const finish=()=>{clearTimeout(timer);signal.removeEventListener('abort',finish);resolve();};
+      const timer=setTimeout(finish,duration+250);
+      signal.addEventListener('abort',finish,{once:true});
+      if(animation.finished?.then)void animation.finished.then(finish,finish);
+    })));
+    if(!signal.aborted)this.wings.forEach((wing,i)=>{
+      wing.style.transform=`translateX(${to[i]}vw)`;
+      wing.style.opacity=reduce?(to[i]===0?'1':'0'):'1';
+    });
   }
   async run(
     direction: CloudDirection,

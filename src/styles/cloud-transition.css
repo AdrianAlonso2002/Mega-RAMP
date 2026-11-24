@@ -12,16 +12,16 @@
 }
 .cloud-transition-wing {
   position: absolute;
-  top: -8%;
-  height: 116%;
-  width: 74%;
+  top: -20%;
+  height: 140%;
+  width: 94%;
   will-change: transform;
 }
 .cloud-transition-wing:first-child {
-  left: -12%;
+  left: -18%;
 }
 .cloud-transition-wing:last-child {
-  right: -12%;
+  right: -18%;
 }
 .cloud-transition-wing::before {
   content: "";

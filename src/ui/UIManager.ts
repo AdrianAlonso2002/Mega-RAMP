@@ -1,4 +1,5 @@
 import { assetUrl } from "../core/AssetUrl";
+import { optionalReadiness } from './OptionalReadiness';
 import {readProgressBackup} from '../progression/ProgressBackup';
 import { CHARACTERS, getCharacterById } from "../player/Characters";
 import { getWorldById } from "../levels/WorldDefinitions";
@@ -67,10 +68,11 @@ export class UIManager {
     if(!this.clouds){this.renderScreen(screen);return;}
     const menus:GameScreen[]=['title','character-select','world-select','level-select','stage-select','options'];
     const initial=this.displayedScreen===undefined;
-    if(initial||menus.includes(screen)){
+    const characterReturn=screen==='pause'&&this.displayedScreen==='character-select';
+    if(initial||menus.includes(screen)||characterReturn){
       if(this.clouds.active)return;
       const ranks:Partial<Record<GameScreen,number>>={title:0,options:1,'character-select':1,'world-select':1,'level-select':2,'stage-select':3};
-      const back=screen==='title'||(ranks[screen]??0)<(ranks[this.displayedScreen!]??0);
+      const back=characterReturn||screen==='title'||(ranks[screen]??0)<(ranks[this.displayedScreen!]??0);
       this.root.inert=true;this.root.setAttribute('aria-busy','true');
       void this.clouds.run(back?'back':'forward',async signal=>{
         this.renderScreen(screen);
@@ -78,7 +80,7 @@ export class UIManager {
         await this.waitForScreenAssets(screen,signal);
       },initial).catch(error=>console.error('No se ha podido preparar el menú.',error)).finally(()=>{
         if(this.destroyed)return;
-        this.root.inert=false;this.root.removeAttribute('aria-busy');
+        this.root.inert=false;this.root.removeAttribute('inert');this.root.removeAttribute('aria-busy');
         const entry=this.root.querySelector<HTMLButtonElement>('#btn-enter-menu');
         if(entry)entry.focus({preventScroll:true});
         else this.root.querySelector<HTMLElement>('button:not([disabled])')?.focus({preventScroll:true});
@@ -99,11 +101,11 @@ export class UIManager {
       if(image.complete&&image.naturalWidth>0)return;
       const loaded=await loadUIImage(image.currentSrc||image.src);
       if(!loaded){image.style.visibility='hidden';return;}
-      if(image.decode)await image.decode().catch(()=>{});
+      if(image.decode)await optionalReadiness(image.decode(),signal);
     });
     const pending:Promise<unknown>[]=[...this.screenReadiness,...imagePromises,loadUIImage(assetUrl('/assets/ui/cloud-bank.svg')),SpriteTextures.waitForUIPortraits()];
-    if(document.fonts)pending.push(document.fonts.ready);
-    if(screen==='character-select')pending.push(SpriteTextures.waitForCharacterSkin(this.state.selectedCharacter,this.state.selectedSkin));
+    if(document.fonts)pending.push(optionalReadiness(document.fonts.ready,signal));
+    if(screen==='character-select'||screen==='pause')pending.push(SpriteTextures.waitForCharacterSkin(this.state.selectedCharacter,this.state.selectedSkin));
     await Promise.allSettled(pending);
     if(signal.aborted||this.destroyed)return;
     // Allow portraits to repaint and the character preview to upload its first frame.
@@ -282,13 +284,13 @@ export class UIManager {
     if(this.titleEntered||this.state.screen!=='title')return;
     this.titleEntered=true;
     // Playback is requested within the Play gesture, before the visual transition.
-    this.audio.startMenuBGM(true);
+    try{this.audio.startMenuBGM(true);}catch(error){console.warn('La música no ha podido iniciarse; el menú sigue disponible.',error);}
     const screen=this.root.querySelector<HTMLElement>('.title-screen-refined'),
       panel=this.root.querySelector<HTMLElement>('.title-menu-panel'),
       button=this.root.querySelector<HTMLButtonElement>('#btn-enter-menu');
     screen?.classList.remove('is-title-intro');
     screen?.setAttribute('aria-label','Menú principal');
-    if(panel){panel.inert=false;panel.removeAttribute('aria-hidden');}
+    if(panel){panel.inert=false;panel.removeAttribute('inert');panel.removeAttribute('aria-hidden');}
     if(button){button.inert=true;button.setAttribute('aria-hidden','true');}
     const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches??false;
     this.titleEntryFocusTimer=setTimeout(()=>{

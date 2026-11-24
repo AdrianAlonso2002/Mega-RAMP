@@ -91,6 +91,11 @@ export class Renderer {
     }
   };
 
+  async prepareScene(scene:THREE.Scene,camera:THREE.Camera):Promise<void>{
+    this.visuals.prepare(scene);
+    await this.object.compileAsync(scene,camera);
+  }
+
   render(scene: THREE.Scene, camera: THREE.Camera): void {
     this.visuals.prepare(scene);
     const art = scene.userData.artDirection as

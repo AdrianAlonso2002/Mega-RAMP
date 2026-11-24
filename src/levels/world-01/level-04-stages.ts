@@ -1,3 +1,4 @@
+import {applyPlazaFinale} from "./PlazaFinale";
 import {registerStageSet} from '../StageRegistry';
 import type { LevelData } from "../LevelTypes";
 
@@ -1325,5 +1326,6 @@ export const WORLD_01_LEVEL_04_STAGES: Record<number, LevelData> = {
   }
 };
 
+for(const stage of [9,10])applyPlazaFinale(WORLD_01_LEVEL_04_STAGES[stage]);
 registerStageSet(1,4,WORLD_01_LEVEL_04_STAGES);
 

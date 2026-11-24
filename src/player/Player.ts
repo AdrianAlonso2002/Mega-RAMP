@@ -180,6 +180,7 @@ export class Player {
   }
 
   respawn(): void {
+    this.teleportVersion++;
     this.fallHeight=-12;
     this.setVehicleMounted(false);
     this.frozen = false;
@@ -438,7 +439,10 @@ export class Player {
     return this.body;
   }
 
+  private teleportVersion=0;
+  getTeleportVersion():number {return this.teleportVersion;}
   teleportTo(x: number, y: number, z: number): void {
+    this.teleportVersion++;
     if (this.body) {
       this.body.setTranslation({ x, y, z }, true);
       this.body.setLinvel({ x: 0, y: 0, z: 0 }, true);

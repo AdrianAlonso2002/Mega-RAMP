@@ -415,7 +415,6 @@ export class OverworldMap {
         </div>
         <div class="hub-label">
           <span class="hub-label-text">${wDef.name}</span>
-          <span class="hub-label-badge">4 Niveles</span>
         </div>
       `;
 
@@ -530,6 +529,7 @@ export class OverworldMap {
         const el = document.createElement("div");
         el.className = `map-node level-pin unlocked ${isCompleted ? "completed" : ""}`;
         el.id = `node-${lvl.id}`;
+        el.style.setProperty('--map-world-color', worldMapColor(wDef.id));
         el.setAttribute("role", "button");
         el.tabIndex = isSeen ? 0 : -1;
         el.setAttribute("aria-label", `${wDef.name}, nivel ${lvl.level}: ${lvl.name}`);
@@ -549,7 +549,8 @@ export class OverworldMap {
 
         el.innerHTML = `
           <div class="node-pin-pulse"></div>
-          <div class="node-pin-body" style="background: ${worldMapColor(wDef.id)};">
+          <div class="node-pin-body">
+            <img class="level-art-icon" src="${lvl.image}" alt="" width="48" height="48" decoding="async" draggable="false" />
             ${isCompleted ? `<span class="node-crown">${mapIcon("crown")}</span>` : ""}
             <span class="node-badge-text">${lvl.level}</span>
           </div>

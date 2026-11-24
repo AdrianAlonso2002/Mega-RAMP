@@ -24,19 +24,19 @@ describe('Selectable chase camera and stage departure framing',()=>{
     expect(camera.object.position.x).toBeLessThan(target.x-6);
     camera.setMode(2);camera.setStageHeading(-Math.PI/2);camera.snapTo(target);expect(camera.object.position.x).toBeGreaterThan(target.x+6);
   });
-  it('frames authored route tangents instead of aiming at an unrelated goal shortcut',()=>{
+  it('keeps explicit spawn headings without automatically aiming at routes',()=>{
     for(const stage of [2,3,6,7,8,9,10]) {
       const data=stages[stage],yaw=stageStartYaw(data);expect(Number.isFinite(yaw)).toBe(true);
       const camera=new Camera();camera.setStageHeading(yaw);camera.snapTo(new THREE.Vector3(data.spawn.x,data.spawn.y,data.spawn.z));
       const view=camera.object.getWorldDirection(new THREE.Vector3());view.y=0;expect(view.normalize().dot(new THREE.Vector3(Math.sin(yaw),0,-Math.cos(yaw)))).toBeGreaterThan(.99);
     }
-    expect(Math.sin(stageStartYaw(stages[8]))).toBeGreaterThan(.9);
+    expect(stageStartYaw(stages[8])).toBe(stages[8].properties?.spawnYaw??0);
     const custom=structuredClone(stages[8]);custom.properties={spawnYaw:1.2};expect(stageStartYaw(custom)).toBe(1.2);
   });
-  it('finds the supported straight exit of an ordinary platform without authored route points',()=>{
+  it('does not infer a heading from a floor or a nearby goal',()=>{
     const data=structuredClone(stages[8]);data.spawn={x:0,y:1,z:0};data.objects=[{id:'goal',type:'goal',position:{x:40,y:0,z:0},rotation:{x:0,y:0,z:0},scale:{x:1,y:1,z:1}}];
     const floor=new THREE.Mesh(new THREE.BoxGeometry(40,1,4),new THREE.MeshBasicMaterial());floor.position.set(15,-.25,0);floor.updateMatrixWorld();
-    expect(Math.sin(stageStartYaw(data,[floor]))).toBeGreaterThan(.9);floor.geometry.dispose();(floor.material as THREE.Material).dispose();
+    expect(stageStartYaw(data,[floor])).toBe(0);floor.geometry.dispose();(floor.material as THREE.Material).dispose();
   });
   it('persists the selected camera and retains it if storage is unavailable',()=>{
     const values=new Map<string,string>();vi.stubGlobal('localStorage',{getItem:(key:string)=>values.get(key)??null,setItem:(key:string,v:string)=>values.set(key,v)});
