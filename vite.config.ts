@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
+import { editorStageSync } from './scripts/editor-stage-sync';
 
 export default defineConfig({
+  plugins: [editorStageSync()],
   base: "./",
   build: {
     target: "es2022",

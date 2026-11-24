@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-08.json';
 import {registerStageSet} from '../StageRegistry';
 import { FJORD_NAMES, FJORD_BUDGETS, FJORD_REVISION } from "./FjordRoutes";
 import type { LevelData, LevelObjectData, Vector3Data } from "../LevelTypes";
@@ -641,5 +642,9 @@ export const WORLD_08_LEVEL_02_STAGES: Record<number, LevelData> =
     Array.from({ length: 10 }, (_, i) => [i + 1, build(i + 1)]),
   );
 
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('8_2_')) Object.assign(WORLD_08_LEVEL_02_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(8,2,WORLD_08_LEVEL_02_STAGES);
 

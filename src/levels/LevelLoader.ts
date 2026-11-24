@@ -25,6 +25,7 @@ export class LevelLoader {
         if (parsed.customSaved || parsed.properties?.userSaved || hasCustomObjects) {
           return applyRequestedStageUpdates(parsed as LevelData, world, level, stage);
         }
+        if(baked?.properties?.editorPublished)return structuredClone(baked);
         if ((world === 5 && level<=4 || world===6&&level<=4) && baked) return applyRequestedStageUpdates(structuredClone(baked),world,level,stage);
 
         // If baked stage exists (such as M1-N2-E1 Bus or M1-N1 decorated stages) and the saved custom level is an obsolete draft
@@ -145,6 +146,8 @@ export class LevelLoader {
         if (customJson) {
           const parsed = JSON.parse(customJson);
           if (Array.isArray(parsed?.objects)) {
+            if(baked?.properties?.editorPublished && !parsed.customSaved && !parsed.properties?.userSaved && !parsed.objects.some((o:any)=>o.id?.startsWith('obj-custom')))
+              return baked.objects.filter(o=>o.type==='collectible').length;
             if((world>=1&&world<=6&&level>=1&&level<=4)||(world===7&&level<=4)||(world===8&&(level>=1&&level<=4))) {
               return applyCollectibleBalance(parsed as LevelData,world,level,stage).objects.filter(o=>o.type==='collectible').length;
             }

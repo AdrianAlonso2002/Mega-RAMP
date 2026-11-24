@@ -244,6 +244,8 @@ export const stageStorage = {
     }
     if (packed !== value) remember(key, packed, value);
     else forget(key);
+    if (/^custom_stage_\d+_\d+_\d+$/.test(key) && typeof window !== 'undefined')
+      window.dispatchEvent(new Event('mega-ramp:stage-saved'));
   },
   removeItem(key: string): void {
     globalThis.localStorage.removeItem(key);

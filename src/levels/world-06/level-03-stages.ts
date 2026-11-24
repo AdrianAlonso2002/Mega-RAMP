@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-06.json';
 import {registerStageSet} from '../StageRegistry';
 import type {LevelData,Vector3Data} from "../LevelTypes";
 import {LondonLayout,v} from "./LondonLayout";
@@ -119,5 +120,9 @@ export const WORLD_06_LEVEL_03_STAGES:Record<number,LevelData>={
   })
 };
 
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('6_3_')) Object.assign(WORLD_06_LEVEL_03_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(6,3,WORLD_06_LEVEL_03_STAGES);
 

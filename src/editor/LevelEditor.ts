@@ -3260,6 +3260,7 @@ export class LevelEditor {
         if (parsed.customSaved || parsed.properties?.userSaved || hasCustomObjects) {
           return parsed;
         }
+        if(baked?.properties?.editorPublished)return structuredClone(baked);
         if ((world === 5 && level<=4 || world===6&&level<=4 || world===7&&level<=4) && baked) return structuredClone(baked);
 
         // If baked stage exists (such as M1-N2-E1 Bus or M1-N1 decorated stages) and the saved custom level is an obsolete pre-baked draft

@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-05.json';
 import {registerStageSet} from '../StageRegistry';
 import { CatmullRomCurve3,Vector3 } from "three";
 import type { LevelData,Vector3Data } from "../LevelTypes";
@@ -130,5 +131,9 @@ WORLD_05_LEVEL_03_STAGES[10].properties={...WORLD_05_LEVEL_03_STAGES[10].propert
   canoePace:1.35,sellaMegaRevision:"mega-current-60-v5",sellaRocksRevision:"mega-mixed-rocks-v4"};
 WORLD_05_LEVEL_03_STAGES[10].properties!.sellaRouteRevision="mega-aligned-river-v7";
 
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('5_3_')) Object.assign(WORLD_05_LEVEL_03_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(5,3,WORLD_05_LEVEL_03_STAGES);
 

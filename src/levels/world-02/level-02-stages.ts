@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-02.json';
 import {registerStageSet} from '../StageRegistry';
 import {rebuildBikeCourse} from "../BikeCourse";
 import type { LevelData } from "../LevelTypes";
@@ -1143,5 +1144,9 @@ export const WORLD_02_LEVEL_02_STAGES: Record<number, LevelData> = {
 };
 
 WORLD_02_LEVEL_02_STAGES[6]=rebuildBikeCourse(WORLD_02_LEVEL_02_STAGES[6]);
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('2_2_')) Object.assign(WORLD_02_LEVEL_02_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(2,2,WORLD_02_LEVEL_02_STAGES);
 

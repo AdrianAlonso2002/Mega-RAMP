@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-01.json';
 import {registerStageSet} from '../StageRegistry';
 import type { LevelData } from "../LevelTypes";
 
@@ -6705,5 +6706,9 @@ export const WORLD_01_LEVEL_03_STAGES: Record<number, LevelData> = {
 
 };
 
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('1_3_')) Object.assign(WORLD_01_LEVEL_03_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(1,3,WORLD_01_LEVEL_03_STAGES);
 

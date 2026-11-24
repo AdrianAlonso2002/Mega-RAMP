@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-05.json';
 import {registerStageSet} from '../StageRegistry';
 import { CatmullRomCurve3, Vector3 } from "three";
 import type { LevelData, Vector3Data } from "../LevelTypes";
@@ -227,5 +228,9 @@ export const WORLD_05_LEVEL_02_STAGES: Record<number, LevelData> = {
   })
 };
 
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('5_2_')) Object.assign(WORLD_05_LEVEL_02_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(5,2,WORLD_05_LEVEL_02_STAGES);
 

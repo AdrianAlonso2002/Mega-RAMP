@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-08.json';
 import {registerStageSet} from '../StageRegistry';
 import { AURORA_NAMES, AURORA_BUDGETS, AURORA_REVISION } from "./AuroraRoutes";
 import type { LevelData, LevelObjectData, Vector3Data } from "../LevelTypes";
@@ -544,5 +545,9 @@ export const WORLD_08_LEVEL_04_STAGES: Record<number, LevelData> =
     Array.from({ length: 10 }, (_, i) => [i + 1, build(i + 1)]),
   );
 
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('8_4_')) Object.assign(WORLD_08_LEVEL_04_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(8,4,WORLD_08_LEVEL_04_STAGES);
 

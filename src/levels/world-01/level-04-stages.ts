@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-01.json';
 import {applyPlazaFinale} from "./PlazaFinale";
 import {registerStageSet} from '../StageRegistry';
 import type { LevelData } from "../LevelTypes";
@@ -1327,5 +1328,9 @@ export const WORLD_01_LEVEL_04_STAGES: Record<number, LevelData> = {
 };
 
 for(const stage of [9,10])applyPlazaFinale(WORLD_01_LEVEL_04_STAGES[stage]);
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('1_4_')) Object.assign(WORLD_01_LEVEL_04_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(1,4,WORLD_01_LEVEL_04_STAGES);
 

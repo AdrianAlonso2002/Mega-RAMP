@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-07.json';
 import {registerStageSet} from '../StageRegistry';
 import type {LevelData,LevelObjectData,Vector3Data} from '../LevelTypes';
 import {TOKYO_NAMES,TOKYO_BUDGETS,TOKYO_REVISION,TOKYO_POLISH_REVISION,TOKYO_MACHINE_REVISION,TOKYO_ARCADE_REVISION,TOKYO_ACTION_REVISION,TOKYO_FUTURE_REVISION,tokyoGateSpeed,PINBALL_SLOPE,pinballHeight,tokyoPath,tv as v} from './TokyoRoutes';
@@ -104,5 +105,9 @@ function build(stage:number):LevelData {
 }
 export const WORLD_07_LEVEL_04_STAGES:Record<number,LevelData>=Object.fromEntries(Array.from({length:10},(_,i)=>[i+1,build(i+1)]));
 
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('7_4_')) Object.assign(WORLD_07_LEVEL_04_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(7,4,WORLD_07_LEVEL_04_STAGES);
 

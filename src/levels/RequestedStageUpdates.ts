@@ -29,6 +29,7 @@ import {TOKYO_POLISH_REVISION,TOKYO_MACHINE_REVISION,TOKYO_ARCADE_REVISION,TOKYO
 
 /** Apply requested adjustments to both the game and editor, including saved stages. */
 export function applyRequestedStageUpdates(data: LevelData, world: number, level: number, stage: number): LevelData {
+  if(data.properties?.editorPublished || data.customSaved || data.properties?.userSaved)return data;
   return applyPlazaFinale(applyCoastalStageUpdates(applyCollectibleBalance(applyStageMechanicUpdates(data,world,level,stage),world,level,stage)));
 }
 

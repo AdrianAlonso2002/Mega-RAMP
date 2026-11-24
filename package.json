@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@types/node": "^22.20.5",
     "@types/three": "^0.180.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
@@ -30,4 +31,3 @@
     "vitest": "^3.0.0"
   }
 }
-

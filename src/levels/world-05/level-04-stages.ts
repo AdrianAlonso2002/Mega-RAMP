@@ -1,3 +1,4 @@
+import publishedEditorStages from '../editor-saved/world-05.json';
 import {registerStageSet} from '../StageRegistry';
 import {Vector3} from "three";
 import type {LevelData,Vector3Data} from "../LevelTypes";
@@ -125,5 +126,9 @@ export const WORLD_05_LEVEL_04_STAGES:Record<number,LevelData>={
   },{backRoundRouteRevision:"ds-reference-v3"})
 };
 
+// Saved editor designs are the published source of truth.
+for (const [key, saved] of Object.entries(publishedEditorStages)) {
+  if (key.startsWith('5_4_')) Object.assign(WORLD_05_LEVEL_04_STAGES[Number(key.split('_')[2])], structuredClone(saved));
+}
 registerStageSet(5,4,WORLD_05_LEVEL_04_STAGES);
 
