@@ -15,3 +15,9 @@ La sincronización es exclusiva del servidor local de desarrollo y no existe en
 la versión publicada. No modifica partidas, opciones ni desbloqueos.
 
 Eliminar un guardado del navegador no elimina su copia oficial del proyecto.
+
+En la web publicada, los guardados de una versión anterior no sustituyen el
+diseño recién desplegado. Se conservan y se pueden abrir expresamente con
+«Cargar versión guardada». Los nuevos cambios realizados sobre la versión
+publicada actual sí se pueden guardar en ese navegador. En localhost siempre
+tiene prioridad el trabajo guardado del autor.

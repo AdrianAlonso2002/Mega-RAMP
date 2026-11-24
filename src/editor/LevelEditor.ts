@@ -13,6 +13,7 @@ import {bikeWheelPose} from '../levels/BikeCourse';
 import type { LevelData, LevelObjectData,Vector3Data } from "../levels/LevelTypes";
 import { LevelGenerator } from "../levels/LevelGenerator";
 import { getBakedStage } from "../levels/BakedStages";
+import {preferPublishedStage,publishedStageVersion} from '../levels/PublishedStageVersion';
 import { WORLDS, getWorldById, getWorldBGMTrack } from "../levels/WorldDefinitions";
 import { SpriteTextures, type WorldBlockSet } from "../rendering/SpriteTextures";
 import {CollectibleVisual} from '../rendering/CollectibleVisual';
@@ -3245,7 +3246,7 @@ export class LevelEditor {
     }
   }
 
-  private getOrUpdateStageData(world: number, level: number, stage: number): LevelData {
+  private getOrUpdateStageData(world: number, level: number, stage: number,forceSaved=false): LevelData {
     LevelEditor.syncOfficialStagesIfNeeded();
     const baked = getBakedStage(world, level, stage);
     const customKey = `custom_stage_${world}_${level}_${stage}`;
@@ -3254,6 +3255,7 @@ export class LevelEditor {
     if (customJson) {
       try {
         const parsed = JSON.parse(customJson);
+        if(!forceSaved&&preferPublishedStage(baked,parsed))return structuredClone(baked!);
 
         // If explicitly customized or saved by user in the 3D editor, NEVER overwrite it!
         const hasCustomObjects = Array.isArray(parsed?.objects) && parsed.objects.some((o: any) => o.id?.startsWith("obj-custom"));
@@ -3494,13 +3496,13 @@ export class LevelEditor {
     return baked ? JSON.parse(JSON.stringify(baked)) : LevelGenerator.generateStage(world, level, stage);
   }
 
-  loadStage(world: number, level: number, stage: number,version:'saved'|'original'='saved'): void {
+  loadStage(world: number, level: number, stage: number,version:'saved'|'original'|'current'='current'): void {
     this.currentWorld = world;
     this.currentLevel = level;
     this.currentStage = stage;
 
     this.originalPreview=version==='original';
-    this.levelData = applyRequestedStageUpdates(this.originalPreview ? structuredClone(getBakedStage(world,level,stage)??LevelGenerator.generateStage(world,level,stage)):this.getOrUpdateStageData(world, level, stage), world, level, stage);
+    this.levelData = applyRequestedStageUpdates(this.originalPreview ? structuredClone(getBakedStage(world,level,stage)??LevelGenerator.generateStage(world,level,stage)):this.getOrUpdateStageData(world, level, stage,version==='saved'), world, level, stage);
     if(this.originalPreview){delete this.levelData.customSaved;if(this.levelData.properties)delete this.levelData.properties.userSaved;}
 
     // Apply level sky/panorama background
@@ -3598,6 +3600,8 @@ export class LevelEditor {
     this.levelData.customSaved = true;
     this.levelData.lastModified = Date.now();
     this.levelData.properties = {...this.levelData.properties,userSaved:true};
+    const official=getBakedStage(this.currentWorld,this.currentLevel,this.currentStage);
+    if(official?.properties?.editorPublished)this.levelData.properties.publishedBase=publishedStageVersion(official);
     const customKey = `custom_stage_${this.currentWorld}_${this.currentLevel}_${this.currentStage}`;
     try {
       localStorage.setItem(customKey,JSON.stringify(this.levelData));
@@ -4052,7 +4056,7 @@ export class LevelEditor {
         this.showToast(`🌱 Versión original cargada: M${w}-N${l}-E${s}`,'#69f0ae');
       });
       savedContainer.querySelector('#btn-load-saved-stage')?.addEventListener('click',()=>{
-        modal.remove();this.loadStage(w,l,s);
+        modal.remove();this.loadStage(w,l,s,'saved');
         this.showToast(`💾 Versión guardada cargada: M${w}-N${l}-E${s}`,'#00e5ff');
       });
       savedContainer.querySelector('#btn-delete-saved-stage')?.addEventListener('click',()=>{

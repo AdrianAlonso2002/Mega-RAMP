@@ -3,6 +3,7 @@ import {stageStorage as localStorage} from '../storage/StageStorage';
 import {getRegisteredStage as getBakedStage,loadWorldStages,stageMetadata} from './StageRegistry';
 import { applyRequestedStageUpdates } from "./RequestedStageUpdates";
 import {applyCollectibleBalance} from './CollectibleBalance';
+import {preferPublishedStage} from './PublishedStageVersion';
 
 export class LevelLoader {
   /**
@@ -19,6 +20,7 @@ export class LevelLoader {
       try {
         const parsed = JSON.parse(customJson);
         this.validate(parsed);
+        if(preferPublishedStage(baked,parsed))return structuredClone(baked!);
 
         // If explicitly saved or customized by the user in the 3D editor, ALWAYS preserve and return it
         const hasCustomObjects = Array.isArray(parsed.objects) && parsed.objects.some((o: any) => o.id?.startsWith("obj-custom"));
@@ -146,6 +148,7 @@ export class LevelLoader {
         if (customJson) {
           const parsed = JSON.parse(customJson);
           if (Array.isArray(parsed?.objects)) {
+            if(preferPublishedStage(baked,parsed))return baked!.objects.filter(o=>o.type==='collectible').length;
             if(baked?.properties?.editorPublished && !parsed.customSaved && !parsed.properties?.userSaved && !parsed.objects.some((o:any)=>o.id?.startsWith('obj-custom')))
               return baked.objects.filter(o=>o.type==='collectible').length;
             if((world>=1&&world<=6&&level>=1&&level<=4)||(world===7&&level<=4)||(world===8&&(level>=1&&level<=4))) {
