@@ -26,20 +26,21 @@ describe('Art direction and visual-only presentation',()=>{
     quality.setQuality('high');expect(mesh.material).toBeInstanceOf(THREE.MeshPhysicalMaterial);const high=mesh.material as THREE.MeshPhysicalMaterial;expect(high.clearcoat).toBe(.85);expect(high.opacity).toBe(.55);expect(high.depthWrite).toBe(false);expect(high.customProgramCacheKey()).toContain('ball-rim');expect(sprite.material).toBe(originalSprite);
     quality.setQuality('low');expect(mesh.material).toBeInstanceOf(THREE.MeshLambertMaterial);quality.dispose();expect(mesh.material).toBe(source);
   });
-  it('clips the contact shadow to a narrow walkway rather than painting over the void',()=>{
+  it('keeps the same simple circular player shadow centred on narrow paths and beyond edges',()=>{
     const root=new THREE.Group(),floor=new THREE.Mesh(new THREE.BoxGeometry(.6,.2,8),new THREE.MeshBasicMaterial());floor.position.y=-.1;root.add(floor);root.updateWorldMatrix(true,true);
     const service=new ContactShadows();service.bind(data,root,[floor]);service.update(1,new THREE.Vector3(0,1,0));const shadow=service.group.children[1] as THREE.Mesh;
     expect(shadow.visible).toBe(true);const positions=shadow.geometry.getAttribute('position');expect(positions.count).toBeGreaterThan(0);
     const cached=shadow.geometry;service.update(1,new THREE.Vector3(0,1,0));expect(shadow.geometry).toBe(cached);
-    for(let i=0;i<positions.count;i++) expect(Math.abs(positions.getX(i))).toBeLessThanOrEqual(.301);
-    for(let i=0;i<positions.count;i++) expect(positions.getY(i)).toBeGreaterThan(.002); // Physically separated from the floor: no coplanar flicker.
-    service.update(1,new THREE.Vector3(2,1,0));expect(shadow.visible).toBe(false);service.dispose();
+    expect(shadow.position.toArray()).toEqual([0,.265,0]);
+    expect((shadow.material as THREE.MeshBasicMaterial).depthTest).toBe(false);
+    service.update(1,new THREE.Vector3(2,1,0));expect(shadow.visible).toBe(true);expect(shadow.position.x).toBe(2);expect(shadow.geometry).toBe(cached);service.dispose();
   });
-  it('follows a moved receiver and fades with height, without changing its geometry or transform',()=>{
+  it('follows the ball every frame independently of receiver motion, slope or height',()=>{
     const root=new THREE.Group(),floor=new THREE.Mesh(new THREE.BoxGeometry(6,.2,8),new THREE.MeshBasicMaterial());floor.position.y=-.1;root.add(floor);root.updateWorldMatrix(true,true);
     const geometry=floor.geometry,vertices=Float32Array.from(geometry.getAttribute('position').array),service=new ContactShadows();service.bind(data,root,[floor]);service.update(1,new THREE.Vector3(0,1,0));const shadow=service.group.children[1] as THREE.Mesh,close=(shadow.material as THREE.MeshBasicMaterial).opacity;
-    service.update(1,new THREE.Vector3(0,5,0));expect((shadow.material as THREE.MeshBasicMaterial).opacity).toBeLessThan(close);
-    floor.position.y=2;root.updateWorldMatrix(true,true);service.update(1,new THREE.Vector3(0,3,0));expect(shadow.geometry.getAttribute('position').getY(0)).toBeCloseTo(2.1);
+    const blob=shadow.geometry;
+    service.update(1/240,new THREE.Vector3(0,5,0));expect((shadow.material as THREE.MeshBasicMaterial).opacity).toBe(close);expect(shadow.position.y).toBeCloseTo(4.265);
+    floor.position.y=2;floor.rotation.z=.3;root.updateWorldMatrix(true,true);service.update(1/240,new THREE.Vector3(0,3,0));expect(shadow.position.y).toBeCloseTo(2.265);expect(shadow.rotation.x).toBe(-Math.PI/2);expect(shadow.rotation.z).toBe(0);expect(shadow.geometry).toBe(blob);
     expect(floor.geometry).toBe(geometry);expect(geometry.getAttribute('position').array).toEqual(vertices);expect(floor.position.y).toBe(2);service.dispose();
   });
   it('projects static contact shadows only under resting props and removes their cost in low mode',()=>{

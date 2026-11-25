@@ -63,7 +63,7 @@ export const WORLDS: WorldDefinition[] = [
       },
       {
         level: 3,
-        name: "Polideportivo Villmanta",
+        name: "Polideportivo Villamanta",
         subtitle: "Restaurado después de la Dana",
         description: "El complejo deportivo municipal con pistas de pádel, fútbol y piscina",
         image: assetUrl("/assets/maps/world1level3.jpg"),

@@ -156,7 +156,6 @@ function modelGeometry(
       g.computeVertexNormals();
       add(g, "#bb181c");
     }
-    ball("#fff3cd", -0.17, 0.23, 0.363, 0.105, 0.035, 0.01);
   } else if (kind === "lonchas_pavo") {
     for (let sheet = 0; sheet < 2; sheet++) {
       const across = high ? 18 : 10,

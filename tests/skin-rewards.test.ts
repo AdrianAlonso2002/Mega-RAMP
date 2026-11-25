@@ -11,11 +11,12 @@ function collectCount(progress:ProgressionManager,world:number,count:number){
  }
 }
 describe('World skin rewards at eighty percent',()=>{
- it.each(rewards)('unlocks %s %s only at 320/400 in world %i', (character,skin,world)=>{
+ it.each(rewards)('unlocks %s %s only at eighty percent in world %i', (character,skin,world)=>{
   const progress=new ProgressionManager();expect(getCharacterSkin(character,skin).unlock).toEqual({world,percent:80});
   expect(progress.isSkinUnlocked(character,skin)).toBe(false);progress.setSelectedSkin(character,skin);expect(progress.getSelectedSkin(character)).toBe('normal');
-  collectCount(progress,world,319);expect(progress.getWorldCollectionProgress(world)).toEqual({collected:319,total:400});expect(progress.isSkinUnlocked(character,skin)).toBe(false);
-  collectCount(progress,world,320);expect(progress.isSkinUnlocked(character,skin)).toBe(true);progress.setSelectedSkin(character,skin);
+  const total=progress.getWorldCollectionProgress(world).total,threshold=Math.ceil(total*.8);
+  collectCount(progress,world,threshold-1);expect(progress.getWorldCollectionProgress(world)).toEqual({collected:threshold-1,total});expect(progress.isSkinUnlocked(character,skin)).toBe(false);
+  collectCount(progress,world,threshold);expect(progress.isSkinUnlocked(character,skin)).toBe(true);progress.setSelectedSkin(character,skin);
   const reload=new ProgressionManager();expect(reload.getSelectedSkin(character)).toBe(skin);
   for(const [otherChar,otherSkin,otherWorld] of rewards)if(otherWorld!==world)expect(reload.isSkinUnlocked(otherChar,otherSkin)).toBe(false);
  });

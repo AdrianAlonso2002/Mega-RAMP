@@ -3,7 +3,7 @@ import {DecalGeometry} from 'three/addons/geometries/DecalGeometry.js';
 import type {LevelData} from '../levels/LevelTypes';
 import type {GraphicsQuality} from './GraphicsQuality';
 
-/** Projected shadows are clipped to the actual receiver, including narrow paths and holes. */
+/** A stable player blob plus projected contact shadows for stationary decoration. */
 export class ContactShadows {
   readonly group=new THREE.Group();
   private readonly ray=new THREE.Raycaster();
@@ -22,12 +22,6 @@ export class ContactShadows {
   private receivers:THREE.Mesh[]=[];
   private levelRoot?:THREE.Group;
   private data?:LevelData;
-  private elapsed=0;
-  private lastProjection=-Infinity;
-  private readonly lastPlayerPosition=new THREE.Vector3(Infinity,Infinity,Infinity);
-  private readonly lastReceiverMatrix=new THREE.Matrix4();
-  private lastReceiver?:THREE.Mesh;
-  private lastVertexVersion=-1;
   private quality:GraphicsQuality='medium';
   private deferredStatic=false;
   private pendingStatic?:Generator<void>;
@@ -37,11 +31,14 @@ export class ContactShadows {
     this.texture=new THREE.DataTexture(pixels,64,64,THREE.RGBAFormat);this.texture.minFilter=THREE.LinearFilter;this.texture.magFilter=THREE.LinearFilter;this.texture.needsUpdate=true;
     this.playerMaterial=new THREE.MeshBasicMaterial({map:this.texture,transparent:true,opacity:.38,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2,toneMapped:false});
     this.objectMaterial=this.playerMaterial.clone();this.objectMaterial.opacity=.22;
-    this.playerShadow=new THREE.Mesh(new THREE.BufferGeometry(),this.playerMaterial);this.playerShadow.visible=false;this.playerShadow.renderOrder=2;
+    this.playerMaterial.depthTest=false;this.playerMaterial.opacity=.28;
+    this.playerShadow=new THREE.Mesh(new THREE.PlaneGeometry(1.6,1.6),this.playerMaterial);
+    this.playerShadow.rotation.x=-Math.PI/2;
+    this.playerShadow.visible=false;this.playerShadow.renderOrder=19;
     this.group.name='visual-contact-shadows';this.group.userData.graphicsOnly=true;this.group.add(this.staticShadows,this.playerShadow);
   }
   bind(data:LevelData,root:THREE.Group,receivers:THREE.Mesh[],deferStatic=false):void {this.clear();this.deferredStatic=deferStatic;this.data=data;this.levelRoot=root;this.receivers=receivers.filter(m=>m.geometry.getAttribute('position').count<=60000);this.buildStatic();}
-  setQuality(quality:GraphicsQuality):void {if(this.quality===quality) return;this.quality=quality;this.lastProjection=-Infinity;this.buildStatic();}
+  setQuality(quality:GraphicsQuality):void {if(this.quality===quality) return;this.quality=quality;this.buildStatic();}
   private hit(origin:THREE.Vector3,maxDistance:number,exclude?:Set<THREE.Object3D>):THREE.Intersection|undefined {
     this.ray.set(origin,this.normal.set(0,-1,0));this.ray.far=maxDistance;
     return this.ray.intersectObjects(exclude ? this.receivers.filter(m=>!exclude.has(m)):this.receivers,false).find(h=>h.face&&h.face.normal.y>-.8);
@@ -78,19 +75,13 @@ export class ContactShadows {
     geometry.translate(this.normal.x*.003,this.normal.y*.003,this.normal.z*.003);
     geometry.computeBoundingSphere();patch?.dispose();return geometry;
   }
-  update(delta:number,playerPosition?:THREE.Vector3,enabled=true):void {
-    this.elapsed+=delta;this.group.visible=enabled;
+  update(_delta:number,playerPosition?:THREE.Vector3,enabled=true):void {
+    this.group.visible=enabled;
     // Decorative shadows can fill in during the intro instead of blocking stage entry.
     if(enabled&&this.pendingStatic?.next().done)this.pendingStatic=undefined;
     if(!enabled||!playerPosition) {this.playerShadow.visible=false;return;}
-    const hz=this.quality==='low' ? 12:this.quality==='medium' ? 20:30;
-    if(this.elapsed-this.lastProjection<1/hz) return;this.lastProjection=this.elapsed;
-    if(this.playerShadow.visible&&this.lastReceiver&&this.lastPlayerPosition.distanceToSquared(playerPosition)<.00001&&this.lastReceiver.matrixWorld.equals(this.lastReceiverMatrix)&&(this.lastReceiver.geometry.getAttribute('position') as THREE.BufferAttribute).version===this.lastVertexVersion) return;
-    const hit=this.hit(playerPosition,12);if(!hit) {this.playerShadow.visible=false;return;}
-    const height=Math.max(0,hit.distance-.75),size=1.7+Math.min(2,height*.12);
-    const geometry=this.project(hit,size,size);this.playerShadow.geometry.dispose();this.playerShadow.geometry=geometry;
-    this.playerShadow.visible=geometry.getAttribute('position').count>0;this.playerMaterial.opacity=.4/(1+height*.85);
-    this.lastPlayerPosition.copy(playerPosition);this.lastReceiver=hit.object as THREE.Mesh;this.lastReceiverMatrix.copy(this.lastReceiver.matrixWorld);this.lastVertexVersion=(this.lastReceiver.geometry.getAttribute('position') as THREE.BufferAttribute).version;
+    this.playerShadow.position.set(playerPosition.x,playerPosition.y-.735,playerPosition.z);
+    this.playerShadow.visible=true;
   }
   private buildStatic():void {
     this.pendingStatic=undefined;
@@ -115,7 +106,7 @@ export class ContactShadows {
   }
   clear():void {
     this.pendingStatic=undefined;
-    this.receivers=[];this.levelRoot=undefined;this.data=undefined;this.playerShadow.visible=false;this.lastProjection=-Infinity;this.lastReceiver=undefined;
+    this.receivers=[];this.levelRoot=undefined;this.data=undefined;this.playerShadow.visible=false;
     for(const mesh of [...this.staticShadows.children]) {if(mesh instanceof THREE.Mesh) mesh.geometry.dispose();this.staticShadows.remove(mesh);}
   }
   dispose():void {this.clear();this.playerShadow.geometry.dispose();this.playerMaterial.dispose();this.objectMaterial.dispose();this.texture.dispose();}

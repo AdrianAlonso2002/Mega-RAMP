@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "optimize:media": "node scripts/optimize-media.mjs",
+    "outline:characters": "node scripts/normalize-character-outlines.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint . --ext ts,tsx",

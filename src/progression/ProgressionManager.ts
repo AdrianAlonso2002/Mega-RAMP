@@ -284,7 +284,7 @@ export class ProgressionManager {
           this.data.worlds[w][l][s] = {
             completed: true,
             bestTime: 30.0,
-            collectibles: 10
+            collectibles: getCollectibleBudget(w,l,s) ?? 10
           };
         }
       }

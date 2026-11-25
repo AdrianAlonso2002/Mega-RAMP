@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import {createCharacterSpriteMaterial} from '../rendering/CharacterOutline';
 import { getCharacterById } from "../player/Characters";
 import type { CharacterDefinition } from "../player/PlayerTypes";
 import { PLAYER_TOP_SPEED, PLAYER_DRIVE_FORCE, PLAYER_ROLLING_TORQUE } from "../player/PlayerTuning";
@@ -311,13 +312,7 @@ export class CharacterPreview {
 
     // 1. Inner 2D Billboard Sprite
     const spriteTexture = SpriteTextures.getCharacterTexture(this.currentChar.id, "normal", this.currentChar.skinId);
-    const spriteMaterial = new THREE.SpriteMaterial({
-      map: spriteTexture,
-      transparent: true,
-      depthTest: true,
-      depthWrite: false,
-      alphaTest: 0.20
-    });
+    const spriteMaterial = createCharacterSpriteMaterial(spriteTexture);
     this.sprite = new THREE.Sprite(spriteMaterial);
     this.sprite.scale.set(this.baseScale, this.baseScale, 1);
     this.sprite.position.set(0, 0, 0);

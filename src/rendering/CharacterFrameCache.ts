@@ -10,6 +10,8 @@ interface Frame {
   texture:THREE.CanvasTexture;
   ready:boolean;
   settled:Promise<void>;
+  stableHead:boolean;
+  source?:CanvasImageSource;
 }
 interface FrameSources {
   canvas:()=>HTMLCanvasElement;
@@ -17,7 +19,8 @@ interface FrameSources {
   load:(url:string,loaded:(image:CanvasImageSource)=>void,failed:()=>void)=>void;
 }
 
-/** Fixed-size GPU storage: async images only repaint a 512px canvas, never resize a texture. */
+export const CHARACTER_FRAME_SIZE=1024;
+/** Native-resolution GPU storage, retained only for the currently selected skin. */
 export class CharacterFrameCache {
   private readonly frames=new Map<string,Frame>();
   constructor(private readonly sources:FrameSources) {}
@@ -29,7 +32,7 @@ export class CharacterFrameCache {
     const cached=this.frames.get(key);
     if(cached)return cached.texture;
     const neutral=state==='normal' ? undefined:this.get(character,'normal',skin.id);
-    const canvas=this.sources.canvas();canvas.width=canvas.height=512;
+    const canvas=this.sources.canvas();canvas.width=canvas.height=CHARACTER_FRAME_SIZE;
     const context=canvas.getContext('2d')!;
     context.imageSmoothingEnabled=true;context.imageSmoothingQuality='high';
     const texture=retainSharedTexture(new THREE.CanvasTexture(canvas));
@@ -38,15 +41,19 @@ export class CharacterFrameCache {
     texture.generateMipmaps=true;
     let resolveReady:()=>void=()=>{};
     const settled=new Promise<void>(resolve=>{resolveReady=resolve;});
-    const frame:Frame={base:skin.spriteBase,canvas,context,texture,ready:false,settled};
+    const frame:Frame={base:skin.spriteBase,canvas,context,texture,ready:false,settled,stableHead:skin.spriteBase==='adri'&&(state==='move1'||state==='move2')};
     this.frames.set(key,frame);
     this.paint(frame,neutral?.image??this.sources.fallback(character));
     this.sources.load(characterSpritePath(character,skin.id,state),image=>{
       if(this.frames.get(key)!==frame){resolveReady();return;}
+      if(frame.stableHead&&!this.frames.get(`${frame.base}_normal`)?.ready)frame.source=image;
       this.paint(frame,image);frame.ready=true;
       if(state==='normal') {
         // Pending/failed animation poses follow the visible neutral skin until their own image arrives.
-        for(const pending of this.frames.values())if(pending!==frame&&pending.base===frame.base&&!pending.ready)this.paint(pending,canvas);
+        for(const pending of this.frames.values())if(pending!==frame&&pending.base===frame.base) {
+          if(!pending.ready)this.paint(pending,canvas);
+          else if(pending.stableHead&&pending.source){this.paint(pending,pending.source);pending.source=undefined;}
+        }
       }
       resolveReady();
     },()=>{
@@ -66,8 +73,16 @@ export class CharacterFrameCache {
   }
 
   private paint(frame:Frame,image:CanvasImageSource):void {
-    frame.context.clearRect(0,0,512,512);
-    frame.context.drawImage(image,0,0,512,512);
+    const size=CHARACTER_FRAME_SIZE;
+    frame.context.clearRect(0,0,size,size);
+    frame.context.drawImage(image,0,0,size,size);
+    const normal=this.frames.get(`${frame.base}_normal`);
+    if(frame.stableHead&&normal?.ready) {
+      // Keep Adri's face, ear outlines and colour identical while the body walks.
+      const headHeight=Math.round(size*.56);
+      frame.context.clearRect(0,0,size,headHeight);
+      frame.context.drawImage(normal.canvas,0,0,size,headHeight,0,0,size,headHeight);
+    }
     frame.texture.needsUpdate=true;
   }
 }

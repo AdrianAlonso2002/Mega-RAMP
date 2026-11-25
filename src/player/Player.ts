@@ -4,6 +4,7 @@ import type { CharacterDefinition } from "./PlayerTypes";
 import type { PhysicsWorld } from "../physics/PhysicsWorld";
 import type { InputAxis } from "../input/InputManager";
 import { SpriteTextures, type CharacterState } from "../rendering/SpriteTextures";
+import {createCharacterSpriteMaterial} from '../rendering/CharacterOutline';
 import { PLAYER_TOP_SPEED, PLAYER_DRIVE_FORCE, PLAYER_ROLLING_TORQUE } from "./PlayerTuning";
 
 export class Player {
@@ -74,13 +75,7 @@ export class Player {
     // 1. Inner 2D Billboard Sprite for Character (created first so id is lower than ballMesh for local layering)
     SpriteTextures.preloadCharacterSkin(character.id, character.skinId);
     const spriteTexture = SpriteTextures.getCharacterTexture(character.id, "normal", character.skinId);
-    const spriteMaterial = new THREE.SpriteMaterial({
-      map: spriteTexture,
-      transparent: true,
-      depthTest: true,
-      depthWrite: false,
-      alphaTest: 0.20
-    });
+    const spriteMaterial = createCharacterSpriteMaterial(spriteTexture);
 
     this.sprite = new THREE.Sprite(spriteMaterial);
     this.sprite.scale.set(this.baseScale, this.baseScale, 1);

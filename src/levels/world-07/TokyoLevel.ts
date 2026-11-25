@@ -6,6 +6,7 @@ import type {Player} from '../../player/Player';
 import type {InputAxis} from '../../input/InputManager';
 import type {ActiveGoal} from '../LevelBuilder';
 import {SpriteTextures} from '../../rendering/SpriteTextures';
+import {createCharacterSpriteMaterial} from '../../rendering/CharacterOutline';
 import {previewTokyoModel,poseClawCable} from './TokyoModels';
 import {clawCycle,tokyoPedestrianPose,CLAW_TRAVEL_LIMIT,pinballHeight,tokyoPulsePose} from './TokyoRoutes';
 interface Actor {obj:LevelObjectData;group:THREE.Group;body?:RAPIER.RigidBody;cooldown:number}
@@ -37,7 +38,7 @@ export class TokyoLevel {
   this.targetMarker=new THREE.Mesh(new THREE.TorusGeometry(.88,.035,6,48),new THREE.MeshBasicMaterial({color:0xffdd89,toneMapped:false}));this.targetMarker.position.copy(player.getPosition());this.cabinet.add(this.targetMarker);
   for(let layer=0;layer<3;layer++)for(let i=0;i<9;i++){
    const x=(i%3-1)*1.85+(layer%2?.3:0),z=(Math.floor(i/3)-1)*1.85,start=new THREE.Vector3(x,12.6+layer*1.65,z),native=this.physics.createBallBody(.9,start);if(!native)continue;
-   const mesh=new THREE.Group(),shell=new THREE.Mesh(geometry,materials[(i+layer)%ids.length]);shell.renderOrder=21;mesh.add(shell);const face=new THREE.Sprite(new THREE.SpriteMaterial({map:SpriteTextures.getCharacterTexture(ids[(i+layer)%ids.length],'normal'),depthWrite:false}));face.scale.setScalar(1.55);mesh.add(face);this.cabinet.add(mesh);this.balls.push({body:native.body,mesh,start});
+   const mesh=new THREE.Group(),shell=new THREE.Mesh(geometry,materials[(i+layer)%ids.length]);shell.renderOrder=21;mesh.add(shell);const face=new THREE.Sprite(createCharacterSpriteMaterial(SpriteTextures.getCharacterTexture(ids[(i+layer)%ids.length],'normal')));face.scale.setScalar(1.55);mesh.add(face);this.cabinet.add(mesh);this.balls.push({body:native.body,mesh,start});
   }
  }
  private release(player:Player){if(this.held==='player'){player.setVehicleMounted(false);player.teleportTo(this.gantry.x,this.gantry.y-2.85,this.gantry.z);}else if(this.held){this.held.body.setEnabled(true);this.held.body.setLinvel({x:0,y:0,z:0},true);}this.held=null;}

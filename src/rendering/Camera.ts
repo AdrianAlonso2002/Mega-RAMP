@@ -101,6 +101,12 @@ export class Camera {
 
   // Camera SpringArm / Collision avoidance
   private currentArmFraction = 1.0;
+  private armReleaseDelay = 0;
+  private nominalArmLength = 1;
+  private readonly predictedTarget = new THREE.Vector3();
+  private readonly predictedCamera = new THREE.Vector3();
+  private readonly predictionOffset = new THREE.Vector3();
+  private readonly previousIntroCamera = new THREE.Vector3();
   private readonly raycaster = new THREE.Raycaster();
   private readonly playerCenter = new THREE.Vector3();
   private readonly camDir = new THREE.Vector3();
@@ -109,6 +115,7 @@ export class Camera {
   private readonly upVec = new THREE.Vector3(0, 1, 0);
   private readonly tempCheckVec = new THREE.Vector3();
   private readonly tempNormal = new THREE.Vector3();
+  private readonly normalMatrix = new THREE.Matrix3();
   private readonly hits:THREE.Intersection[]=[];
 
   constructor() {
@@ -185,27 +192,25 @@ export class Camera {
 
   /**
    * Computes the collision fraction along the camera arm to avoid clipping into vertical walls.
-   * Ramps and floors (surfaces with normal pointing mostly upwards, Ny > 0.40) are ignored
-   * so climbing ramps never triggers unwanted camera jumps or snaps.
+   * Floors and ramps below the player are ignored; raised decks and ceilings still block.
    * In cinematic tram mode, arm fraction is always 1.0 so the camera never pulls in close.
    */
-  private terrainBlocksArm = false;
-
   private computeArmFraction(
     target: THREE.Vector3,
     collidableMeshes?: THREE.Object3D[],
-    desired?:THREE.Vector3
+    desired?:THREE.Vector3,
+    force=false,
+    margin=.55,
+    probes=4
   ): number {
-    this.terrainBlocksArm = false;
-    if (this.isCinematicTram) {
+    this.playerCenter.set(target.x, target.y + 0.65, target.z);
+    if (this.isCinematicTram && !force) {
       return 1.0;
     }
 
     if (!collidableMeshes || collidableMeshes.length === 0) {
       return 1.0;
     }
-
-    this.playerCenter.set(target.x, target.y + 0.65, target.z);
 
     const behindX = desired?.x??target.x - Math.sin(this.yaw) * this.distance;
     const behindZ = desired?.z??target.z + Math.cos(this.yaw) * this.distance;
@@ -228,10 +233,7 @@ export class Camera {
 
     // 4 Probe ray offsets to account for camera volume without probing down into the floor/ramp
     let minFraction = 1.0;
-    const margin = 0.45; // Safety distance away from wall surface to prevent near-plane clipping
-    const minAllowedDist = 1.4; // Minimum distance camera can approach character
-
-    for (let probe=0;probe<4;probe++) {
+    for (let probe=0;probe<probes;probe++) {
       const side=probe===1 ? .28 : probe===2 ? -.28 : 0;
       this.probeOrigin.set(
         this.playerCenter.x + this.rightVec.x*side,
@@ -250,27 +252,74 @@ export class Camera {
         // Inspect surface normal: filter out floors and ramps!
         if (hit.face && !terrain) {
           this.tempNormal.copy(hit.face.normal);
-          this.tempNormal.transformDirection(hit.object.matrixWorld);
+          this.tempNormal.applyNormalMatrix(this.normalMatrix.getNormalMatrix(hit.object.matrixWorld));
           // If normal points upward (Ny > 0.40), it is a ramp or floor underneath, NOT an obstruction wall!
           if (this.tempNormal.y > 0.40 && hit.point.y<=this.playerCenter.y+.15) {
             continue;
           }
         }
 
-        const safeDist = Math.max(terrain ? 0.22 : minAllowedDist, hit.distance - margin);
+        const safeDist = Math.max(0.12, hit.distance - margin);
         const fraction = Math.min(1.0, safeDist / maxDist);
         if (fraction < minFraction) {
           minFraction = fraction;
-          this.terrainBlocksArm = terrain;
         }
         break; // Only closest valid wall hit on this probe
       }
     }
 
-    return this.terrainBlocksArm ? minFraction : Math.max(minAllowedDist / maxDist, minFraction);
+    return minFraction;
   }
 
-  snapTo(target: THREE.Vector3, collidableMeshes?: THREE.Object3D[]): void {
+  private smoothArm(fraction:number,delta:number,length:number):void {
+    if(fraction<this.currentArmFraction) {
+      this.armReleaseDelay=.18;
+      this.currentArmFraction+=(fraction-this.currentArmFraction)*(1-Math.exp(-12*Math.max(0,delta)));
+    } else {
+      // Hold through small gaps between meshes instead of pumping in and out at seams.
+      const releaseDelta=Math.max(0,delta-this.armReleaseDelay);
+      this.armReleaseDelay=Math.max(0,this.armReleaseDelay-delta);
+      if((fraction-this.currentArmFraction)*length>.045)
+        this.currentArmFraction+=(fraction-this.currentArmFraction)*(1-Math.exp(-3.8*releaseDelta));
+    }
+  }
+
+  private constrainFinalPosition(target:THREE.Vector3,meshes:THREE.Object3D[]|undefined,force=false):void {
+    if(!meshes?.length || this.isCinematicTram&&!force)return;
+    // One final safety ray; leave room for the smooth approach, only clamp when essential.
+    const fraction=this.computeArmFraction(target,meshes,this.object.position,force,.18,1);
+    if(fraction<1) {
+      this.object.position.lerpVectors(this.playerCenter,this.object.position,fraction);
+      const length=this.nominalArmLength;
+      if(length>.1)this.currentArmFraction=Math.min(this.currentArmFraction,this.object.position.distanceTo(this.playerCenter)/length);
+      this.armReleaseDelay=.18;
+    }
+  }
+
+  /** The presentation orbit shares the gameplay obstruction solver and damping. */
+  frameIntro(desired:THREE.Vector3,lookAt:THREE.Vector3,player:THREE.Vector3,delta:number,meshes?:THREE.Object3D[]):void {
+    this.desiredPos.copy(desired);
+    let anticipated=1;
+    if(delta>0&&meshes?.length) {
+      this.predictionOffset.subVectors(desired,this.previousIntroCamera).multiplyScalar(.24/Math.max(delta,1/240)).clampLength(0,2);
+      this.predictedCamera.copy(desired).add(this.predictionOffset);
+      anticipated=this.computeArmFraction(player,meshes,this.predictedCamera,true,.75,1);
+    }
+    this.previousIntroCamera.copy(desired);
+    const fraction=Math.min(anticipated,this.computeArmFraction(player,meshes,this.desiredPos,true));
+    this.nominalArmLength=this.playerCenter.distanceTo(this.desiredPos);
+    if(delta===0){this.currentArmFraction=fraction;this.armReleaseDelay=0;}
+    else this.smoothArm(fraction,delta,this.nominalArmLength);
+    this.object.position.lerpVectors(this.playerCenter,this.desiredPos,this.currentArmFraction);
+    this.constrainFinalPosition(player,meshes,true);
+    // Once pulled close, frame the character rather than the distant stage centre.
+    this.lookTarget.copy(lookAt).lerp(this.playerCenter,THREE.MathUtils.smoothstep(1-this.currentArmFraction,0,.35));
+    this.currentLookAt.copy(this.lookTarget);
+    this.object.lookAt(this.currentLookAt);
+  }
+
+  snapTo(target: THREE.Vector3, collidableMeshes?: THREE.Object3D[],preservePose=false): void {
+    this.armReleaseDelay=preservePose ? .18 : 0;
     if(this.busView){this.busViewInitialized=false;this.followBus(0);return;}
     this.chaseYawVelocity=0;
     this.steerHeadingHold=0;
@@ -298,22 +347,15 @@ export class Camera {
     this.isInitialized = true;
 
     const targetFraction = this.computeArmFraction(target, collidableMeshes);
-    this.currentArmFraction = targetFraction;
+    this.currentArmFraction = preservePose?Math.min(this.currentArmFraction,targetFraction):targetFraction;
 
-    const effectiveDist = this.distance * this.currentArmFraction;
-    const effectiveHeight = this.terrainBlocksArm
-      ? 0.65 + (this.height - 0.65) * this.currentArmFraction
-      : this.height * Math.max(0.65, this.currentArmFraction);
+    this.desiredPos.set(target.x-Math.sin(this.yaw)*this.distance,target.y+this.height,target.z+Math.cos(this.yaw)*this.distance);
+    this.playerCenter.set(target.x,target.y+.65,target.z);
+    this.desiredPos.lerpVectors(this.playerCenter,this.desiredPos,this.currentArmFraction);
 
-    const behindX = target.x - Math.sin(this.yaw) * effectiveDist;
-    const behindZ = target.z + Math.cos(this.yaw) * effectiveDist;
-    const behindY = target.y + effectiveHeight;
-
-    this.desiredPos.set(behindX, behindY, behindZ);
-
-    this.object.position.copy(this.desiredPos);
+    if(!preservePose)this.object.position.copy(this.desiredPos);
     this.lookTarget.set(target.x, target.y + (this.isCinematicTram ? 0.8 : 0.5), target.z);
-    this.currentLookAt.copy(this.lookTarget);
+    if(!preservePose)this.currentLookAt.copy(this.lookTarget);
     this.object.lookAt(this.currentLookAt);
   }
 
@@ -449,64 +491,25 @@ export class Camera {
       }
     }
 
-    const targetFraction = this.computeArmFraction(this.smoothedTarget, collidableMeshes);
-
-    if (targetFraction < this.currentArmFraction) {
-      // Retract immediately; final-position collision keeps interpolation outside the obstruction.
-      this.currentArmFraction=targetFraction;
-    } else {
-      // Smoothly zoom back out as player moves away from the wall
-      const zoomOutRate = 4.2;
-      this.currentArmFraction += (targetFraction - this.currentArmFraction) * (1-Math.exp(-zoomOutRate*delta));
+    this.desiredPos.set(this.smoothedTarget.x-Math.sin(this.yaw)*this.distance,this.smoothedTarget.y+this.height,this.smoothedTarget.z+Math.cos(this.yaw)*this.distance);
+    let anticipatedFraction=1;
+    if(!this.isCinematicTram&&collidableMeshes?.length&&speed>1) {
+      // Start pulling in before rounding a corner; the safety correction then has
+      // much less remaining travel when the wall actually crosses the view.
+      this.predictionOffset.set(velocity.x*.24,0,velocity.z*.24).clampLength(0,2);
+      this.predictedTarget.copy(this.smoothedTarget).add(this.predictionOffset);
+      this.predictedCamera.copy(this.desiredPos).add(this.predictionOffset);
+      anticipatedFraction=this.computeArmFraction(this.predictedTarget,collidableMeshes,this.predictedCamera,false,.75,1);
     }
-
-    const effectiveDist = this.distance * this.currentArmFraction;
-    const effectiveHeight = this.terrainBlocksArm
-      ? 0.65 + (this.height - 0.65) * this.currentArmFraction
-      : this.height * Math.max(0.65, this.currentArmFraction);
-
-    const behindX = this.smoothedTarget.x - Math.sin(this.yaw) * effectiveDist;
-    const behindZ = this.smoothedTarget.z + Math.cos(this.yaw) * effectiveDist;
-    const behindY = this.smoothedTarget.y + effectiveHeight;
-
-    this.desiredPos.set(behindX, behindY, behindZ);
-
-    // Keep translation responsive with a single smooth trailing motion.
-    const wallPushFactor=Math.max(0,1-this.currentArmFraction);
-    const trackingRate=this.isCinematicTram ? 6.5 : 18+wallPushFactor*10;
-    this.object.position.lerp(this.desiredPos,1-Math.exp(-trackingRate*delta));
-
-    // Constrain the FINAL interpolated position, so smoothing cannot leave the camera inside a wall.
-    if (!this.isCinematicTram && collidableMeshes && collidableMeshes.length > 0) {
-      this.playerCenter.set(target.x,target.y+.65,target.z);
-      this.tempCheckVec.subVectors(this.object.position, this.playerCenter);
-      const directDist = this.tempCheckVec.length();
-      if (directDist > 0.1) {
-        this.tempCheckVec.divideScalar(directDist);
-        this.raycaster.set(this.playerCenter, this.tempCheckVec);
-        this.raycaster.near = 0.25;
-        this.raycaster.far = directDist;
-        this.hits.length=0;
-        this.raycaster.intersectObjects(collidableMeshes,false,this.hits);
-        for (const hit of this.hits) {
-          const terrain = hit.object.userData.blocksCameraOnSlopes === true;
-          if (hit.face && !terrain) {
-            this.tempNormal.copy(hit.face.normal);
-            this.tempNormal.transformDirection(hit.object.matrixWorld);
-            // Ignore floors and ramps!
-            if (this.tempNormal.y > 0.40 && hit.point.y<=this.playerCenter.y+.15) {
-              continue;
-            }
-          }
-          if (hit.distance < directDist) {
-            const safeLen = Math.max(.22, hit.distance - 0.45);
-            this.object.position.copy(this.playerCenter).addScaledVector(this.tempCheckVec, safeLen);
-            if (terrain) this.terrainBlocksArm = true;
-          }
-          break;
-        }
-      }
-    }
+    const targetFraction = Math.min(anticipatedFraction,this.computeArmFraction(this.smoothedTarget,collidableMeshes,this.desiredPos));
+    this.playerCenter.set(this.smoothedTarget.x,this.smoothedTarget.y+.65,this.smoothedTarget.z);
+    this.nominalArmLength=this.playerCenter.distanceTo(this.desiredPos);
+    this.smoothArm(targetFraction,delta,this.nominalArmLength);
+    // Retract along the exact tested ray: keeping an unrelated minimum height caused
+    // repeated corrections against the final collision ray and visible camera shake.
+    this.desiredPos.lerpVectors(this.playerCenter,this.desiredPos,this.currentArmFraction);
+    this.object.position.lerp(this.desiredPos,1-Math.exp(-(this.isCinematicTram?6.5:18)*delta));
+    this.constrainFinalPosition(target,collidableMeshes);
 
     // Smooth look target
     const lookElevation = this.isCinematicTram

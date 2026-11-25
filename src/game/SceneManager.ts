@@ -114,6 +114,8 @@ export class SceneManager {
   private readonly introDuration = 5.2; // Slower, expansive cinematic 360 orbit by default
   private readonly introCenter = new THREE.Vector3();
   private readonly introSpawn = new THREE.Vector3();
+  private readonly introCameraPosition = new THREE.Vector3();
+  private readonly introLookAt = new THREE.Vector3();
   private introHeading=0;
   private isPointerRushing = false;
 
@@ -430,7 +432,7 @@ export class SceneManager {
     this.scene.userData.artDark=this.isPitchBlackMode||art?.dark===true;
     this.visualFocus.copy(this.player?.getPosition()??this.context.camera.object.position);
     this.atmosphere.update(delta,this.visualFocus,this.currentLevel?.goal);
-    this.contactShadows.update(delta,this.player&&!this.player.isInVehicle()&&!this.isIntroActive ? this.player.getPosition():undefined,!this.isPitchBlackMode&&art?.dark!==true);
+    this.contactShadows.update(delta,this.player&&!this.player.isInVehicle() ? this.player.getPosition():undefined,!this.isPitchBlackMode&&art?.dark!==true);
   }
 
   update(delta: number): void {
@@ -1430,7 +1432,7 @@ export class SceneManager {
     const radius = finalRadius + (1 - ease) * (isFixedPadel ? 12.0 : 17.5);
     const height = finalHeight + (1 - ease) * (isFixedPadel ? 15.0 : 9.8);
 
-    const targetLook = isFixedPadel ? new THREE.Vector3(0.0, 13.0, 0.0) : this.introSpawn;
+    const targetLook = isFixedPadel ? this.introLookAt.set(0.0, 13.0, 0.0) : this.introSpawn;
     const lookX = this.introCenter.x + (targetLook.x - this.introCenter.x) * ease;
     const lookY = this.introCenter.y + (targetLook.y - this.introCenter.y) * ease;
     const lookZ = this.introCenter.z + (targetLook.z - this.introCenter.z) * ease;
@@ -1439,8 +1441,7 @@ export class SceneManager {
     const camZ = lookZ + Math.cos(angle) * radius;
     const camY = lookY + height;
 
-    this.context.camera.object.position.set(camX, camY, camZ);
-    this.context.camera.object.lookAt(lookX, lookY, lookZ);
+    this.context.camera.frameIntro(this.introCameraPosition.set(camX,camY,camZ),this.introLookAt.set(lookX,lookY,lookZ),this.introSpawn,delta,this.currentLevel?.collidableMeshes);
 
     if (t >= 1.0) {
       this.finishIntroAnimation();
@@ -1452,7 +1453,7 @@ export class SceneManager {
     this.introTime = 0;
     this.isPointerRushing = false;
     if (this.context && this.player) {
-      this.context.camera.snapTo(this.player.getPosition(), this.currentLevel?.collidableMeshes);
+      this.context.camera.snapTo(this.player.getPosition(), this.currentLevel?.collidableMeshes,true);
       this.context.hud.showBanner("¡YA!", 1000, "#00e676");
     }
   }

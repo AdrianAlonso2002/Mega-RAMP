@@ -1,0 +1,726 @@
+{
+  "revision": 3,
+  "method": "original-ink-with-edge-antialiasing",
+  "files": {
+    "adri_especial_happy.png": {
+      "before": "477de083e0ca3398f4dbe291e17c58f36a6a161ab7f86bc7780410390204e558",
+      "after": "7b6fbab852b153138924617f1e656027e1bd942b2bc43de69b741f8e8840a5c0",
+      "backup": "adri_especial_happy-477de083e0ca.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7317,
+      "recoveredPixels": 0
+    },
+    "adri_especial_move1.png": {
+      "before": "91825b727f4135166637fec04d150854a21c30a4ceb3d6778fcc9bae9b83ee44",
+      "after": "f46aeebceb0825ceb0fceddb9444eb522d8210e68b86aae116de10e500f0678c",
+      "backup": "adri_especial_move1-91825b727f41.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 6242,
+      "recoveredPixels": 0
+    },
+    "adri_especial_move2.png": {
+      "before": "4701f8b8b1ff1d3a76c138a33feb50c63a8468fc5fdea14725f10b37b88e2ebd",
+      "after": "e3b249a6d795a4d64d7d5f9d59bf1a973e1375c4218e9dd615314da443f03364",
+      "backup": "adri_especial_move2-4701f8b8b1ff.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 6153,
+      "recoveredPixels": 0
+    },
+    "adri_especial_normal.png": {
+      "before": "d0594937a7a5c7ee4cc63785bf643f8d7b1a2f6f57702b72a386cdb04cd1bdac",
+      "after": "4b31587bdcbf033f434128eeeab4f166b7639b90124a6fae30c5b6342b4de618",
+      "backup": "adri_especial_normal-d0594937a7a5.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7034,
+      "recoveredPixels": 0
+    },
+    "adri_especial_scary1.png": {
+      "before": "ac62b4c9aba47a4acc20b110adad61c6a05f6622e9c055c8e613f9879c0c13a1",
+      "after": "e5e9db23c175e9e71929358d65ed78a8ee40bc2c6f3e8668a17ad77760c68ed8",
+      "backup": "adri_especial_scary1-ac62b4c9aba4.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7752,
+      "recoveredPixels": 0
+    },
+    "adri_especial_scary2.png": {
+      "before": "5b8643f0aaa65b9bcd02f16aca474196a6aa9460311949e94fa19c779b88562d",
+      "after": "f300b0b21d20c9717af30e54ce7c64108a554b4471dab33884d240d7b31baa2a",
+      "backup": "adri_especial_scary2-5b8643f0aaa6.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7748,
+      "recoveredPixels": 0
+    },
+    "adri_happy.png": {
+      "before": "1adab4461796d20cdc07aacd6aa7a87dba4ab93ef15a9a9c59bb1025f8daecd7",
+      "after": "25d02cce9cf60178b8ae06ad4f00019290952a9d534c594f26eb4246add0f55d",
+      "backup": "adri_happy-1adab4461796.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 20843,
+      "recoveredPixels": 0
+    },
+    "adri_move1.png": {
+      "before": "391281b00c187f9d0a23e55d5a6a5d824a990f61b8c6f26ea8e5859a800c075a",
+      "after": "ec692db5c4a307b28794072944c9893e9ed11fa0d2ef9d63d5281736e8b00192",
+      "backup": "adri_move1-391281b00c18.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 19307,
+      "recoveredPixels": 0
+    },
+    "adri_move2.png": {
+      "before": "68b0937711660197a2a053f26245bd7bebcdfbeebb99b678f0404160f993b128",
+      "after": "413ba82f4d6d9454b8d1bf3f88332954d0dc23dbf368f5776ef590f788ddd4c1",
+      "backup": "adri_move2-68b093771166.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 19377,
+      "recoveredPixels": 0
+    },
+    "adri_normal.png": {
+      "before": "f910f70b4beae3671f23e0c2b5af0f529598deeb6aa079d54ebe8f1cf9a3e120",
+      "after": "9b878d65d07b2bef304e7fde667a17513bc773f6501aff1b509738fce9ca7fcc",
+      "backup": "adri_normal-f910f70b4bea.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 19086,
+      "recoveredPixels": 0
+    },
+    "adri_scary1.png": {
+      "before": "d8f5d0f70026ed86344cd6d3152ec9391ad7d06772c2092f36b261046a82b081",
+      "after": "884edba374e99da0312680c8b4b7a9d4fe9a222108a53eadaaa180d8a12c25a6",
+      "backup": "adri_scary1-d8f5d0f70026.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 20359,
+      "recoveredPixels": 0
+    },
+    "adri_scary2.png": {
+      "before": "572f5cf847179af7f4f3fbd9e65d54559acdcb6b31bc9c06553e694f72abb3e6",
+      "after": "82baeb1ab617f0c067bc668a097120d31d62aee83a0035357658f495732e4806",
+      "backup": "adri_scary2-572f5cf84717.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 20286,
+      "recoveredPixels": 0
+    },
+    "adri_ssj_happy.png": {
+      "before": "8237a078abebcbb76fb0773bb027820c5aad2b5b0da11af8d05c2d25ad7f2b9f",
+      "after": "71ec57330f0961b417d18da39c1b7af4b3c14bedccfd81791781f0898a7eb5af",
+      "backup": "adri_ssj_happy-8237a078abeb.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 9552,
+      "recoveredPixels": 0
+    },
+    "adri_ssj_move1.png": {
+      "before": "f5d56a747f54d51ec2cbf508238aa9d4d86e113770c88814aeda97da402d5640",
+      "after": "650d0c675575b67904f3719679f1d322491ce7faa43860361b9473671253d8f5",
+      "backup": "adri_ssj_move1-f5d56a747f54.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8723,
+      "recoveredPixels": 0
+    },
+    "adri_ssj_move2.png": {
+      "before": "afeeb8944e03808ba060530ca2d257980c75160b4436375cd8fa4aa554fe616d",
+      "after": "5aec2529ce1c2f69d9051b2e91a49dacca618829c36c79c361bf0aec5faa4c3a",
+      "backup": "adri_ssj_move2-afeeb8944e03.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8879,
+      "recoveredPixels": 0
+    },
+    "adri_ssj_normal.png": {
+      "before": "b8ebf902cd770b5661ff37f58e2e657a84fa44c2d0dc87886f3379f899dd4878",
+      "after": "93802bc1723b781037ee152dbf649bd83f47f27eaa0e9fdfcee8fdb9a2506ebc",
+      "backup": "adri_ssj_normal-b8ebf902cd77.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 9039,
+      "recoveredPixels": 0
+    },
+    "adri_ssj_scary1.png": {
+      "before": "fe2ee0be061c663b50415d8d0ce22605b788a2d07e004b9594e8958b553918bd",
+      "after": "145e15dd7278bb20a843cacad8c13a8dacf2816f0c64455193aa39b33cfaf93f",
+      "backup": "adri_ssj_scary1-fe2ee0be061c.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 9846,
+      "recoveredPixels": 0
+    },
+    "adri_ssj_scary2.png": {
+      "before": "c30ef1580f4486a233fd2462683ffcbae32b6f7c9dda949a430bf8d157f53725",
+      "after": "4e817b53964fefed532fe8795b9a1b1a956ce2b04b8927cd0c4b3e5f72f1d920",
+      "backup": "adri_ssj_scary2-c30ef1580f44.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 9853,
+      "recoveredPixels": 0
+    },
+    "misi_bebe_happy.png": {
+      "before": "3d22860c21095a79a900b73895e246308c6ae678743fce5982a9abe3284ceb45",
+      "after": "a38b121438417afa364f04c5dd6405bb85b2245036e3cccf343caf53c2117a83",
+      "backup": "misi_bebe_happy-3d22860c2109.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 5711,
+      "recoveredPixels": 0
+    },
+    "misi_bebe_move1.png": {
+      "before": "837db50f92f7662f771fb8f0b41cd94e9a9d18ebc8124866d28c9d5f76e1bc51",
+      "after": "6d9579ce9be19293325a91247a7d0bda47391986151afd3d0a8ea12fd01d70bf",
+      "backup": "misi_bebe_move1-837db50f92f7.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 5800,
+      "recoveredPixels": 0
+    },
+    "misi_bebe_move2.png": {
+      "before": "6e0d7c17966a165065538c92a614555f8518aed2a5eead130885d0dccae10b8d",
+      "after": "2db7be08175b6272779f79aaa64cc52ec5c98fadc28235c93fd01c6285c75ceb",
+      "backup": "misi_bebe_move2-6e0d7c17966a.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 5830,
+      "recoveredPixels": 0
+    },
+    "misi_bebe_normal.png": {
+      "before": "ab38a06adf8da4b9f6e0fe26b51718f57411e848ef0b24d8a4143491fe892f5e",
+      "after": "0cec7220cf2b60e9b4d307ef4b24683daec6b1059361a48c6278d63e9d644163",
+      "backup": "misi_bebe_normal-ab38a06adf8d.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 5733,
+      "recoveredPixels": 0
+    },
+    "misi_bebe_scary1.png": {
+      "before": "9f9310fb17812cf1aa4f2a36d089a791abe24523b22732abc1dc58e508403076",
+      "after": "1cce0f8818212686e6c1d6c11f6f311c3b1cdfbe56af1637fe5b0426fbc9e32a",
+      "backup": "misi_bebe_scary1-9f9310fb1781.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 5640,
+      "recoveredPixels": 0
+    },
+    "misi_bebe_scary2.png": {
+      "before": "88084354a9a40f5d727e809923bc541e8071b2820ee86d24412a3b5b2a6285c8",
+      "after": "5fcc350bb6d22ecffdba61688a590328a25e389807c17fcca2e3f38485170c45",
+      "backup": "misi_bebe_scary2-88084354a9a4.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 5641,
+      "recoveredPixels": 0
+    },
+    "misi_happy.png": {
+      "before": "1870ec4c4fde73d5293d8c8cee52a7d0489dd81a9b6acf1baa3f1ca46d9b82f1",
+      "after": "d61e56b3b28718243ce6a1b1a2e2b16fddb562dcb6fd847f56cdb518f7129a66",
+      "backup": "misi_happy-1870ec4c4fde.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 17071,
+      "recoveredPixels": 0
+    },
+    "misi_move1.png": {
+      "before": "5de996c9b45ba351ec7b7ec984d806f5b4eea9bc84a4b533058d7e601775a60b",
+      "after": "ad4e9bd96bb23f5febf47a0c751992e18c5851dccfd9d557eade5fcd1c565558",
+      "backup": "misi_move1-5de996c9b45b.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 16580,
+      "recoveredPixels": 0
+    },
+    "misi_move2.png": {
+      "before": "28902b5ba188ea95ec07bbc51d3e2dd3cc79cddfbeaeb610f7ffc09bad4b8cc4",
+      "after": "2e2cbff18b24a66169d97021308380a2284d6caa650f1d064e43cadd474b4a1e",
+      "backup": "misi_move2-28902b5ba188.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 16638,
+      "recoveredPixels": 0
+    },
+    "misi_negra_happy.png": {
+      "before": "b7e032cf87dc42c2d05075b8cd3f1b122b30e7ef3a4088eb42abde733532a144",
+      "after": "43642eeca261656973e385b24c6dcdd579cdaab9b73c6ee29ae5456061509817",
+      "backup": "misi_negra_happy-b7e032cf87dc.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7364,
+      "recoveredPixels": 0
+    },
+    "misi_negra_move1.png": {
+      "before": "79a98fa88eb5c4f4dc203a98c4774d0728c9695ba06abc0f46fa12b3840dfc0f",
+      "after": "626ef5a4034413a4e0e462496204458a85272ccb28a3da2c9850741e8f8fe7ce",
+      "backup": "misi_negra_move1-79a98fa88eb5.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7199,
+      "recoveredPixels": 0
+    },
+    "misi_negra_move2.png": {
+      "before": "909b1c11b2dfc71d175f81ae357299a0c012da82de4d5f42797381f3e2da0d87",
+      "after": "fcf054a18b1304d532760aa7722de35e83ec919644239098337abde0cd43bff8",
+      "backup": "misi_negra_move2-909b1c11b2df.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7217,
+      "recoveredPixels": 0
+    },
+    "misi_negra_normal.png": {
+      "before": "2ba3a0251730683e42a6755843677719fef17933f05f2e6d8bee9d2b60cefd53",
+      "after": "2a88a97adf01ee2cd778db600c1a54725a016851ccc14cd0973a984335692ceb",
+      "backup": "misi_negra_normal-2ba3a0251730.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7386,
+      "recoveredPixels": 0
+    },
+    "misi_negra_scary1.png": {
+      "before": "55715566eae899e64a758634db968e9dd6be541e9029fb84da077fd5f6323c46",
+      "after": "8074ed8825bfcd4e0398c58ef1ce0316f74fb915e91abe48dd55fa5230a3ec0f",
+      "backup": "misi_negra_scary1-55715566eae8.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7108,
+      "recoveredPixels": 0
+    },
+    "misi_negra_scary2.png": {
+      "before": "0beab7b9ffc69fbb48f480d35f44cc92ebfa33d67ead2c955b10d4aeea2403ef",
+      "after": "6c89f61d9c452dac054a27b9a9e0c2313bdd4659903a35f05db3ae5c532245c9",
+      "backup": "misi_negra_scary2-0beab7b9ffc6.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7112,
+      "recoveredPixels": 0
+    },
+    "misi_normal.png": {
+      "before": "d0755ef497e6bba37e04fb1d59af23e82ef1a0f15203bd380e0621e8eda191d5",
+      "after": "a8f29aaf1ef565d908aa163978533d09482eda95d44e2b307089232d72e8a6b9",
+      "backup": "misi_normal-d0755ef497e6.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 12797,
+      "recoveredPixels": 0
+    },
+    "misi_scary1.png": {
+      "before": "998e1a87484ea1ff48088533e54d9bf93b0453ebdefc1062c73fc8ea3dbdc9c8",
+      "after": "dd2b94ec9ebe85f6dba102817834e73eed98b2d32ede7fa714438e81c589546c",
+      "backup": "misi_scary1-998e1a87484e.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 17361,
+      "recoveredPixels": 0
+    },
+    "misi_scary2.png": {
+      "before": "ea8cb01febb420a923881492be74176885396818d931500ad4126008944d768c",
+      "after": "99afbfc712663e0a57fb497bc2a1f7f41148d3246a7fb7e8bcdaa6687b73b0f2",
+      "backup": "misi_scary2-ea8cb01febb4.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 17921,
+      "recoveredPixels": 0
+    },
+    "pao_especial_happy.png": {
+      "before": "63e474004f9b5d0c52a101f9f1a868eb74fe7304ad0f26593c41cdbde8fb3956",
+      "after": "e7eb323d91bc23d1c815685ee67648972e59a14736c531c2fdf510d430266109",
+      "backup": "pao_especial_happy-63e474004f9b.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 6438,
+      "recoveredPixels": 0
+    },
+    "pao_especial_move1.png": {
+      "before": "c18d93b83d165bcdc8f67350c40cd7500c78030be0edb153e43a8c5af71e9c2b",
+      "after": "802b3eb03ab88def83d9a16948509ee0a480f8977b44eef9e72a50462a375d97",
+      "backup": "pao_especial_move1-c18d93b83d16.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 6311,
+      "recoveredPixels": 0
+    },
+    "pao_especial_move2.png": {
+      "before": "6d57ed63ae5c526a515caf3361566ae47f7b7f2d37fc90850dd4e8b3707469e0",
+      "after": "402e22bb1016c08c3d326bdc0ca3e73bf2d6891db729457d36d94b32689d1536",
+      "backup": "pao_especial_move2-6d57ed63ae5c.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 6215,
+      "recoveredPixels": 0
+    },
+    "pao_especial_normal.png": {
+      "before": "4c6301ac5660ed9f0899707d77ff3ed4a1b81fb3f640b4527d29354ced549fa5",
+      "after": "afaf16c6bccf592c99a41dac4938c7e50f4ef4498d18f0def02ce41f8af8cb12",
+      "backup": "pao_especial_normal-4c6301ac5660.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 6574,
+      "recoveredPixels": 0
+    },
+    "pao_especial_scary1.png": {
+      "before": "5b33b6660dbd1c9610dd5526e792ad6d4490f5086279d1e4037f4d2713c78a6b",
+      "after": "675560165055ab816efef87ada238e2d7526db350f7c7a64acc4a88930eb9936",
+      "backup": "pao_especial_scary1-5b33b6660dbd.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 6771,
+      "recoveredPixels": 0
+    },
+    "pao_especial_scary2.png": {
+      "before": "cacb3c3dc8a3cd2c216f367d58fe70b8b8ab80ff3a2cf35d757e49956cf59641",
+      "after": "7e63422c40e68b9b5e620ee304a88008d7fe05baa3cfc22b014b912361bbec78",
+      "backup": "pao_especial_scary2-cacb3c3dc8a3.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 6776,
+      "recoveredPixels": 0
+    },
+    "pao_happy.png": {
+      "before": "32cd73b54e0500bc6624ecd8b8d6adb7962f8d8fc03542936e03d82904a0755b",
+      "after": "8af5b3de61bebb90f2467774c97b305bdd0499212b438b96dcc6750688bc50e0",
+      "backup": "pao_happy-32cd73b54e05.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 17872,
+      "recoveredPixels": 0
+    },
+    "pao_hp_happy.png": {
+      "before": "2473100e2118254d1160acb6b8e7bd3930732829025fb00a9d09f058147e0825",
+      "after": "4b97b813cb0376900cb2fdfb0c82d61877aed80eb0942d082abc99c770aa84ef",
+      "backup": "pao_hp_happy-2473100e2118.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7785,
+      "recoveredPixels": 0
+    },
+    "pao_hp_move1.png": {
+      "before": "d20247cfd4fbd1c4d997b7d95f7326b0a292d0f7869bff5f95ababebf93d34ac",
+      "after": "4eff825ae7089bfd8ad4701b0cff199645c96407672696e3fdb59b39e6d00602",
+      "backup": "pao_hp_move1-d20247cfd4fb.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7840,
+      "recoveredPixels": 0
+    },
+    "pao_hp_move2.png": {
+      "before": "3d2ff3581b2056b5689ffccf8c0c19053a0aa5e074e084efaaf2c5b77e732329",
+      "after": "e2c844cef82dc659c64c4abcbeb939874f0fd17f51046298211eda23ead65288",
+      "backup": "pao_hp_move2-3d2ff3581b20.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7872,
+      "recoveredPixels": 0
+    },
+    "pao_hp_normal.png": {
+      "before": "bbeef5b55a7c43bc8cc6b888ff2bdacfb2138b2da3a098b4a73ed4ef610f991e",
+      "after": "e38eb28c52e367d13306d67d60ea5b2e49e3696ce55de60459a85c537981e1e3",
+      "backup": "pao_hp_normal-bbeef5b55a7c.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7709,
+      "recoveredPixels": 0
+    },
+    "pao_hp_scary1.png": {
+      "before": "4a688ce9a54c3367ededc8263f87efb63b658325cfda881dc3c7e4a47cd1f09e",
+      "after": "2cde0b638806abddcc3bfd66e4e1f0d2f1db8e7b7faa394aa0c59982bb7dc1b9",
+      "backup": "pao_hp_scary1-4a688ce9a54c.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7400,
+      "recoveredPixels": 0
+    },
+    "pao_hp_scary2.png": {
+      "before": "58f6e2b42bc849c0d14b1069bd6f2673aeb252957a674f1c57c76e499e2bcf31",
+      "after": "70068c4fcbe98110a71007a8ab606e41204f237e934136f1c5920cf388056fec",
+      "backup": "pao_hp_scary2-58f6e2b42bc8.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7398,
+      "recoveredPixels": 0
+    },
+    "pao_move1.png": {
+      "before": "9b7c11bf4022c103e70d83b0ceb2b6ff8876a2c7d8b927ee5932f1a7145c6e2f",
+      "after": "f1a794494357f245ad18fc976f8983947131a7a1cac7e627843d8e46c089b96b",
+      "backup": "pao_move1-9b7c11bf4022.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 16939,
+      "recoveredPixels": 0
+    },
+    "pao_move2.png": {
+      "before": "9408db6731db08732b6055cc653373718e408f699d319a3ce0ef0bf222786275",
+      "after": "55fd5c2da0b0a24a7f9b74e8072d5f0c9598e91c851bd560ae61a94015c67d8f",
+      "backup": "pao_move2-9408db6731db.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 16972,
+      "recoveredPixels": 0
+    },
+    "pao_normal.png": {
+      "before": "45823b489e241bf284daeb47334ac0a92d389a040e6f13090da5ca3d1b3424ee",
+      "after": "f6e4edf942152f6242e3526cfb2fbd25c8d32bc39d792d8d65f99dc4bf4ff254",
+      "backup": "pao_normal-45823b489e24.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 15764,
+      "recoveredPixels": 0
+    },
+    "pao_scary1.png": {
+      "before": "02476228f539624e289712ea7e808e41ea183d203a430eb3928c1acef4d17451",
+      "after": "14307aaa5c60fc7968e1d763fea4e54d8de68f021909ce2d01dbe3d20bc430ad",
+      "backup": "pao_scary1-02476228f539.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 17490,
+      "recoveredPixels": 0
+    },
+    "pao_scary2.png": {
+      "before": "5c58537524e0c09853633378f2ce8f79c4b7ff031915962ce62bdfc13c41579b",
+      "after": "1a1a05d192febf291c676d7bd831633eeaebd0aaad867fce6bc0e8947c7cae92",
+      "backup": "pao_scary2-5c58537524e0.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 17457,
+      "recoveredPixels": 0
+    },
+    "rony_bebe_happy.png": {
+      "before": "aeb1cc129733cd879be3e2097f62a01fd4ba3430d5d289ed45c7fea7d968bd67",
+      "after": "07ce879e75f491b42c3d637b7283732c994466a5b2443c0ee5fd2802bbbbd7fb",
+      "backup": "rony_bebe_happy-aeb1cc129733.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8062,
+      "recoveredPixels": 0
+    },
+    "rony_bebe_move1.png": {
+      "before": "55cc57f1410b8bf53fe5a60fbd6ac7de105d220f4fa336003ad0ddf5cd482c81",
+      "after": "5aae5835995eae973c42bf5c648be3799995319ab00ff05d90b51a8231109bbd",
+      "backup": "rony_bebe_move1-55cc57f1410b.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8055,
+      "recoveredPixels": 0
+    },
+    "rony_bebe_move2.png": {
+      "before": "67a9166f73e643305167396a53daaa8c20b149e39164f55f2551bca4791a3e89",
+      "after": "852e051728db915deda5e009174755cdcd6548ac03309a0a3306a296b7797faf",
+      "backup": "rony_bebe_move2-67a9166f73e6.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8068,
+      "recoveredPixels": 0
+    },
+    "rony_bebe_normal.png": {
+      "before": "b41cb2fe0f3e96648219330ebd48dc4ad3b12334bf012875ac5696cdd7e74b41",
+      "after": "ba479cb10a83558de87bc3bf36a3217791793784017fa53ad22cb3b7c566c3bc",
+      "backup": "rony_bebe_normal-b41cb2fe0f3e.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8119,
+      "recoveredPixels": 0
+    },
+    "rony_bebe_scary1.png": {
+      "before": "c152d9f1e992c8b09292d19d0b1653e0050e6fecbd2f71acbe84408ecb4f3590",
+      "after": "dac437dd3b90839d33045d9621c802ada7c1ba07eacf1e090d8f271c674f1494",
+      "backup": "rony_bebe_scary1-c152d9f1e992.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7712,
+      "recoveredPixels": 0
+    },
+    "rony_bebe_scary2.png": {
+      "before": "d5f945daa99f9bccd8ef13e720f529437b11fe4c7d865f70c15578c334753762",
+      "after": "29f8c07ac33bc2d3bf5c93af5eaa4c681f6136abb364680413e747569064e5d2",
+      "backup": "rony_bebe_scary2-d5f945daa99f.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 7748,
+      "recoveredPixels": 0
+    },
+    "rony_blue_happy.png": {
+      "before": "a4276b904ddaecd504e3aade319aa7de45689dd46ac17a0d273b5fa84fd64f47",
+      "after": "572dfaad6548f0cc9291313e80e8c70293608feea01b964ed95dbbb9ffec2e7f",
+      "backup": "rony_blue_happy-a4276b904dda.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8741,
+      "recoveredPixels": 0
+    },
+    "rony_blue_move1.png": {
+      "before": "35ccac08e08e58171a17575dbd6612e26d4123e95f47355d53c6618410b71fb2",
+      "after": "2fc0e20f1781162b7b5f7496c5358284ab13931c11441f9983a3ecf9b33cbb21",
+      "backup": "rony_blue_move1-35ccac08e08e.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8498,
+      "recoveredPixels": 0
+    },
+    "rony_blue_move2.png": {
+      "before": "91c31d5687d0e7b8d4743a830654590a264e0ef6a38a0d6ce69b85983039b11c",
+      "after": "cbd260e9260f58d94ba3de107522f81b8545c2427dfc8d577f971447683a52b5",
+      "backup": "rony_blue_move2-91c31d5687d0.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8426,
+      "recoveredPixels": 0
+    },
+    "rony_blue_normal.png": {
+      "before": "ceb46ac65f40b622c6238c35051835b694bdf60ae345b78e278e6eca6ef55941",
+      "after": "604f02126a6a169ba975e9cdac5e6398d07287119913dee6dc5350183f00bfb2",
+      "backup": "rony_blue_normal-ceb46ac65f40.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8536,
+      "recoveredPixels": 0
+    },
+    "rony_blue_scary1.png": {
+      "before": "e8aa56b72c8e0bf2b85e4d3c1fe5254d4f3638a030e842e98f182063c0c31247",
+      "after": "74dcaceae0dbbb0c65ed809fe94eab82485f806a291583696af1683c60798785",
+      "backup": "rony_blue_scary1-e8aa56b72c8e.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8613,
+      "recoveredPixels": 0
+    },
+    "rony_blue_scary2.png": {
+      "before": "2398870853b81f1fcaf1aed5d8a04ce5573f9622f8e742d57022cd64487cbd3e",
+      "after": "eab56235f0fd553f628ee8a1942226c91713ff62c9e553671d1fb8c3ad39f723",
+      "backup": "rony_blue_scary2-2398870853b8.png",
+      "width": 512,
+      "height": 512,
+      "stroke": null,
+      "changedPixels": 8611,
+      "recoveredPixels": 0
+    },
+    "rony_happy.png": {
+      "before": "15bf0667f5bff786851751cd4246184f5ebe10e7203d8d0f39861c7dd734cc1e",
+      "after": "6e0bc98f24cd2b2a245febbed3881615a31c2d8064dbbf1bf2b753c9264deb2e",
+      "backup": "rony_happy-15bf0667f5bf.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 22567,
+      "recoveredPixels": 0
+    },
+    "rony_move1.png": {
+      "before": "57aa415578a0ad8641f9c78623dc65e8444c4e2e84c0a01d7e249de2414fdc00",
+      "after": "7c046cb144d82cb428cc858c1cf1880361d5636bb5f90ecfc997178de3fa07a4",
+      "backup": "rony_move1-57aa415578a0.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 26152,
+      "recoveredPixels": 0
+    },
+    "rony_move2.png": {
+      "before": "4b34f160edead70d34dae7e412895530589e577027400677ce9cc64f248f08e4",
+      "after": "cde1d1a65e07ed22ab7ffd986dc4b5b955876cf1621f873d2c95524e4a264972",
+      "backup": "rony_move2-4b34f160edea.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 24248,
+      "recoveredPixels": 0
+    },
+    "rony_normal.png": {
+      "before": "0965f6336f94da27fca037079991da3c244beaa554886ea504d9957ab6c2dc6f",
+      "after": "6ba81a146f17d4dab7da08140836c079c7fce951a96099b43e3381cab3ad1445",
+      "backup": "rony_normal-0965f6336f94.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 21804,
+      "recoveredPixels": 0
+    },
+    "rony_scary1.png": {
+      "before": "8a92e9cde0a3f163885a5aa56901136162ee131760e43ec2708d63b9234c5e62",
+      "after": "330cb8f20e5c61fe915ae3a76834201c0d5823c20436da54331ac25158b2eabf",
+      "backup": "rony_scary1-8a92e9cde0a3.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 24381,
+      "recoveredPixels": 0
+    },
+    "rony_scary2.png": {
+      "before": "e5071e68819f4c84ee44697f1b9d8dbf2c091b5dd2cbc95b03d3a1c2b7505d25",
+      "after": "85d85cf0571abde6099cd9ebe586ad394fb5d3c2ea557007948933ad555a29a9",
+      "backup": "rony_scary2-e5071e68819f.png",
+      "width": 1024,
+      "height": 1024,
+      "stroke": null,
+      "changedPixels": 24231,
+      "recoveredPixels": 0
+    }
+  }
+}

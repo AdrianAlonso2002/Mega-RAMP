@@ -1,4 +1,3 @@
-import { assetUrl } from "../core/AssetUrl";
 import type { CharacterDefinition } from "./PlayerTypes";
 import {getCharacterSkin, characterSpritePath} from './CharacterSkins';
 
@@ -14,7 +13,7 @@ export const CHARACTERS: CharacterDefinition[] = [
     collectibleId: "pan",
     collectibleName: "Pan",
     collectibleEmoji: "🥖",
-    spritePath: assetUrl("/assets/characters/rony_normal.png")
+    spritePath: characterSpritePath('rony')
   },
   {
     id: "adri",
@@ -27,7 +26,7 @@ export const CHARACTERS: CharacterDefinition[] = [
     collectibleId: "dragon_ball",
     collectibleName: "Bolas de Dragón",
     collectibleEmoji: "🔮",
-    spritePath: assetUrl("/assets/characters/adri_normal.png")
+    spritePath: characterSpritePath('adri')
   },
   {
     id: "misi",
@@ -40,7 +39,7 @@ export const CHARACTERS: CharacterDefinition[] = [
     collectibleId: "lonchas_pavo",
     collectibleName: "Pavo",
     collectibleEmoji: "🍗",
-    spritePath: assetUrl("/assets/characters/misi_normal.png")
+    spritePath: characterSpritePath('misi')
   },
   {
     id: "pao",
@@ -53,7 +52,7 @@ export const CHARACTERS: CharacterDefinition[] = [
     collectibleId: "varitas_estrella",
     collectibleName: "Varitas",
     collectibleEmoji: "🪄",
-    spritePath: assetUrl("/assets/characters/pao_normal.png")
+    spritePath: characterSpritePath('pao')
   }
 ];
 

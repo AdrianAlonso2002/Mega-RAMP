@@ -3,6 +3,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import sharp from "sharp";
 import ffmpeg from "@ffmpeg-installer/ffmpeg";
+import {normalizeCharacterAssets} from './normalize-character-outlines.mjs';
 const root = process.cwd(),
   sourceRoot = path.join(root, "art/source/media");
 const report = { files: 0, before: 0, after: 0, images: [], audio: null };
@@ -57,6 +58,7 @@ for (const folder of ["assets/characters", "assets/maps"])
       });
     }
   }
+console.log(await normalizeCharacterAssets(root));
 const { target, saved } = await source("audio/menu1.mp3"),
   temporary = path.join(root, "public/audio/menu1.optimized.mp3"),
   before = (await fs.stat(target)).size;

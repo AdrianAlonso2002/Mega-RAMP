@@ -45,7 +45,7 @@ describe('Unlocked character forms',()=>{
     for(const c of CHARACTERS) for(const state of states) {
       const normal=SpriteTextures.getCharacterTexture(c.id,state);
       for(const skin of getCharacterSkins(c.id)) {
-        expect(characterSpritePath(c.id,skin.id,state)).toBe(`/assets/characters/${skin.spriteBase}_${state}.png`);
+        expect(characterSpritePath(c.id,skin.id,state)).toBe(`/assets/characters/${skin.spriteBase}_${state}.png?art=ink2`);
         const texture=SpriteTextures.getCharacterTexture(c.id,state,skin.id);
         expect(SpriteTextures.getCharacterTexture(c.id,state,skin.id)).toBe(texture);
         if(skin.id==='normal')expect(texture).toBe(normal);else expect(texture).not.toBe(normal);
