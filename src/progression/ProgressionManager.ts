@@ -309,6 +309,10 @@ export class ProgressionManager {
     this.resetSeenNodes();
   }
 
+  private levelRecordCollectibles(world:number,level:number,value:number):number {
+    return Math.min(100,this.getLevelMaxCollectibles(world,level),Math.max(0,Math.floor(Number.isFinite(value)?value:0)));
+  }
+
   recordLevelCompletion(
     world: number,
     level: number,
@@ -335,7 +339,8 @@ export class ProgressionManager {
     this.data.levelRecords[key] = {
       completed: true,
       bestTime: prev.bestTime === null ? time : Math.min(prev.bestTime, time),
-      totalCollectibles: Math.min(this.getLevelMaxCollectibles(world, level), Math.max(0, Math.floor(collectibles))),
+      // Time and prizes are independent personal bests from individual runs.
+      totalCollectibles: Math.max(this.levelRecordCollectibles(world,level,prev.totalCollectibles),this.levelRecordCollectibles(world,level,collectibles)),
       completedCharacters: newCharacters,
       clearCount: (prev.clearCount || 0) + 1
     };
@@ -362,7 +367,7 @@ export class ProgressionManager {
       const stageCol = collectibles !== undefined ? Math.ceil(collectibles / 10) : Math.max(prevCol, stageMax);
       this.completeStage(world, level, s, time / 10, stageCol);
     }
-    const totalCol = this.getLevelTotalCollectibles(world, level);
+    const totalCol = collectibles ?? this.getLevelTotalCollectibles(world, level);
     this.recordLevelCompletion(world, level, time, totalCol, characterId);
   }
 
@@ -426,7 +431,7 @@ export class ProgressionManager {
         ...record,
         completed: true,
         bestTime: record.bestTime,
-        totalCollectibles: Math.min(this.getLevelMaxCollectibles(world, level), Math.max(0, record.totalCollectibles)),
+        totalCollectibles: this.levelRecordCollectibles(world,level,record.totalCollectibles),
         completedCharacters: record.completedCharacters || [],
         clearCount: record.clearCount || 1
       };
@@ -438,7 +443,7 @@ export class ProgressionManager {
       return {
         completed: true,
         bestTime: sumTime > 0 ? sumTime : null,
-        totalCollectibles: Math.min(this.getLevelMaxCollectibles(world, level), sumCollectibles),
+        totalCollectibles: this.levelRecordCollectibles(world,level,sumCollectibles),
         completedCharacters: [],
         clearCount: 1
       };

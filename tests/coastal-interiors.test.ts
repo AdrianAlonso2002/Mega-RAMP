@@ -38,10 +38,12 @@ function reachable(group: THREE.Group, stall = false): boolean {
     startZ = stall ? 3 : 4,
     goalZ = stall ? -1.1 : -1.85,
     limit = stall ? 1.9 : 2.8;
+  // Follow the actual walkable deck, including the stall's small raised finish.
+  const floorTop=stall?Math.max(.4,...colliders.filter(c=>c.halfExtents.x>=2.6&&c.halfExtents.z>=2.1&&c.position.y+c.halfExtents.y<.6).map(c=>c.position.y+c.halfExtents.y)):.4;
   const free = (x: number, z: number) =>
     colliders.every(({ position: p, halfExtents: h }) => {
       const dx = Math.max(0, Math.abs(x - p.x) - h.x),
-        dy = Math.max(0, Math.abs(1.15 - p.y) - h.y),
+        dy = Math.max(0, Math.abs(floorTop + .75 - p.y) - h.y),
         dz = Math.max(0, Math.abs(z - p.z) - h.z);
       return dx * dx + dy * dy + dz * dz >= 0.75 * 0.75 - 0.00001;
     });

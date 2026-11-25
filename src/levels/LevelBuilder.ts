@@ -1,4 +1,9 @@
 import {createConcertModel,concertLift,createPlazaGarland} from "./world-01/ConcertModel";
+import { createClosedTramRails, TramPassengerGuard, tramTrack } from './TramTrack';
+import { mattressLaunchSpeed } from "./MattressBounce";
+import { meshColliderData } from '../physics/MeshColliderData';
+import { createStaticStallShadow } from '../rendering/StaticStallShadow';
+import { artDirection } from '../rendering/ArtDirection';
 import {createNorwayModel} from './world-08/NorwayModels';
 import {NorwayLevel} from './world-08/NorwayLevel';
 import * as THREE from "three";
@@ -154,6 +159,8 @@ export interface ActiveMovingPlatform {
   floorTimer?: number;
   playerWasInside?: boolean;
   spikesOut?: boolean;
+  tramPassenger?: TramPassengerGuard;
+  tramPath?: ReturnType<typeof tramTrack>;
   bounceCount?: number;
   lastBounceTime?: number;
   // Tilting Ramp (tilt_x) Fields
@@ -1247,6 +1254,16 @@ export class LevelBuilder {
               stallRes.group.position.set(obj.position.x, obj.position.y, obj.position.z);
               stallRes.group.rotation.copy(tempEuler);
               root.add(stallRes.group);
+              if(data.world===2&&data.level===2&&data.stage===9) {
+                const plaza=data.objects.find(object=>object.id==='w2s9-market-street');
+                if(plaza) {
+                  const bounds=new THREE.Box3(new THREE.Vector3(-.5,-.5,-.5),new THREE.Vector3(.5,.5,.5));
+                  const transform=new THREE.Matrix4().compose(new THREE.Vector3().copy(plaza.position),new THREE.Quaternion().setFromEuler(new THREE.Euler(plaza.rotation.x,plaza.rotation.y,plaza.rotation.z)),new THREE.Vector3().copy(plaza.scale));
+                  bounds.applyMatrix4(transform);
+                  const shadow=createStaticStallShadow(stallRes.group,artDirection(data.world,data.level,data).sunOffset,bounds);
+                  if(shadow)root.add(shadow);
+                }
+              }
               collidableMeshes.push(...stallRes.meshes);
               platformMeshes.push({ mesh: stallRes.meshes[0] || stallRes.group as any, isMoving: false, properties: obj.properties, objIndex: objIdx });
 
@@ -1334,15 +1351,25 @@ export class LevelBuilder {
 
               // 1. Solid floor deck under the stall (Scale x: 4.8, z: 3.6 -> halfExtents x: 2.4, z: 1.8)
               createHippieCollider({ x: 0, y: 0.125, z: 0 }, { x: 2.4, y: 0.125, z: 1.8 });
+              // Every visible corner post is solid, including the open sides.
+              for(const x of [-2.2,2.2])for(const z of [-1.6,1.6])
+                createHippieCollider({x,y:1.4,z},{x:.09,y:1.4,z:.09});
+              createHippieCollider({x:0,y:1.4,z:-1.6},{x:2.2,y:1.1,z:.04});
+              // Match the tilted canopy instead of letting balls pass through it.
+              const roofRotation=tempQuat.clone().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(.12,0,0)));
+              const roofOffset=new THREE.Vector3(0,2.7,0).applyQuaternion(tempQuat).add(new THREE.Vector3().copy(obj.position));
+              physics.createBoxCollider(roofOffset,roofRotation,{x:2.5,y:.06,z:1.9},.75,.02);
               if (isGoal) {
                 // In goal stall, keep center open so monkey ball can roll straight into the goal!
-                createHippieCollider({ x: 0, y: 1.4, z: -1.7 }, { x: 2.2, y: 1.3, z: 0.1 });
-                createHippieCollider({ x: -1.8, y: 0.7, z: 0 }, { x: 0.4, y: 0.5, z: 1.6 });
-                createHippieCollider({ x: 1.8, y: 0.7, z: 0 }, { x: 0.4, y: 0.5, z: 1.6 });
+                for(const x of [-1.2,1.2])createHippieCollider({x,y:1.2,z:1.3},{x:.1,y:1.2,z:.1});
+                createHippieCollider({x:0,y:2.4,z:1.3},{x:1.3,y:.1,z:.1});
+                for(const x of [-1.5,1.5]) {
+                  const position=new THREE.Vector3(x,.5,0).applyQuaternion(tempQuat).add(new THREE.Vector3().copy(obj.position));
+                  physics.createCylinderCollider(position,.35,.4,.02,.75,tempQuat);
+                }
               } else {
                 // Normal hippie stall with front artisan table counter and rear shelf
-                createHippieCollider({ x: 0, y: 0.8, z: 0.2 }, { x: 2.0, y: 0.15, z: 0.6 });
-                createHippieCollider({ x: 0, y: 1.4, z: -1.7 }, { x: 2.2, y: 1.3, z: 0.1 });
+                createHippieCollider({ x: 0, y: 0.8, z: 0.2 }, { x: 2.0, y: 0.09, z: 0.6 });
               }
               break;
             }
@@ -3218,7 +3245,7 @@ export class LevelBuilder {
               { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w },
               { x: mW / 2, y: mH / 2, z: mD / 2 },
               0.4,
-              1.85
+              0 // Launch is controlled below; restitution must not amplify falls.
             );
             if (kinematic) {
               movingPlatforms.push({
@@ -3455,6 +3482,8 @@ export class LevelBuilder {
                 baseAngle,
                 trackWidth,
                 trackLength,
+                tramPassenger: new TramPassengerGuard(tramW,tramH,tramL),
+                tramPath: mType==="tram_square"?tramTrack(trackWidth,trackLength,cornerRadius):undefined,
                 cornerRadius
               });
             }
@@ -3772,12 +3801,13 @@ export class LevelBuilder {
             collidableMeshes.push(...umbrellaRes.meshes);
             platformMeshes.push({ mesh: umbrellaRes.canopyMesh, isMoving: true, properties: obj.properties, objIndex: objIdx });
 
-            // Kinematic Rapier cylinder body for the giant rotating umbrella platform
-            const kinematic = physics.createKinematicCylinder(
+            // Follow the actual sloped canopy, perimeter, mast and finial.
+            const umbrellaCollider=meshColliderData(umbrellaRes.meshes);
+            const kinematic = physics.createKinematicTrimesh(
               obj.position,
-              radius,
-              0.4,
-              0.45,
+              umbrellaCollider.vertices,
+              umbrellaCollider.indices,
+              0.02,
               0.75,
               { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w }
             );
@@ -3796,6 +3826,7 @@ export class LevelBuilder {
                 speed: 1.0,
                 rotSpeed,
                 direction,
+                baseQuaternion: tempQuat.clone(),
                 movementType: "giant_umbrella"
               });
             }
@@ -5265,6 +5296,7 @@ export class LevelBuilder {
     let animTime = 0;
     let gameplayMoveTime = 0;
     const rollCarryAxis = new THREE.Vector3();
+    const tramPose={x:0,z:0,yaw:0};
 
     const update = (delta: number, isIntroActive = false, playerPos?: THREE.Vector3, player?: any) => {
       animTime += delta;
@@ -5324,6 +5356,12 @@ export class LevelBuilder {
       for (const p of movingPlatforms) {
         const effectiveTime = Math.max(0, gameplayMoveTime - (p.startDelay ?? 0));
 
+        if(p.tramPassenger&&!isIntroActive&&player&&playerPos) {
+          const velocity=player.getVelocity();
+          if(p.tramPassenger.constrain(playerPos,velocity,p.body.translation(),p.body.rotation(),player.radius??.75)) {
+            player.getBody()?.setTranslation(playerPos,true);player.setLinearVelocity(velocity);
+          }
+        }
         if (p.movementType === "vivagym_obstacle") {
           const top = p.centerY ?? p.basePosition.y;
           const { y, z } = sampleVivaGymObstacle(effectiveTime, p.speed, p.distance, p.phase ?? 0, top, p.centerZ ?? p.basePosition.z);
@@ -5757,7 +5795,7 @@ export class LevelBuilder {
                 : typeof player.linvel === "function"
                 ? player.linvel()
                 : { x: 0, y: 0, z: 0 };
-              if (linVel.y <= 0.8) {
+              if (linVel.y <= 0.8 && effectiveTime - (p.lastBounceTime ?? -10) > 0.25) {
                 // Accumulate consecutive bounces if touched within 4.5s
                 const timeSinceLast = effectiveTime - (p.lastBounceTime ?? -10.0);
                 if (timeSinceLast < 4.5) {
@@ -5767,19 +5805,12 @@ export class LevelBuilder {
                 }
                 p.lastBounceTime = effectiveTime;
 
-                // Progressive bounce forces:
-                // Bounce 1: 18.5 m/s (grabs Col 1 at Y=4.8)
-                // Bounce 2: 24.0 m/s (grabs Col 2 at Y=8.0)
-                // Bounce 3: 29.5 m/s (grabs Col 3 at Y=11.5)
-                // Bounce 4: 35.0 m/s (grabs Col 4 at Y=14.5)
-                // Bounce 5+: 40.0 m/s (MASSIVE MEGA TRAMPOLINE IMPULSE! easily glides onto the terrace at Y=12.0, Z=-15.0!)
-                const bounceSteps = [0, 18.5, 24.0, 29.5, 35.0, 40.0];
-                const baseForce = bounceSteps[p.bounceCount ?? 1] || 18.5;
-                const bounceForce = Math.max(baseForce, Math.abs(linVel.y) * 1.45 + 6.0);
-
-                // Preserve or enhance forward momentum towards the terrace
-                const fwdZ = linVel.z < -0.1 ? Math.min(-6.0, linVel.z * 1.2 - 1.5) : linVel.z * 0.92;
-                player.setLinearVelocity({ x: linVel.x * 0.92, y: bounceForce, z: fwdZ });
+                const bounceForce = mattressLaunchSpeed(
+                  p.bounceCount ?? 1, playerPos.y,
+                  goal?.position.y ?? p.basePosition.y + 12.8,
+                  physics.getWorld()?.gravity.y ?? -18,
+                );
+                player.setLinearVelocity({ x: linVel.x * 0.92, y: bounceForce, z: linVel.z * 0.92 });
               }
             }
           }
@@ -5857,93 +5888,11 @@ export class LevelBuilder {
         }
 
         if (p.movementType === "tram_square") {
-          const spd = p.speed ?? 3.5;
-          const w = p.trackWidth ?? 24.0;
-          const l = p.trackLength ?? 24.0;
-          const r = p.cornerRadius ?? 4.0;
-
-          const straightX = w - 2 * r;
-          const straightZ = l - 2 * r;
-          const arcLen = (Math.PI * r) / 2;
-          const totalP = 2 * straightX + 2 * straightZ + 4 * arcLen;
-
-          const distTraveled = (effectiveTime > 0 ? effectiveTime * spd : 0) % totalP;
-
-          const cx = p.centerX ?? 0;
-          const cz = p.centerZ ?? 0;
-          const halfW = w / 2;
-          const halfL = l / 2;
-          const innerW = halfW - r;
-          const innerL = halfL - r;
-
-          let posX = 0;
-          let posZ = 0;
-          let yaw = 0;
-          let rem = distTraveled;
-
-          if (rem < straightX) {
-            posX = -innerW + rem;
-            posZ = halfL;
-            yaw = Math.PI / 2;
-          } else {
-            rem -= straightX;
-            if (rem < arcLen) {
-              const u = rem / r;
-              const angle = Math.PI / 2 - u;
-              posX = innerW + r * Math.cos(angle);
-              posZ = innerL + r * Math.sin(angle);
-              yaw = Math.PI / 2 + u;
-            } else {
-              rem -= arcLen;
-              if (rem < straightZ) {
-                posX = halfW;
-                posZ = innerL - rem;
-                yaw = Math.PI;
-              } else {
-                rem -= straightZ;
-                if (rem < arcLen) {
-                  const u = rem / r;
-                  const angle = -u;
-                  posX = innerW + r * Math.cos(angle);
-                  posZ = -innerL + r * Math.sin(angle);
-                  yaw = Math.PI + u;
-                } else {
-                  rem -= arcLen;
-                  if (rem < straightX) {
-                    posX = innerW - rem;
-                    posZ = -halfL;
-                    yaw = (3 * Math.PI) / 2;
-                  } else {
-                    rem -= straightX;
-                    if (rem < arcLen) {
-                      const u = rem / r;
-                      const angle = -Math.PI / 2 - u;
-                      posX = -innerW + r * Math.cos(angle);
-                      posZ = -innerL + r * Math.sin(angle);
-                      yaw = (3 * Math.PI) / 2 + u;
-                    } else {
-                      rem -= arcLen;
-                      if (rem < straightZ) {
-                        posX = -halfW;
-                        posZ = -innerL + rem;
-                        yaw = 2 * Math.PI;
-                      } else {
-                        rem -= straightZ;
-                        const u = rem / r;
-                        const angle = Math.PI - u;
-                        posX = -innerW + r * Math.cos(angle);
-                        posZ = innerL + r * Math.sin(angle);
-                        yaw = 2 * Math.PI + u;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-
-          const targetX = cx + posX;
-          const targetZ = cz + posZ;
+          const path=p.tramPath ??=tramTrack(p.trackWidth??24,p.trackLength??24,p.cornerRadius??4);
+          const dir=p.direction??1;
+          path.sample(effectiveTime*(p.speed??3.5)*dir,tramPose);
+          const targetX=(p.centerX??0)+tramPose.x,targetZ=(p.centerZ??0)+tramPose.z;
+          const yaw=tramPose.yaw+(dir<0?Math.PI:0);
           const targetY = p.basePosition.y;
 
           tempEuler.set(0, yaw, 0, "YXZ");
@@ -6132,6 +6081,7 @@ export class LevelBuilder {
           const yaw = effectiveTime * rotSpeed * dir;
           tempEuler.set(0, yaw, 0, "YXZ");
           tempQuat.setFromEuler(tempEuler);
+          if(p.baseQuaternion)tempQuat.premultiply(p.baseQuaternion);
           p.mesh.quaternion.copy(tempQuat);
           p.mesh.updateMatrixWorld(true);
           p.body.setNextKinematicRotation({ x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w });
@@ -7030,9 +6980,11 @@ export class LevelBuilder {
       oxford?.reset();
       bigben?.reset();
       for (const p of movingPlatforms) {
+        p.tramPassenger?.reset();
         p.mesh.position.copy(p.basePosition);
         if (p.movementType === "tram_square") {
           tempEuler.set(0, Math.PI / 2, 0, "YXZ");
+          tempQuat.setFromEuler(tempEuler);
         } else if (p.movementType === "tram_circle") {
           const dir = p.direction ?? 1;
           const baseAng = p.baseAngle ?? 0;
@@ -10944,7 +10896,9 @@ static createTramMesh(
     const floorTopY = height / 2;
 
     // 1. Floor (dark transit non-slip floor)
-    const floorGeo = new THREE.BoxGeometry(width, height, length);
+    // Tuck the floor into the body shell: its outer faces must not coincide
+    // with the skirts/rear panels as the moving carriage changes viewing angle.
+    const floorGeo = new THREE.BoxGeometry(Math.max(.2,width - 0.28), height, Math.max(.2,length - 0.28));
     const floorMat = new THREE.MeshStandardMaterial({ color: 0x37474f, roughness: 0.7, metalness: 0.1 });
     const floorMesh = new THREE.Mesh(floorGeo, floorMat);
     group.add(floorMesh);
@@ -10991,34 +10945,34 @@ static createTramMesh(
     };
 
     // 2. Lower Charcoal Skirts (along left and right lower chassis)
-    const skirtL = new THREE.BoxGeometry(0.12, 0.45, length);
-    skirtL.translate(-halfW + 0.06, floorTopY - 0.15, 0);
+    const skirtL = new THREE.BoxGeometry(0.2, 0.45, length - 0.08);
+    skirtL.translate(-halfW + 0.065, floorTopY - 0.15, 0);
     addMesh(skirtL, darkSkirtMat);
 
-    const skirtR = new THREE.BoxGeometry(0.12, 0.45, length);
-    skirtR.translate(halfW - 0.06, floorTopY - 0.15, 0);
+    const skirtR = new THREE.BoxGeometry(0.2, 0.45, length - 0.08);
+    skirtR.translate(halfW - 0.065, floorTopY - 0.15, 0);
     addMesh(skirtR, darkSkirtMat);
 
     // 3. Side Lower Body Walls (White panels with Alicante TRAM styling)
-    const wallLGeo = new THREE.BoxGeometry(0.18, 0.9, length - 0.2);
-    wallLGeo.translate(-halfW + 0.09, floorTopY + 0.45, 0);
+    const wallLGeo = new THREE.BoxGeometry(0.18, 0.9, length - 0.32);
+    wallLGeo.translate(-halfW + 0.09, floorTopY + 0.45, -0.06);
     addMesh(wallLGeo, whiteMat);
 
-    const wallRGeo = new THREE.BoxGeometry(0.18, 0.9, length - 0.2);
-    wallRGeo.translate(halfW - 0.09, floorTopY + 0.45, 0);
+    const wallRGeo = new THREE.BoxGeometry(0.18, 0.9, length - 0.32);
+    wallRGeo.translate(halfW - 0.09, floorTopY + 0.45, -0.06);
     addMesh(wallRGeo, whiteMat);
 
     // Orange accent swoosh strips along the lower body
-    const orangeStripeL = new THREE.BoxGeometry(0.2, 0.16, length * 0.55);
-    orangeStripeL.translate(-halfW + 0.095, floorTopY + 0.25, -length * 0.15);
+    const orangeStripeL = new THREE.BoxGeometry(0.22, 0.16, length * 0.55);
+    orangeStripeL.translate(-halfW + 0.08, floorTopY + 0.25, -length * 0.15);
     addMesh(orangeStripeL, orangeMat);
 
-    const orangeStripeR = new THREE.BoxGeometry(0.2, 0.16, length * 0.55);
-    orangeStripeR.translate(halfW - 0.095, floorTopY + 0.25, -length * 0.15);
+    const orangeStripeR = new THREE.BoxGeometry(0.22, 0.16, length * 0.55);
+    orangeStripeR.translate(halfW - 0.08, floorTopY + 0.25, -length * 0.15);
     addMesh(orangeStripeR, orangeMat);
 
     // Stylized TRAM "A" emblems on sides
-    for (const sideX of [-halfW - 0.01, halfW + 0.01]) {
+    for (const sideX of [-halfW - 0.03, halfW + 0.03]) {
       const emblemGeo = new THREE.BoxGeometry(0.04, 0.45, 0.45);
       emblemGeo.translate(sideX, floorTopY + 0.55, 0.6);
       addMesh(emblemGeo, orangeMat);
@@ -11050,11 +11004,11 @@ static createTramMesh(
     // Passenger doors with glass and yellow safety frame
     for (const dz of [-1.3, 1.5]) {
       const doorBorder1 = new THREE.BoxGeometry(0.195, glassH + 0.9, 0.1);
-      doorBorder1.translate(halfW - 0.09, floorTopY + (glassH + 0.9) / 2, dz - 0.45);
+      doorBorder1.translate(halfW - 0.0525, floorTopY + (glassH + 0.9) / 2, dz - 0.45);
       addMesh(doorBorder1, yellowMat);
 
       const doorBorder2 = new THREE.BoxGeometry(0.195, glassH + 0.9, 0.1);
-      doorBorder2.translate(halfW - 0.09, floorTopY + (glassH + 0.9) / 2, dz + 0.45);
+      doorBorder2.translate(halfW - 0.0525, floorTopY + (glassH + 0.9) / 2, dz + 0.45);
       addMesh(doorBorder2, yellowMat);
     }
 
@@ -11131,7 +11085,7 @@ static createTramMesh(
     rearWall.translate(0, floorTopY + 0.45, halfL - 0.11);
     addMesh(rearWall, whiteMat);
 
-    const rearOrange = new THREE.BoxGeometry(width, 0.25, 0.24);
+    const rearOrange = new THREE.BoxGeometry(width + 0.14, 0.25, 0.32);
     rearOrange.translate(0, floorTopY + 0.3, halfL - 0.11);
     addMesh(rearOrange, orangeMat);
 
@@ -11682,73 +11636,7 @@ static createTramRailsMesh(
     length = 24.0,
     cornerRadius = 4.0
   ): THREE.Group {
-    const group = new THREE.Group();
-    const steelMat = new THREE.MeshStandardMaterial({ color: 0xcfd8dc, roughness: 0.25, metalness: 0.85 });
-    const tieMat = new THREE.MeshStandardMaterial({ color: 0x5d4037, roughness: 0.65 });
-    const ballastMat = new THREE.MeshStandardMaterial({ color: 0x455a64, roughness: 0.8 });
-
-    const halfW = width / 2;
-    const halfL = length / 2;
-    const straightX = width - 2 * cornerRadius;
-    const straightZ = length - 2 * cornerRadius;
-
-    // Ballast Track Bed (4 straight sections)
-    const bNS = new THREE.BoxGeometry(straightX, 0.18, 3.2);
-    const bNorth = new THREE.Mesh(bNS, ballastMat);
-    bNorth.position.set(0, 0.09, halfL);
-    group.add(bNorth);
-    const bSouth = new THREE.Mesh(bNS, ballastMat);
-    bSouth.position.set(0, 0.09, -halfL);
-    group.add(bSouth);
-
-    const bEW = new THREE.BoxGeometry(3.2, 0.18, straightZ);
-    const bEast = new THREE.Mesh(bEW, ballastMat);
-    bEast.position.set(halfW, 0.09, 0);
-    group.add(bEast);
-    const bWest = new THREE.Mesh(bEW, ballastMat);
-    bWest.position.set(-halfW, 0.09, 0);
-    group.add(bWest);
-
-    // Wooden Railroad Ties along straights
-    const tieGeoX = new THREE.BoxGeometry(0.35, 0.14, 2.8);
-    for (let x = -straightX / 2 + 0.8; x <= straightX / 2 - 0.8; x += 1.4) {
-      const tN = new THREE.Mesh(tieGeoX, tieMat);
-      tN.position.set(x, 0.22, halfL);
-      group.add(tN);
-      const tS = new THREE.Mesh(tieGeoX, tieMat);
-      tS.position.set(x, 0.22, -halfL);
-      group.add(tS);
-    }
-
-    const tieGeoZ = new THREE.BoxGeometry(2.8, 0.14, 0.35);
-    for (let z = -straightZ / 2 + 0.8; z <= straightZ / 2 - 0.8; z += 1.4) {
-      const tE = new THREE.Mesh(tieGeoZ, tieMat);
-      tE.position.set(halfW, 0.22, z);
-      group.add(tE);
-      const tW = new THREE.Mesh(tieGeoZ, tieMat);
-      tW.position.set(-halfW, 0.22, z);
-      group.add(tW);
-    }
-
-    // Steel Rails (Pair spaced 2.2m apart)
-    const halfGauge = 1.1;
-    for (const sign of [-1, 1]) {
-      const rNorth = new THREE.Mesh(new THREE.BoxGeometry(straightX + 0.2, 0.12, 0.1), steelMat);
-      rNorth.position.set(0, 0.35, halfL + sign * halfGauge);
-      group.add(rNorth);
-      const rSouth = new THREE.Mesh(new THREE.BoxGeometry(straightX + 0.2, 0.12, 0.1), steelMat);
-      rSouth.position.set(0, 0.35, -halfL + sign * halfGauge);
-      group.add(rSouth);
-
-      const rEast = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.12, straightZ + 0.2), steelMat);
-      rEast.position.set(halfW + sign * halfGauge, 0.35, 0);
-      group.add(rEast);
-      const rWest = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.12, straightZ + 0.2), steelMat);
-      rWest.position.set(-halfW + sign * halfGauge, 0.35, 0);
-      group.add(rWest);
-    }
-
-    return group;
+    return createClosedTramRails(width,length,cornerRadius);
   }
 
 static createLimpKickerMesh(
@@ -12013,6 +11901,7 @@ static createGiantUmbrellaMesh(
     topCapGeo.translate(0, mastH + 0.2, 0);
     const topCap = new THREE.Mesh(topCapGeo, capMat);
     group.add(topCap);
+    meshes.push(topCap);
 
     return { group, canopyMesh, meshes };
   }
@@ -12166,12 +12055,14 @@ static createHippieStallMesh(
       const archTop = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.2, 0.2), goldMat);
       archTop.position.set(0, 2.4, halfD - 0.3);
       group.add(archTop);
+      meshes.push(archL,archR,archTop);
 
       // Shimmering mystical crystals on side pedestals
       for (const sx of [-1.5, 1.5]) {
         const ped = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.35, 0.8, 8), woodDeckMat);
         ped.position.set(sx, 0.5, 0);
         group.add(ped);
+        meshes.push(ped);
         const crystal = new THREE.Mesh(new THREE.OctahedronGeometry(0.22), new THREE.MeshStandardMaterial({
           color: 0xffd700,
           emissive: new THREE.Color(0xffd700),
@@ -12249,7 +12140,8 @@ static createWaveMesh(
       roughness: 0.15,
       metalness: 0.1,
       transparent: true,
-      opacity: 0.85
+      opacity: 0.85,
+      depthWrite: false
     });
     const foamMat = new THREE.MeshStandardMaterial({
       color: 0xffffff,
@@ -12258,24 +12150,20 @@ static createWaveMesh(
     });
 
     // 1. Curling ocean wave ramp body
-    const waveGeo = new THREE.BoxGeometry(width, height, depth);
+    const waveGeo = new RoundedBoxGeometry(width, height, depth, 2, Math.min(.08,height*.15));
     waveGeo.translate(0, height / 2, 0);
     const waveMesh = new THREE.Mesh(waveGeo, waterMat);
     group.add(waveMesh);
     meshes.push(waveMesh);
 
     // 2. White froth foam crest curling over the peak
-    const foamGeo = new THREE.CylinderGeometry(0.18, 0.18, depth, 12);
+    // A single rounded crest has no flat caps coplanar with the water ends.
+    const foamGeo = new THREE.CapsuleGeometry(0.18, Math.max(.01,depth-.36), 4, 12);
     foamGeo.rotateX(Math.PI / 2);
     foamGeo.translate(-width / 2 + 0.1, height + 0.05, 0);
     const foamMesh = new THREE.Mesh(foamGeo, foamMat);
     group.add(foamMesh);
     meshes.push(foamMesh);
-
-    // Secondary lower froth lip
-    const subFoamGeo = new THREE.BoxGeometry(0.3, 0.08, depth);
-    subFoamGeo.translate(-width / 2 + 0.2, height - 0.05, 0);
-    group.add(new THREE.Mesh(subFoamGeo, foamMat));
 
     return { group, waveMesh, meshes };
   }

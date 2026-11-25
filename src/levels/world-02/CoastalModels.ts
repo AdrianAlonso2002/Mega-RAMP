@@ -327,13 +327,15 @@ export function coastalStall(
 ) {
   const m = model(`coastal-stall-${type}`, quality),
     { box, ball, cylinder, label } = m;
-  box(5.4, 0.8, 4.4, 0, 0, 0, "#a17b51", true, "wood");
-  box(3.5, 0.12, 0.4, 0, 0.34, 2.25, "#a17b51", true, "wood");
+  // Physical separation from the plaza (top y=.4), including the entrance.
+  // Depth bias alone cannot reliably resolve two overlapping floor surfaces.
+  box(5.4, 0.8, 4.4, 0, 0.03, 0, "#a17b51", true, "wood");
+  box(3.5, 0.12, 0.4, 0, 0.37, 2.4, "#a17b51", true, "wood");
   for (const x of [-2.55, 2.55])
     for (const z of [-2.05, 2.05])
       box(0.16, 3.6, 0.16, x, 2.2, z, "#6f4d32", true, "wood");
-  box(5.2, 3.2, 0.12, 0, 2, -2.05, stripe);
-  box(0.12, 3.2, 4.1, -2.55, 2, 0, color);
+  box(4.94, 3.2, 0.12, 0, 2, -2.05, stripe);
+  box(0.12, 3.2, 3.94, -2.55, 2, 0, color);
   // Side counter leaves a full-width entrance and a clear route to the rear bay.
   box(0.9, 0.85, 2.3, -1.9, 0.825, -0.3, "#8f6842", true, "wood");
   box(1.05, 0.09, 2.4, -1.9, 1.295, -0.3, "#c59c65", false, "wood");
@@ -365,27 +367,33 @@ export function coastalStall(
     goal: "ARTESANÍA",
   };
   label(names[type] ?? "MERCADILLO", 2.65, 0, 3.45, 2.42);
-  // Separate sloping fabric strips, with a valance; no overlapping painted planes.
-  const ceiling = box(5.8, 0.05, 5, 0, 3.77, 0, stripe, false); // Continuous inner lining also closes strip seams from above.
-  m.meshes.push(ceiling);
-  const strips = quality === "low" ? 6 : 10,
-    width = 5.8 / strips;
-  for (let i = 0; i < strips; i++)
-    for (const side of [-1, 1]) {
-      const roof = box(
-        width,
-        0.065,
-        2.55,
-        -2.9 + width * (i + 0.5),
-        4.05,
-        side * 1.22,
-        i % 2 ? stripe : color,
-        false,
-      );
-      roof.rotation.x = side * 0.16;
-      m.meshes.push(roof);
+  // One watertight striped canopy: adjacent colours share edges, never faces.
+  // The old rotated boxes intersected at the ridge and flickered at oblique angles.
+  const strips=quality==='low'?6:10,positions:number[]=[],colors:number[]=[],ink=new THREE.Color();
+  type Point=[number,number,number];
+  const quad=(a:Point,b:Point,c:Point,d:Point)=>{
+    for(const point of [a,b,c,a,c,d]){positions.push(...point);colors.push(ink.r,ink.g,ink.b);}
+  };
+  const y=(z:number)=>4.28-Math.abs(z)*.16,thickness=.065;
+  for(let i=0;i<strips;i++) {
+    const left=-2.9+5.8*i/strips,right=-2.9+5.8*(i+1)/strips;
+    ink.set(i%2?stripe:color);
+    for(const [back,front] of [[-2.5,0],[0,2.5]]) {
+      quad([left,y(back),back],[left,y(front),front],[right,y(front),front],[right,y(back),back]);
+      quad([left,y(back)-thickness,back],[right,y(back)-thickness,back],[right,y(front)-thickness,front],[left,y(front)-thickness,front]);
+      if(i===0)quad([left,y(back),back],[left,y(back)-thickness,back],[left,y(front)-thickness,front],[left,y(front),front]);
+      if(i===strips-1)quad([right,y(back),back],[right,y(front),front],[right,y(front)-thickness,front],[right,y(back)-thickness,back]);
     }
-  box(5.8, 0.29, 0.07, 0, 3.72, 2.48, color, false);
+    quad([left,y(-2.5),-2.5],[right,y(-2.5),-2.5],[right,y(-2.5)-thickness,-2.5],[left,y(-2.5)-thickness,-2.5]);
+    quad([left,y(2.5),2.5],[left,y(2.5)-thickness,2.5],[right,y(2.5)-thickness,2.5],[right,y(2.5),2.5]);
+  }
+  const canopyGeometry=new THREE.BufferGeometry();
+  canopyGeometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
+  canopyGeometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));canopyGeometry.computeVertexNormals();
+  const canopy=m.add(canopyGeometry,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.8}),0,0,0);
+  canopy.name='market-canopy';m.meshes.push(canopy);
+  // Meet the eave from below instead of overlapping its front face.
+  box(5.8, 0.29, 0.07, 0, 3.67, 2.465, color, false);
   m.colliders.push({
     position: new THREE.Vector3(0, 4.05, 0),
     halfExtents: new THREE.Vector3(2.9, 0.23, 2.5),

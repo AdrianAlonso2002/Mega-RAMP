@@ -5,6 +5,7 @@ import {
   type GraphicsQuality,
 } from "./GraphicsQuality";
 import { SceneQuality } from "./SceneQuality";
+import { ShadowTexelGrid } from "./ShadowTexelGrid";
 
 export class Renderer {
   readonly object: THREE.WebGLRenderer;
@@ -25,6 +26,7 @@ export class Renderer {
   private readonly visuals: SceneQuality;
   private readonly shadowFocus = new THREE.Vector3();
   private readonly shadowDirection = new THREE.Vector3();
+  private readonly shadowGrid = new ShadowTexelGrid();
 
   constructor(private readonly container: HTMLElement) {
     this.object = new THREE.WebGLRenderer({
@@ -133,12 +135,13 @@ export class Renderer {
         this.shadowFocus
           .copy(camera.position)
           .addScaledVector(this.shadowDirection, 12);
-        const texel = 72 / size;
-        this.shadowFocus.x = Math.round(this.shadowFocus.x / texel) * texel;
-        this.shadowFocus.z = Math.round(this.shadowFocus.z / texel) * texel;
+        this.shadowDirection.set(...(art?.sunOffset ?? [20, 35, 15]));
+        this.shadowGrid.snap(this.shadowFocus,this.shadowDirection,
+          shadowCamera.right-shadowCamera.left,shadowCamera.top-shadowCamera.bottom,
+          sun.shadow.mapSize.x,sun.shadow.mapSize.y);
         sun.position
           .copy(this.shadowFocus)
-          .add(this.shadowDirection.set(...(art?.sunOffset ?? [20, 35, 15])));
+          .add(this.shadowDirection);
         sun.target.position.copy(this.shadowFocus);
         if (sun.target.parent !== scene) scene.add(sun.target);
         sun.target.updateMatrixWorld();

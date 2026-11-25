@@ -941,7 +941,7 @@ export class OverworldMap {
     }
 
     // Collectibles text: Only recorded when level is fully completed!
-    const maxLevelCollectibles = this.progression.getLevelMaxCollectibles(node.world, node.level);
+    const maxLevelCollectibles = Math.min(100,this.progression.getLevelMaxCollectibles(node.world, node.level));
     const effectiveCollectibles = isCompleted ? (record.totalCollectibles || 0) : 0;
     const collectiblesText = isCompleted
       ? `${effectiveCollectibles} / ${maxLevelCollectibles}`

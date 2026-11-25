@@ -1,6 +1,7 @@
 import { crossesGoalOpening } from "./GoalCrossing";
 import { assetUrl } from "../core/AssetUrl";
 import * as THREE from "three";
+import { StageIntroPlan, introBounds } from '../rendering/StageIntro';
 import {stageStartYaw} from '../rendering/StageHeading';
 import {fluidCameraSubmerged} from "../rendering/FluidContact";
 import {loadFirstUIImage} from '../ui/UIAssets';
@@ -117,6 +118,8 @@ export class SceneManager {
   private readonly introCameraPosition = new THREE.Vector3();
   private readonly introLookAt = new THREE.Vector3();
   private introHeading=0;
+  private introPlan?:StageIntroPlan;
+  private readonly introObstructionTarget=new THREE.Vector3();
   private isPointerRushing = false;
 
   // Victory 360 Orbit Outro Animation (Goal Teleport Celebration)
@@ -1378,28 +1381,10 @@ export class SceneManager {
     this.introSpawn.copy(this.currentLevel.spawnPoint);
     if(this.currentLevelData){this.currentLevel.group.updateMatrixWorld(true);this.introHeading=stageStartYaw(this.currentLevelData,this.currentLevel.collidableMeshes);this.context.camera.setStageHeading(this.introHeading);}
 
-    // Calculate level bounding center for orbit focus
-    const isFixedPadel = this.context.camera.getCinematicTramMode() === "fixed_padel";
-    if(this.currentLevel.canoe || this.currentLevel.covadonga || this.currentLevel.london || this.currentLevel.museum || this.currentLevel.bigben) {
-      this.introCenter.copy(this.introSpawn).add(new THREE.Vector3(0,-2,-14));
-    } else if (isFixedPadel) {
-      this.introCenter.set(0.0, 14.0, 0.0);
-    } else {
-      try {
-        const box = new THREE.Box3().setFromObject(this.currentLevel.group);
-        if (!box.isEmpty() && Number.isFinite(box.min.x)) {
-          box.getCenter(this.introCenter);
-          // Keep orbit center reasonably close to spawn so large stages orbit cleanly
-          if (this.introCenter.distanceTo(this.introSpawn) > 28) {
-            this.introCenter.lerpVectors(this.introSpawn, this.introCenter, 0.35);
-          }
-        } else {
-          this.introCenter.copy(this.introSpawn);
-        }
-      } catch {
-        this.introCenter.copy(this.introSpawn);
-      }
-    }
+    const mode=this.context.camera.getCinematicTramMode();
+    const baseAngle=mode==='tranvia2'?-Math.PI/2:mode?0:-this.introHeading;
+    this.introPlan=new StageIntroPlan(introBounds(this.currentLevelData??undefined,this.introSpawn),this.introSpawn.clone(),baseAngle,this.context.camera.object.fov,this.context.camera.object.aspect,mode==='fixed_padel'?40:mode==='tranvia2'?11.5:6.5,mode==='fixed_padel'?3.5:mode==='tranvia2'?3.6:3.2,this.currentLevel.collidableMeshes,mode==='fixed_padel'?new THREE.Vector3(0,13,0):this.introSpawn.clone());
+    this.introCenter.copy(this.introPlan.center);
 
     if (this.player) {
       this.goalSampleValid=false;
@@ -1420,28 +1405,9 @@ export class SceneManager {
     const trainTarget=this.currentLevel?.tokyo?.machineCameraTarget??this.currentLevel?.nara?.trainCameraTarget;
     if(trainTarget){this.context.camera.setNaraTrainView(trainTarget,Boolean(this.currentLevel?.tokyo?.machineCameraTarget));this.context.camera.follow(this.introSpawn,this.tempDiff.set(0,0,0),delta);if(t>=1)this.finishIntroAnimation();return;}
 
-    // Smooth cubic ease in-out
-    const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const isFixedPadel = this.context.camera.getCinematicTramMode() === "fixed_padel";
-    const isTranvia2 = this.context.camera.getCinematicTramMode() === "tranvia2";
-    const baseAngle = isTranvia2 ? -Math.PI / 2 : this.context.camera.getCinematicTramMode()?0:-this.introHeading;
-    const angle = baseAngle + (1 - ease) * Math.PI * 2;
-    const finalRadius = isFixedPadel ? 40.0 : isTranvia2 ? 11.5 : 6.5;
-    const finalHeight = isFixedPadel ? 3.5 : isTranvia2 ? 3.6 : 3.2;
-    const radius = finalRadius + (1 - ease) * (isFixedPadel ? 12.0 : 17.5);
-    const height = finalHeight + (1 - ease) * (isFixedPadel ? 15.0 : 9.8);
-
-    const targetLook = isFixedPadel ? this.introLookAt.set(0.0, 13.0, 0.0) : this.introSpawn;
-    const lookX = this.introCenter.x + (targetLook.x - this.introCenter.x) * ease;
-    const lookY = this.introCenter.y + (targetLook.y - this.introCenter.y) * ease;
-    const lookZ = this.introCenter.z + (targetLook.z - this.introCenter.z) * ease;
-
-    const camX = lookX + Math.sin(angle) * radius;
-    const camZ = lookZ + Math.cos(angle) * radius;
-    const camY = lookY + height;
-
-    this.context.camera.frameIntro(this.introCameraPosition.set(camX,camY,camZ),this.introLookAt.set(lookX,lookY,lookZ),this.introSpawn,delta,this.currentLevel?.collidableMeshes);
+    this.introPlan?.sample(t,this.introCameraPosition,this.introLookAt);
+    this.introPlan?.obstructionTarget(t,this.introObstructionTarget);
+    this.context.camera.frameIntro(this.introCameraPosition,this.introLookAt,this.introObstructionTarget,delta,this.currentLevel?.collidableMeshes);
 
     if (t >= 1.0) {
       this.finishIntroAnimation();

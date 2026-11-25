@@ -88,7 +88,7 @@ export function validateProgress(input: unknown): GameProgress {
       out.levelRecords![key] = {
         completed: value.completed,
         bestTime: value.bestTime,
-        totalCollectibles: value.totalCollectibles,
+        totalCollectibles: Math.min(100,Math.floor(value.totalCollectibles as number)),
         clearCount: value.clearCount,
         completedCharacters: [...(value.completedCharacters as string[])],
       } as LevelRecord;

@@ -85,14 +85,14 @@ describe("ProgressionManager", () => {
     progression.recordLevelCompletion(1, 1, 115.0, 70, "rony");
     rec = progression.getLevelRecord(1, 1);
     expect(rec.bestTime).toBe(82.1); // Best time preserved!
-    expect(rec.totalCollectibles).toBe(70); // Only the latest attempt, never accumulated or merged.
+    expect(rec.totalCollectibles).toBe(95); // A worse run cannot lower the prize record.
     expect(rec.clearCount).toBe(3);
 
-    // Run 4: Faster time only (75.5s), but only 40 items -> bestTime updates, latest attempt count replaces the old one!
+    // Run 4: Faster time only (75.5s), but only 40 items -> bestTime updates independently of the prize record!
     progression.recordLevelCompletion(1, 1, 75.5, 40, "rony");
     rec = progression.getLevelRecord(1, 1);
     expect(rec.bestTime).toBe(75.5); // New best time!
-    expect(rec.totalCollectibles).toBe(40); // Latest attempt replaces the previous count.
+    expect(rec.totalCollectibles).toBe(95); // Faster time does not lower the prize record.
     expect(rec.clearCount).toBe(4);
 
     // Run 5: More collectibles only (99 items), but slow run (130s) -> collectibles updates, time preserved!
@@ -465,12 +465,12 @@ describe("LevelGenerator", () => {
 });
 
 
-it('caps old and new level records and replaces the previous attempt prize count',()=>{
+it('caps old and new level records and retains the best single attempt prize count',()=>{
   const values=new Map<string,string>();vi.stubGlobal('localStorage',{getItem:(key:string)=>values.get(key)??null,setItem:(key:string,value:string)=>values.set(key,value)});
   const progression=new ProgressionManager();
   progression.recordLevelCompletion(1,1,100,185,'rony');expect(progression.getLevelRecord(1,1).totalCollectibles).toBe(100);
-  progression.recordLevelCompletion(1,1,110,23,'rony');expect(progression.getLevelRecord(1,1).totalCollectibles).toBe(23);
-  expect(new ProgressionManager().getLevelRecord(1,1).totalCollectibles).toBe(23);
+  progression.recordLevelCompletion(1,1,110,23,'rony');expect(progression.getLevelRecord(1,1).totalCollectibles).toBe(100);
+  expect(new ProgressionManager().getLevelRecord(1,1).totalCollectibles).toBe(100);
   (progression as any).data.levelRecords['1-1'].totalCollectibles=140;
   expect(progression.getLevelRecord(1,1).totalCollectibles).toBe(100);
   vi.unstubAllGlobals();
