@@ -1,6 +1,7 @@
 import { assetUrl } from "../core/AssetUrl";
 import {collectibleKind,drawCollectibleArt} from './CollectibleArt';
 import * as THREE from "three";
+import {popeyeArtwork,preparePopeyeArtwork} from './PopeyeArtwork';
 import {SharedTextureCache} from './StageResources';
 import {characterSpritePath, getCharacterSkin} from "../player/CharacterSkins";
 import {CharacterFrameCache} from './CharacterFrameCache';
@@ -65,6 +66,7 @@ export class SpriteTextures {
       const page=((((index-1)%3)+3)%3)+1;
       return this.cachedColoringReady.get(`coloring_page_${page}`)??Promise.resolve();
     });
+    if(stages.some(stage=>stage.objects.some(object=>object.properties?.variant==='popeye_billboard'))){textures.add(popeyeArtwork());pending.push(preparePopeyeArtwork());}
     if(pending.length){
       let timer:ReturnType<typeof setTimeout>|undefined;
       try {await Promise.race([Promise.all(pending),new Promise<void>(resolve=>{timer=setTimeout(resolve,8000);})]);}

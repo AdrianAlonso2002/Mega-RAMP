@@ -1,6 +1,7 @@
 import publishedEditorStages from '../editor-saved/world-02.json';
 import {registerStageSet} from '../StageRegistry';
 import type { LevelData } from "../LevelTypes";
+import {upgradeCoastalFinale} from './CoastalFinale';
 
 export const WORLD_02_LEVEL_04_STAGES: Record<number, LevelData> = {
   // ---------------------------------------------------------------------------
@@ -909,5 +910,6 @@ export const WORLD_02_LEVEL_04_STAGES: Record<number, LevelData> = {
 for (const [key, saved] of Object.entries(publishedEditorStages)) {
   if (key.startsWith('2_4_')) Object.assign(WORLD_02_LEVEL_04_STAGES[Number(key.split('_')[2])], structuredClone(saved));
 }
+for(const data of Object.values(WORLD_02_LEVEL_04_STAGES))upgradeCoastalFinale(data);
 registerStageSet(2,4,WORLD_02_LEVEL_04_STAGES);
 

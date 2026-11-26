@@ -1,7 +1,11 @@
 import {createConcertModel,concertLift,createPlazaGarland} from "./world-01/ConcertModel";
 import { createClosedTramRails, TramPassengerGuard, tramTrack } from './TramTrack';
+import {fanMotion} from './FanMotion';
 import { mattressLaunchSpeed } from "./MattressBounce";
 import { meshColliderData } from '../physics/MeshColliderData';
+import {createIcecreamRamp} from './world-02/IcecreamRamp';
+import {popeyeArtwork} from '../rendering/PopeyeArtwork';
+import {palmLaunchSpeed} from './world-02/PalmBounce';
 import { createStaticStallShadow } from '../rendering/StaticStallShadow';
 import { artDirection } from '../rendering/ArtDirection';
 import {createNorwayModel} from './world-08/NorwayModels';
@@ -106,6 +110,8 @@ export interface ActiveMovingPlatform {
     | "bike_pedal"
     | "bike_wheel_vertical"
     | "giant_umbrella"
+    | "icecream_spin"
+    | "palm_bouncer"
     | "towel_wave"
     | "wave_pusher"
     | "popeye_pizza"
@@ -298,6 +304,8 @@ export class LevelBuilder {
       objIndex: number;
     }> = [];
     let goal: ActiveGoal | null = null;
+    let palmApex=0;
+    const palmLaunchY=data.world===2&&data.level===4&&data.stage===2?Math.min(...data.objects.filter(o=>o.type==='bumper').map(o=>o.position.y+o.scale.y/2+.75)):0;
 
     const bumperMaterial = new THREE.MeshPhongMaterial({
       color: 0xff0055,
@@ -471,13 +479,11 @@ export class LevelBuilder {
             collidableMeshes.push(...doorRes.meshes);
             platformMeshes.push({ mesh: doorRes.doorLeaf, isMoving: true, properties: obj.properties, objIndex: objIdx });
 
-            const kinematic = physics.createKinematicBox(
-              { x: obj.position.x, y: obj.position.y + 1.3, z: obj.position.z },
-              { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w },
-              { x: 0.7, y: 1.3, z: 0.08 },
-              0.9,
-              0.2
-            );
+            const frame = meshColliderData(doorRes.meshes.filter(m => m.parent === doorGroup), root);
+            physics.createTrimeshCollider(frame.vertices, frame.indices, .02, .6);
+            const leaf = meshColliderData(doorRes.meshes.filter(m => m.parent === doorRes.doorPivot), doorRes.doorPivot);
+            const hinge = doorRes.doorPivot.getWorldPosition(new THREE.Vector3());
+            const kinematic = physics.createKinematicTrimesh(hinge, leaf.vertices, leaf.indices, .02, .4, tempQuat);
             if (kinematic) {
               movingPlatforms.push({
                 id: obj.id,
@@ -488,6 +494,7 @@ export class LevelBuilder {
                 distance: 0,
                 speed: typeof obj.properties?.speed === "number" ? obj.properties.speed : 1.0,
                 phase: typeof obj.properties?.phase === "number" ? obj.properties.phase : 0,
+                baseQuaternion: tempQuat.clone(),
                 subMeshes: { doorPivot: doorRes.doorPivot },
                 movementType: "slamming_door"
               });
@@ -1393,14 +1400,9 @@ export class LevelBuilder {
               collidableMeshes.push(...palmRes.meshes);
               platformMeshes.push({ mesh: palmRes.meshes[0] || palmRes.group as any, isMoving: false, properties: obj.properties, objIndex: objIdx });
 
-              physics.createCylinderCollider(
-                { x: obj.position.x, y: obj.position.y + 3.0, z: obj.position.z },
-                0.8,
-                3.0,
-                0.5,
-                0.2,
-                { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w }
-              );
+              const shape=meshColliderData(palmRes.meshes,root);
+              physics.createTrimeshCollider(shape.vertices,shape.indices,.02,.75);
+              palmApex=Math.max(palmApex,new THREE.Box3().setFromObject(palmRes.group).max.y+3);
               break;
             }
 
@@ -1819,6 +1821,12 @@ export class LevelBuilder {
               break;
             }
 
+            if(obj.properties?.variant==='icecream_spiral') {
+              const mesh=createIcecreamRamp();mesh.position.copy(obj.position);mesh.rotation.copy(tempEuler);root.add(mesh);
+              collidableMeshes.push(mesh);platformMeshes.push({mesh,isMoving:false,properties:obj.properties,objIndex:objIdx});
+              const shape=meshColliderData([mesh],root);physics.createTrimeshCollider(shape.vertices,shape.indices,.02,.75);break;
+            }
+
             // 3D Illuminated Pizzeria Popeye Billboard (M2-N4-E9)
             if (obj.properties?.variant === "popeye_billboard") {
               const billboard = LevelBuilder.createPopeyeBillboardMesh(activeQuality);
@@ -1842,6 +1850,13 @@ export class LevelBuilder {
               if(cangas && obj.properties?.cangasAction==="icecream") {
                 for(const mesh of coneRes.meshes) mesh.userData.blocksCameraOnSlopes=true;
                 cangas.attach(obj,coneRes.group,coneRes.meshes);
+                break;
+              }
+
+              if(data.world===2&&data.level===4&&data.stage===10) {
+                const shape=meshColliderData(coneRes.meshes,coneRes.group);
+                const body=physics.createKinematicTrimesh(obj.position,shape.vertices,shape.indices,.02,.6,tempQuat);
+                if(body)movingPlatforms.push({id:obj.id,mesh:coneRes.group,body:body.body,basePosition:new THREE.Vector3().copy(obj.position),axis:'none',distance:0,speed:1,rotSpeed:Number(obj.properties?.spinSpeed??.24),baseQuaternion:tempQuat.clone(),movementType:'icecream_spin'});
                 break;
               }
 
@@ -3340,51 +3355,24 @@ export class LevelBuilder {
             }
             fanGroup.add(rotorGroup);
 
+            fanGroup.name='fan-assembly';rotorGroup.name='fan-rotor';cowlGroup.name='fan-cowl';
             root.add(fanGroup);
-            collidableMeshes.push(hubMesh);
-            platformMeshes.push({ mesh: hubMesh, isMoving: true, properties: obj.properties, objIndex: objIdx });
-
-            // Create Kinematic body for the central hub and attach 5 physical solid blade colliders
-            const kinematic = physics.createKinematicBox(
-              obj.position,
-              { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w },
-              { x: 0.7, y: 0.7, z: 0.4 },
-              0.5,
-              1.4
-            );
-            if (kinematic) {
-              // Attach 5 solid physical box colliders to the kinematic body, one for each blade!
-              const bMid = bladeLen / 2 + 0.35;
-              const bQuat = new THREE.Quaternion();
-              const bEuler = new THREE.Euler();
-              for (let i = 0; i < 5; i++) {
-                const angle = (i * Math.PI * 2) / 5;
-                const offX = -Math.sin(angle) * bMid;
-                const offY = Math.cos(angle) * bMid;
-                bEuler.set(0, 0, angle);
-                bQuat.setFromEuler(bEuler);
-                physics.addBoxColliderToBody(
-                  kinematic.body,
-                  { x: offX, y: offY, z: 0 },
-                  { x: 0.36, y: bladeLen / 2, z: 0.12 },
-                  0.8,
-                  0.1,
-                  { x: bQuat.x, y: bQuat.y, z: bQuat.z, w: bQuat.w }
-                );
-              }
-
-              movingPlatforms.push({
-                id: obj.id,
-                mesh: rotorGroup as any,
-                body: kinematic.body,
-                basePosition: new THREE.Vector3(obj.position.x, obj.position.y, obj.position.z),
-                axis: "z",
-                distance: 0,
-                speed: 1.0,
-                movementType: "fan_5blades",
-                rotSpeed: 0
-              });
-            }
+            const rotorMeshes:THREE.Mesh[]=[],cowlMeshes:THREE.Mesh[]=[];
+            rotorGroup.traverse(node=>{if(node instanceof THREE.Mesh)rotorMeshes.push(node);});
+            cowlGroup.traverse(node=>{if(node instanceof THREE.Mesh)cowlMeshes.push(node);});
+            collidableMeshes.push(...rotorMeshes,...cowlMeshes);
+            platformMeshes.push({mesh:hubMesh,isMoving:true,properties:obj.properties,objIndex:objIdx});
+            const shell=meshColliderData(cowlMeshes,root);
+            physics.createTrimeshCollider(shell.vertices,shell.indices,.02,.7);
+            const rotor=meshColliderData(rotorMeshes,rotorGroup);
+            const kinematic=physics.createKinematicTrimesh(obj.position,rotor.vertices,rotor.indices,.02,.7,tempQuat);
+            if(kinematic)movingPlatforms.push({
+              id:obj.id,mesh:fanGroup,subMeshes:{rotor:rotorGroup},body:kinematic.body,
+              basePosition:new THREE.Vector3().copy(obj.position),baseQuaternion:tempQuat.clone(),
+              axis:'z',distance:0,speed:1,movementType:'fan_5blades',rotSpeed:0,
+              direction:typeof obj.properties?.direction==='number'?obj.properties.direction:1,
+              startDelay:typeof obj.properties?.startDelay==='number'?obj.properties.startDelay:0
+            });
             break;
           }
 
@@ -4582,6 +4570,12 @@ export class LevelBuilder {
           root.add(mesh);
           collidableMeshes.push(mesh);
 
+          if(data.world===2&&data.level===4&&data.stage===2&&obj.type==='bumper') {
+            const shape=meshColliderData([mesh],mesh);
+            const body=physics.createKinematicTrimesh(obj.position,shape.vertices,shape.indices,0,.5,tempQuat);
+            if(body)movingPlatforms.push({id:obj.id,mesh,body:body.body,basePosition:new THREE.Vector3().copy(obj.position),axis:'none',distance:0,speed:1,movementType:'palm_bouncer'});
+            break;
+          }
           const restitution = typeof obj.properties?.bounce === "number" ? obj.properties.bounce : 0.95;
 
           if (bShape === "box") {
@@ -5294,9 +5288,12 @@ export class LevelBuilder {
     }
 
     let animTime = 0;
+    const palmImpulse=palmLaunchSpeed(palmApex-palmLaunchY,Math.abs(physics.getWorld()?.gravity.y??-18));
     let gameplayMoveTime = 0;
     const rollCarryAxis = new THREE.Vector3();
     const tramPose={x:0,z:0,yaw:0};
+    const fanPose={angle:0,speed:0,slow:false},fanLocal=new THREE.Vector3(),fanGust=new THREE.Vector3();
+    const fanInverse=new THREE.Quaternion();
 
     const update = (delta: number, isIntroActive = false, playerPos?: THREE.Vector3, player?: any) => {
       animTime += delta;
@@ -5361,6 +5358,13 @@ export class LevelBuilder {
           if(p.tramPassenger.constrain(playerPos,velocity,p.body.translation(),p.body.rotation(),player.radius??.75)) {
             player.getBody()?.setTranslation(playerPos,true);player.setLinearVelocity(velocity);
           }
+        }
+        if(p.movementType==='palm_bouncer') {
+          if(player&&playerPos&&effectiveTime-(p.lastBounceTime??-1)>.25&&player.getVelocity().y<=.5&&playerPos.y>=p.basePosition.y&&player.getBody()&&physics.hasBodyContact(player.getBody(),p.body)) {
+            const velocity=player.getVelocity();
+            player.setLinearVelocity({x:velocity.x,y:palmImpulse,z:velocity.z});p.lastBounceTime=effectiveTime;
+          }
+          continue;
         }
         if (p.movementType === "vivagym_obstacle") {
           const top = p.centerY ?? p.basePosition.y;
@@ -5816,73 +5820,19 @@ export class LevelBuilder {
           }
           continue;
         } else if (p.movementType === "fan_5blades") {
-          // 7-second cycle: 4.0s high speed whirlwind, 0.6s slow down, 1.8s slow crawl window to pass, 0.6s spool up
-          const cycleTime = 7.0;
-          const tInCycle = effectiveTime % cycleTime;
-          let rotSpeed = 7.0;
-          let isSlow = false;
-
-          if (tInCycle < 4.0) {
-            rotSpeed = 7.0;
-            isSlow = false;
-          } else if (tInCycle < 4.6) {
-            const u = (tInCycle - 4.0) / 0.6;
-            rotSpeed = 7.0 - 6.45 * u;
-          } else if (tInCycle < 6.4) {
-            rotSpeed = 0.55;
-            isSlow = true;
-          } else {
-            const u = (tInCycle - 6.4) / 0.6;
-            rotSpeed = 0.55 + 6.45 * u;
-          }
-
-          p.rotSpeed = (p.rotSpeed ?? 0) + rotSpeed * delta;
-          p.mesh.rotation.z = p.rotSpeed;
-
-          tempEuler.set(0, 0, p.rotSpeed);
-          tempQuat.setFromEuler(tempEuler);
-          p.body.setNextKinematicRotation({ x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w });
-
-          // REALISTIC PHYSICAL PROPELLER BLADE COLLISIONS
-          if (player && playerPos) {
-            const dx = playerPos.x - p.basePosition.x;
-            const dy = playerPos.y - p.basePosition.y;
-            const dz = playerPos.z - p.basePosition.z;
-
-            if (!isSlow) {
-              // High-speed whirlwind phase: violent gust bats player back
-              if (Math.abs(dx) < 4.4 && Math.abs(dy) < 4.4 && Math.abs(dz) < 1.0) {
-                const deflectX = dx >= 0 ? 9.0 : -9.0;
-                player.setLinearVelocity({ x: deflectX, y: 7.0, z: 14.0 });
-              }
-            } else {
-              // Slow rotation phase: the 5 blades act as solid moving walls!
-              // If the player hits a blade or mistimes the gap, it blocks them like an impenetrable wall
-              if (Math.abs(dz) < 0.65) {
-                const r = Math.hypot(dx, dy);
-                if (r >= 0.65 && r <= 4.8) {
-                  const theta = Math.atan2(dy, dx);
-                  // Check against each of the 5 blade angles
-                  for (let i = 0; i < 5; i++) {
-                    const bladeAngle = (p.rotSpeed ?? 0) + (i * Math.PI * 2) / 5 + Math.PI / 2;
-                    let dTheta = (theta - bladeAngle) % (Math.PI * 2);
-                    if (dTheta > Math.PI) dTheta -= Math.PI * 2;
-                    if (dTheta < -Math.PI) dTheta += Math.PI * 2;
-                    const arcDist = r * Math.abs(dTheta);
-                    if (arcDist < 0.88) {
-                      // Player is contacting blade i! Repel like a solid moving wall
-                      const pushDir = Math.sign(dTheta) || 1;
-                      const perpAngle = bladeAngle + (pushDir * Math.PI) / 2;
-                      const px = Math.cos(perpAngle);
-                      const py = Math.sin(perpAngle);
-                      const zPush = dz >= 0 ? 4.5 : -4.5;
-                      player.setLinearVelocity({ x: px * 5.0, y: py * 5.0 + 1.2, z: zPush });
-                      break;
-                    }
-                  }
-                }
-              }
-            }
+          const pose=fanMotion(effectiveTime,p.direction??1,fanPose),rotor=p.subMeshes!.rotor;
+          p.rotSpeed=pose.angle;
+          rotor.rotation.set(0,0,pose.angle);
+          p.mesh.position.copy(p.basePosition);p.mesh.updateMatrixWorld(true);
+          tempEuler.set(0,0,pose.angle);tempQuat.setFromEuler(tempEuler);
+          if(p.baseQuaternion)tempQuat.premultiply(p.baseQuaternion);
+          p.body.setNextKinematicTranslation(p.basePosition);p.body.setNextKinematicRotation(tempQuat);
+          // Actual contact drives the gust. Empty gaps never act as invisible walls.
+          if(!isIntroActive&&!pose.slow&&player&&playerPos&&player.getBody?.()&&effectiveTime-(p.lastBoostTime??-1)>.25&&physics.hasBodyContact(player.getBody(),p.body)) {
+            fanInverse.copy(p.baseQuaternion??p.mesh.quaternion).invert();
+            fanLocal.copy(playerPos).sub(p.basePosition).applyQuaternion(fanInverse);
+            fanGust.set(fanLocal.x>=0?9:-9,7,fanLocal.z>=0?14:-14).applyQuaternion(p.baseQuaternion??p.mesh.quaternion);
+            player.setLinearVelocity(fanGust);p.lastBoostTime=effectiveTime;
           }
           continue;
         }
@@ -6075,7 +6025,7 @@ export class LevelBuilder {
           p.mesh.updateMatrixWorld(true);
           p.body.setNextKinematicTranslation({ x: targetX, y: targetY, z: targetZ });
           continue;
-        } else if (p.movementType === "giant_umbrella") {
+        } else if (p.movementType === "giant_umbrella" || p.movementType==='icecream_spin') {
           const rotSpeed = p.rotSpeed ?? 0.45;
           const dir = p.direction ?? 1;
           const yaw = effectiveTime * rotSpeed * dir;
@@ -6366,18 +6316,18 @@ export class LevelBuilder {
         } else if (p.movementType === "slamming_door") {
           // Door cycle: 2.2s slow opening, 0.18s sudden slam shut, 0.8s closed pause
           const cycleTime = 3.2;
-          const tInCycle = (effectiveTime * p.speed + (p.phase ?? 0)) % cycleTime;
+          const tInCycle = ((effectiveTime * p.speed + (p.phase ?? 0)) % cycleTime + cycleTime) % cycleTime;
           let doorAngle = 0;
           let isSlamming = false;
 
           if (tInCycle < 2.2) {
             // Opening slowly
             const u = tInCycle / 2.2;
-            doorAngle = Math.sin((u * Math.PI) / 2) * 1.45;
+            doorAngle = Math.sin((u * Math.PI) / 2) * Math.PI / 2;
           } else if (tInCycle < 2.38) {
             // Sudden violent slam shut!
             const u = (tInCycle - 2.2) / 0.18;
-            doorAngle = 1.45 * (1 - u);
+            doorAngle = Math.PI / 2 * (1 - u);
             isSlamming = true;
           } else {
             // Closed pause
@@ -6388,26 +6338,20 @@ export class LevelBuilder {
             p.subMeshes.doorPivot.rotation.y = doorAngle;
           }
 
-          // Move the door leaf kinematic body to match the swing so the doorway is traversable when open!
-          if (p.body) {
-            const pivotX = p.basePosition.x - 0.7;
-            const pivotZ = p.basePosition.z;
-            const leafCenterX = pivotX + Math.cos(doorAngle) * 0.7;
-            const leafCenterZ = pivotZ + Math.sin(doorAngle) * 0.7;
-            p.body.setNextKinematicTranslation({ x: leafCenterX, y: p.basePosition.y + 1.3, z: leafCenterZ });
-            tempEuler.set(0, doorAngle, 0, "YXZ");
-            tempQuat.setFromEuler(tempEuler);
-            p.body.setNextKinematicRotation({ x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w });
-          }
-
-          if (isSlamming && player && playerPos) {
-            const dx = playerPos.x - p.basePosition.x;
-            const dz = playerPos.z - p.basePosition.z;
-            const dy = playerPos.y - p.basePosition.y;
-            if (Math.abs(dx) < 2.0 && Math.abs(dz) < 1.8 && dy >= -0.2 && dy < 3.0) {
-              // Slamming door knocks player violently outward!
-              player.setLinearVelocity({ x: (dx >= 0 ? 1 : -1) * 20.0, y: 12.0, z: (dz >= 0 ? 1 : -1) * 18.0 });
-            }
+          p.mesh.updateMatrixWorld(true);
+          const pivot = p.subMeshes!.doorPivot;
+          pivot.getWorldPosition(fanLocal);
+          pivot.getWorldQuaternion(tempQuat);
+          p.body.setNextKinematicTranslation(fanLocal);
+          p.body.setNextKinematicRotation(tempQuat);
+          // Empty space never triggers a slam: require real contact with leaf or handle.
+          if (!isIntroActive && isSlamming && player && playerPos && player.getBody?.() &&
+              effectiveTime - (p.lastBoostTime ?? -1) > .25 && physics.hasBodyContact(player.getBody(), p.body)) {
+            fanInverse.copy(p.baseQuaternion!).invert();
+            fanLocal.copy(playerPos).sub(p.basePosition).applyQuaternion(fanInverse);
+            fanGust.set(8, 5, (fanLocal.z >= 0 ? 1 : -1) * 18).applyQuaternion(p.baseQuaternion!);
+            player.setLinearVelocity(fanGust);
+            p.lastBoostTime = effectiveTime;
           }
           continue;
         } else if (p.movementType === "turron_cat") {
@@ -6981,6 +6925,8 @@ export class LevelBuilder {
       bigben?.reset();
       for (const p of movingPlatforms) {
         p.tramPassenger?.reset();
+        if(p.movementType === "slamming_door") { p.subMeshes!.doorPivot.rotation.y = 0; p.lastBoostTime = undefined; }
+        if(p.movementType==="fan_5blades"){p.rotSpeed=0;p.lastBoostTime=undefined;p.subMeshes!.rotor.position.set(0,0,0);p.subMeshes!.rotor.quaternion.identity();}
         p.mesh.position.copy(p.basePosition);
         if (p.movementType === "tram_square") {
           tempEuler.set(0, Math.PI / 2, 0, "YXZ");
@@ -7017,6 +6963,12 @@ export class LevelBuilder {
         }
       }
       update(0, true);
+      // Restore the initial phase without sweeping from the frame origin after death.
+      for(const p of movingPlatforms) if(p.movementType === "slamming_door") {
+        p.subMeshes!.doorPivot.getWorldPosition(fanLocal);
+        p.subMeshes!.doorPivot.getWorldQuaternion(tempQuat);
+        p.body.setTranslation(fanLocal, true); p.body.setRotation(tempQuat, true);
+      }
     };
 
     if((data.world===7&&(data.level===3||data.level===4))||(data.world===8&&(data.level>=1&&data.level<=4))){for(const item of platformMeshes){const object=data.objects[item.objIndex];item.mesh.userData.neonSurface=object?.id??String(item.objIndex);if(object&&['platform','ramp'].includes(object.type)&&!item.isMoving)item.mesh.userData.neonPath=true;}stabilizeNeonSurfaces(root);}
@@ -12266,7 +12218,7 @@ static createGiantBouncyPalmMesh(
       const a = (i * Math.PI) / 2;
       const nut = new THREE.Mesh(new THREE.SphereGeometry(0.24, 8, 8), nutMat);
       nut.position.set(curveSign * 0.4 + Math.cos(a) * 0.35, trunkHeight - 0.2, Math.sin(a) * 0.35);
-      group.add(nut);
+      group.add(nut);meshes.push(nut);
     }
 
     // 6 Spreading Giant Palm Fronds
@@ -12647,7 +12599,6 @@ static createPopeyeBillboardMesh(
     const frameMat = new THREE.MeshStandardMaterial({ color: 0x263238, roughness: 0.35, metalness: 0.8 });
     const signBoardMat = new THREE.MeshStandardMaterial({ color: 0xb71c1c, roughness: 0.4 });
     const yellowMat = new THREE.MeshStandardMaterial({ color: 0xffeb3b, emissive: new THREE.Color(0xffd600), emissiveIntensity: 0.6 });
-    const whiteMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: new THREE.Color(0xffffff), emissiveIntensity: 0.4 });
     const spotMat = new THREE.MeshStandardMaterial({ color: 0xfff9c4, emissive: new THREE.Color(0xfff59d), emissiveIntensity: 0.9 });
 
     // 2 Steel Lattice Support Masts
@@ -12658,30 +12609,28 @@ static createPopeyeBillboardMesh(
     }
 
     // Main Red Signboard Panel
-    const board = new THREE.Mesh(new THREE.BoxGeometry(13.6, 3.6, 0.35), signBoardMat);
+    const board = new THREE.Mesh(new THREE.BoxGeometry(13.6, 5.0, 0.35), signBoardMat);
     board.position.set(0, 4.2, 0);
     group.add(board);
 
     // Golden Neon Border Frame
-    const border = new THREE.Mesh(new THREE.BoxGeometry(13.9, 3.9, 0.25), yellowMat);
+    const border = new THREE.Mesh(new THREE.BoxGeometry(13.9, 5.3, 0.25), yellowMat);
     border.position.set(0, 4.2, -0.05);
     group.add(border);
 
-    // Chef Hat Emblem on Top
-    const hat = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.6, 0.9, 12), whiteMat);
-    hat.position.set(0, 6.2, 0);
-    group.add(hat);
+    const illustration=new THREE.Mesh(new THREE.PlaneGeometry(13.3,4.95),new THREE.MeshBasicMaterial({map:popeyeArtwork(),toneMapped:false}));
+    illustration.position.set(0,4.2,.2);illustration.name='popeye-pizza-artwork';group.add(illustration);
 
     // Spotlights pointing down
     for (const sx of [-4.5, 0, 4.5]) {
       const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 1.2, 6), frameMat);
       arm.rotateX(0.4);
-      arm.position.set(sx, 6.0, 0.5);
+      arm.position.set(sx, 7.0, 0.5);
       group.add(arm);
 
       const lamp = new THREE.Mesh(new THREE.ConeGeometry(0.25, 0.4, 8), spotMat);
       lamp.rotateX(-0.8);
-      lamp.position.set(sx, 5.7, 0.9);
+      lamp.position.set(sx, 6.7, 0.9);
       group.add(lamp);
     }
 
@@ -13147,7 +13096,8 @@ static createDoorMesh(
     const leafMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.4 });
     const brassMat = new THREE.MeshStandardMaterial({ color: 0xffd54f, roughness: 0.25, metalness: 0.85 });
 
-    const doorW = 1.4;
+    // Ball diameter 1.5 + .2 clearance, including the open leaf and handle.
+    const doorW = 1.9;
     const doorH = 2.6;
 
     // Outer Door Frame

@@ -167,7 +167,8 @@ describe("World 2 Level 4: Fontana - Stages Validation", () => {
     const cone = stage10.objects.find((o) => o.properties?.variant === "stracciatella_cone");
     expect(cone).toBeDefined();
 
-    const ramps = stage10.objects.filter((o) => o.type === "ramp");
-    expect(ramps.length).toBeGreaterThanOrEqual(7);
+    const ramps = stage10.objects.filter((o) => o.properties?.variant === 'icecream_spiral');
+    expect(ramps).toHaveLength(1);
+    expect(stage10.objects.some(o=>/^w2s4e10-ramp-\d+$/.test(o.id))).toBe(false);
   });
 });

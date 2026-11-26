@@ -8,6 +8,7 @@ const WORLD_07_LEVEL_04_STAGES=registeredLevel(7,4);
 import type { LevelData, LevelObjectData } from "./LevelTypes";
 import {applyCollectibleBalance} from './CollectibleBalance';
 import {applyCoastalStageUpdates} from './world-02/CoastalStages';
+import {upgradeCoastalFinale} from './world-02/CoastalFinale';
 const WORLD_05_LEVEL_02_STAGES=registeredLevel(5,2);
 const WORLD_05_LEVEL_03_STAGES=registeredLevel(5,3);
 const WORLD_05_LEVEL_04_STAGES=registeredLevel(5,4);
@@ -29,6 +30,7 @@ import {TOKYO_POLISH_REVISION,TOKYO_MACHINE_REVISION,TOKYO_ARCADE_REVISION,TOKYO
 
 /** Apply requested adjustments to both the game and editor, including saved stages. */
 export function applyRequestedStageUpdates(data: LevelData, world: number, level: number, stage: number): LevelData {
+  upgradeCoastalFinale(data);
   if(data.properties?.editorPublished || data.customSaved || data.properties?.userSaved)return data;
   return applyPlazaFinale(applyCoastalStageUpdates(applyCollectibleBalance(applyStageMechanicUpdates(data,world,level,stage),world,level,stage)));
 }
