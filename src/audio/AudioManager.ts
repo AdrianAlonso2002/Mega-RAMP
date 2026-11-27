@@ -18,11 +18,59 @@ export class AudioManager {
   private isMuted = false;
   private rollOsc?: OscillatorNode;
   private rollGain?: GainNode;
+  private snoreOsc?:OscillatorNode;
+  private snoreGain?:GainNode;
+  private snoreWait=0;
+  stopSnoring():void {
+    if(this.snoreOsc){try{this.snoreOsc.stop();}catch{/* Already finished. */}this.snoreOsc.disconnect();this.snoreOsc=undefined;}
+    this.snoreGain?.disconnect();this.snoreGain=undefined;this.snoreWait=0;
+  }
+  updateSnoring(delta:number,sleeping:boolean):void {
+    if(!sleeping||this.isMuted){this.stopSnoring();return;}
+    this.snoreWait-=delta;if(this.snoreWait>0)return;this.snoreWait=3.4;
+    const ctx=this.initContext();if(!ctx||!this.sfxGain)return;
+    const oscillator=ctx.createOscillator(),gain=ctx.createGain(),now=ctx.currentTime;
+    oscillator.type='triangle';oscillator.frequency.setValueAtTime(65,now);oscillator.frequency.linearRampToValueAtTime(85,now+.24);oscillator.frequency.linearRampToValueAtTime(48,now+.7);
+    gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.018,now+.15);gain.gain.exponentialRampToValueAtTime(.0001,now+.75);
+    oscillator.connect(gain);gain.connect(this.sfxGain);this.snoreOsc=oscillator;this.snoreGain=gain;
+    oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();if(this.snoreOsc===oscillator){this.snoreOsc=undefined;this.snoreGain=undefined;}};
+    oscillator.start();oscillator.stop(now+.8);
+  }
 
   // Audio Node Hierarchy
   private masterGain?: GainNode;
   private bgmGain?: GainNode;
   private sfxGain?: GainNode;
+  private effectsBlocked=false;
+
+  /** Retire the whole SFX bus so long/scheduled effects can never return on retry. */
+  private replaceEffectsBus(blocked:boolean):void {
+    this.effectsBlocked=blocked;this.stopSnoring();
+    if(this.rollOsc){try{this.rollOsc.stop();}catch{/* Already stopped. */}this.rollOsc.disconnect();this.rollOsc=undefined;}
+    this.rollGain?.disconnect();this.rollGain=undefined;
+    this.sfxGain?.disconnect();
+    if(!this.ctx||!this.masterGain)return;
+    this.sfxGain=this.ctx.createGain();
+    this.sfxGain.gain.setValueAtTime(this.sfxVolume*.35,this.ctx.currentTime);
+    if(!blocked)this.sfxGain.connect(this.masterGain);
+  }
+  playBombWarning(seconds:number):void {
+    const ctx=this.initContext();if(!ctx||!this.sfxGain||this.effectsBlocked)return;
+    const urgency=(10-Math.max(1,Math.min(10,seconds)))/9;
+    this.note(660+urgency*800,ctx.currentTime,.09+urgency*.08,.06+urgency*.09,'triangle',this.sfxGain);
+  }
+  beginBombTimeout():void {
+    if(this.effectsBlocked)return;
+    this.replaceEffectsBus(true);this.ambientGain?.disconnect();
+    const ctx=this.initContext();if(!ctx||!this.masterGain)return;
+    // The final whistle alone bypasses the retired effects bus, at the user's SFX volume.
+    this.note(2200,ctx.currentTime,.72,this.sfxVolume*.35*.19,'sine',this.masterGain);
+  }
+  endBombTimeout():void {
+    if(!this.effectsBlocked)return;
+    this.replaceEffectsBus(false);
+    if(this.ambientGain&&this.bgmGain)this.ambientGain.connect(this.bgmGain);
+  }
 
   // Volume levels (0.0 to 1.0)
   private bgmVolume = 0.8;
@@ -37,7 +85,7 @@ export class AudioManager {
   private warningAt=-10;
   playWarning():void{const ctx=this.initContext();if(!ctx||ctx.currentTime-this.warningAt<.8)return;this.warningAt=ctx.currentTime;this.note(740,ctx.currentTime,.075,.06,'sine',this.sfxGain!);}
   private note(frequency:number,time:number,duration:number,volume:number,type:OscillatorType,destination:AudioNode):void{const ctx=this.ctx!;const oscillator=ctx.createOscillator(),gain=ctx.createGain();oscillator.type=type;oscillator.frequency.value=frequency;gain.gain.setValueAtTime(.0001,time);gain.gain.exponentialRampToValueAtTime(volume,time+.015);gain.gain.exponentialRampToValueAtTime(.0001,time+duration);oscillator.connect(gain);gain.connect(destination);oscillator.onended=()=>{oscillator.disconnect();gain.disconnect();};oscillator.start(time);oscillator.stop(time+duration+.02);}
-  private startAmbience(kind:LevelSound['ambient']):void{const ctx=this.ctx;if(!ctx||!this.bgmGain)return;if(!this.noise){this.noise=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);const data=this.noise.getChannelData(0);let seed=17;for(let i=0;i<data.length;i++){seed=(seed*16807)%2147483647;data[i]=seed/1073741824-1;}}const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();source.buffer=this.noise;source.loop=true;filter.type=kind==='wind'?'lowpass':'bandpass';filter.frequency.value=kind==='water'?900:kind==='city'?220:kind==='room'?120:450;filter.Q.value=.4;gain.gain.setValueAtTime(0,ctx.currentTime);gain.gain.linearRampToValueAtTime(kind==='room'?.035:.07,ctx.currentTime+1.5);source.connect(filter);filter.connect(gain);gain.connect(this.bgmGain);source.start();this.ambientSource=source;this.ambientFilter=filter;this.ambientGain=gain;}
+  private startAmbience(kind:LevelSound['ambient']):void{const ctx=this.ctx;if(!ctx||!this.bgmGain)return;if(!this.noise){this.noise=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);const data=this.noise.getChannelData(0);let seed=17;for(let i=0;i<data.length;i++){seed=(seed*16807)%2147483647;data[i]=seed/1073741824-1;}}const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();source.buffer=this.noise;source.loop=true;filter.type=kind==='wind'?'lowpass':'bandpass';filter.frequency.value=kind==='water'?900:kind==='city'?220:kind==='room'?120:450;filter.Q.value=.4;gain.gain.setValueAtTime(0,ctx.currentTime);gain.gain.linearRampToValueAtTime(kind==='room'?.035:.07,ctx.currentTime+1.5);source.connect(filter);filter.connect(gain);if(!this.effectsBlocked)gain.connect(this.bgmGain);source.start();this.ambientSource=source;this.ambientFilter=filter;this.ambientGain=gain;}
 
   static readonly TRACKS: BGMTrackInfo[] = [
     { id: "jungle_groove", name: "🌴 Calypso Island (Tropical)", bpm: 128 },
@@ -112,7 +160,7 @@ export class AudioManager {
         // SFX Gain
         this.sfxGain = this.ctx.createGain();
         this.sfxGain.gain.setValueAtTime(this.sfxVolume * 0.35, this.ctx.currentTime);
-        this.sfxGain.connect(this.masterGain);
+        if(!this.effectsBlocked)this.sfxGain.connect(this.masterGain);
       }
     }
     if (this.ctx && this.ctx.state === "suspended" && !this.resumePending) {

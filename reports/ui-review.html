@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>UI review</title></head><body><div id="app"></div><script type="module">
+import '/src/styles/main.css';import '/src/styles/menu.css';import '/src/styles/gameplay-polish.css';
+import {HUD} from '/src/ui/HUD.ts';import {UIManager} from '/src/ui/UIManager.ts';import {GameState} from '/src/game/GameState.ts';import {ProgressionManager} from '/src/progression/ProgressionManager.ts';
+const root=document.querySelector('#app'),screen=new URLSearchParams(location.search).get('screen')||'hud';
+const errors=[];window.addEventListener('error',event=>errors.push(event.message));
+if(screen==='hud'){const hud=new HUD(root,{onPause(){}});hud.setBombLimit(90);hud.setStageInfo(5,1,10,100,'El Cachopo Monumental');hud.update(5,72,24.12,100);}
+else {const state=new GameState(),ui=new UIManager(root,state,new ProgressionManager(),{onStartStage(){},onSelectCharacter(){},onOpenEditor(){},onResume(){},onRestartStage(){},onNextStage(){},onReturnToMenu(){}});ui.titleEntered=true;ui.renderScreen(screen);document.querySelectorAll('.cloud-transition').forEach(element=>element.remove());}
+setTimeout(()=>{
+ const outside=[...document.querySelectorAll('button,input,select,.hud-badge,.char-selection-pane,.char-preview-pane')].filter(element=>{const r=element.getBoundingClientRect(),style=getComputedStyle(element);return style.display!=='none'&&r.width>0&&r.height>0&&(r.left<-.5||r.right>innerWidth+.5);}).map(e=>e.id||e.className);
+ const badges=[...document.querySelectorAll('.hud-top-bar>*')];
+ for(let i=0;i<badges.length;i++)for(let j=i+1;j<badges.length;j++){const a=badges[i].getBoundingClientRect(),b=badges[j].getBoundingClientRect();if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1)errors.push('HUD overlap: '+badges[i].className+' / '+badges[j].className);}
+ const preview=document.querySelector('.char-preview-pane');if(preview&&innerWidth>innerHeight&&preview.getBoundingClientRect().bottom>innerHeight+.5)errors.push('Character preview exceeds screen height');
+ if(screen==='pause'){document.querySelector('[data-pause-camera="2"]').click();if(document.querySelector('[data-pause-camera="2"]').getAttribute('aria-pressed')!=='true')errors.push('Camera button did not activate');document.querySelector('[data-pause-camera="1"]').click();}
+ const result={screen,width:innerWidth,height:innerHeight,horizontalOverflow:document.documentElement.scrollWidth>innerWidth,outside,errors};
+ const output=document.createElement('pre');output.id='review-result';output.hidden=true;output.textContent=JSON.stringify(result);document.body.append(output);
+},1800);
+</script></body></html>

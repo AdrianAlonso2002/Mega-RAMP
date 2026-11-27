@@ -2,6 +2,7 @@ import "./styles/main.css";
 import "./styles/menu.css";
 import "./styles/world-map.css";
 import "./styles/cloud-transition.css";
+import "./styles/gameplay-polish.css";
 
 import { Game } from "./game/Game";
 

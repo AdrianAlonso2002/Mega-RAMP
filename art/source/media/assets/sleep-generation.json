@@ -1,0 +1,54 @@
+{
+  "method": "Built-in image_gen; separate reference edit for each normal sprite.",
+  "prompt": "Preserve the exact character identity, clothing, accessories, hair/fur colours, line art style, full body stance, limb placement, scale, square framing and transparent canvas. Change only the head: gently bow it downward as if dozing, with both eyes fully closed peacefully. Body remains in identical normal standing/sitting pose. No Z letters, text, ball, background or props. True transparent alpha.",
+  "entries": [
+    {
+      "base": "adri",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-b3fac590-258e-4fe3-b16a-b61bd624ffbf.png"
+    },
+    {
+      "base": "pao",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-19ad36b7-f0a7-405f-9a26-8bd6d2da40ed.png"
+    },
+    {
+      "base": "rony",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-9e54dab1-9b7d-452c-a402-0486ea279eda.png"
+    },
+    {
+      "base": "misi",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-b52640ba-3ee9-48d5-87ef-4be665350662.png"
+    },
+    {
+      "base": "adri_especial",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-eb694b48-f17c-4b27-b9ed-da1d63da4eac.png"
+    },
+    {
+      "base": "adri_ssj",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-8240a2fd-33c7-41c0-991d-2007b6920a6e.png"
+    },
+    {
+      "base": "pao_especial",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-ab7031a7-91fa-4190-9e86-dbadc5d25844.png"
+    },
+    {
+      "base": "pao_hp",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-01e6a860-4469-4eeb-83f2-baa21814b089.png"
+    },
+    {
+      "base": "misi_bebe",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-bd0b5f52-3f0a-4184-baf7-5d33c06f4af0.png"
+    },
+    {
+      "base": "misi_negra",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-3cd94fce-54fc-4e46-ae72-c6df532bcc8d.png"
+    },
+    {
+      "base": "rony_bebe",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-9d2d33ca-31a2-4859-8e86-f37bdb0a7422.png"
+    },
+    {
+      "base": "rony_blue",
+      "source": "C:\\Users\\Helio\\.codex\\generated_images\\01a1c626-7b44-7cb2-8aca-5fb5fe3d907c\\exec-c15a0feb-2285-41e3-8e90-fe3ac1a040cb.png"
+    }
+  ]
+}

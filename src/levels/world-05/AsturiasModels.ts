@@ -270,14 +270,15 @@ export function createAsturiasModel(obj: LevelObjectData): { group: THREE.Group;
     case "shelf": {
       // Length is baked into the model so repeating packs keep their size.
       const length = obj.scale.x;
-      box(length,2.95,.52,0,1.48,0,0xe2ab19);
-      for (const y of [.46,1.29,2.10,2.93]) box(length,.10,.81,0,y,0,0xffd64b);
+      // A continuous spine and projecting shelf wings avoid intersecting front faces.
+      box(length,2.98,.48,0,1.49,0,0xe2ab19);
+      for (const y of [.46,1.29,2.10,2.93]) for (const side of [-1,1]) box(length,.10,.165,0,y,side*.3225,0xffd64b);
       const count = Math.min(48,Math.floor(length/.49));
       const packs = [0x50767d,0xc45a47,0xe7dfb9,0x658147];
       for (let i=0;i<count;i++) for (let row=0;row<3;row++) {
         const x = (i+.5)*length/count-length/2;
-        box(.27,.30+(i%3)*.045,.07,x,.67+row*.82,.29,packs[(i+row)%4]);
-        box(.27,.30+(i%3)*.045,.07,x,.67+row*.82,-.29,packs[(i+row+2)%4]);
+        box(.27,.30+(i%3)*.045,.08,x,.67+row*.82,.30,packs[(i+row)%4]);
+        box(.27,.30+(i%3)*.045,.08,x,.67+row*.82,-.30,packs[(i+row+2)%4]);
       }
       break;
     }
@@ -312,11 +313,13 @@ export function createAsturiasModel(obj: LevelObjectData): { group: THREE.Group;
         arm.add(hand); group.add(arm); meshes.push(hand);
       }
       break;
-    case "plate":
-      tube(.99,.81,.34,0,.12,0,ivory,"y",32);
-      tube(.94,.94,.035,0,.31,0,0x658fa1,"y",32);
-      tube(.88,.88,.045,0,.34,0,ivory,"y",32);
+    case "plate": {
+      // One continuous ceramic profile: no stacked caps competing in the depth buffer.
+      const profile = [[0,-.05],[.76,-.05],[.84,0],[.99,.22],[.99,.29],[.94,.32],[.87,.29],[.78,.22],[0,.22]];
+      const geometry = new THREE.LatheGeometry(profile.map(([r,y])=>new THREE.Vector2(r,y)),64);
+      shape(geometry,ivory,0,0,0);
       break;
+    }
     default:
       return null;
   }
@@ -343,5 +346,6 @@ export function createAsturiasModel(obj: LevelObjectData): { group: THREE.Group;
   group.position.set(obj.position.x,obj.position.y,obj.position.z);
   group.rotation.set(Number(obj.properties?.pitch ?? obj.rotation.x),obj.rotation.y,obj.rotation.z,"YXZ");
   group.scale.set(model === "asturias_shelf" ? 1 : obj.scale.x,obj.scale.y,obj.scale.z);
+  if(model === "asturias_shelf") {group.userData.neonSurface=obj.id;group.userData.neonPath=true;}
   return { group, meshes };
 }

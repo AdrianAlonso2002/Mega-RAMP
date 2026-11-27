@@ -1,3 +1,4 @@
+import {SleepEffect} from './SleepEffect';
 import * as THREE from "three";
 import type RAPIER from "@dimforge/rapier3d-compat";
 import type { CharacterDefinition } from "./PlayerTypes";
@@ -27,6 +28,14 @@ export class Player {
 
   // Animation state machine (normal, move, scary, happy)
   private animState: CharacterState = "normal";
+  private idleTime=0;
+  private readonly sleepEffect=new SleepEffect();
+  isSleeping():boolean{return this.animState==='sleep'&&!this.frozen;}
+  showTimeout():void {
+    this.setFrozen(true);this.idleTime=0;this.sleepEffect.update(0,false);
+    this.setAnimationState('scary1');this.sprite.position.set(0,0,0);
+    this.body?.setTranslation(this.object.position,true);this.body?.setEnabled(false);
+  }
   private currentTextureKey = "";
   private isHappy = false;
   private animTimer = 0;
@@ -82,6 +91,7 @@ export class Player {
     this.sprite.position.set(0, 0, 0);
     this.sprite.renderOrder = 20; // Ensure character is rendered clearly above water and ground effects
     this.object.add(this.sprite);
+    this.object.add(this.sleepEffect.group);
 
     // 2. Transparent Glossy Outer Ball Mesh (created second so id is higher, blends over inner sprite)
     const sphereGeometry = new THREE.SphereGeometry(this.radius, 32, 24);
@@ -123,6 +133,7 @@ export class Player {
   setFrozen(frozen: boolean): void {
     this.frozen = frozen;
     if (frozen) {
+      this.idleTime=0;this.sleepEffect.update(0,false);
       if (this.body) {
         this.body.setLinvel({ x: 0, y: 0, z: 0 }, true);
         this.body.setAngvel({ x: 0, y: 0, z: 0 }, true);
@@ -185,6 +196,7 @@ export class Player {
     this.throttleFactor = 0;
     this.rollingSlope = 0;
     this.animTimer = 0;
+    this.idleTime=0;this.sleepEffect.update(0,false);
     this.flipTimer = 0;
     this.setAnimationState("normal");
 
@@ -388,6 +400,8 @@ export class Player {
     // 3. move1 / move2: Walking/running, alternating stride steps
     // 4. normal: Idle breathing / bobbing
     this.animTimer += delta;
+    const resting=!!ground&&speed<.2&&Math.abs(lv.y-(ground?.verticalVelocity??0))<.2&&Math.abs(input.horizontal)<.04&&Math.abs(input.vertical)<.04&&!input.action&&!input.anyKey;
+    this.idleTime=resting?this.idleTime+delta:0;
     if (this.isHappy) {
       this.setAnimationState("happy");
       this.sprite.position.x = 0;
@@ -409,13 +423,14 @@ export class Player {
       this.sprite.position.y = Math.abs(Math.sin(this.flipTimer * Math.PI)) * 0.012;
     } else {
       // Normal / Idle State
-      this.setAnimationState("normal");
+      this.setAnimationState(this.idleTime>=10?'sleep':"normal");
       this.sprite.position.x = 0;
       this.sprite.position.y = Math.sin(this.animTimer * 3.5) * 0.006;
     }
 
     // The illustrated character faces the camera; rolling belongs to the outer ball.
     this.sprite.material.rotation = 0;
+    this.sleepEffect.update(delta,this.isSleeping());
 
     const fellOut = t.y < this.fallHeight;
 
@@ -491,6 +506,7 @@ export class Player {
       this.ballMesh.material.dispose();
     }
     this.sprite.material.dispose();
+    this.sleepEffect.destroy();
     this.object.clear();
   }
 }

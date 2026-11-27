@@ -1,0 +1,47 @@
+{
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "assets": [
+    {
+      "id": "goku-948",
+      "referenceRole": "User-supplied retail packaging photo",
+      "prompt": "Use the attached retail package photo as a strict design reference. Reconstruct ONLY its complete FRONT FACE as a sharp high-resolution game texture. Portrait front panel, width:height 4:5. Super Saiyan Goku WITH KAMEHAMEHA, box 948. Orange Dragon Ball Z graphic headers, golden spiky hair, turquoise eyes, orange/blue outfit, blue energy orb, printed die-cut Goku portrait at lower left. Exact main text: SUPER SAIYAN GOKU. POP! ANIMATION and DRAGON BALL Z in top strip. CRITICAL: perfectly orthographic straight-on flat rectangular FRONT panel, not a perspective photo of a box. No visible side panel or lid, no external background, no ground shadow, no tilt, no outer margins: packaging front fills the image edge to edge. All four outer corners form a true rectangle. Preserve white carton framing, logo positions, product number, recognizable toy likeness, typography and product-window composition of reference. Window includes the realistic vinyl toy and subtle restrained plastic reflections baked into the front image. Clean crisp commercial-print artwork, readable main labels, detailed vinyl figures. Do not invent extra characters or duplicate the package. The image is an opaque flat texture, not transparent.",
+      "result": "Generated front; PNG original and optimized WebP saved in project.",
+      "referencePath": "references/goku-948.jpg"
+    },
+    {
+      "id": "elliot-et-1252",
+      "referenceRole": "User-supplied retail packaging photo",
+      "prompt": "Use the attached retail package photo as a strict design reference. Reconstruct ONLY its complete FRONT FACE as a sharp high-resolution game texture. Portrait front panel, width:height 4:5. ELLIOT & E.T. box 1252. Navy starry header and lower name banner, white carton border. Elliot in red hoodie cycling, E.T. in white blanket in bicycle front basket. Printed die-cut portrait lower left, POP! MOVIES, E.T. THE EXTRA-TERRESTRIAL top strip. Exact main name text: ELLIOT & E.T. CRITICAL: perfectly orthographic straight-on flat rectangular FRONT panel, not a perspective photo of a box. No visible side panel or lid, no external background, no ground shadow, no tilt, no outer margins: packaging front fills the image edge to edge. All four outer corners form a true rectangle. Preserve white carton framing, logo positions, product number, recognizable toy likeness, typography and product-window composition of reference. Window includes the realistic vinyl toy and subtle restrained plastic reflections baked into the front image. Clean crisp commercial-print artwork, readable main labels, detailed vinyl figures. Do not invent extra characters or duplicate the package. The image is an opaque flat texture, not transparent.",
+      "result": "Generated front; PNG original and optimized WebP saved in project.",
+      "referencePath": "references/elliot-et-1252.jpg"
+    },
+    {
+      "id": "scarlet-witch-1034",
+      "referenceRole": "User-supplied retail packaging photo",
+      "prompt": "Use the attached retail package photo as a strict design reference. Reconstruct ONLY its complete FRONT FACE as a sharp high-resolution game texture. Portrait front panel, width:height 4:5. SCARLET WITCH box 1034. Black/red Marvel Doctor Strange in the Multiverse of Madness branding, auburn hair, dark red crown and costume, bright red magic around hands and levitation effect. POP! logo upper left, white box borders, printed die-cut portrait lower left and SPECIAL EDITION circular sticker lower right. Exact name: SCARLET WITCH. CRITICAL: perfectly orthographic straight-on flat rectangular FRONT panel, not a perspective photo of a box. No visible side panel or lid, no external background, no ground shadow, no tilt, no outer margins: packaging front fills the image edge to edge. All four outer corners form a true rectangle. Preserve white carton framing, logo positions, product number, recognizable toy likeness, typography and product-window composition of reference. Window includes the realistic vinyl toy and subtle restrained plastic reflections baked into the front image. Clean crisp commercial-print artwork, readable main labels, detailed vinyl figures. Do not invent extra characters or duplicate the package. The image is an opaque flat texture, not transparent.",
+      "result": "Generation blocked. Uses unmodified supplied photo with UV rectification on the game model.",
+      "referencePath": "references/scarlet-witch-1034.jpg"
+    },
+    {
+      "id": "hermione-113",
+      "referenceRole": "User-supplied retail packaging photo",
+      "prompt": "Use the attached retail package photo as a strict design reference. Reconstruct ONLY its complete FRONT FACE as a sharp high-resolution game texture. Portrait front panel, width:height 4:5. HERMIONE GRANGER box 113. Silver white Harry Potter header and gold numbered circle, white newspaper-print carton border, brown bob hairstyle with bangs, black Hogwarts school robe, wand and silver translucent otter patronus. Printed die-cut Hermione portrait lower left, Wizarding World medallion lower right. Exact main name: HERMIONE GRANGER. CRITICAL: perfectly orthographic straight-on flat rectangular FRONT panel, not a perspective photo of a box. No visible side panel or lid, no external background, no ground shadow, no tilt, no outer margins: packaging front fills the image edge to edge. All four outer corners form a true rectangle. Preserve white carton framing, logo positions, product number, recognizable toy likeness, typography and product-window composition of reference. Window includes the realistic vinyl toy and subtle restrained plastic reflections baked into the front image. Clean crisp commercial-print artwork, readable main labels, detailed vinyl figures. Do not invent extra characters or duplicate the package. The image is an opaque flat texture, not transparent.",
+      "result": "Generated front; PNG original and optimized WebP saved in project.",
+      "referencePath": "references/hermione-113.jpg"
+    },
+    {
+      "id": "kamehameha-2223",
+      "referenceRole": "User-supplied retail packaging photo",
+      "prompt": "Use the attached retail package photo as a strict design reference. Reconstruct ONLY its complete FRONT FACE as a sharp high-resolution game texture. Landscape wide front panel, width:height about 2:1. Deluxe rectangular Dragon Ball Z father-son Kamehameha box 2223 matching reference: golden-haired turquoise-eyed Gohan in purple front-left unleashing translucent blue energy wave toward left, blue translucent ghostly spiky-haired Goku behind-right helping the blast, brown rocks and white clouds beneath. White carton border, orange headers and lower Dragon Ball Z banner. POP! MOMENT at top left. Exact headline: FATHER-SON KAMEHAMEHA. Exact number 2223 upper right. CRITICAL: perfectly orthographic straight-on flat rectangular FRONT panel, not a perspective photo of a box. No visible side panel or lid, no external background, no ground shadow, no tilt, no outer margins: packaging front fills the image edge to edge. All four outer corners form a true rectangle. Preserve white carton framing, logo positions, product number, recognizable toy likeness, typography and product-window composition of reference. Window includes the realistic vinyl toy and subtle restrained plastic reflections baked into the front image. Clean crisp commercial-print artwork, readable main labels, detailed vinyl figures. Do not invent extra characters or duplicate the package. The image is an opaque flat texture, not transparent.",
+      "result": "Generated front; PNG original and optimized WebP saved in project.",
+      "referencePath": "references/kamehameha-2223.webp"
+    }
+  ],
+  "optimize": "node scripts/prepare-funko-art.mjs",
+  "textCorrection": {
+    "asset": "elliot-et-1252",
+    "prompt": "Precise text-only correction: change ELLIOT & E.T. to ELLIOTT & E.T. (two T letters). Preserve all other packaging details.",
+    "tool": "image_gen.imagegen (built-in)"
+  }
+}

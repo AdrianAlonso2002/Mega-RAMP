@@ -1,3 +1,4 @@
+import {polishLasCruces} from './LasCrucesPolish';
 import publishedEditorStages from '../editor-saved/world-04.json';
 import {registerStageSet} from '../StageRegistry';
 import {rebuildWheelTrain} from "../WheelTrainRoute";
@@ -983,5 +984,6 @@ for (const [key, saved] of Object.entries(publishedEditorStages)) {
   if (key.startsWith('4_3_')) Object.assign(WORLD_04_LEVEL_03_STAGES[Number(key.split('_')[2])], structuredClone(saved));
 }
 WORLD_04_LEVEL_03_STAGES[1]=rebuildWheelTrain(WORLD_04_LEVEL_03_STAGES[1]);
+for(const data of Object.values(WORLD_04_LEVEL_03_STAGES))polishLasCruces(data);
 registerStageSet(4,3,WORLD_04_LEVEL_03_STAGES);
 

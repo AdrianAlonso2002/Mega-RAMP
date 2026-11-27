@@ -6,6 +6,41 @@ export class PhysicsWorld {
   private staticColliders: RAPIER.Collider[] = [];
   private kinematicBodies: RAPIER.RigidBody[] = [];
 
+  private colliderCapture?: RAPIER.Collider[];
+
+  /** Capture only colliders created for one level object, without scanning the world. */
+  beginColliderCapture(): RAPIER.Collider[] {
+    if (this.colliderCapture) throw new Error("Nested collider capture");
+    return this.colliderCapture = [];
+  }
+
+  endColliderCapture(): void { this.colliderCapture = undefined; }
+
+  /** One compound kinematic body for a gently rocking stage. Keep every authored collider shape. */
+  createStageAssembly(pivot: {x:number;y:number;z:number}): RAPIER.RigidBody | undefined {
+    if (!this.world) return;
+    const body = this.world.createRigidBody(RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(pivot.x,pivot.y,pivot.z));
+    for (const old of this.staticColliders) {
+      const p = old.translation();
+      const description = new RAPIER.ColliderDesc(old.shape)
+        .setTranslation(p.x-pivot.x,p.y-pivot.y,p.z-pivot.z).setRotation(old.rotation())
+        .setFriction(old.friction()).setRestitution(old.restitution())
+        .setFrictionCombineRule(old.frictionCombineRule()).setRestitutionCombineRule(old.restitutionCombineRule()).setContactSkin(old.contactSkin())
+        .setCollisionGroups(old.collisionGroups()).setSolverGroups(old.solverGroups()).setSensor(old.isSensor()).setEnabled(old.isEnabled());
+      this.createTrackedCollider(description,body);
+      this.world.removeCollider(old,false);
+    }
+    this.staticColliders = [];
+    this.kinematicBodies.push(body);
+    return body;
+  }
+
+  private createTrackedCollider(description: RAPIER.ColliderDesc, body?: RAPIER.RigidBody): RAPIER.Collider {
+    const collider = this.world!.createCollider(description, body);
+    this.colliderCapture?.push(collider);
+    return collider;
+  }
+
   constructor() {
     this.initPromise = this.initialize();
   }
@@ -113,7 +148,7 @@ export class PhysicsWorld {
       .setRestitutionCombineRule(RAPIER.CoefficientCombineRule.Max)
       .setContactSkin(0.02);
 
-    const collider = this.world.createCollider(colliderDesc, body);
+    const collider = this.createTrackedCollider(colliderDesc, body);
 
     return { body, collider };
   }
@@ -125,7 +160,7 @@ export class PhysicsWorld {
       .setLinearDamping(.035).setAngularDamping(1.0).setCcdEnabled(true));
     const hull=RAPIER.ColliderDesc.capsule(1.75*scale,.52*scale).setRotation({x:Math.SQRT1_2,y:0,z:0,w:Math.SQRT1_2})
       .setMass(90).setFriction(.2).setRestitution(.05);
-    this.world.createCollider(hull,body);
+    this.createTrackedCollider(hull,body);
     body.recomputeMassPropertiesFromColliders();
     body.setEnabled(false);
     return body;
@@ -136,9 +171,9 @@ export class PhysicsWorld {
     if(!this.world) return null;
     const body=this.world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(position.x,position.y,position.z)
       .setLinearDamping(.6).setAngularDamping(2).setCcdEnabled(true));
-    this.world.createCollider(RAPIER.ColliderDesc.ball(.7*scale).setTranslation(0,.72*scale,0).setMass(1.1).setFriction(.55).setRestitution(.13),body);
-    this.world.createCollider(RAPIER.ColliderDesc.capsule(.5*scale,.57*scale).setTranslation(0,1.65*scale,0).setMass(.25).setFriction(.35).setRestitution(.2),body);
-    this.world.createCollider(RAPIER.ColliderDesc.ball(.6*scale).setTranslation(0,2.8*scale,0).setMass(.08).setFriction(.3).setRestitution(.2),body);
+    this.createTrackedCollider(RAPIER.ColliderDesc.ball(.7*scale).setTranslation(0,.72*scale,0).setMass(1.1).setFriction(.55).setRestitution(.13),body);
+    this.createTrackedCollider(RAPIER.ColliderDesc.capsule(.5*scale,.57*scale).setTranslation(0,1.65*scale,0).setMass(.25).setFriction(.35).setRestitution(.2),body);
+    this.createTrackedCollider(RAPIER.ColliderDesc.ball(.6*scale).setTranslation(0,2.8*scale,0).setMass(.08).setFriction(.3).setRestitution(.2),body);
     this.kinematicBodies.push(body);return body;
   }
   /** Scripted carriage transport supplies displacement; floor friction must not add it twice. */
@@ -149,7 +184,7 @@ export class PhysicsWorld {
   createConvexCollider(vertices:Float32Array,friction=.7,restitution=.02):RAPIER.Collider|null {
     if(!this.world) return null;
     const desc=RAPIER.ColliderDesc.convexHull(vertices);if(!desc) return null;
-    const collider=this.world.createCollider(desc.setFriction(friction).setRestitution(restitution));
+    const collider=this.createTrackedCollider(desc.setFriction(friction).setRestitution(restitution));
     this.staticColliders.push(collider);return collider;
   }
 
@@ -182,7 +217,7 @@ export class PhysicsWorld {
       .setRestitutionCombineRule(RAPIER.CoefficientCombineRule.Max)
       .setContactSkin(0.02);
 
-    const collider = this.world.createCollider(colliderDesc);
+    const collider = this.createTrackedCollider(colliderDesc);
     this.staticColliders.push(collider);
     return collider;
   }
@@ -218,7 +253,7 @@ export class PhysicsWorld {
       colliderDesc.setTranslation(colliderOffset.x, colliderOffset.y, colliderOffset.z);
     }
 
-    const collider = this.world.createCollider(colliderDesc, body);
+    const collider = this.createTrackedCollider(colliderDesc, body);
     this.kinematicBodies.push(body);
     return { body, collider };
   }
@@ -246,7 +281,7 @@ export class PhysicsWorld {
     if (rotation) {
       colliderDesc.setRotation(rotation);
     }
-    return this.world.createCollider(colliderDesc, body);
+    return this.createTrackedCollider(colliderDesc, body);
   }
 
   /**
@@ -262,7 +297,7 @@ export class PhysicsWorld {
     const body=this.world.createRigidBody(desc);
     const shape=RAPIER.ColliderDesc.trimesh(vertices,indices).setRestitution(restitution).setFriction(friction);
     if(lowGrip) shape.setFrictionCombineRule(RAPIER.CoefficientCombineRule.Min);
-    const collider=this.world.createCollider(shape,body);
+    const collider=this.createTrackedCollider(shape,body);
     this.kinematicBodies.push(body);
     return {body,collider};
   }
@@ -273,25 +308,25 @@ export class PhysicsWorld {
     if(!shape) return null;
     shape.setFriction(friction).setRestitution(restitution);
     if(lowGrip) shape.setFrictionCombineRule(RAPIER.CoefficientCombineRule.Min);
-    return this.world.createCollider(shape,body);
+    return this.createTrackedCollider(shape,body);
   }
 
   addTrimeshColliderToBody(body:RAPIER.RigidBody,vertices:Float32Array,indices:Uint32Array,friction=.3,restitution=.02,lowGrip=false):RAPIER.Collider|null {
     if(!this.world) return null;
     const shape=RAPIER.ColliderDesc.trimesh(vertices,indices).setFriction(friction).setRestitution(restitution);
     if(lowGrip) shape.setFrictionCombineRule(RAPIER.CoefficientCombineRule.Min);
-    return this.world.createCollider(shape,body);
+    return this.createTrackedCollider(shape,body);
   }
 
   createKinematicSphere(position:{x:number;y:number;z:number},radius:number,friction=.85):{body:RAPIER.RigidBody;collider:RAPIER.Collider}|null {
     if(!this.world) return null;
     const body=this.world.createRigidBody(RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(position.x,position.y,position.z));
-    const collider=this.world.createCollider(RAPIER.ColliderDesc.ball(radius).setFriction(friction).setRestitution(0).setRestitutionCombineRule(RAPIER.CoefficientCombineRule.Min),body);
+    const collider=this.createTrackedCollider(RAPIER.ColliderDesc.ball(radius).setFriction(friction).setRestitution(0).setRestitutionCombineRule(RAPIER.CoefficientCombineRule.Min),body);
     this.kinematicBodies.push(body);return {body,collider};
   }
   addCylinderColliderToBody(body:RAPIER.RigidBody,offset:{x:number;y:number;z:number},radius:number,halfHeight:number,friction=.85):RAPIER.Collider|null {
     if(!this.world) return null;
-    return this.world.createCollider(RAPIER.ColliderDesc.cylinder(halfHeight,radius).setTranslation(offset.x,offset.y,offset.z).setFriction(friction).setRestitution(0).setRestitutionCombineRule(RAPIER.CoefficientCombineRule.Min),body);
+    return this.createTrackedCollider(RAPIER.ColliderDesc.cylinder(halfHeight,radius).setTranslation(offset.x,offset.y,offset.z).setFriction(friction).setRestitution(0).setRestitutionCombineRule(RAPIER.CoefficientCombineRule.Min),body);
   }
   createKinematicCylinder(
     position: { x: number; y: number; z: number },
@@ -317,7 +352,7 @@ export class PhysicsWorld {
       .setFriction(friction);
     if(lowGrip) colliderDesc.setFrictionCombineRule(RAPIER.CoefficientCombineRule.Min);
 
-    const collider = this.world.createCollider(colliderDesc, body);
+    const collider = this.createTrackedCollider(colliderDesc, body);
     this.kinematicBodies.push(body);
     return { body, collider };
   }
@@ -343,7 +378,7 @@ export class PhysicsWorld {
       colliderDesc.setRotation(rotation);
     }
 
-    const collider = this.world.createCollider(colliderDesc);
+    const collider = this.createTrackedCollider(colliderDesc);
     this.staticColliders.push(collider);
     return collider;
   }
@@ -364,7 +399,7 @@ export class PhysicsWorld {
         .setRestitution(restitution)
         .setFriction(friction);
 
-      const collider = this.world.createCollider(colliderDesc);
+      const collider = this.createTrackedCollider(colliderDesc);
       this.staticColliders.push(collider);
       return collider;
     } catch (e) {

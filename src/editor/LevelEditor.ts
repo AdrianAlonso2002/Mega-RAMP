@@ -1,3 +1,8 @@
+import {trimCachopoSurfaces} from '../levels/world-05/CachopoSurfaces';
+import {isCachopoStage,cachopoPivot,poseCachopo} from '../levels/world-05/CachopoMotion';
+import {decorationHasCollision} from "../levels/DecorationCollision";
+import {funkoArtworkFor} from '../rendering/FunkoArtwork';
+import {createCircularGoal} from '../levels/CircularGoal';
 import {createWheelTrainMesh} from '../levels/WheelTrain';
 import {createConcertModel,concertLift} from "../levels/world-01/ConcertModel";
 import {AURORA_DECORATIONS} from '../levels/world-08/AuroraRoutes';
@@ -60,6 +65,7 @@ export interface StageSnapshot {
 }
 
 export class LevelEditor {
+  private cachopoPreviewPivot?: THREE.Vector3;
   private readonly container: HTMLElement;
   private readonly scene: THREE.Scene;
   private readonly camera: THREE.PerspectiveCamera;
@@ -979,7 +985,7 @@ export class LevelEditor {
       return {
         badge: "🍔 Hamburguesa TGB",
         title: "Hamburguesa Brioche Rebotadora TGB",
-        description: "Hamburguesa gigante de brioche glaseado con sésamo, lechuga rizada, tomate, queso fundido y físicas de rebote elástico de colchón.",
+        description: "Hamburguesa gigante de brioche glaseado con sésamo, lechuga rizada, tomate y queso fundido. Rebote fijo para alcanzar la siguiente hamburguesa sin aumentar la altura en cada salto.",
         isCustom: true
       };
     }
@@ -1299,6 +1305,7 @@ export class LevelEditor {
         emissive: isSelected ? new THREE.Color(0x333311) : new THREE.Color(0x000000)
       });
       applyPolygonOffset(mat);
+      if(isCachopoStage(this.levelData)&&typeof finish==="string")mat.polygonOffset=false;
       return mat;
     }
 
@@ -1433,7 +1440,7 @@ export class LevelEditor {
     }
     if (v === "funko_pop_box") {
       const series = (obj.properties?.series as "dragon_ball" | "harry_potter" | "disney") || "dragon_ball";
-      return LevelBuilder.createFunkoBoxMesh(obj.scale.x || 4.2, obj.scale.y || 5.2, obj.scale.z || 3.8, "medium", series).group;
+      return LevelBuilder.createFunkoBoxMesh(obj.scale.x || 4.2, obj.scale.y || 5.2, obj.scale.z || 3.8, "medium", series, funkoArtworkFor(obj)).group;
     }
     if (mov === "vivagym_obstacle") {
       return LevelBuilder.createVivaGymObstacleMesh(obj.scale, obj.properties?.obstacleForm);
@@ -1977,6 +1984,9 @@ export class LevelEditor {
     this.covadongaPreviewRoad=roadPoints ? {points:roadPoints,frames:buildRiverFrames(roadPoints),width:Number(road?.properties?.width??8)}:undefined;
     this.clearEditorGroupResources();
     this.editorGroup.clear();
+    this.editorGroup.position.set(0,0,0);
+    this.editorGroup.quaternion.identity();
+    this.cachopoPreviewPivot=isCachopoStage(this.levelData)?cachopoPivot(this.levelData):undefined;
     this.movingObjects = [];
 
     // Editor lighting to ensure materials look vibrant
@@ -2207,6 +2217,8 @@ export class LevelEditor {
         }
 
         mesh = group;
+      } else if (obj.type === "goal"&&obj.properties?.goalShape==='circle') {
+        mesh=createCircularGoal(Number(obj.properties.goalSize??1.5)).group;
       } else if (obj.type === "goal"&&obj.properties?.oxfordGoal==='sky') {
         mesh=createOxfordSkyGoal();
       } else if (obj.type === "goal") {
@@ -2540,6 +2552,10 @@ export class LevelEditor {
       if(this.currentWorld===7&&(this.currentLevel===3||this.currentLevel===4)&&['platform','ramp','cylinder','moving-platform','rotating-platform'].includes(obj.type)){mesh.userData.neonSurface=obj.id;if(['platform','ramp','cylinder'].includes(obj.type))mesh.userData.neonPath=true;}
       this.editorGroup.add(mesh);
     });
+    if(this.currentWorld===5&&this.currentLevel===1) {
+      if(this.currentStage===10)trimCachopoSurfaces(this.editorGroup.children.filter(child=>child instanceof THREE.Mesh&&this.levelData.objects[child.userData.objectIndex]?.properties?.asturiasFinish) as THREE.Mesh[]);
+      stabilizeNeonSurfaces(this.editorGroup);
+    }
     if(((this.currentWorld===7&&(this.currentLevel===3||this.currentLevel===4))||(this.currentWorld===8&&(this.currentLevel>=1&&this.currentLevel<=4))))stabilizeNeonSurfaces(this.editorGroup);
     this.editorGroup.updateMatrixWorld(true);
     this.spawnHeading=stageStartYaw(this.levelData);
@@ -4698,56 +4714,7 @@ export class LevelEditor {
 
               <div style="margin-top: 8px; display: flex; align-items: center; gap: 8px;">
                 <input type="checkbox" id="inp-prop-collision" style="width: 16px; height: 16px; cursor: pointer;" ${
-                  (selected.properties?.hasCollision !== undefined
-                    ? selected.properties.hasCollision
-                    : (selected.properties?.subType === "asturias_cangas_track" ||
-                       selected.properties?.subType === "asturias_cangas_fabada" ||
-                       selected.properties?.subType === "asturias_peak" ||
-                       selected.properties?.subType === "asturias_shelf" ||
-                       selected.properties?.subType === "tree" ||
-                       selected.properties?.subType === "fence" ||
-                       (selected.properties?.subType ?? "tree") === "lantern" ||
-                       selected.properties?.subType === "town_hall" ||
-                       selected.properties?.subType === "bench" ||
-                       selected.properties?.subType === "palm_tree" ||
-                       selected.properties?.subType === "lifeguard_chair" ||
-                       selected.properties?.subType === "beach_umbrella" ||
-                       selected.properties?.subType === "float_ring" ||
-                       selected.properties?.subType === "sunbed" ||
-                       selected.properties?.subType === "plush_bear" ||
-                       selected.properties?.subType === "jewelry_bust" ||
-                       selected.properties?.subType === "store_shelf" ||
-                       selected.properties?.subType === "surf_rack" ||
-                       selected.properties?.subType === "arcade_cabinet" ||
-                       selected.properties?.subType === "gelato_display" ||
-                       selected.properties?.subType === "bakery_counter" ||
-                       selected.properties?.subType === "fashion_mannequin" ||
-                       selected.properties?.subType === "sneaker_rack" ||
-                       selected.properties?.subType === "checkout_counter" ||
-                       selected.properties?.subType === "hurdes_stone_wall" ||
-                       selected.properties?.subType === "village_fountain" ||
-                       selected.properties?.subType === "stone_bridge_arch" ||
-                       selected.properties?.subType === "pine_hurdes" ||
-                       selected.properties?.subType === "village_church_tower" ||
-                       selected.properties?.subType === "terrace_table_set" ||
-                       selected.properties?.subType === "village_lantern_post" ||
-                       selected.properties?.subType === "wooden_bench_rustic" ||
-                       selected.properties?.subType === "spar_supermarket_sign" ||
-                       selected.properties?.subType === "hurdes_mountain_house" ||
-                       selected.properties?.subType === "pergola_green_post" ||
-                       selected.properties?.subType === "waterfall_rock_cliff" ||
-                       selected.properties?.subType === "madrid_metro_sign" ||
-                       selected.properties?.subType === "madrid_street_sign_carabanchel" ||
-                       selected.properties?.subType === "madrid_street_lamp_urban" ||
-                       selected.properties?.subType === "madrid_recycle_bins" ||
-                       selected.properties?.subType === "madrid_granite_bollard" ||
-                       selected.properties?.subType === "madrid_terrace_bar_umbrella" ||
-                       selected.properties?.subType === "madrid_residential_building" ||
-                       selected.properties?.subType === "madrid_bus_stop" ||
-                       selected.properties?.subType === "madrid_traffic_light" ||
-                       selected.properties?.subType === "bazar_shelf_display" ||
-                       selected.properties?.subType === "madrid_kiosk_press" ||
-                       selected.properties?.subType === "giant_goku_saiyan"))
+                  decorationHasCollision(selected)
                     ? "checked"
                     : ""
                 } />
@@ -5631,6 +5598,7 @@ export class LevelEditor {
         }
       }
     }
+    if(this.cachopoPreviewPivot)poseCachopo(this.editorGroup,this.cachopoPreviewPivot,this.editorAnimTime);
   }
 
   private clearEditorGroupResources(): void {

@@ -9,7 +9,7 @@ import type {PhysicsWorld} from '../src/physics/PhysicsWorld';
 
 afterEach(()=>{vi.unstubAllGlobals();vi.restoreAllMocks();});
 beforeEach(()=>{
-  const canvas=()=>({width:512,height:512,getContext:()=>({clearRect:vi.fn(),drawImage:vi.fn()})}) as unknown as HTMLCanvasElement;
+  const canvas=()=>({width:512,height:512,getContext:()=>({clearRect:vi.fn(),drawImage:vi.fn(),strokeText:vi.fn(),fillText:vi.fn()})}) as unknown as HTMLCanvasElement;
   vi.stubGlobal('document',{createElement:()=>canvas()});
   vi.spyOn(SpriteTextures,'getCharacterFullCanvas').mockImplementation(()=>canvas());
 });
@@ -41,19 +41,19 @@ describe('Unlocked character forms',()=>{
   });
   it('loads distinct skin animations once and reuses cached textures for repeated switches',()=>{
     const load=vi.spyOn(THREE.TextureLoader.prototype,'load').mockImplementation(()=>new THREE.Texture());
-    const states:CharacterState[]=['normal','move1','move2','scary1','scary2','happy'];
+    const states:CharacterState[]=['normal','move1','move2','scary1','scary2','happy','sleep'];
     for(const c of CHARACTERS) for(const state of states) {
       const normal=SpriteTextures.getCharacterTexture(c.id,state);
       for(const skin of getCharacterSkins(c.id)) {
-        expect(characterSpritePath(c.id,skin.id,state)).toBe(`/assets/characters/${skin.spriteBase}_${state}.png?art=ink2`);
+        expect(characterSpritePath(c.id,skin.id,state)).toBe(`/assets/characters/${skin.spriteBase}_${state}.${state==='sleep'?'webp':'png'}?art=ink2`);
         const texture=SpriteTextures.getCharacterTexture(c.id,state,skin.id);
         expect(SpriteTextures.getCharacterTexture(c.id,state,skin.id)).toBe(texture);
         if(skin.id==='normal')expect(texture).toBe(normal);else expect(texture).not.toBe(normal);
       }
     }
-    expect(load).toHaveBeenCalledTimes(72);
+    expect(load).toHaveBeenCalledTimes(84);
     for(const c of CHARACTERS) for(const skin of getCharacterSkins(c.id)) SpriteTextures.preloadCharacterSkin(c.id,skin.id);
-    expect(load).toHaveBeenCalledTimes(72);
+    expect(load).toHaveBeenCalledTimes(84);
   });
   it('changes the live player art even during movement and celebration without recreating physics',()=>{
     vi.spyOn(THREE.TextureLoader.prototype,'load').mockImplementation(()=>new THREE.Texture());

@@ -32,6 +32,11 @@ export class HUD {
   private cannonFire=false;
   private readonly underwaterOverlay: HTMLElement;
   private readonly pitchBlackOverlay: HTMLElement;
+  private readonly bombTime:HTMLElement;
+  private readonly fuse:SVGPathElement;
+  private readonly timeoutCard:HTMLElement;
+  private bombLimit=60;
+  private lastBombTick=-1;
 
   private bannerTimeout = 0;
   private teleportTimeout: number | null = null;
@@ -84,15 +89,18 @@ export class HUD {
           <span data-stage-badge>M1-N1-E1</span>
         </div>
 
-        <div class="hud-badge hud-time">
-          <span class="hud-icon">⏱️</span>
-          <span class="hud-val" data-time>00:00.00</span>
+        <div class="hud-badge hud-bomb" role="timer" aria-label="Tiempo restante">
+          <svg viewBox="0 0 220 56" preserveAspectRatio="none" class="hud-fuse" aria-hidden="true"><path class="hud-fuse-ash" d="M194 6 H18 Q6 6 6 18 V38 Q6 50 18 50 H202 Q214 50 214 38 V18 Q214 6 202 6 H194"/><path data-fuse pathLength="1000" d="M194 6 H18 Q6 6 6 18 V38 Q6 50 18 50 H202 Q214 50 214 38 V18 Q214 6 202 6 H194"/></svg>
+          <span class="hud-bomb-icon" aria-hidden="true">💣</span><span class="hud-val" data-bomb-time>01:00</span>
         </div>
 
         <div class="hud-actions">
           <button class="btn-hud" id="hud-btn-pause" title="Pausar">⏸️</button>
         </div>
       </div>
+
+      <div class="hud-badge hud-time hud-elapsed" aria-label="Tiempo total de la etapa"><span aria-hidden="true">⏱️</span><span class="hud-val" data-time>00:00.00</span></div>
+      <div class="hud-timeout" data-timeout hidden role="alert"><div>💣<strong>¡SE ACABÓ EL TIEMPO!</strong></div></div>
 
       <div class="hud-banner" data-banner style="display: none;"></div>
       <div class="hud-cannon-panel" data-cannon-panel hidden><span>Apunta con WASD, flechas o joystick · <b data-cannon-angle></b></span><button class="btn-hud" data-cannon-fire>Disparar · Espacio</button></div>
@@ -103,6 +111,9 @@ export class HUD {
     this.livesEl = this.root.querySelector("[data-lives]")!;
     this.itemsEl = this.root.querySelector("[data-collectibles]")!;
     this.timeEl = this.root.querySelector("[data-time]")!;
+    this.bombTime=this.root.querySelector('[data-bomb-time]')!;
+    this.fuse=this.root.querySelector('[data-fuse]')!;
+    this.timeoutCard=this.root.querySelector('[data-timeout]')!;
     this.stageEl = this.root.querySelector("[data-stage-badge]")!;
     this.itemIconEl = this.root.querySelector("[data-item-icon]")!;
     this.bannerEl = this.root.querySelector("[data-banner]")!;
@@ -131,6 +142,10 @@ export class HUD {
   }
 
   private currentStageMax = 10;
+
+  setBombLimit(seconds:number):void {this.bombLimit=seconds;this.lastBombTick=-1;this.hideTimeout();}
+  showTimeout():void {this.timeoutCard.hidden=false;}
+  hideTimeout():void {this.timeoutCard.hidden=true;}
 
   setStageInfo(world: number, level: number, stage: number, maxCollectibles = 10, stageName?: string): void {
     const stageCode = `M${world}-N${level}-E${stage}`;
@@ -345,7 +360,8 @@ export class HUD {
     lives: number,
     collectibles: number,
     time: number,
-    maxCollectibles?: number
+    maxCollectibles?: number,
+    bombElapsed = time
   ): void {
     if (typeof maxCollectibles === "number" && maxCollectibles > 0) {
       this.currentStageMax = maxCollectibles;
@@ -358,6 +374,15 @@ export class HUD {
     this.timeEl.textContent = `${String(minutes).padStart(2, "0")}:${seconds
       .toFixed(2)
       .padStart(5, "0")}`;
+    const tick=Math.floor(bombElapsed*10);
+    if(tick!==this.lastBombTick) {
+      this.lastBombTick=tick;
+      const remaining=Math.max(0,this.bombLimit-bombElapsed),whole=Math.ceil(remaining),progress=Math.min(1,bombElapsed/this.bombLimit);
+      this.bombTime.textContent=`${String(Math.floor(whole/60)).padStart(2,'0')}:${String(whole%60).padStart(2,'0')}`;
+      this.fuse.style.strokeDasharray=`${1000*(1-progress)} 1000`;
+      this.fuse.style.strokeDashoffset=String(-1000*progress);
+      this.bombTime.parentElement!.classList.toggle('is-urgent',remaining<=10);
+    }
   }
 
   updateFPS(fps: number, show: boolean): void {

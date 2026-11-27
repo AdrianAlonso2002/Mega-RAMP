@@ -1,3 +1,6 @@
+import {upgradeVivaGymChallenge} from './VivaGymChallenge';
+import {TGB_LAUNCH_SPEED, upgradeTGBBounce} from './TGBBounceSettings';
+import {upgradeToyPlanetArt} from './ToyPlanetArtwork';
 import publishedEditorStages from '../editor-saved/world-04.json';
 import {registerStageSet} from '../StageRegistry';
 import type { LevelData } from "../LevelTypes";
@@ -881,7 +884,7 @@ export const WORLD_04_LEVEL_04_STAGES: Record<number, LevelData> = {
   // ---------------------------------------------------------------------------
   // ETAPA 8: TGB
   // 4 Hamburguesas gigantes de brioche del TGB (diámetro 12m) que rebotan con
-  // elasticidad extrema (bounce: 2.15, físicas de colchón) suspendidas sobre
+  // impulso vertical fijo, sin acumular energía entre saltos, suspendidas sobre
   // el vacío a lo largo de más de 65m (>50m). Tienes que saltar de una a otra.
   // ---------------------------------------------------------------------------
   8: {
@@ -912,7 +915,7 @@ export const WORLD_04_LEVEL_04_STAGES: Record<number, LevelData> = {
         position: { x: 0.0, y: 1.0, z: 22.0 },
         rotation: { x: 0, y: 0, z: 0 },
         scale: { x: 12.0, y: 5.2, z: 12.0 },
-        properties: { variant: "tgb_burger", bounce: 2.15 }
+        properties: { variant: "tgb_burger", bounce: 0, launchSpeed: TGB_LAUNCH_SPEED }
       },
 
       // HAMBURGUESA GIGANTE 2 (Z = 6.0, X = -4.0, Elevada a Y = 3.5)
@@ -922,7 +925,7 @@ export const WORLD_04_LEVEL_04_STAGES: Record<number, LevelData> = {
         position: { x: -4.0, y: 3.5, z: 6.0 },
         rotation: { x: 0, y: 0.5, z: 0 },
         scale: { x: 12.0, y: 5.2, z: 12.0 },
-        properties: { variant: "tgb_burger", bounce: 2.15 }
+        properties: { variant: "tgb_burger", bounce: 0, launchSpeed: TGB_LAUNCH_SPEED }
       },
 
       // HAMBURGUESA GIGANTE 3 (Z = -10.0, X = 4.0, Elevada a Y = 6.0)
@@ -932,7 +935,7 @@ export const WORLD_04_LEVEL_04_STAGES: Record<number, LevelData> = {
         position: { x: 4.0, y: 6.0, z: -10.0 },
         rotation: { x: 0, y: -0.5, z: 0 },
         scale: { x: 12.0, y: 5.2, z: 12.0 },
-        properties: { variant: "tgb_burger", bounce: 2.15 }
+        properties: { variant: "tgb_burger", bounce: 0, launchSpeed: TGB_LAUNCH_SPEED }
       },
 
       // HAMBURGUESA GIGANTE 4 (Z = -26.0, X = 0.0, Elevada a Y = 8.5)
@@ -942,7 +945,7 @@ export const WORLD_04_LEVEL_04_STAGES: Record<number, LevelData> = {
         position: { x: 0.0, y: 8.5, z: -26.0 },
         rotation: { x: 0, y: 0.8, z: 0 },
         scale: { x: 12.0, y: 5.2, z: 12.0 },
-        properties: { variant: "tgb_burger", bounce: 2.15 }
+        properties: { variant: "tgb_burger", bounce: 0, launchSpeed: TGB_LAUNCH_SPEED }
       },
 
       // PLATAFORMA FINAL DE META
@@ -1197,5 +1200,8 @@ export const WORLD_04_LEVEL_04_STAGES: Record<number, LevelData> = {
 for (const [key, saved] of Object.entries(publishedEditorStages)) {
   if (key.startsWith('4_4_')) Object.assign(WORLD_04_LEVEL_04_STAGES[Number(key.split('_')[2])], structuredClone(saved));
 }
+upgradeToyPlanetArt(WORLD_04_LEVEL_04_STAGES[3]);
+upgradeTGBBounce(WORLD_04_LEVEL_04_STAGES[8]);
+upgradeVivaGymChallenge(WORLD_04_LEVEL_04_STAGES[10]);
 registerStageSet(4,4,WORLD_04_LEVEL_04_STAGES);
 

@@ -299,6 +299,7 @@ export class Game {
   }
 
   private pauseGame(): void {
+    AudioManager.getInstance().stopSnoring();
     if (this.state.screen === "gameplay") {
       this.state.screen = "pause";
       this.input.reset();

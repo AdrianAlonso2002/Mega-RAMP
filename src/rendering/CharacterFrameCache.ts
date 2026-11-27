@@ -65,7 +65,7 @@ export class CharacterFrameCache {
   }
 
   async waitForSkin(character:string,skinId:string):Promise<void> {
-    const states:CharacterState[]=['normal','move1','move2','scary1','scary2','happy'];
+    const states:CharacterState[]=['normal','move1','move2','scary1','scary2','happy','sleep'];
     const pending=states.map(state=>{this.get(character,state,skinId);return this.frames.get(`${getCharacterSkin(character,skinId).spriteBase}_${state}`)!.settled;});
     let timer:ReturnType<typeof setTimeout>|undefined;
     try {await Promise.race([Promise.all(pending),new Promise<void>(resolve=>{timer=setTimeout(resolve,8000);})]);}

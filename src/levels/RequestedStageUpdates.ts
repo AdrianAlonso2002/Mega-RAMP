@@ -1,3 +1,7 @@
+import {upgradeVivaGymChallenge} from './world-04/VivaGymChallenge';
+import {upgradeTGBBounce} from './world-04/TGBBounceSettings';
+import {upgradeToyPlanetArt} from './world-04/ToyPlanetArtwork';
+import {polishLasCruces} from './world-04/LasCrucesPolish';
 import {applyCollectibleCorrections} from './CollectibleCorrections';
 import {rebuildWheelTrain} from './WheelTrainRoute';
 import {applyPlazaFinale} from "./world-01/PlazaFinale";
@@ -34,9 +38,12 @@ import {TOKYO_POLISH_REVISION,TOKYO_MACHINE_REVISION,TOKYO_ARCADE_REVISION,TOKYO
 export function applyRequestedStageUpdates(data: LevelData, world: number, level: number, stage: number): LevelData {
   data=rebuildWheelTrain(data);
   upgradeCoastalFinale(data);
+  polishLasCruces(data);
+  upgradeToyPlanetArt(data);
+  upgradeTGBBounce(data);
   applyCollectibleCorrections(data,getRegisteredStage(world,level,stage)??undefined);
-  if(data.properties?.editorPublished || data.customSaved || data.properties?.userSaved)return data;
-  return applyPlazaFinale(applyCoastalStageUpdates(applyCollectibleBalance(applyStageMechanicUpdates(data,world,level,stage),world,level,stage)));
+  if(data.properties?.editorPublished || data.customSaved || data.properties?.userSaved)return upgradeVivaGymChallenge(data);
+  return upgradeVivaGymChallenge(applyPlazaFinale(applyCoastalStageUpdates(applyCollectibleBalance(applyStageMechanicUpdates(data,world,level,stage),world,level,stage))));
 }
 
 function applyStageMechanicUpdates(data: LevelData, world: number, level: number, stage: number): LevelData {

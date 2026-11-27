@@ -1,3 +1,5 @@
+import {StageClock,stageTimeLimit} from './StageClock';
+import {crossesCircularGoalOpening} from './CircularGoalCrossing';
 import { crossesGoalOpening } from "./GoalCrossing";
 import { assetUrl } from "../core/AssetUrl";
 import * as THREE from "three";
@@ -58,6 +60,8 @@ export class SceneManager {
   private player: Player | null = null;
   private currentLevel: BuiltLevel | null = null;
   private currentLevelData: LevelData | null = null;
+  private stageClock = new StageClock(60);
+  private timeoutShown = false;
 
   private isStageCompleted = false;
   private isGameOverTriggered = false;
@@ -251,6 +255,9 @@ export class SceneManager {
     const levelData = await this.preparedLevel.getStage(world, level, stage);
     if(options.signal?.aborted||!this.context)return;
     this.currentLevelData = levelData;
+    this.stageClock = new StageClock(stageTimeLimit(levelData));
+    this.context.state.timeLimit=this.stageClock.limit;
+    this.context.hud.setBombLimit(this.stageClock.limit);
     delete this.scene.userData.artPreviewData;this.artPreview=undefined;
     this.applyWorldLighting(world,level);
 
@@ -301,7 +308,8 @@ export class SceneManager {
       this.context.state.lives,
       this.context.state.levelRunCollectibles,
       0,
-      maxCol
+      maxCol,
+      this.stageClock.elapsed
     );
   }
 
@@ -315,7 +323,7 @@ export class SceneManager {
     })]);
   }
 
-  loadCustomLevel(data: LevelData,options:{deferIntro?:boolean}={}): void {
+  loadCustomLevel(data: LevelData,options:{deferIntro?:boolean;preserveMusic?:boolean}={}): void {
     if (!this.context) return;
 
     this.isStageCompleted = false;
@@ -328,6 +336,9 @@ export class SceneManager {
     this.context.state.selectedSkin=this.context.progression.getSelectedSkin(this.context.state.selectedCharacter);
     const charDef = getCharacterById(this.context.state.selectedCharacter, this.context.state.selectedSkin);
     this.currentLevelData = data;
+    this.stageClock = new StageClock(stageTimeLimit(data));
+    this.context.state.timeLimit=this.stageClock.limit;
+    this.context.hud.setBombLimit(this.stageClock.limit);
     delete this.scene.userData.artPreviewData;this.artPreview=undefined;
 
     // Configure cinematic camera mode for Tram, Bus, and Padel stages (Tranvia, Tranvia2, Bus35, Bus34, La Mina, Padel3)
@@ -359,7 +370,7 @@ export class SceneManager {
     this.scene.add(this.player.object);
 
     this.applyLevelEnvironment(data.world || 1, data.level || 1);
-    if(data.musicTrack)this.audio.startBGM(data.musicTrack);else this.audio.startLevel(data.world||1,data.level||1);
+    if(!options.preserveMusic){if(data.musicTrack)this.audio.startBGM(data.musicTrack);else this.audio.startLevel(data.world||1,data.level||1);}
 
     // Configure nocturnal pitch-black route atmosphere (M3-N4-E9: Ruta Nocturna)
     this.checkAndApplyPitchBlackMode(data.world || 1, data.level || 1, data.stage || 1, data);
@@ -374,7 +385,8 @@ export class SceneManager {
       this.context.state.lives,
       this.context.state.levelRunCollectibles,
       0,
-      maxCol
+      maxCol,
+      this.stageClock.elapsed
     );
   }
 
@@ -486,7 +498,8 @@ export class SceneManager {
         this.context.state.lives,
         this.context.state.levelRunCollectibles,
         0,
-        this.getLevelMaxCollectibles()
+        this.getLevelMaxCollectibles(),
+        this.stageClock.elapsed
       );
       return;
     }
@@ -499,7 +512,8 @@ export class SceneManager {
         this.context.state.lives,
         this.context.state.levelRunCollectibles,
         this.context.state.elapsedTime,
-        this.getLevelMaxCollectibles()
+        this.getLevelMaxCollectibles(),
+        this.stageClock.elapsed
       );
       return;
     }
@@ -509,6 +523,26 @@ export class SceneManager {
     }
 
     if (!this.isStageCompleted) {
+      const clockState=this.stageClock.tick(delta);
+      if(clockState!=="running") {
+        if(!this.timeoutShown) {
+          this.timeoutShown=true;this.goalSampleValid=false;
+          this.audio.beginBombTimeout();
+          this.context.hud.showTimeout();
+        }
+        this.player.showTimeout();
+        this.context.hud.update(this.context.state.lives,this.context.state.levelRunCollectibles,this.context.state.elapsedTime,this.getLevelMaxCollectibles(),this.stageClock.elapsed);
+        if(clockState==="restart") {
+          const data=this.currentLevelData;
+          const gameOver=this.context.state.loseLife();
+          this.context.state.resetStage();
+          if(gameOver) {this.isGameOverTriggered=true;this.isStageCompleted=true;this.context.onGameOver();}
+          else if(data)this.loadCustomLevel(data,{preserveMusic:true});
+        }
+        return;
+      }
+      const warningSecond=this.stageClock.takeWarningSecond();
+      if(warningSecond!==null)this.audio.playBombWarning(warningSecond);
       this.context.state.elapsedTime += delta;
     }
 
@@ -606,7 +640,9 @@ export class SceneManager {
       const teleportVersion=this.player.getTeleportVersion();
       if(teleportVersion!==this.goalTeleportVersion)this.goalSampleValid=false;
       this.goalTeleportVersion=teleportVersion;
-      const crossed = crossesGoalOpening(this.goalSampleValid ? this.previousGoalLocal : this.tempDiff, this.tempDiff);
+      const circle=goal.mesh.userData.goalCircle as {radius:number;centerY:number}|undefined;
+      const from=this.goalSampleValid?this.previousGoalLocal:this.tempDiff;
+      const crossed=circle?crossesCircularGoalOpening(from,this.tempDiff,circle.radius,circle.centerY):crossesGoalOpening(from,this.tempDiff);
       this.previousGoalLocal.copy(this.tempDiff);
       this.goalSampleValid = true;
 
@@ -1030,11 +1066,13 @@ export class SceneManager {
     this.updateVFX(delta);
 
     // 7. Update HUD values
+    this.audio.updateSnoring(delta,this.player.isSleeping());
     this.context.hud.update(
       this.context.state.lives,
       this.context.state.levelRunCollectibles,
       this.context.state.elapsedTime,
-      this.getLevelMaxCollectibles()
+      this.getLevelMaxCollectibles(),
+      this.stageClock.elapsed
     );
   }
 
@@ -1057,6 +1095,10 @@ export class SceneManager {
   }
 
   cleanupCurrentStage(): void {
+    this.timeoutShown=false;
+    this.context?.hud.hideTimeout();
+    this.audio.endBombTimeout();
+    this.audio.stopSnoring();
     this.goalSampleValid=false;
     this.busCameraMesh=null;
     this.context?.camera.setBusView(null);
@@ -1156,6 +1198,9 @@ export class SceneManager {
     }
 
     const isGameOver = this.context.state.loseLife();
+    this.stageClock.reset();
+    this.context.hud.setBombLimit(this.stageClock.limit);
+    this.context.hud.update(this.context.state.lives,this.context.state.levelRunCollectibles,this.context.state.elapsedTime,this.getLevelMaxCollectibles(),0);
 
     if (isGameOver) {
       this.isGameOverTriggered = true;

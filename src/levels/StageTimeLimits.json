@@ -1,0 +1,1927 @@
+{
+  "1_1_1": {
+    "name": "Cuadrado1",
+    "seconds": 60,
+    "estimatedRoute": 48,
+    "mechanismAllowance": 0
+  },
+  "1_1_2": {
+    "name": "Piscina",
+    "seconds": 60,
+    "estimatedRoute": 58,
+    "mechanismAllowance": 0
+  },
+  "1_1_3": {
+    "name": "Guitarra",
+    "seconds": 60,
+    "estimatedRoute": 92,
+    "mechanismAllowance": 0
+  },
+  "1_1_4": {
+    "name": "Río",
+    "seconds": 60,
+    "estimatedRoute": 78,
+    "mechanismAllowance": 0
+  },
+  "1_1_5": {
+    "name": "Objetos1",
+    "seconds": 60,
+    "estimatedRoute": 138,
+    "mechanismAllowance": 0
+  },
+  "1_1_6": {
+    "name": "Parque",
+    "seconds": 60,
+    "estimatedRoute": 78,
+    "mechanismAllowance": 0
+  },
+  "1_1_7": {
+    "name": "Toros",
+    "seconds": 60,
+    "estimatedRoute": 101,
+    "mechanismAllowance": 0
+  },
+  "1_1_8": {
+    "name": "Membrillo",
+    "seconds": 60,
+    "estimatedRoute": 69,
+    "mechanismAllowance": 0
+  },
+  "1_1_9": {
+    "name": "Blue",
+    "seconds": 60,
+    "estimatedRoute": 65,
+    "mechanismAllowance": 0
+  },
+  "1_1_10": {
+    "name": "Garaje",
+    "seconds": 60,
+    "estimatedRoute": 70,
+    "mechanismAllowance": 0
+  },
+  "1_2_1": {
+    "name": "Autobús a Santa Catalina",
+    "seconds": 90,
+    "estimatedRoute": 118,
+    "mechanismAllowance": 35
+  },
+  "1_2_2": {
+    "name": "Salto1",
+    "seconds": 60,
+    "estimatedRoute": 69,
+    "mechanismAllowance": 0
+  },
+  "1_2_3": {
+    "name": "Escaleras",
+    "seconds": 60,
+    "estimatedRoute": 68,
+    "mechanismAllowance": 0
+  },
+  "1_2_4": {
+    "name": "Parque2",
+    "seconds": 60,
+    "estimatedRoute": 107,
+    "mechanismAllowance": 0
+  },
+  "1_2_5": {
+    "name": "Objetos2",
+    "seconds": 60,
+    "estimatedRoute": 131,
+    "mechanismAllowance": 0
+  },
+  "1_2_6": {
+    "name": "Rejas",
+    "seconds": 60,
+    "estimatedRoute": 64,
+    "mechanismAllowance": 5
+  },
+  "1_2_7": {
+    "name": "Capilla",
+    "seconds": 60,
+    "estimatedRoute": 126,
+    "mechanismAllowance": 0
+  },
+  "1_2_8": {
+    "name": "Barras",
+    "seconds": 60,
+    "estimatedRoute": 78,
+    "mechanismAllowance": 0
+  },
+  "1_2_9": {
+    "name": "Tirolina",
+    "seconds": 60,
+    "estimatedRoute": 78,
+    "mechanismAllowance": 2
+  },
+  "1_2_10": {
+    "name": "Fuegos Artificiales",
+    "seconds": 60,
+    "estimatedRoute": 154,
+    "mechanismAllowance": 0
+  },
+  "1_3_1": {
+    "name": "Arroyo",
+    "seconds": 60,
+    "estimatedRoute": 131,
+    "mechanismAllowance": 0
+  },
+  "1_3_2": {
+    "name": "Callejón",
+    "seconds": 60,
+    "estimatedRoute": 96,
+    "mechanismAllowance": 0
+  },
+  "1_3_3": {
+    "name": "Correr1",
+    "seconds": 60,
+    "estimatedRoute": 97,
+    "mechanismAllowance": 0
+  },
+  "1_3_4": {
+    "name": "Feria",
+    "seconds": 60,
+    "estimatedRoute": 89,
+    "mechanismAllowance": 2
+  },
+  "1_3_5": {
+    "name": "Objetos3",
+    "seconds": 75,
+    "estimatedRoute": 181,
+    "mechanismAllowance": 0
+  },
+  "1_3_6": {
+    "name": "Chiringuito",
+    "seconds": 60,
+    "estimatedRoute": 84,
+    "mechanismAllowance": 0
+  },
+  "1_3_7": {
+    "name": "Piscina2",
+    "seconds": 60,
+    "estimatedRoute": 74,
+    "mechanismAllowance": 0
+  },
+  "1_3_8": {
+    "name": "Futbol",
+    "seconds": 60,
+    "estimatedRoute": 73,
+    "mechanismAllowance": 0
+  },
+  "1_3_9": {
+    "name": "Padel",
+    "seconds": 60,
+    "estimatedRoute": 48,
+    "mechanismAllowance": 2
+  },
+  "1_3_10": {
+    "name": "Dana",
+    "seconds": 75,
+    "estimatedRoute": 170,
+    "mechanismAllowance": 0
+  },
+  "1_4_1": {
+    "name": "Bar",
+    "seconds": 60,
+    "estimatedRoute": 53,
+    "mechanismAllowance": 0
+  },
+  "1_4_2": {
+    "name": "Panadería",
+    "seconds": 60,
+    "estimatedRoute": 92,
+    "mechanismAllowance": 6
+  },
+  "1_4_3": {
+    "name": "Cuesta",
+    "seconds": 60,
+    "estimatedRoute": 100,
+    "mechanismAllowance": 0
+  },
+  "1_4_4": {
+    "name": "Muro1",
+    "seconds": 60,
+    "estimatedRoute": 73,
+    "mechanismAllowance": 2
+  },
+  "1_4_5": {
+    "name": "Objetos4",
+    "seconds": 75,
+    "estimatedRoute": 159,
+    "mechanismAllowance": 0
+  },
+  "1_4_6": {
+    "name": "Día",
+    "seconds": 60,
+    "estimatedRoute": 74,
+    "mechanismAllowance": 0
+  },
+  "1_4_7": {
+    "name": "Ayuntamiento",
+    "seconds": 60,
+    "estimatedRoute": 87,
+    "mechanismAllowance": 3
+  },
+  "1_4_8": {
+    "name": "Cojera",
+    "seconds": 60,
+    "estimatedRoute": 78,
+    "mechanismAllowance": 2
+  },
+  "1_4_9": {
+    "name": "Concierto",
+    "seconds": 60,
+    "estimatedRoute": 109,
+    "mechanismAllowance": 2
+  },
+  "1_4_10": {
+    "name": "Banderitas",
+    "seconds": 60,
+    "estimatedRoute": 133,
+    "mechanismAllowance": 0
+  },
+  "2_1_1": {
+    "name": "Cuadrado2",
+    "seconds": 60,
+    "estimatedRoute": 60,
+    "mechanismAllowance": 0
+  },
+  "2_1_2": {
+    "name": "Arpón",
+    "seconds": 60,
+    "estimatedRoute": 80,
+    "mechanismAllowance": 0
+  },
+  "2_1_3": {
+    "name": "Piscina3",
+    "seconds": 60,
+    "estimatedRoute": 81,
+    "mechanismAllowance": 0
+  },
+  "2_1_4": {
+    "name": "Socorrista",
+    "seconds": 60,
+    "estimatedRoute": 96,
+    "mechanismAllowance": 2
+  },
+  "2_1_5": {
+    "name": "Objetos5",
+    "seconds": 60,
+    "estimatedRoute": 139,
+    "mechanismAllowance": 0
+  },
+  "2_1_6": {
+    "name": "Erizo",
+    "seconds": 60,
+    "estimatedRoute": 79,
+    "mechanismAllowance": 2
+  },
+  "2_1_7": {
+    "name": "Ascensor",
+    "seconds": 60,
+    "estimatedRoute": 60,
+    "mechanismAllowance": 2
+  },
+  "2_1_8": {
+    "name": "Noveno",
+    "seconds": 60,
+    "estimatedRoute": 96,
+    "mechanismAllowance": 0
+  },
+  "2_1_9": {
+    "name": "Colchón",
+    "seconds": 60,
+    "estimatedRoute": 90,
+    "mechanismAllowance": 2
+  },
+  "2_1_10": {
+    "name": "Ventilador",
+    "seconds": 60,
+    "estimatedRoute": 74,
+    "mechanismAllowance": 2
+  },
+  "2_2_1": {
+    "name": "Parque3",
+    "seconds": 60,
+    "estimatedRoute": 85,
+    "mechanismAllowance": 0
+  },
+  "2_2_2": {
+    "name": "Salto2",
+    "seconds": 60,
+    "estimatedRoute": 129,
+    "mechanismAllowance": 0
+  },
+  "2_2_3": {
+    "name": "Cuesta2",
+    "seconds": 60,
+    "estimatedRoute": 124,
+    "mechanismAllowance": 0
+  },
+  "2_2_4": {
+    "name": "Tranvia",
+    "seconds": 60,
+    "estimatedRoute": 122,
+    "mechanismAllowance": 2
+  },
+  "2_2_5": {
+    "name": "Objetos6",
+    "seconds": 75,
+    "estimatedRoute": 205,
+    "mechanismAllowance": 0
+  },
+  "2_2_6": {
+    "name": "Bici",
+    "seconds": 60,
+    "estimatedRoute": 153,
+    "mechanismAllowance": 6
+  },
+  "2_2_7": {
+    "name": "Casino",
+    "seconds": 60,
+    "estimatedRoute": 77,
+    "mechanismAllowance": 2
+  },
+  "2_2_8": {
+    "name": "Centro Comercial",
+    "seconds": 60,
+    "estimatedRoute": 167,
+    "mechanismAllowance": 0
+  },
+  "2_2_9": {
+    "name": "Mercadillo",
+    "seconds": 75,
+    "estimatedRoute": 184,
+    "mechanismAllowance": 0
+  },
+  "2_2_10": {
+    "name": "Puerto",
+    "seconds": 60,
+    "estimatedRoute": 129,
+    "mechanismAllowance": 0
+  },
+  "2_3_1": {
+    "name": "Kiosko",
+    "seconds": 60,
+    "estimatedRoute": 83,
+    "mechanismAllowance": 0
+  },
+  "2_3_2": {
+    "name": "Bajada",
+    "seconds": 60,
+    "estimatedRoute": 99,
+    "mechanismAllowance": 0
+  },
+  "2_3_3": {
+    "name": "Correr2",
+    "seconds": 60,
+    "estimatedRoute": 120,
+    "mechanismAllowance": 0
+  },
+  "2_3_4": {
+    "name": "Tablones",
+    "seconds": 60,
+    "estimatedRoute": 81,
+    "mechanismAllowance": 18
+  },
+  "2_3_5": {
+    "name": "Objetos7",
+    "seconds": 75,
+    "estimatedRoute": 214,
+    "mechanismAllowance": 0
+  },
+  "2_3_6": {
+    "name": "Sombrilla",
+    "seconds": 60,
+    "estimatedRoute": 57,
+    "mechanismAllowance": 2
+  },
+  "2_3_7": {
+    "name": "Toalla",
+    "seconds": 60,
+    "estimatedRoute": 57,
+    "mechanismAllowance": 2
+  },
+  "2_3_8": {
+    "name": "Paseo",
+    "seconds": 60,
+    "estimatedRoute": 101,
+    "mechanismAllowance": 6
+  },
+  "2_3_9": {
+    "name": "Hippies",
+    "seconds": 60,
+    "estimatedRoute": 102,
+    "mechanismAllowance": 0
+  },
+  "2_3_10": {
+    "name": "Playa",
+    "seconds": 60,
+    "estimatedRoute": 93,
+    "mechanismAllowance": 5
+  },
+  "2_4_1": {
+    "name": "Tranvia2",
+    "seconds": 90,
+    "estimatedRoute": 226,
+    "mechanismAllowance": 2
+  },
+  "2_4_2": {
+    "name": "Palmeras",
+    "seconds": 60,
+    "estimatedRoute": 112,
+    "mechanismAllowance": 0
+  },
+  "2_4_3": {
+    "name": "Mercadona",
+    "seconds": 75,
+    "estimatedRoute": 179,
+    "mechanismAllowance": 0
+  },
+  "2_4_4": {
+    "name": "Muro2",
+    "seconds": 60,
+    "estimatedRoute": 80,
+    "mechanismAllowance": 2
+  },
+  "2_4_5": {
+    "name": "Objetos8",
+    "seconds": 75,
+    "estimatedRoute": 190,
+    "mechanismAllowance": 6
+  },
+  "2_4_6": {
+    "name": "Mercado",
+    "seconds": 60,
+    "estimatedRoute": 148,
+    "mechanismAllowance": 0
+  },
+  "2_4_7": {
+    "name": "Bazar",
+    "seconds": 60,
+    "estimatedRoute": 140,
+    "mechanismAllowance": 0
+  },
+  "2_4_8": {
+    "name": "Ropa",
+    "seconds": 60,
+    "estimatedRoute": 92,
+    "mechanismAllowance": 0
+  },
+  "2_4_9": {
+    "name": "Popeye",
+    "seconds": 60,
+    "estimatedRoute": 67,
+    "mechanismAllowance": 2
+  },
+  "2_4_10": {
+    "name": "Helado",
+    "seconds": 60,
+    "estimatedRoute": 146,
+    "mechanismAllowance": 0
+  },
+  "3_1_1": {
+    "name": "Cuadrado3",
+    "seconds": 60,
+    "estimatedRoute": 49,
+    "mechanismAllowance": 0
+  },
+  "3_1_2": {
+    "name": "Callejuela",
+    "seconds": 60,
+    "estimatedRoute": 78,
+    "mechanismAllowance": 0
+  },
+  "3_1_3": {
+    "name": "Fuente",
+    "seconds": 60,
+    "estimatedRoute": 85,
+    "mechanismAllowance": 0
+  },
+  "3_1_4": {
+    "name": "Almacen",
+    "seconds": 60,
+    "estimatedRoute": 89,
+    "mechanismAllowance": 0
+  },
+  "3_1_5": {
+    "name": "Objetos9",
+    "seconds": 75,
+    "estimatedRoute": 157,
+    "mechanismAllowance": 0
+  },
+  "3_1_6": {
+    "name": "Escaleras2",
+    "seconds": 60,
+    "estimatedRoute": 75,
+    "mechanismAllowance": 0
+  },
+  "3_1_7": {
+    "name": "Salamandra",
+    "seconds": 75,
+    "estimatedRoute": 222,
+    "mechanismAllowance": 0
+  },
+  "3_1_8": {
+    "name": "Ventilador2",
+    "seconds": 60,
+    "estimatedRoute": 73,
+    "mechanismAllowance": 3
+  },
+  "3_1_9": {
+    "name": "Puertas Blancas",
+    "seconds": 60,
+    "estimatedRoute": 61,
+    "mechanismAllowance": 5
+  },
+  "3_1_10": {
+    "name": "Misina",
+    "seconds": 60,
+    "estimatedRoute": 77,
+    "mechanismAllowance": 0
+  },
+  "3_2_1": {
+    "name": "Callejuela2",
+    "seconds": 60,
+    "estimatedRoute": 80,
+    "mechanismAllowance": 0
+  },
+  "3_2_2": {
+    "name": "Salto3",
+    "seconds": 60,
+    "estimatedRoute": 96,
+    "mechanismAllowance": 0
+  },
+  "3_2_3": {
+    "name": "Perros",
+    "seconds": 60,
+    "estimatedRoute": 123,
+    "mechanismAllowance": 9
+  },
+  "3_2_4": {
+    "name": "Miel",
+    "seconds": 60,
+    "estimatedRoute": 93,
+    "mechanismAllowance": 0
+  },
+  "3_2_5": {
+    "name": "Objetos10",
+    "seconds": 60,
+    "estimatedRoute": 134,
+    "mechanismAllowance": 0
+  },
+  "3_2_6": {
+    "name": "Plaza",
+    "seconds": 60,
+    "estimatedRoute": 106,
+    "mechanismAllowance": 0
+  },
+  "3_2_7": {
+    "name": "Dibujos",
+    "seconds": 60,
+    "estimatedRoute": 70,
+    "mechanismAllowance": 15
+  },
+  "3_2_8": {
+    "name": "Niñas",
+    "seconds": 60,
+    "estimatedRoute": 74,
+    "mechanismAllowance": 3
+  },
+  "3_2_9": {
+    "name": "Bajada2",
+    "seconds": 60,
+    "estimatedRoute": 117,
+    "mechanismAllowance": 0
+  },
+  "3_2_10": {
+    "name": "La Era",
+    "seconds": 75,
+    "estimatedRoute": 223,
+    "mechanismAllowance": 0
+  },
+  "3_3_1": {
+    "name": "Camino",
+    "seconds": 60,
+    "estimatedRoute": 100,
+    "mechanismAllowance": 0
+  },
+  "3_3_2": {
+    "name": "Polideportivo",
+    "seconds": 60,
+    "estimatedRoute": 108,
+    "mechanismAllowance": 8
+  },
+  "3_3_3": {
+    "name": "Correr3",
+    "seconds": 60,
+    "estimatedRoute": 99,
+    "mechanismAllowance": 0
+  },
+  "3_3_4": {
+    "name": "Cuatro Caminos",
+    "seconds": 60,
+    "estimatedRoute": 107,
+    "mechanismAllowance": 0
+  },
+  "3_3_5": {
+    "name": "Objetos11",
+    "seconds": 60,
+    "estimatedRoute": 144,
+    "mechanismAllowance": 0
+  },
+  "3_3_6": {
+    "name": "Plaza2",
+    "seconds": 60,
+    "estimatedRoute": 132,
+    "mechanismAllowance": 0
+  },
+  "3_3_7": {
+    "name": "Spar",
+    "seconds": 60,
+    "estimatedRoute": 66,
+    "mechanismAllowance": 0
+  },
+  "3_3_8": {
+    "name": "Río Los Ángeles",
+    "seconds": 75,
+    "estimatedRoute": 182,
+    "mechanismAllowance": 0
+  },
+  "3_3_9": {
+    "name": "Turrón",
+    "seconds": 60,
+    "estimatedRoute": 70,
+    "mechanismAllowance": 2
+  },
+  "3_3_10": {
+    "name": "Mirador",
+    "seconds": 60,
+    "estimatedRoute": 144,
+    "mechanismAllowance": 0
+  },
+  "3_4_1": {
+    "name": "Bazar Gigante",
+    "seconds": 60,
+    "estimatedRoute": 129,
+    "mechanismAllowance": 0
+  },
+  "3_4_2": {
+    "name": "Cuesta3",
+    "seconds": 60,
+    "estimatedRoute": 94,
+    "mechanismAllowance": 0
+  },
+  "3_4_3": {
+    "name": "Niños",
+    "seconds": 60,
+    "estimatedRoute": 72,
+    "mechanismAllowance": 3
+  },
+  "3_4_4": {
+    "name": "Muro3",
+    "seconds": 60,
+    "estimatedRoute": 81,
+    "mechanismAllowance": 5
+  },
+  "3_4_5": {
+    "name": "Objetos12",
+    "seconds": 60,
+    "estimatedRoute": 146,
+    "mechanismAllowance": 0
+  },
+  "3_4_6": {
+    "name": "Curvas",
+    "seconds": 60,
+    "estimatedRoute": 126,
+    "mechanismAllowance": 0
+  },
+  "3_4_7": {
+    "name": "Sin Cobertura",
+    "seconds": 120,
+    "estimatedRoute": 372,
+    "mechanismAllowance": 0
+  },
+  "3_4_8": {
+    "name": "Cuesta4",
+    "seconds": 60,
+    "estimatedRoute": 82,
+    "mechanismAllowance": 0
+  },
+  "3_4_9": {
+    "name": "Ruta Nocturna",
+    "seconds": 60,
+    "estimatedRoute": 88,
+    "mechanismAllowance": 0
+  },
+  "3_4_10": {
+    "name": "Chorrito",
+    "seconds": 60,
+    "estimatedRoute": 151,
+    "mechanismAllowance": 0
+  },
+  "4_1_1": {
+    "name": "Cuadrado4",
+    "seconds": 60,
+    "estimatedRoute": 57,
+    "mechanismAllowance": 0
+  },
+  "4_1_2": {
+    "name": "Bus35",
+    "seconds": 60,
+    "estimatedRoute": 138,
+    "mechanismAllowance": 2
+  },
+  "4_1_3": {
+    "name": "Día2",
+    "seconds": 60,
+    "estimatedRoute": 119,
+    "mechanismAllowance": 6
+  },
+  "4_1_4": {
+    "name": "Droguería",
+    "seconds": 60,
+    "estimatedRoute": 99,
+    "mechanismAllowance": 0
+  },
+  "4_1_5": {
+    "name": "Objetos13",
+    "seconds": 75,
+    "estimatedRoute": 151,
+    "mechanismAllowance": 2
+  },
+  "4_1_6": {
+    "name": "Misina2",
+    "seconds": 60,
+    "estimatedRoute": 109,
+    "mechanismAllowance": 0
+  },
+  "4_1_7": {
+    "name": "vidas tiene el gato",
+    "seconds": 60,
+    "estimatedRoute": 68,
+    "mechanismAllowance": 0
+  },
+  "4_1_8": {
+    "name": "Litos",
+    "seconds": 60,
+    "estimatedRoute": 74,
+    "mechanismAllowance": 2
+  },
+  "4_1_9": {
+    "name": "Adri",
+    "seconds": 75,
+    "estimatedRoute": 194,
+    "mechanismAllowance": 0
+  },
+  "4_1_10": {
+    "name": "Pinar",
+    "seconds": 60,
+    "estimatedRoute": 122,
+    "mechanismAllowance": 2
+  },
+  "4_2_1": {
+    "name": "Bus34",
+    "seconds": 60,
+    "estimatedRoute": 155,
+    "mechanismAllowance": 2
+  },
+  "4_2_2": {
+    "name": "Salto4",
+    "seconds": 60,
+    "estimatedRoute": 163,
+    "mechanismAllowance": 0
+  },
+  "4_2_3": {
+    "name": "Padel2",
+    "seconds": 60,
+    "estimatedRoute": 122,
+    "mechanismAllowance": 2
+  },
+  "4_2_4": {
+    "name": "La Mina",
+    "seconds": 75,
+    "estimatedRoute": 198,
+    "mechanismAllowance": 0
+  },
+  "4_2_5": {
+    "name": "Objetos14",
+    "seconds": 60,
+    "estimatedRoute": 140,
+    "mechanismAllowance": 2
+  },
+  "4_2_6": {
+    "name": "Galway",
+    "seconds": 60,
+    "estimatedRoute": 72,
+    "mechanismAllowance": 3
+  },
+  "4_2_7": {
+    "name": "13 2B",
+    "seconds": 60,
+    "estimatedRoute": 73,
+    "mechanismAllowance": 5
+  },
+  "4_2_8": {
+    "name": "Rony",
+    "seconds": 60,
+    "estimatedRoute": 97,
+    "mechanismAllowance": 0
+  },
+  "4_2_9": {
+    "name": "Pao",
+    "seconds": 60,
+    "estimatedRoute": 109,
+    "mechanismAllowance": 0
+  },
+  "4_2_10": {
+    "name": "Ninanos",
+    "seconds": 75,
+    "estimatedRoute": 163,
+    "mechanismAllowance": 14
+  },
+  "4_3_1": {
+    "name": "Bici2",
+    "seconds": 60,
+    "estimatedRoute": 79,
+    "mechanismAllowance": 6
+  },
+  "4_3_2": {
+    "name": "Alba de Tormes",
+    "seconds": 60,
+    "estimatedRoute": 120,
+    "mechanismAllowance": 0
+  },
+  "4_3_3": {
+    "name": "Correr4",
+    "seconds": 60,
+    "estimatedRoute": 170,
+    "mechanismAllowance": 0
+  },
+  "4_3_4": {
+    "name": "Padel3",
+    "seconds": 60,
+    "estimatedRoute": 80,
+    "mechanismAllowance": 3
+  },
+  "4_3_5": {
+    "name": "Objetos15",
+    "seconds": 60,
+    "estimatedRoute": 104,
+    "mechanismAllowance": 2
+  },
+  "4_3_6": {
+    "name": "Parque Pirata",
+    "seconds": 60,
+    "estimatedRoute": 111,
+    "mechanismAllowance": 8
+  },
+  "4_3_7": {
+    "name": "Carrefour",
+    "seconds": 105,
+    "estimatedRoute": 299,
+    "mechanismAllowance": 0
+  },
+  "4_3_8": {
+    "name": "Escaleras Republicanas",
+    "seconds": 60,
+    "estimatedRoute": 86,
+    "mechanismAllowance": 12
+  },
+  "4_3_9": {
+    "name": "Parque Aluche",
+    "seconds": 60,
+    "estimatedRoute": 151,
+    "mechanismAllowance": 0
+  },
+  "4_3_10": {
+    "name": "Lago",
+    "seconds": 60,
+    "estimatedRoute": 62,
+    "mechanismAllowance": 5
+  },
+  "4_4_1": {
+    "name": "2Bus35",
+    "seconds": 60,
+    "estimatedRoute": 134,
+    "mechanismAllowance": 2
+  },
+  "4_4_2": {
+    "name": "Primark",
+    "seconds": 75,
+    "estimatedRoute": 229,
+    "mechanismAllowance": 0
+  },
+  "4_4_3": {
+    "name": "ToyPlanet",
+    "seconds": 60,
+    "estimatedRoute": 100,
+    "mechanismAllowance": 8
+  },
+  "4_4_4": {
+    "name": "Muro4",
+    "seconds": 75,
+    "estimatedRoute": 137,
+    "mechanismAllowance": 12
+  },
+  "4_4_5": {
+    "name": "Objetos16",
+    "seconds": 75,
+    "estimatedRoute": 193,
+    "mechanismAllowance": 3
+  },
+  "4_4_6": {
+    "name": "Rodilla",
+    "seconds": 105,
+    "estimatedRoute": 303,
+    "mechanismAllowance": 0
+  },
+  "4_4_7": {
+    "name": "TacoBell",
+    "seconds": 60,
+    "estimatedRoute": 129,
+    "mechanismAllowance": 2
+  },
+  "4_4_8": {
+    "name": "TGB",
+    "seconds": 60,
+    "estimatedRoute": 163,
+    "mechanismAllowance": 0
+  },
+  "4_4_9": {
+    "name": "YelmoCines",
+    "seconds": 60,
+    "estimatedRoute": 136,
+    "mechanismAllowance": 0
+  },
+  "4_4_10": {
+    "name": "VivaGYM",
+    "seconds": 105,
+    "estimatedRoute": 185,
+    "mechanismAllowance": 35
+  },
+  "5_1_1": {
+    "name": "Cuadrado5",
+    "seconds": 60,
+    "estimatedRoute": 72,
+    "mechanismAllowance": 0
+  },
+  "5_1_2": {
+    "name": "Bajada Autopista",
+    "seconds": 105,
+    "estimatedRoute": 312,
+    "mechanismAllowance": 0
+  },
+  "5_1_3": {
+    "name": "Picos",
+    "seconds": 60,
+    "estimatedRoute": 157,
+    "mechanismAllowance": 0
+  },
+  "5_1_4": {
+    "name": "Aparcamiento",
+    "seconds": 60,
+    "estimatedRoute": 48,
+    "mechanismAllowance": 3
+  },
+  "5_1_5": {
+    "name": "Objetos17",
+    "seconds": 60,
+    "estimatedRoute": 144,
+    "mechanismAllowance": 0
+  },
+  "5_1_6": {
+    "name": "Gijón",
+    "seconds": 75,
+    "estimatedRoute": 155,
+    "mechanismAllowance": 11
+  },
+  "5_1_7": {
+    "name": "Alimerka",
+    "seconds": 60,
+    "estimatedRoute": 140,
+    "mechanismAllowance": 0
+  },
+  "5_1_8": {
+    "name": "Tallarines",
+    "seconds": 90,
+    "estimatedRoute": 276,
+    "mechanismAllowance": 0
+  },
+  "5_1_9": {
+    "name": "Mafalda",
+    "seconds": 60,
+    "estimatedRoute": 105,
+    "mechanismAllowance": 2
+  },
+  "5_1_10": {
+    "name": "Cachopo",
+    "seconds": 75,
+    "estimatedRoute": 188,
+    "mechanismAllowance": 0
+  },
+  "5_2_1": {
+    "name": "Giros Inesperados",
+    "seconds": 120,
+    "estimatedRoute": 412,
+    "mechanismAllowance": 0
+  },
+  "5_2_2": {
+    "name": "Salto5",
+    "seconds": 75,
+    "estimatedRoute": 183,
+    "mechanismAllowance": 6
+  },
+  "5_2_3": {
+    "name": "Aire Acondicionado",
+    "seconds": 60,
+    "estimatedRoute": 130,
+    "mechanismAllowance": 6
+  },
+  "5_2_4": {
+    "name": "Imanes",
+    "seconds": 60,
+    "estimatedRoute": 120,
+    "mechanismAllowance": 12
+  },
+  "5_2_5": {
+    "name": "Objetos18",
+    "seconds": 60,
+    "estimatedRoute": 150,
+    "mechanismAllowance": 0
+  },
+  "5_2_6": {
+    "name": "Helado2",
+    "seconds": 60,
+    "estimatedRoute": 136,
+    "mechanismAllowance": 0
+  },
+  "5_2_7": {
+    "name": "Sendero",
+    "seconds": 75,
+    "estimatedRoute": 227,
+    "mechanismAllowance": 0
+  },
+  "5_2_8": {
+    "name": "Hórreo",
+    "seconds": 75,
+    "estimatedRoute": 210,
+    "mechanismAllowance": 0
+  },
+  "5_2_9": {
+    "name": "Fabada",
+    "seconds": 60,
+    "estimatedRoute": 98,
+    "mechanismAllowance": 3
+  },
+  "5_2_10": {
+    "name": "Puente",
+    "seconds": 90,
+    "estimatedRoute": 248,
+    "mechanismAllowance": 8
+  },
+  "5_3_1": {
+    "name": "Canoa",
+    "seconds": 75,
+    "estimatedRoute": 221,
+    "mechanismAllowance": 3
+  },
+  "5_3_2": {
+    "name": "Sin Bañador",
+    "seconds": 60,
+    "estimatedRoute": 137,
+    "mechanismAllowance": 11
+  },
+  "5_3_3": {
+    "name": "Correr5",
+    "seconds": 135,
+    "estimatedRoute": 450,
+    "mechanismAllowance": 2
+  },
+  "5_3_4": {
+    "name": "Bajada al Descenso",
+    "seconds": 210,
+    "estimatedRoute": 615,
+    "mechanismAllowance": 35
+  },
+  "5_3_5": {
+    "name": "Objetos19",
+    "seconds": 105,
+    "estimatedRoute": 254,
+    "mechanismAllowance": 18
+  },
+  "5_3_6": {
+    "name": "Recta del Descenso",
+    "seconds": 150,
+    "estimatedRoute": 1136,
+    "mechanismAllowance": 35,
+    "note": "Descenso/vehículo/persecución: avance efectivo más rápido que a pie."
+  },
+  "5_3_7": {
+    "name": "SuperBajada",
+    "seconds": 120,
+    "estimatedRoute": 333,
+    "mechanismAllowance": 15
+  },
+  "5_3_8": {
+    "name": "Piedras",
+    "seconds": 285,
+    "estimatedRoute": 927,
+    "mechanismAllowance": 35
+  },
+  "5_3_9": {
+    "name": "Caída Libre",
+    "seconds": 120,
+    "estimatedRoute": 367,
+    "mechanismAllowance": 11
+  },
+  "5_3_10": {
+    "name": "MegaBajada",
+    "seconds": 240,
+    "estimatedRoute": 2378,
+    "mechanismAllowance": 35,
+    "note": "Descenso/vehículo/persecución: avance efectivo más rápido que a pie."
+  },
+  "5_4_1": {
+    "name": "Bus Asturiano",
+    "seconds": 135,
+    "estimatedRoute": 429,
+    "mechanismAllowance": 6
+  },
+  "5_4_2": {
+    "name": "Curvas en Bus",
+    "seconds": 210,
+    "estimatedRoute": 700,
+    "mechanismAllowance": 6
+  },
+  "5_4_3": {
+    "name": "Curvas y Vacas en Bus",
+    "seconds": 195,
+    "estimatedRoute": 687,
+    "mechanismAllowance": 8
+  },
+  "5_4_4": {
+    "name": "Muro5",
+    "seconds": 75,
+    "estimatedRoute": 134,
+    "mechanismAllowance": 12
+  },
+  "5_4_5": {
+    "name": "Objetos20",
+    "seconds": 60,
+    "estimatedRoute": 148,
+    "mechanismAllowance": 0
+  },
+  "5_4_6": {
+    "name": "Mina",
+    "seconds": 180,
+    "estimatedRoute": 4873,
+    "mechanismAllowance": 0,
+    "note": "Descenso/vehículo/persecución: avance efectivo más rápido que a pie."
+  },
+  "5_4_7": {
+    "name": "Vaques",
+    "seconds": 120,
+    "estimatedRoute": 407,
+    "mechanismAllowance": 0
+  },
+  "5_4_8": {
+    "name": "Fuente 7 caños",
+    "seconds": 60,
+    "estimatedRoute": 95,
+    "mechanismAllowance": 2
+  },
+  "5_4_9": {
+    "name": "Covadonga",
+    "seconds": 120,
+    "estimatedRoute": 397,
+    "mechanismAllowance": 2
+  },
+  "5_4_10": {
+    "name": "Picos de Covadonga",
+    "seconds": 150,
+    "estimatedRoute": 526,
+    "mechanismAllowance": 0
+  },
+  "6_1_1": {
+    "name": "Cuadrado6",
+    "seconds": 60,
+    "estimatedRoute": 79,
+    "mechanismAllowance": 0
+  },
+  "6_1_2": {
+    "name": "Airport",
+    "seconds": 105,
+    "estimatedRoute": 323,
+    "mechanismAllowance": 0
+  },
+  "6_1_3": {
+    "name": "Underground",
+    "seconds": 195,
+    "estimatedRoute": 641,
+    "mechanismAllowance": 5
+  },
+  "6_1_4": {
+    "name": "M&S",
+    "seconds": 75,
+    "estimatedRoute": 162,
+    "mechanismAllowance": 11
+  },
+  "6_1_5": {
+    "name": "Objetos21",
+    "seconds": 75,
+    "estimatedRoute": 175,
+    "mechanismAllowance": 0
+  },
+  "6_1_6": {
+    "name": "Freaking Cold",
+    "seconds": 105,
+    "estimatedRoute": 352,
+    "mechanismAllowance": 0
+  },
+  "6_1_7": {
+    "name": "Crows",
+    "seconds": 120,
+    "estimatedRoute": 273,
+    "mechanismAllowance": 24
+  },
+  "6_1_8": {
+    "name": "Primo Punch",
+    "seconds": 60,
+    "estimatedRoute": 87,
+    "mechanismAllowance": 2
+  },
+  "6_1_9": {
+    "name": "Plancha de pelo",
+    "seconds": 150,
+    "estimatedRoute": 522,
+    "mechanismAllowance": 2
+  },
+  "6_1_10": {
+    "name": "Tinieblas",
+    "seconds": 90,
+    "estimatedRoute": 228,
+    "mechanismAllowance": 0
+  },
+  "6_2_1": {
+    "name": "Library",
+    "seconds": 75,
+    "estimatedRoute": 178,
+    "mechanismAllowance": 0
+  },
+  "6_2_2": {
+    "name": "Salto6",
+    "seconds": 75,
+    "estimatedRoute": 223,
+    "mechanismAllowance": 0
+  },
+  "6_2_3": {
+    "name": "Ancient Egypt",
+    "seconds": 60,
+    "estimatedRoute": 47,
+    "mechanismAllowance": 2
+  },
+  "6_2_4": {
+    "name": "Ancient Greece",
+    "seconds": 105,
+    "estimatedRoute": 308,
+    "mechanismAllowance": 0
+  },
+  "6_2_5": {
+    "name": "Objetos22",
+    "seconds": 105,
+    "estimatedRoute": 301,
+    "mechanismAllowance": 0
+  },
+  "6_2_6": {
+    "name": "Ancient Roma",
+    "seconds": 105,
+    "estimatedRoute": 334,
+    "mechanismAllowance": 0
+  },
+  "6_2_7": {
+    "name": "Museum Café",
+    "seconds": 60,
+    "estimatedRoute": 163,
+    "mechanismAllowance": 0
+  },
+  "6_2_8": {
+    "name": "Art Paintings",
+    "seconds": 105,
+    "estimatedRoute": 276,
+    "mechanismAllowance": 12
+  },
+  "6_2_9": {
+    "name": "Precious Gems",
+    "seconds": 105,
+    "estimatedRoute": 274,
+    "mechanismAllowance": 8
+  },
+  "6_2_10": {
+    "name": "Night at the Museum",
+    "seconds": 210,
+    "estimatedRoute": 3045,
+    "mechanismAllowance": 30,
+    "note": "Descenso/vehículo/persecución: avance efectivo más rápido que a pie."
+  },
+  "6_3_1": {
+    "name": "Missed Train",
+    "seconds": 150,
+    "estimatedRoute": 1595,
+    "mechanismAllowance": 14,
+    "note": "Descenso/vehículo/persecución: avance efectivo más rápido que a pie."
+  },
+  "6_3_2": {
+    "name": "BuzzBallz",
+    "seconds": 60,
+    "estimatedRoute": 155,
+    "mechanismAllowance": 5
+  },
+  "6_3_3": {
+    "name": "Correr6",
+    "seconds": 210,
+    "estimatedRoute": 767,
+    "mechanismAllowance": 0
+  },
+  "6_3_4": {
+    "name": "Bici3",
+    "seconds": 75,
+    "estimatedRoute": 156,
+    "mechanismAllowance": 6
+  },
+  "6_3_5": {
+    "name": "Objetos23",
+    "seconds": 90,
+    "estimatedRoute": 241,
+    "mechanismAllowance": 0
+  },
+  "6_3_6": {
+    "name": "Souvenir Shop",
+    "seconds": 75,
+    "estimatedRoute": 158,
+    "mechanismAllowance": 18
+  },
+  "6_3_7": {
+    "name": "The Bear Inn 1242",
+    "seconds": 75,
+    "estimatedRoute": 179,
+    "mechanismAllowance": 8
+  },
+  "6_3_8": {
+    "name": "Moo-Moos",
+    "seconds": 60,
+    "estimatedRoute": 150,
+    "mechanismAllowance": 6
+  },
+  "6_3_9": {
+    "name": "University",
+    "seconds": 120,
+    "estimatedRoute": 372,
+    "mechanismAllowance": 0
+  },
+  "6_3_10": {
+    "name": "The Great Hall",
+    "seconds": 105,
+    "estimatedRoute": 323,
+    "mechanismAllowance": 0
+  },
+  "6_4_1": {
+    "name": "King’s Cross",
+    "seconds": 75,
+    "estimatedRoute": 183,
+    "mechanismAllowance": 2
+  },
+  "6_4_2": {
+    "name": "Hamleys",
+    "seconds": 75,
+    "estimatedRoute": 186,
+    "mechanismAllowance": 5
+  },
+  "6_4_3": {
+    "name": "Oxford Street",
+    "seconds": 75,
+    "estimatedRoute": 225,
+    "mechanismAllowance": 0
+  },
+  "6_4_4": {
+    "name": "Muro6",
+    "seconds": 75,
+    "estimatedRoute": 140,
+    "mechanismAllowance": 12
+  },
+  "6_4_5": {
+    "name": "Objetos24",
+    "seconds": 75,
+    "estimatedRoute": 167,
+    "mechanismAllowance": 0
+  },
+  "6_4_6": {
+    "name": "Expensive Chocolate",
+    "seconds": 135,
+    "estimatedRoute": 467,
+    "mechanismAllowance": 0
+  },
+  "6_4_7": {
+    "name": "Buckingham Palace",
+    "seconds": 105,
+    "estimatedRoute": 283,
+    "mechanismAllowance": 8
+  },
+  "6_4_8": {
+    "name": "River Thames",
+    "seconds": 165,
+    "estimatedRoute": 573,
+    "mechanismAllowance": 2
+  },
+  "6_4_9": {
+    "name": "London Eye",
+    "seconds": 105,
+    "estimatedRoute": 222,
+    "mechanismAllowance": 27
+  },
+  "6_4_10": {
+    "name": "Big Ben",
+    "seconds": 300,
+    "estimatedRoute": 964,
+    "mechanismAllowance": 35
+  },
+  "7_1_1": {
+    "name": "Cuadrado7",
+    "seconds": 60,
+    "estimatedRoute": 80,
+    "mechanismAllowance": 0
+  },
+  "7_1_2": {
+    "name": "Torii Gates",
+    "seconds": 135,
+    "estimatedRoute": 418,
+    "mechanismAllowance": 0
+  },
+  "7_1_3": {
+    "name": "Bamboo Forest",
+    "seconds": 120,
+    "estimatedRoute": 401,
+    "mechanismAllowance": 0
+  },
+  "7_1_4": {
+    "name": "Cherry Blossoms",
+    "seconds": 90,
+    "estimatedRoute": 290,
+    "mechanismAllowance": 0
+  },
+  "7_1_5": {
+    "name": "Objetos25",
+    "seconds": 60,
+    "estimatedRoute": 91,
+    "mechanismAllowance": 0
+  },
+  "7_1_6": {
+    "name": "Geisha District",
+    "seconds": 90,
+    "estimatedRoute": 282,
+    "mechanismAllowance": 0
+  },
+  "7_1_7": {
+    "name": "Tea Ceremony",
+    "seconds": 120,
+    "estimatedRoute": 358,
+    "mechanismAllowance": 0
+  },
+  "7_1_8": {
+    "name": "Golden Pavilion",
+    "seconds": 105,
+    "estimatedRoute": 306,
+    "mechanismAllowance": 0
+  },
+  "7_1_9": {
+    "name": "Katana Dojo",
+    "seconds": 105,
+    "estimatedRoute": 289,
+    "mechanismAllowance": 9
+  },
+  "7_1_10": {
+    "name": "Kitsune Shrine",
+    "seconds": 120,
+    "estimatedRoute": 385,
+    "mechanismAllowance": 0
+  },
+  "7_2_1": {
+    "name": "Train to Nara",
+    "seconds": 135,
+    "estimatedRoute": 433,
+    "mechanismAllowance": 2
+  },
+  "7_2_2": {
+    "name": "Salto7",
+    "seconds": 75,
+    "estimatedRoute": 210,
+    "mechanismAllowance": 0
+  },
+  "7_2_3": {
+    "name": "Bowing Deer",
+    "seconds": 90,
+    "estimatedRoute": 219,
+    "mechanismAllowance": 5
+  },
+  "7_2_4": {
+    "name": "Deer Crackers",
+    "seconds": 60,
+    "estimatedRoute": 145,
+    "mechanismAllowance": 3
+  },
+  "7_2_5": {
+    "name": "Objetos26",
+    "seconds": 60,
+    "estimatedRoute": 122,
+    "mechanismAllowance": 0
+  },
+  "7_2_6": {
+    "name": "Giant Lanterns",
+    "seconds": 105,
+    "estimatedRoute": 306,
+    "mechanismAllowance": 0
+  },
+  "7_2_7": {
+    "name": "Mochi Pounding",
+    "seconds": 90,
+    "estimatedRoute": 247,
+    "mechanismAllowance": 2
+  },
+  "7_2_8": {
+    "name": "Pagoda Climb",
+    "seconds": 135,
+    "estimatedRoute": 425,
+    "mechanismAllowance": 5
+  },
+  "7_2_9": {
+    "name": "Koi Pond",
+    "seconds": 105,
+    "estimatedRoute": 286,
+    "mechanismAllowance": 9
+  },
+  "7_2_10": {
+    "name": "Great Buddha",
+    "seconds": 90,
+    "estimatedRoute": 256,
+    "mechanismAllowance": 5
+  },
+  "7_3_1": {
+    "name": "Takoyaki Stand",
+    "seconds": 135,
+    "estimatedRoute": 435,
+    "mechanismAllowance": 0
+  },
+  "7_3_2": {
+    "name": "Glico Man",
+    "seconds": 135,
+    "estimatedRoute": 421,
+    "mechanismAllowance": 0
+  },
+  "7_3_3": {
+    "name": "Correr7",
+    "seconds": 255,
+    "estimatedRoute": 872,
+    "mechanismAllowance": 9
+  },
+  "7_3_4": {
+    "name": "Conveyor Sushi",
+    "seconds": 75,
+    "estimatedRoute": 205,
+    "mechanismAllowance": 0
+  },
+  "7_3_5": {
+    "name": "Objetos27",
+    "seconds": 75,
+    "estimatedRoute": 189,
+    "mechanismAllowance": 0
+  },
+  "7_3_6": {
+    "name": "Neon Canal",
+    "seconds": 120,
+    "estimatedRoute": 337,
+    "mechanismAllowance": 6
+  },
+  "7_3_7": {
+    "name": "Ramen Shop",
+    "seconds": 120,
+    "estimatedRoute": 372,
+    "mechanismAllowance": 6
+  },
+  "7_3_8": {
+    "name": "Universal Park",
+    "seconds": 105,
+    "estimatedRoute": 331,
+    "mechanismAllowance": 0
+  },
+  "7_3_9": {
+    "name": "Ninja Trap",
+    "seconds": 120,
+    "estimatedRoute": 347,
+    "mechanismAllowance": 8
+  },
+  "7_3_10": {
+    "name": "Osaka Castle",
+    "seconds": 90,
+    "estimatedRoute": 247,
+    "mechanismAllowance": 0
+  },
+  "7_4_1": {
+    "name": "Shibuya Crossing",
+    "seconds": 90,
+    "estimatedRoute": 133,
+    "mechanismAllowance": 35
+  },
+  "7_4_2": {
+    "name": "Claw Machine",
+    "seconds": 60,
+    "estimatedRoute": 83,
+    "mechanismAllowance": 0
+  },
+  "7_4_3": {
+    "name": "Pachinko Pinball",
+    "seconds": 75,
+    "estimatedRoute": 170,
+    "mechanismAllowance": 5
+  },
+  "7_4_4": {
+    "name": "Muro7",
+    "seconds": 105,
+    "estimatedRoute": 214,
+    "mechanismAllowance": 21
+  },
+  "7_4_5": {
+    "name": "Objetos28",
+    "seconds": 75,
+    "estimatedRoute": 177,
+    "mechanismAllowance": 0
+  },
+  "7_4_6": {
+    "name": "Vending Machines",
+    "seconds": 105,
+    "estimatedRoute": 309,
+    "mechanismAllowance": 5
+  },
+  "7_4_7": {
+    "name": "Capsule Hotel",
+    "seconds": 105,
+    "estimatedRoute": 209,
+    "mechanismAllowance": 35
+  },
+  "7_4_8": {
+    "name": "Tokyo Drift",
+    "seconds": 105,
+    "estimatedRoute": 287,
+    "mechanismAllowance": 5
+  },
+  "7_4_9": {
+    "name": "Godzilla Attack",
+    "seconds": 165,
+    "estimatedRoute": 546,
+    "mechanismAllowance": 6
+  },
+  "7_4_10": {
+    "name": "Mount Fuji / Tokyo Tower",
+    "seconds": 195,
+    "estimatedRoute": 550,
+    "mechanismAllowance": 35
+  },
+  "8_1_1": {
+    "name": "Cuadrado8",
+    "seconds": 60,
+    "estimatedRoute": 44,
+    "mechanismAllowance": 0
+  },
+  "8_1_2": {
+    "name": "Trolltunga Cliff",
+    "seconds": 180,
+    "estimatedRoute": 630,
+    "mechanismAllowance": 0
+  },
+  "8_1_3": {
+    "name": "Glacier Hike",
+    "seconds": 120,
+    "estimatedRoute": 373,
+    "mechanismAllowance": 2
+  },
+  "8_1_4": {
+    "name": "Mountain Cabins",
+    "seconds": 105,
+    "estimatedRoute": 276,
+    "mechanismAllowance": 6
+  },
+  "8_1_5": {
+    "name": "Objetos29",
+    "seconds": 75,
+    "estimatedRoute": 159,
+    "mechanismAllowance": 0
+  },
+  "8_1_6": {
+    "name": "Pulpit Rock",
+    "seconds": 105,
+    "estimatedRoute": 348,
+    "mechanismAllowance": 0
+  },
+  "8_1_7": {
+    "name": "Snowy Peaks",
+    "seconds": 120,
+    "estimatedRoute": 278,
+    "mechanismAllowance": 35
+  },
+  "8_1_8": {
+    "name": "Avalanche Run",
+    "seconds": 105,
+    "estimatedRoute": 321,
+    "mechanismAllowance": 5
+  },
+  "8_1_9": {
+    "name": "Troll Cave",
+    "seconds": 90,
+    "estimatedRoute": 241,
+    "mechanismAllowance": 3
+  },
+  "8_1_10": {
+    "name": "Lofoten Islands",
+    "seconds": 165,
+    "estimatedRoute": 537,
+    "mechanismAllowance": 3
+  },
+  "8_2_1": {
+    "name": "Steep Valley",
+    "seconds": 120,
+    "estimatedRoute": 313,
+    "mechanismAllowance": 12
+  },
+  "8_2_2": {
+    "name": "Salto8",
+    "seconds": 75,
+    "estimatedRoute": 234,
+    "mechanismAllowance": 0
+  },
+  "8_2_3": {
+    "name": "Seven Sisters",
+    "seconds": 105,
+    "estimatedRoute": 350,
+    "mechanismAllowance": 0
+  },
+  "8_2_4": {
+    "name": "Kayak Rapids",
+    "seconds": 120,
+    "estimatedRoute": 232,
+    "mechanismAllowance": 33
+  },
+  "8_2_5": {
+    "name": "Objetos30",
+    "seconds": 75,
+    "estimatedRoute": 158,
+    "mechanismAllowance": 0
+  },
+  "8_2_6": {
+    "name": "Viking Fjord",
+    "seconds": 90,
+    "estimatedRoute": 252,
+    "mechanismAllowance": 0
+  },
+  "8_2_7": {
+    "name": "Wooden Pier",
+    "seconds": 120,
+    "estimatedRoute": 411,
+    "mechanismAllowance": 0
+  },
+  "8_2_8": {
+    "name": "Cliff Jump",
+    "seconds": 120,
+    "estimatedRoute": 316,
+    "mechanismAllowance": 17
+  },
+  "8_2_9": {
+    "name": "Whale Watching",
+    "seconds": 105,
+    "estimatedRoute": 298,
+    "mechanismAllowance": 5
+  },
+  "8_2_10": {
+    "name": "Geirangerfjord",
+    "seconds": 135,
+    "estimatedRoute": 341,
+    "mechanismAllowance": 29
+  },
+  "8_3_1": {
+    "name": "Viking Museum",
+    "seconds": 120,
+    "estimatedRoute": 369,
+    "mechanismAllowance": 9
+  },
+  "8_3_2": {
+    "name": "Opera House",
+    "seconds": 135,
+    "estimatedRoute": 462,
+    "mechanismAllowance": 0
+  },
+  "8_3_3": {
+    "name": "Correr8",
+    "seconds": 255,
+    "estimatedRoute": 898,
+    "mechanismAllowance": 9
+  },
+  "8_3_4": {
+    "name": "Sculpture Park",
+    "seconds": 120,
+    "estimatedRoute": 374,
+    "mechanismAllowance": 0
+  },
+  "8_3_5": {
+    "name": "Objetos31",
+    "seconds": 75,
+    "estimatedRoute": 216,
+    "mechanismAllowance": 0
+  },
+  "8_3_6": {
+    "name": "Royal Palace",
+    "seconds": 105,
+    "estimatedRoute": 294,
+    "mechanismAllowance": 6
+  },
+  "8_3_7": {
+    "name": "Ski Jump",
+    "seconds": 120,
+    "estimatedRoute": 378,
+    "mechanismAllowance": 0
+  },
+  "8_3_8": {
+    "name": "Harbor Docks",
+    "seconds": 135,
+    "estimatedRoute": 461,
+    "mechanismAllowance": 2
+  },
+  "8_3_9": {
+    "name": "Nordic Sauna",
+    "seconds": 150,
+    "estimatedRoute": 471,
+    "mechanismAllowance": 5
+  },
+  "8_3_10": {
+    "name": "Akershus Fortress",
+    "seconds": 135,
+    "estimatedRoute": 455,
+    "mechanismAllowance": 2
+  },
+  "8_4_1": {
+    "name": "Arctic Tundra",
+    "seconds": 60,
+    "estimatedRoute": 143,
+    "mechanismAllowance": 0
+  },
+  "8_4_2": {
+    "name": "Husky Sled",
+    "seconds": 90,
+    "estimatedRoute": 294,
+    "mechanismAllowance": 0
+  },
+  "8_4_3": {
+    "name": "Ice Hotel",
+    "seconds": 90,
+    "estimatedRoute": 292,
+    "mechanismAllowance": 0
+  },
+  "8_4_4": {
+    "name": "Muro8",
+    "seconds": 105,
+    "estimatedRoute": 260,
+    "mechanismAllowance": 21
+  },
+  "8_4_5": {
+    "name": "Objetos32",
+    "seconds": 60,
+    "estimatedRoute": 146,
+    "mechanismAllowance": 0
+  },
+  "8_4_6": {
+    "name": "Reindeer Herd",
+    "seconds": 75,
+    "estimatedRoute": 166,
+    "mechanismAllowance": 8
+  },
+  "8_4_7": {
+    "name": "Frozen Lake",
+    "seconds": 150,
+    "estimatedRoute": 493,
+    "mechanismAllowance": 0
+  },
+  "8_4_8": {
+    "name": "Snowmobile Chase",
+    "seconds": 60,
+    "estimatedRoute": 145,
+    "mechanismAllowance": 3
+  },
+  "8_4_9": {
+    "name": "North Cape",
+    "seconds": 90,
+    "estimatedRoute": 228,
+    "mechanismAllowance": 8
+  },
+  "8_4_10": {
+    "name": "Northern Lights",
+    "seconds": 135,
+    "estimatedRoute": 417,
+    "mechanismAllowance": 0
+  }
+}

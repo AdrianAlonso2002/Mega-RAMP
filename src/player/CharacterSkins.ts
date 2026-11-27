@@ -50,5 +50,5 @@ export function getCharacterSkin(characterId: string, skinId = 'normal'): Charac
 }
 
 export function characterSpritePath(characterId: string, skinId = 'normal', state = 'normal'): string {
-  return assetUrl(`/assets/characters/${getCharacterSkin(characterId, skinId).spriteBase}_${state}.png?art=ink2`);
+  return assetUrl(`/assets/characters/${getCharacterSkin(characterId, skinId).spriteBase}_${state}.${state==='sleep'?'webp':'png'}?art=ink2`);
 }

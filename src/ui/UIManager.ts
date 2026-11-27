@@ -879,6 +879,10 @@ export class UIManager {
               <span>Silenciar audio:</span>
               <input type="checkbox" id="pause-chk-mute" ${this.audio.getMuted() ? "checked" : ""} />
             </label>
+            <div class="pause-camera-switch" role="group" aria-label="Cámara">
+              <button type="button" data-pause-camera="1" aria-pressed="${this.progression.getCameraMode()===1}">Cámara 1</button>
+              <button type="button" data-pause-camera="2" aria-pressed="${this.progression.getCameraMode()===2}">Cámara 2</button>
+            </div>
           </div>
 
           <div class="menu-button-group">
@@ -892,6 +896,11 @@ export class UIManager {
     `;
 
     const bgmSlider = this.root.querySelector<HTMLInputElement>("#pause-slider-bgm");
+    this.root.querySelectorAll<HTMLButtonElement>('[data-pause-camera]').forEach(button=>button.addEventListener('click',()=>{
+      const mode=button.dataset.pauseCamera==='2'?2:1;
+      this.progression.setCameraMode(mode);this.callbacks.onCameraModeChange?.(mode);
+      this.root.querySelectorAll('[data-pause-camera]').forEach(option=>option.setAttribute('aria-pressed',String((option as HTMLElement).dataset.pauseCamera===String(mode))));
+    }));
     const bgmVal = this.root.querySelector<HTMLElement>("#pause-val-bgm");
     bgmSlider?.addEventListener("input", () => {
       const vol = Number(bgmSlider.value) / 100;

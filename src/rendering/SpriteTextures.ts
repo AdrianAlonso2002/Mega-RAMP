@@ -1,3 +1,4 @@
+import {funkoArtwork,funkoArtworkFor} from './FunkoArtwork';
 import { assetUrl } from "../core/AssetUrl";
 import {collectibleKind,drawCollectibleArt} from './CollectibleArt';
 import * as THREE from "three";
@@ -7,7 +8,7 @@ import {characterSpritePath, getCharacterSkin} from "../player/CharacterSkins";
 import {CharacterFrameCache} from './CharacterFrameCache';
 import type {LevelData} from '../levels/LevelTypes';
 
-export type CharacterState = "normal" | "move1" | "move2" | "scary1" | "scary2" | "happy";
+export type CharacterState = "normal" | "move1" | "move2" | "scary1" | "scary2" | "happy" | "sleep";
 
 /**
  * Procedural and high-definition sprite generator for characters, collectibles, and textures.
@@ -41,7 +42,7 @@ export class SpriteTextures {
   }
 
   static preloadCharacterSkin(id: string, skinId = 'normal'): void {
-    const states: CharacterState[] = ['normal','move1','move2','scary1','scary2','happy'];
+    const states: CharacterState[] = ['normal','move1','move2','scary1','scary2','happy','sleep'];
     for (const state of states) this.getCharacterTexture(id, state, skinId);
   }
 
@@ -67,6 +68,11 @@ export class SpriteTextures {
       return this.cachedColoringReady.get(`coloring_page_${page}`)??Promise.resolve();
     });
     if(stages.some(stage=>stage.objects.some(object=>object.properties?.variant==='popeye_billboard'))){textures.add(popeyeArtwork());pending.push(preparePopeyeArtwork());}
+    for(const stage of stages)for(const object of stage.objects)if(object.properties?.variant==='funko_pop_box'){
+      const id=funkoArtworkFor(object);if(!id)continue;
+      const art=funkoArtwork(id);pending.push(art.ready);
+      for(const texture of [art.front,art.side,art.top,art.back])textures.add(texture);
+    }
     if(pending.length){
       let timer:ReturnType<typeof setTimeout>|undefined;
       try {await Promise.race([Promise.all(pending),new Promise<void>(resolve=>{timer=setTimeout(resolve,8000);})]);}

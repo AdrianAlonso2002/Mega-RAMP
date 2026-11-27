@@ -17,6 +17,7 @@ describe('Stable character frame uploads',()=>{
     const pending=cache.waitForSkin('adri','ssj').then(()=>{ready=true;});
     const image={width:512,height:512} as HTMLCanvasElement;
     for(const state of ['normal','move1','move2','scary1','scary2'])callbacks.get(`/assets/characters/adri_ssj_${state}.png`)!.loaded(image);
+    callbacks.get('/assets/characters/adri_ssj_sleep.webp')!.loaded(image);
     await Promise.resolve();expect(ready).toBe(false);callbacks.get('/assets/characters/adri_ssj_happy.png')!.failed();await pending;expect(ready).toBe(true);
   });
   it('paints a visible image immediately and keeps the GPU image and dimensions when larger images arrive',()=>{

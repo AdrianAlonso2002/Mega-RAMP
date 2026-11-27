@@ -1,0 +1,58 @@
+[
+  {
+    "screen": "hud",
+    "width": 390,
+    "height": 844,
+    "horizontalOverflow": false,
+    "outside": [],
+    "errors": []
+  },
+  {
+    "screen": "hud",
+    "width": 320,
+    "height": 568,
+    "horizontalOverflow": false,
+    "outside": [],
+    "errors": []
+  },
+  {
+    "screen": "hud",
+    "width": 740,
+    "height": 360,
+    "horizontalOverflow": false,
+    "outside": [],
+    "errors": []
+  },
+  {
+    "screen": "pause",
+    "width": 740,
+    "height": 360,
+    "horizontalOverflow": false,
+    "outside": [],
+    "errors": []
+  },
+  {
+    "screen": "title",
+    "width": 740,
+    "height": 360,
+    "horizontalOverflow": false,
+    "outside": [],
+    "errors": []
+  },
+  {
+    "screen": "options",
+    "width": 740,
+    "height": 360,
+    "horizontalOverflow": false,
+    "outside": [],
+    "errors": []
+  },
+  {
+    "screen": "character-select",
+    "width": 740,
+    "height": 360,
+    "horizontalOverflow": false,
+    "outside": [],
+    "errors": []
+  }
+]

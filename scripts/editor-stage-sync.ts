@@ -1,3 +1,7 @@
+import {upgradeVivaGymChallenge} from '../src/levels/world-04/VivaGymChallenge';
+import {upgradeTGBBounce} from '../src/levels/world-04/TGBBounceSettings';
+import {upgradeToyPlanetArt} from '../src/levels/world-04/ToyPlanetArtwork';
+import {polishLasCruces} from '../src/levels/world-04/LasCrucesPolish';
 import type { Plugin } from 'vite';
 import { mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -55,6 +59,10 @@ export function editorStageSync(): Plugin {
                 // Apply the same one-time migration as the game before writing data or HUD budgets.
                 const normalized=rebuildWheelTrain(data as LevelData);
                 upgradeCoastalFinale(normalized);
+                polishLasCruces(normalized);
+                upgradeToyPlanetArt(normalized);
+                upgradeTGBBounce(normalized);
+                upgradeVivaGymChallenge(normalized);
                 applyCollectibleCorrections(normalized, saved[key]);
                 incoming.set(key, normalized);
                 saved[key] = {...normalized,properties:{...normalized.properties,editorPublished:true}};

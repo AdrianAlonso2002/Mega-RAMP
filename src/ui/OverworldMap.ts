@@ -1,3 +1,4 @@
+import {pendingMapLevel} from './MapProgress';
 import { assetUrl } from "../core/AssetUrl";
 import { MapBackdrop } from "./MapBackdrop";
 import { mapBirdsMarkup } from "./MapBirds";
@@ -73,6 +74,9 @@ export class OverworldMap {
   private panY = 0;
   private zoom = 0.55;
   private isDragging = false;
+  private touchMode: "none" | "drag" | "pinch" = "none";
+  private suppressMapTapUntil = 0;
+  private isOverview = false;
   private dragStartX = 0;
   private dragStartY = 0;
   private initialPanX = 0;
@@ -84,7 +88,8 @@ export class OverworldMap {
     private readonly progression: ProgressionManager,
     private readonly callbacks: OverworldMapCallbacks
   ) {
-    this.activeWorldId = this.state.selectedWorld || 1;
+    const pending = pendingMapLevel(this.progression);
+    this.activeWorldId = pending?.world ?? (this.state.selectedWorld || 1);
 
     this.container = document.createElement("div");
     this.container.className = "overworld-container";
@@ -178,8 +183,16 @@ export class OverworldMap {
 
     this.setupEvents();
     this.renderWorldHubs();
-    this.renderWorldLevels();
     this.expandWorld(this.activeWorldId, false, false);
+    if(pending) {
+      const node=this.getLevelNodesForWorld(getWorldById(pending.world)).find(n=>n.level===pending.level);
+      if(node) {this.selectLevelNode(node,false,false);this.centerOnCoordinates(node.mapX,node.mapY,.95,false,false);}
+    } else {
+      this.isOverview=true;this.selectedLevelNode=null;
+      this.levelNodesLayer.querySelectorAll('.selected').forEach(el=>el.classList.remove('selected'));
+      this.worldHubsLayer.querySelectorAll('.active-hub').forEach(el=>el.classList.remove('active-hub'));
+      this.centerOnCoordinates(50,50,this.getMinZoom(),false,false);
+    }
     this.sidebarEl.classList.remove("open");
     this.startCloudAnimation();
 
@@ -200,6 +213,7 @@ export class OverworldMap {
         return;
       }
       this.isDragging = true;
+      this.isOverview = false;
       this.stopCameraAnimation();
       this.dragStartX = e.clientX;
       this.dragStartY = e.clientY;
@@ -224,48 +238,57 @@ export class OverworldMap {
       }
     }, { signal: this.eventCleanup.signal });
 
-    // Touch drag
-    let touchStartX = 0;
-    let touchStartY = 0;
-    this.mapCanvasWrapper.addEventListener(
-      "touchstart",
-      e => {
-        if (e.touches.length === 1) {
-          const t = e.touches[0];
-          this.isDragging = true;
-          this.stopCameraAnimation();
-          touchStartX = t.clientX;
-          touchStartY = t.clientY;
-          this.initialPanX = this.panX;
-          this.initialPanY = this.panY;
-        }
-      },
-      { passive: true, signal: this.eventCleanup.signal }
-    );
-
-    window.addEventListener(
-      "touchmove",
-      e => {
-        if (!this.isDragging || e.touches.length !== 1) return;
-        const t = e.touches[0];
-        const dx = t.clientX - touchStartX;
-        const dy = t.clientY - touchStartY;
-        this.panX = this.initialPanX + dx;
-        this.panY = this.initialPanY + dy;
-        this.requestPanUpdate();
-      },
-      { passive: true, signal: this.eventCleanup.signal }
-    );
-
-    window.addEventListener("touchend", () => {
-      this.isDragging = false;
-    }, { signal: this.eventCleanup.signal });
+    // Anchor zoom to the moving midpoint, rather than the viewport centre.
+    let lastX=0,lastY=0,lastDistance=0;
+    const rebaseTouch=(touches:TouchList)=>{
+      if(touches.length>=2){
+        const a=touches[0],b=touches[1];lastX=(a.clientX+b.clientX)/2;lastY=(a.clientY+b.clientY)/2;
+        lastDistance=Math.max(1,Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY));this.touchMode='pinch';
+        this.suppressMapTapUntil=performance.now()+400;
+      }else if(touches.length===1){lastX=touches[0].clientX;lastY=touches[0].clientY;this.touchMode='drag';}
+      else this.touchMode='none';
+      this.isDragging=false;
+    };
+    this.mapCanvasWrapper.addEventListener('touchstart',e=>{
+      this.stopCameraAnimation();this.isOverview=false;rebaseTouch(e.touches);
+      if(e.touches.length>=2&&e.cancelable)e.preventDefault();
+    },{passive:false,signal:this.eventCleanup.signal});
+    window.addEventListener('touchmove',e=>{
+      if(this.touchMode==='none')return;
+      if(e.cancelable)e.preventDefault();
+      const mode=e.touches.length>=2?'pinch':e.touches.length===1?'drag':'none';
+      if(mode!==this.touchMode){rebaseTouch(e.touches);return;}
+      if(mode==='pinch'){
+        const a=e.touches[0],b=e.touches[1],x=(a.clientX+b.clientX)/2,y=(a.clientY+b.clientY)/2;
+        const distance=Math.max(1,Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY));
+        const zoom=Math.max(this.getMinZoom(),Math.min(1.6,this.zoom*distance/lastDistance)),factor=zoom/this.zoom;
+        const rect=this.mapCanvasWrapper.getBoundingClientRect();
+        this.panX=x-rect.left-(lastX-rect.left-this.panX)*factor;
+        this.panY=y-rect.top-(lastY-rect.top-this.panY)*factor;
+        this.zoom=zoom;lastX=x;lastY=y;lastDistance=distance;
+        this.suppressMapTapUntil=performance.now()+400;
+      }else if(mode==='drag'){
+        const t=e.touches[0],dx=t.clientX-lastX,dy=t.clientY-lastY;
+        this.panX+=dx;this.panY+=dy;lastX=t.clientX;lastY=t.clientY;
+        if(Math.hypot(dx,dy)>2)this.suppressMapTapUntil=performance.now()+400;
+      }
+      this.clampPan();this.requestPanUpdate();
+    },{passive:false,signal:this.eventCleanup.signal});
+    window.addEventListener('touchend',e=>{
+      if(this.touchMode==='none')return;
+      if(this.touchMode==='pinch')this.suppressMapTapUntil=performance.now()+400;
+      rebaseTouch(e.touches);
+    },{signal:this.eventCleanup.signal});
+    window.addEventListener('touchcancel',()=>{
+      this.touchMode='none';this.isDragging=false;this.suppressMapTapUntil=performance.now()+400;
+    },{signal:this.eventCleanup.signal});
 
     // Mouse wheel zoom
     this.mapCanvasWrapper.addEventListener(
       "wheel",
       e => {
         e.preventDefault();
+        this.isOverview = false;
         this.stopCameraAnimation();
         const minZ = this.getMinZoom();
         const maxZ = 1.6;
@@ -310,14 +333,17 @@ export class OverworldMap {
     this.container.classList.toggle("map-ambient-paused", document.hidden || !this.isAnimatedMode);
   };
 
-  private readonly onWindowResize = (): void => {
+  private readonly onWindowResize = (): void => this.resizeMap();
+
+  private resizeMap(): void {
+    if(this.isOverview){this.centerOnCoordinates(50,50,this.getMinZoom(),false,false);return;}
     const minZ = this.getMinZoom();
     if (this.zoom < minZ) {
       this.zoom = minZ;
     }
     this.clampPan();
     this.applyTransform();
-  };
+  }
 
   private requestPanUpdate(): void {
     if (this.rafPending) return;
@@ -334,9 +360,8 @@ export class OverworldMap {
   private getMinZoom(): number {
     const vpW = (this.mapCanvasWrapper ? this.mapCanvasWrapper.clientWidth : 0) || window.innerWidth;
     const vpH = (this.mapCanvasWrapper ? this.mapCanvasWrapper.clientHeight : 0) || window.innerHeight;
-    const coverZoom = Math.max(vpW / this.MAP_WIDTH, vpH / this.MAP_HEIGHT);
-    // Enforce full window coverage and limit zoom-out so the map always feels expansive
-    return Math.max(coverZoom, 0.45);
+    // Stop at full viewport coverage; one extra pixel prevents rounding seams.
+    return Math.max((vpW + 1) / this.MAP_WIDTH, (vpH + 1) / this.MAP_HEIGHT);
   }
 
   private clampPan(): void {
@@ -345,7 +370,7 @@ export class OverworldMap {
     const scaledW = this.MAP_WIDTH * this.zoom;
     const scaledH = this.MAP_HEIGHT * this.zoom;
 
-    // Strict boundary clamping: the map edges can NEVER pull inside the window
+    // Bound larger axes and centre smaller axes in the full-continent overview.
     if (scaledW <= vpW) {
       this.panX = (vpW - scaledW) / 2;
     } else {
@@ -432,7 +457,7 @@ export class OverworldMap {
         if (!isPointerDown) return;
         isPointerDown = false;
         const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
-        if (dist < 12) {
+        if (dist < 12 && performance.now() >= this.suppressMapTapUntil) {
           AudioManager.getInstance().playCollect();
           this.expandWorld(wDef.id, true);
         }
@@ -448,6 +473,7 @@ export class OverworldMap {
 
   // --- Expand World: Reveals its 4 Levels on the map ---
   expandWorld(worldId: number, smoothAnimate = true, openSidebar = false): void {
+    this.isOverview = false;
     this.activeWorldId = worldId;
     this.state.selectedWorld = worldId;
 
@@ -574,7 +600,7 @@ export class OverworldMap {
           if (!isPointerDown) return;
           isPointerDown = false;
           const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
-          if (dist < 12) {
+          if (dist < 12 && performance.now() >= this.suppressMapTapUntil) {
             AudioManager.getInstance().playCollect();
             this.selectLevelNode(lvl, true, true);
           }
@@ -597,6 +623,7 @@ export class OverworldMap {
       return;
     }
 
+    if(userTriggered)this.isOverview=false;
     this.selectedLevelNode = node;
     this.state.selectedWorld = node.world;
     this.state.selectedLevel = node.level;
@@ -1089,10 +1116,10 @@ export class OverworldMap {
     this.centerOnCoordinates(targetX, targetY, 0.85, smooth);
   }
 
-  private centerOnCoordinates(pctX: number, pctY: number, targetZoom: number, smooth = true): void {
+  private centerOnCoordinates(pctX: number, pctY: number, targetZoom: number, smooth = true, reserveSidebar = true): void {
     const vpW = (this.mapCanvasWrapper ? this.mapCanvasWrapper.clientWidth : 0) || window.innerWidth;
     const vpH = (this.mapCanvasWrapper ? this.mapCanvasWrapper.clientHeight : 0) || window.innerHeight;
-    const sidebarOffset = vpW > 860 ? 120 : 0;
+    const sidebarOffset = reserveSidebar && vpW > 860 ? 120 : 0;
 
     const minZ = this.getMinZoom();
     const clampedZoom = Math.max(minZ, Math.min(1.6, targetZoom));
@@ -1106,7 +1133,7 @@ export class OverworldMap {
     let targetPanX = vpW * 0.5 - targetPxX * clampedZoom - sidebarOffset;
     let targetPanY = vpH * 0.5 - targetPxY * clampedZoom;
 
-    // Strict boundary clamping so the map never leaves the window edges
+    // Keep the visible continent bounded, with centred margins when zoomed out.
     if (scaledW <= vpW) {
       targetPanX = (vpW - scaledW) / 2;
     } else {
@@ -1169,13 +1196,13 @@ export class OverworldMap {
 
 
   private checkNewlyUnlockedAnimation(): void {
-    if (this.progression.isAllUnlocked()) {
+    if (this.isOverview || this.progression.isAllUnlocked()) {
       return;
     }
     const seenNodes = this.progression.getSeenNodes();
 
     // 1. Check if a new world was unlocked and hasn't been revealed yet
-    const newlyUnlockedWorld = WORLDS.find(w => this.progression.isWorldUnlocked(w.id) && !seenNodes.includes(`w${w.id}`));
+    const newlyUnlockedWorld = WORLDS.find(w => w.id===this.activeWorldId && this.progression.isWorldUnlocked(w.id) && !seenNodes.includes(`w${w.id}`));
     if (newlyUnlockedWorld) {
       setTimeout(() => {
         this.progression.markNodeSeen(`w${newlyUnlockedWorld.id}`);
@@ -1234,8 +1261,9 @@ export class OverworldMap {
       } else {
         this.unlockAnimRafId = null;
         this.activeAnimCutout = null;
-        // Expand and switch to the newly unlocked world so its Level 1 is immediately interactive!
-        this.expandWorld(worldDef.id, true, false);
+        // Refresh visibility without overriding the progress focus or a camera gesture.
+        this.renderWorldLevels();
+        if(this.selectedLevelNode)this.levelNodesLayer.querySelector(`#node-${this.selectedLevelNode.id}`)?.classList.add("selected");
         this.renderClouds(); // Final static pass
       }
     };

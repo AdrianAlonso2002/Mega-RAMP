@@ -1,3 +1,10 @@
+import {trimCachopoSurfaces} from './world-05/CachopoSurfaces';
+import {isCachopoStage,cachopoPivot,poseCachopo} from './world-05/CachopoMotion';
+import {DecorationBodies} from "./DecorationBodies";
+import {decorationHasCollision} from "./DecorationCollision";
+import {TGBBounce} from './world-04/TGBBounce';
+import {funkoArtwork,funkoArtworkFor,applyFunkoBoxUV,type FunkoArtworkId} from '../rendering/FunkoArtwork';
+import {createCircularGoal} from './CircularGoal';
 import {createWheelTrainMesh} from './WheelTrain';
 import {createConcertModel,concertLift,createPlazaGarland} from "./world-01/ConcertModel";
 import { createClosedTramRails, TramPassengerGuard, tramTrack } from './TramTrack';
@@ -306,6 +313,11 @@ export class LevelBuilder {
       objIndex: number;
     }> = [];
     let goal: ActiveGoal | null = null;
+    const rockingPivot = isCachopoStage(data) ? cachopoPivot(data) : undefined;
+    let rockingBody: RAPIER.RigidBody | undefined;
+    let rockingGoalPosition: THREE.Vector3 | undefined;
+    let rockingGoalRotation: THREE.Quaternion | undefined;
+    const burgerBounce=data.objects.some(o=>o.properties?.variant==='tgb_burger')?new TGBBounce(physics):undefined;
     let palmApex=0;
     const palmLaunchY=data.world===2&&data.level===4&&data.stage===2?Math.min(...data.objects.filter(o=>o.type==='bumper').map(o=>o.position.y+o.scale.y/2+.75)):0;
 
@@ -362,7 +374,8 @@ export class LevelBuilder {
 
       if (propTheme === "custom_color" && customColor) {
         const texture = typeof finish === "string" ? getAsturiasFinish(finish) : null;
-        const mat = makeMaterial(texture, texture ? null : customColor, isMoving ? new THREE.Color(0x222233) : new THREE.Color(0x000000), 0.4, 0.1);
+        const mat = makeMaterial(texture, texture ? null : customColor, isMoving ? new THREE.Color(0x222233) : new THREE.Color(0x000000), texture ? .86 : .4, texture ? 0 : .1);
+        if(rockingPivot&&texture)mat.polygonOffset=false;
         materialCache.set(cacheKey, mat);
         return mat;
       }
@@ -442,6 +455,7 @@ export class LevelBuilder {
       return collider;
     };
 
+    const decorationBodies = new DecorationBodies(physics);
     data.objects.forEach((obj, objIdx) => {
       tempEuler.set(obj.rotation.x, obj.rotation.y, obj.rotation.z, "YXZ");
       tempQuat.setFromEuler(tempEuler);
@@ -671,7 +685,7 @@ export class LevelBuilder {
             const h = obj.scale.y || 5.2;
             const d = obj.scale.z || 3.8;
             const funkoSeries = (obj.properties?.series as "dragon_ball" | "harry_potter" | "disney") || "dragon_ball";
-            const funkoRes = LevelBuilder.createFunkoBoxMesh(w, h, d, activeQuality, funkoSeries);
+            const funkoRes = LevelBuilder.createFunkoBoxMesh(w, h, d, activeQuality, funkoSeries, funkoArtworkFor(obj));
             const funkoGroup = funkoRes.group;
             funkoGroup.position.set(obj.position.x, obj.position.y, obj.position.z);
             funkoGroup.rotation.copy(tempEuler);
@@ -1107,16 +1121,8 @@ export class LevelBuilder {
               collidableMeshes.push(...archRes.meshes);
               platformMeshes.push({ mesh: archRes.meshes[0] || (archRes.group as any), isMoving: false, properties: obj.properties, objIndex: objIdx });
 
-              // Pilares laterales con colisiones físicas
-              for (const px of [-w / 2 + 0.6, w / 2 - 0.6]) {
-                physics.createBoxCollider(
-                  { x: obj.position.x + px, y: obj.position.y + h / 2, z: obj.position.z },
-                  { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w },
-                  { x: 0.6, y: h / 2, z: 0.6 },
-                  0.5,
-                  0.2
-                );
-              }
+              const shape=meshColliderData(archRes.meshes.filter(m=>m.name!=='carrefour-logo'),root);
+              physics.createTrimeshCollider(shape.vertices,shape.indices,.02,.6);
               break;
             }
 
@@ -1595,14 +1601,9 @@ export class LevelBuilder {
               collidableMeshes.push(...burgerRes.meshes);
               platformMeshes.push({ mesh: burgerRes.meshes[0] || (burgerRes.group as any), isMoving: false, properties: obj.properties, objIndex: objIdx });
 
-              const bounce = typeof obj.properties?.bounce === "number" ? obj.properties.bounce : 2.15;
-              physics.createCylinderCollider(
-                { x: obj.position.x, y: obj.position.y + h / 2, z: obj.position.z },
-                r,
-                h / 2,
-                bounce,
-                0.05
-              );
+              const center=new THREE.Vector3(0,h/2,0).applyQuaternion(tempQuat).add(obj.position);
+              const collider=physics.createCylinderCollider(center,r,h/2,0,.05,tempQuat);
+              if(collider)burgerBounce?.add(collider,r,h/2);
               break;
             }
 
@@ -1724,13 +1725,8 @@ export class LevelBuilder {
               collidableMeshes.push(...stepRes.meshes);
               platformMeshes.push({ mesh: stepRes.meshes[0] || (stepRes.group as any), isMoving: false, properties: obj.properties, objIndex: objIdx });
 
-              physics.createBoxCollider(
-                { x: obj.position.x, y: obj.position.y + h / 2, z: obj.position.z },
-                { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w },
-                { x: w / 2, y: h / 2, z: d / 2 },
-                0.3,
-                0.7
-              );
+              const center=new THREE.Vector3(0,h/2,0).applyQuaternion(tempQuat).add(obj.position);
+              physics.createBoxCollider(center,tempQuat,{x:w/2,y:h/2,z:d/2},.08,0);
               break;
             }
 
@@ -4517,14 +4513,9 @@ export class LevelBuilder {
             root.add(burgerRes.group);
             collidableMeshes.push(...burgerRes.meshes);
 
-            const bounce = typeof obj.properties?.bounce === "number" ? obj.properties.bounce : 2.15;
-            physics.createCylinderCollider(
-              { x: obj.position.x, y: obj.position.y + h / 2, z: obj.position.z },
-              r,
-              h / 2,
-              bounce,
-              0.05
-            );
+            const center=new THREE.Vector3(0,h/2,0).applyQuaternion(tempQuat).add(obj.position);
+            const collider=physics.createCylinderCollider(center,r,h/2,0,.05,tempQuat);
+            if(collider)burgerBounce?.add(collider,r,h/2);
             break;
           }
 
@@ -4697,6 +4688,10 @@ export class LevelBuilder {
             !obj.properties?.norwayGoal&&!museum?.chasing&&obj.properties?.oxfordGoal!=='sky'&&!(kyoto&&data.stage===7)&&!(tokyo&&(data.stage===2||data.stage===3))
           );
           root.add(goalGroup);
+          if(obj.properties?.goalShape==='circle'){
+            const frame=goalGroup.getObjectByName('circular-goal-frame') as THREE.Mesh;
+            const shape=meshColliderData([frame],root);physics.createTrimeshCollider(shape.vertices,shape.indices,0,.6);
+          }
           goalGroup.userData.searchHidden=obj.properties?.searchHidden===true;
 
           goalGroup.traverse(child => {
@@ -4738,6 +4733,9 @@ export class LevelBuilder {
             }
           });
           root.add(decResult.group);
+          const captured = physics.beginColliderCapture();
+          const cameraStart = collidableMeshes.length;
+          try {
           const asturiasModel = obj.properties?.subType;
           if(typeof asturiasModel==='string'&&(asturiasModel.startsWith('norway_')||asturiasModel.startsWith('fjord_')||asturiasModel.startsWith('oslo_')||asturiasModel.startsWith('aurora_'))) {norway?.attach(obj,decResult.group,decResult.meshes);if(obj.properties?.hasCollision===true)collidableMeshes.push(...decResult.meshes);break;}
           if(typeof asturiasModel==='string'&&asturiasModel.startsWith('tokyo_')) {
@@ -4829,58 +4827,7 @@ export class LevelBuilder {
           }
 
           const subType = (obj.properties?.subType as string) || "tree";
-          const isDefaultSolid =
-            subType === "tree" ||
-            subType === "cruces_cypress" ||
-            subType === "cypress" ||
-            subType === "madrid_urban_pine" ||
-            subType === "fence" ||
-            subType === "lantern" ||
-            subType === "town_hall" ||
-            subType === "bench" ||
-            subType === "palm_tree" ||
-            subType === "lifeguard_chair" ||
-            subType === "beach_umbrella" ||
-            subType === "float_ring" ||
-            subType === "sunbed" ||
-            subType === "plush_bear" ||
-            subType === "jewelry_bust" ||
-            subType === "store_shelf" ||
-            subType === "surf_rack" ||
-            subType === "arcade_cabinet" ||
-            subType === "gelato_display" ||
-            subType === "bakery_counter" ||
-            subType === "fashion_mannequin" ||
-            subType === "sneaker_rack" ||
-            subType === "checkout_counter" ||
-            subType === "hurdes_stone_wall" ||
-            subType === "village_fountain" ||
-            subType === "stone_bridge_arch" ||
-            subType === "pine_hurdes" ||
-            subType === "village_church_tower" ||
-            subType === "terrace_table_set" ||
-            subType === "village_lantern_post" ||
-            subType === "wooden_bench_rustic" ||
-            subType === "spar_supermarket_sign" ||
-            subType === "hurdes_mountain_house" ||
-            subType === "pergola_green_post" ||
-            subType === "waterfall_rock_cliff" ||
-            subType === "madrid_metro_sign" ||
-            subType === "madrid_street_sign_carabanchel" ||
-            subType === "madrid_street_lamp_urban" ||
-            subType === "madrid_recycle_bins" ||
-            subType === "madrid_granite_bollard" ||
-            subType === "madrid_terrace_bar_umbrella" ||
-            subType === "madrid_residential_building" ||
-            subType === "madrid_parked_car" ||
-            subType === "madrid_bus_stop" ||
-            subType === "madrid_traffic_light" ||
-            subType === "bazar_shelf_display" ||
-            subType === "madrid_kiosk_press" ||
-            subType === "giant_goku_saiyan";
-          const hasCollision = obj.properties?.hasCollision !== undefined
-            ? Boolean(obj.properties.hasCollision)
-            : isDefaultSolid;
+          const hasCollision = decorationHasCollision(obj);
 
           if (hasCollision) {
             const sx = obj.scale.x || 1;
@@ -5095,6 +5042,8 @@ export class LevelBuilder {
               halfExtents = { x: 1.6 * sx, y: 2.4 * sy, z: 1.4 * sz };
               centerOffsetY = 2.4 * sy;
             } else {
+              // Explicitly enabled unlisted models use their actual surfaces.
+              if (obj.properties?.hasCollision === true) break;
               halfExtents = { x: 0.5 * sx, y: 0.5 * sy, z: 0.5 * sz };
               centerOffsetY = 0.5 * sy;
             }
@@ -5117,6 +5066,26 @@ export class LevelBuilder {
             collidableMeshes.push(...decResult.meshes);
           }
           break;
+          } finally {
+            physics.endColliderCapture();
+            if (!decorationHasCollision(obj)) {
+              for (const collider of captured) {
+                collider.setCollisionGroups(0);
+                collider.setSolverGroups(0);
+                collider.setEnabled(false);
+              }
+              collidableMeshes.length = cameraStart;
+            } else if (captured.length === 0) {
+              // Model families may animate without supplying a physical shape.
+              // Use their actual surfaces instead of an enclosing box that fills holes.
+              const moving = !!decResult.decoration || Object.keys(obj.properties ?? {}).some(key => key.endsWith('Action'));
+              for (const mesh of decResult.meshes) {
+                if (moving) decorationBodies.attach(mesh);
+                else attachTerrain(mesh, true);
+              }
+              if (moving) collidableMeshes.push(...decResult.meshes);
+            }
+          }
         }
       }
     });
@@ -5311,6 +5280,7 @@ export class LevelBuilder {
         gameplayMoveTime += delta;
         playerRespawned = oviedo?.update(gameplayMoveTime, delta, playerPos, player);
         cangas?.update(gameplayMoveTime, delta, playerPos, player);
+        burgerBounce?.update(gameplayMoveTime,playerPos,player);
       }
       canoe?.animate(isIntroActive ? animTime:gameplayMoveTime);
       covadonga?.animate(isIntroActive ? animTime:gameplayMoveTime,!isIntroActive);
@@ -6882,6 +6852,16 @@ export class LevelBuilder {
         }
       }
       kyoto?.syncAssets();
+      decorationBodies.update();
+      if (rockingPivot) {
+        poseCachopo(root, rockingPivot, gameplayMoveTime);
+        rockingBody?.setNextKinematicRotation(root.quaternion);
+        for (const item of collectibles) item.mesh.getWorldPosition(item.position);
+        if (goal && rockingGoalPosition && rockingGoalRotation) {
+          goal.position.copy(rockingGoalPosition).applyMatrix4(root.matrixWorld);
+          goal.quaternion!.copy(root.quaternion).multiply(rockingGoalRotation);
+        }
+      }
       return playerRespawned;
     };
 
@@ -6926,6 +6906,7 @@ export class LevelBuilder {
       nara?.reset();
       kyoto?.reset();
       gameplayMoveTime = 0;
+      burgerBounce?.reset();
       cangas?.reset();
       canoe?.reset();
       covadonga?.reset();
@@ -6973,6 +6954,10 @@ export class LevelBuilder {
         }
       }
       update(0, true);
+      if (rockingPivot && rockingBody) {
+        rockingBody.setRotation(root.quaternion, true);
+        rockingBody.setAngvel({x:0,y:0,z:0}, true);
+      }
       // Restore the initial phase without sweeping from the frame origin after death.
       for(const p of movingPlatforms) if(p.movementType === "slamming_door") {
         p.subMeshes!.doorPivot.getWorldPosition(fanLocal);
@@ -6989,6 +6974,16 @@ export class LevelBuilder {
       for(const material of Array.isArray(p.mesh.material)?p.mesh.material:[p.mesh.material]) if(!material.userData.graphicsSurface) material.userData.graphicsSurface=surfaceFamily(`${obj.id} ${String(obj.properties?.theme??'')} ${String(obj.properties?.variant??'')}`);
     }
     norway?.attachCoins(collectibles);
+    if(data.world===5&&data.level===1) {
+      if(data.stage===10)trimCachopoSurfaces(platformMeshes.filter(item=>item.properties?.asturiasFinish).map(item=>item.mesh));
+      stabilizeNeonSurfaces(root);
+    }
+    if (rockingPivot) {
+      rockingBody = physics.createStageAssembly(rockingPivot);
+      const activeGoal = goal as ActiveGoal | null;
+      rockingGoalPosition = activeGoal?.position.clone();
+      rockingGoalRotation = activeGoal?.quaternion?.clone();
+    }
     kyoto?.attachCoins(collectibles);
     setQuality(currentQuality);
 
@@ -12736,6 +12731,13 @@ static createStracciatellaConeMesh(
     group.position.set(obj.position.x, goalY, obj.position.z);
     group.rotation.set(obj.rotation.x, obj.rotation.y, obj.rotation.z);
 
+    if(obj.properties?.goalShape==='circle'){
+      const result=createCircularGoal(Number(obj.properties.goalSize??1.5));
+      result.group.position.copy(group.position);result.group.rotation.set(obj.rotation.x,obj.rotation.y,obj.rotation.z,'YXZ');
+      tempEuler.set(obj.rotation.x,obj.rotation.y,obj.rotation.z,'YXZ');tempQuat.setFromEuler(tempEuler);
+      return result;
+    }
+
     tempEuler.set(obj.rotation.x, obj.rotation.y, obj.rotation.z, "YXZ");
     tempQuat.setFromEuler(tempEuler);
     const quat = { x: tempQuat.x, y: tempQuat.y, z: tempQuat.z, w: tempQuat.w };
@@ -16007,7 +16009,7 @@ static createPirateShipMesh(
     group.name = "pirate_ship_structure_group";
     const meshes: THREE.Mesh[] = [];
 
-    const seg = quality === "low" ? 8 : quality === "medium" ? 14 : 20;
+    const seg = quality === "low" ? 12 : quality === "medium" ? 20 : 28;
 
     const darkOakMat = new THREE.MeshStandardMaterial({ color: 0x4a2e18, roughness: 0.78 });
     const deckPlankMat = new THREE.MeshStandardMaterial({ color: 0x8d6e63, roughness: 0.70 });
@@ -16018,19 +16020,19 @@ static createPirateShipMesh(
     const brassMat = new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.30, metalness: 0.80 });
 
     // 1. Main Walkable Deck
-    const mainDeck = new THREE.Mesh(new THREE.BoxGeometry(9.0, 0.8, 28.0), deckPlankMat);
+    const mainDeck = new THREE.Mesh(new RoundedBoxGeometry(9.0, 0.8, 28.0, 2, .06), deckPlankMat);
     mainDeck.position.set(0, 0.4, 0);
     group.add(mainDeck);
     meshes.push(mainDeck);
 
     // 2. Elevated Stern Castle (Poop Deck) with Captain's Bridge
-    const sternDeck = new THREE.Mesh(new THREE.BoxGeometry(8.6, 1.2, 7.5), darkOakMat);
+    const sternDeck = new THREE.Mesh(new RoundedBoxGeometry(8.6, 1.2, 7.5, 2, .06), darkOakMat);
     sternDeck.position.set(0, 1.4, 10.25);
     group.add(sternDeck);
     meshes.push(sternDeck);
 
     // 3. Elevated Bow Prow Deck with Bowsprit Spar
-    const bowDeck = new THREE.Mesh(new THREE.BoxGeometry(8.6, 1.0, 7.5), darkOakMat);
+    const bowDeck = new THREE.Mesh(new RoundedBoxGeometry(8.6, 1.0, 7.5, 2, .06), darkOakMat);
     bowDeck.position.set(0, 1.2, -10.25);
     const bowsprit = new THREE.Mesh(new THREE.CylinderGeometry(0.20, 0.32, 7.0, seg), mastWoodMat);
     bowsprit.rotation.x = -Math.PI / 3.2;
@@ -16039,11 +16041,22 @@ static createPirateShipMesh(
     meshes.push(bowDeck, bowsprit);
 
     // 4. Outer Hull Ribs (Port & Starboard)
-    for (const hx of [-4.7, 4.7]) {
-      const hullWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 2.6, 28.0), darkOakMat);
-      hullWall.position.set(hx, 1.5, 0);
+    for (const hx of [-4.675, 4.675]) {
+      const hullWall = new THREE.Mesh(new RoundedBoxGeometry(.6, 2.8, 28.2, 2, .05), darkOakMat);
+      hullWall.position.set(hx, 1.6, 0);
       group.add(hullWall);
       meshes.push(hullWall);
+    }
+
+    // These barriers already had physics: now every full wall has matching visible wood.
+    for(const [name,x,y,z,w,h,d] of [
+      ['stern-bulkhead',0,1.8,13.9,9.3,2.8,.5],
+      ['bow-bulkhead',0,2.3,-13.9,9,1.4,.5],
+      ['bow-stem',0,1.5,-14.6,1.8,3,1.6],
+      ['keel',0,-.6,0,.8,1.4,28.2]
+    ] as const){
+      const wall=new THREE.Mesh(new RoundedBoxGeometry(w,h,d,2,.05),darkOakMat);
+      wall.name=name;wall.position.set(x,y,z);group.add(wall);meshes.push(wall);
     }
 
     // 5. Tall Main Mast & Foremast with Black Pirate Sails
@@ -16084,7 +16097,7 @@ static createPirateShipMesh(
 
       // Crow's nest on main mast
       if (mc.z > 0) {
-        const crowsNest = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 0.9, 1.2, seg, 1, true), mastWoodMat);
+        const crowsNest = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 0.9, 1.2, seg), mastWoodMat);
         crowsNest.position.set(mc.x, mc.y + mc.h * 0.42, mc.z);
         group.add(crowsNest);
         meshes.push(crowsNest);
@@ -16209,27 +16222,27 @@ static createCarrefourArchMesh(
     const pillarMat = new THREE.MeshStandardMaterial({ color: 0xf8fafc, roughness: 0.35, metalness: 0.15 });
     const blueHeaderMat = new THREE.MeshStandardMaterial({ color: 0x004e9a, roughness: 0.40 });
     const logoTex = SpriteTextures.getCarrefourLogoTexture();
-    const signMat = new THREE.MeshStandardMaterial({ map: logoTex, roughness: 0.25 });
+    const signMat = new THREE.MeshBasicMaterial({ map: logoTex, toneMapped: false });
 
     // 1. Two Modern Supermarket Pillars
     for (const px of [-width / 2 + 0.6, width / 2 - 0.6]) {
-      const pillar = new THREE.Mesh(new THREE.BoxGeometry(1.2, height, 1.2), pillarMat);
-      pillar.position.set(px, height / 2, 0);
+      const pillar = new THREE.Mesh(new RoundedBoxGeometry(1.2, Math.max(.2,height-1.2), 1.2, 2, .06), pillarMat);
+      pillar.position.set(px, (height-1.2) / 2, 0);
       group.add(pillar);
       meshes.push(pillar);
     }
 
     // 2. Horizontal Header Beam
-    const headerBeam = new THREE.Mesh(new THREE.BoxGeometry(width, 1.2, 1.4), blueHeaderMat);
+    const headerBeam = new THREE.Mesh(new RoundedBoxGeometry(width, 1.2, 1.4, 2, .07), blueHeaderMat);
     headerBeam.position.set(0, height - 0.6, 0);
     group.add(headerBeam);
     meshes.push(headerBeam);
 
     // 3. Central Illuminated Carrefour Logo Signboard
-    const signBoard = new THREE.Mesh(new THREE.BoxGeometry(width * 0.65, 2.2, 0.2), signMat);
-    signBoard.position.set(0, height + 0.9, 0.4);
-    group.add(signBoard);
-    meshes.push(signBoard);
+    const signBoard=new THREE.Mesh(new RoundedBoxGeometry(width*.65,2.2,.24,2,.05),pillarMat);
+    signBoard.position.set(0,height+.9,.86);group.add(signBoard);meshes.push(signBoard);
+    const logo=new THREE.Mesh(new THREE.PlaneGeometry(width*.65-.12,2.08),signMat);
+    logo.name='carrefour-logo';logo.position.set(0,height+.9,.995);group.add(logo);meshes.push(logo);
 
     return { group, meshes };
   }
@@ -16886,15 +16899,20 @@ static createFunkoBoxMesh(
     height = 5.2,
     depth = 3.8,
     _quality: "low" | "medium" | "high" = "medium",
-    series: "dragon_ball" | "harry_potter" | "disney" = "dragon_ball"
+    series: "dragon_ball" | "harry_potter" | "disney" = "dragon_ball",
+    artwork?: FunkoArtworkId
   ): { group: THREE.Group; meshes: THREE.Mesh[] } {
     const group = new THREE.Group();
     group.name = "funko_pop_box_group";
     // The artwork includes window reflections. Each face has exactly one surface.
-    const cardboard = new THREE.MeshStandardMaterial({ color: 0xf5efe3, roughness: 0.82 });
-    const ink = new THREE.MeshStandardMaterial({ color: 0x172554, roughness: 0.78 });
-    const front = new THREE.MeshStandardMaterial({ map: SpriteTextures.getFunkoBoxTexture(series), roughness: 0.65 });
-    const box = new THREE.Mesh(new THREE.BoxGeometry(width, height, depth), [cardboard, cardboard, ink, ink, front, cardboard]);
+    const art=artwork?funkoArtwork(artwork):undefined;
+    const material=(map:THREE.Texture)=>new THREE.MeshStandardMaterial({map,roughness:.82,metalness:0});
+    const cardboard=new THREE.MeshStandardMaterial({color:0xf5f2e9,roughness:.85});
+    const side=art?material(art.side):cardboard,top=art?material(art.top):cardboard;
+    const front=material(art?.front??SpriteTextures.getFunkoBoxTexture(series)),back=art?material(art.back):cardboard;
+    const geometry=new THREE.BoxGeometry(width,height,depth,8,8,1);
+    if(artwork)applyFunkoBoxUV(geometry,width,height,depth,artwork);
+    const box = new THREE.Mesh(geometry, [side, side, top, cardboard, front, back]);
     box.position.y = height / 2;
     group.add(box);
     const meshes = [box];
@@ -17540,84 +17558,21 @@ static createVivaGymTreadmillMesh(
     group.name = `republican_step_${stepNumber}_group`;
     const meshes: THREE.Mesh[] = [];
 
-    const resolvedColor = colorHex === "rojo" ? 0xe53935 : colorHex === "amarillo" ? 0xffeb3b : colorHex === "morado" ? 0x7b1fa2 : colorHex;
-    const seatMat = new THREE.MeshStandardMaterial({
-      color: new THREE.Color(resolvedColor),
-      roughness: 0.6,
-      metalness: 0.08
-    });
-
-    const concreteMat = new THREE.MeshStandardMaterial({
-      color: 0x90a4ae,
-      roughness: 0.85,
-      metalness: 0.05
-    });
-
-    const darkConcreteMat = new THREE.MeshStandardMaterial({
-      color: 0x607d8b,
-      roughness: 0.9,
-      metalness: 0.05
-    });
-
-    const centerW = width * 0.58;
-    const wingW = width * 0.23;
-    const wingAngle = 0.14; // amphitheater arc
-
-    // Center bleacher seating block
-    const centerGeo = new THREE.BoxGeometry(centerW, height, depth);
-    const centerMesh = new THREE.Mesh(centerGeo, seatMat);
-    centerMesh.position.set(0, height / 2, 0);
-    group.add(centerMesh);
-    meshes.push(centerMesh);
-
-    // Center Concrete Access Stairway (cutting through the middle of the tier)
-    const centerAisleW = Math.min(1.4, centerW * 0.12);
-    const centerAisleGeo = new THREE.BoxGeometry(centerAisleW, height + 0.02, depth + 0.02);
-    const centerAisle = new THREE.Mesh(centerAisleGeo, concreteMat);
-    centerAisle.position.set(0, (height + 0.02) / 2, 0);
-    group.add(centerAisle);
-    meshes.push(centerAisle);
-
-    // Left and Right Concrete Access Aisles (stairs between bleachers)
-    const lateralAisleW = Math.min(1.1, centerW * 0.09);
-    const aisleOffset = centerW * 0.34;
-
-    const leftAisle = new THREE.Mesh(new THREE.BoxGeometry(lateralAisleW, height + 0.02, depth + 0.02), concreteMat);
-    leftAisle.position.set(-aisleOffset, (height + 0.02) / 2, 0);
-    group.add(leftAisle);
-    meshes.push(leftAisle);
-
-    const rightAisle = new THREE.Mesh(new THREE.BoxGeometry(lateralAisleW, height + 0.02, depth + 0.02), concreteMat);
-    rightAisle.position.set(aisleOffset, (height + 0.02) / 2, 0);
-    group.add(rightAisle);
-    meshes.push(rightAisle);
-
-    // Left curved wing
-    const leftWingGeo = new THREE.BoxGeometry(wingW, height, depth);
-    const leftWing = new THREE.Mesh(leftWingGeo, seatMat);
-    const leftWingX = -centerW / 2 - (wingW / 2) * Math.cos(wingAngle);
-    const leftWingZ = (wingW / 2) * Math.sin(wingAngle);
-    leftWing.position.set(leftWingX, height / 2, leftWingZ);
-    leftWing.rotation.y = wingAngle;
-    group.add(leftWing);
-    meshes.push(leftWing);
-
-    // Right curved wing
-    const rightWingGeo = new THREE.BoxGeometry(wingW, height, depth);
-    const rightWing = new THREE.Mesh(rightWingGeo, seatMat);
-    const rightWingX = centerW / 2 + (wingW / 2) * Math.cos(wingAngle);
-    const rightWingZ = (wingW / 2) * Math.sin(wingAngle);
-    rightWing.position.set(rightWingX, height / 2, rightWingZ);
-    rightWing.rotation.y = -wingAngle;
-    group.add(rightWing);
-    meshes.push(rightWing);
-
-    // Step front riser lip trim
-    const lipGeo = new THREE.BoxGeometry(centerW, Math.min(0.08, height * 0.15), 0.06);
-    const lipMesh = new THREE.Mesh(lipGeo, darkConcreteMat);
-    lipMesh.position.set(0, height - 0.04, depth / 2 + 0.03);
-    group.add(lipMesh);
-    meshes.push(lipMesh);
+    const color=new THREE.Color(colorHex==='rojo'?'#e53935':colorHex==='amarillo'?'#ffeb3b':colorHex==='morado'?'#7b1fa2':colorHex);
+    const aisleWidth=Math.min(1.2,width*.06),aisles=[-width*.2,0,width*.2];
+    const edges=[-width/2,...aisles.flatMap(x=>[x-aisleWidth/2,x+aisleWidth/2]),width/2];
+    const parts:THREE.BufferGeometry[]=[];
+    for(let i=0;i<edges.length-1;i++){
+      const left=edges[i],right=edges[i+1],mid=(left+right)/2;
+      const geo=new THREE.BoxGeometry(right-left,height,depth);geo.translate(mid,height/2,0);
+      const concrete=aisles.some(x=>Math.abs(mid-x)<aisleWidth/2),tint=concrete?new THREE.Color(0x90a4ae):color;
+      const normals=geo.getAttribute('normal'),colors=new Float32Array(normals.count*3);
+      for(let j=0;j<normals.count;j++){const shade=normals.getY(j)>.5?1:.76;colors[j*3]=tint.r*shade;colors[j*3+1]=tint.g*shade;colors[j*3+2]=tint.b*shade;}
+      geo.setAttribute('color',new THREE.BufferAttribute(colors,3));parts.push(geo);
+    }
+    const geometry=mergeGeometries(parts);parts.forEach(g=>g.dispose());
+    const mesh=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.85}));
+    mesh.name='republican-tier';group.add(mesh);meshes.push(mesh);
 
     return { group, meshes };
   }
