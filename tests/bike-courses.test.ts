@@ -1,7 +1,6 @@
 import {beforeAll,afterAll,describe,it,expect,vi} from 'vitest';
 import * as THREE from 'three';
 import {WORLD_02_LEVEL_02_STAGES} from '../src/levels/world-02/level-02-stages';
-import {WORLD_04_LEVEL_03_STAGES} from '../src/levels/world-04/level-03-stages';
 import {WORLD_06_LEVEL_03_STAGES} from '../src/levels/world-06/level-03-stages';
 import {bikeWheelPose,BIKE_REVISION} from '../src/levels/BikeCourse';
 import {LevelBuilder} from '../src/levels/LevelBuilder';
@@ -11,14 +10,14 @@ import {CHARACTERS} from '../src/player/Characters';
 import {SpriteTextures} from '../src/rendering/SpriteTextures';
 import {applyRequestedStageUpdates} from '../src/levels/RequestedStageUpdates';
 vi.mock('@dimforge/rapier3d-compat',async()=>{const path='../node_modules/@dimforge/rapier3d-compat/rapier.es.js';return import(path);});
-const courses=[WORLD_02_LEVEL_02_STAGES[6],WORLD_04_LEVEL_03_STAGES[1],WORLD_06_LEVEL_03_STAGES[4]];
+const courses=[WORLD_02_LEVEL_02_STAGES[6],WORLD_06_LEVEL_03_STAGES[4]];
 beforeAll(()=>{
   vi.spyOn(SpriteTextures,'getCharacterTexture').mockReturnValue(new THREE.Texture());vi.spyOn(SpriteTextures,'getSphereTexture').mockReturnValue(new THREE.CanvasTexture({width:1,height:1} as HTMLCanvasElement));
   const gradient={addColorStop:()=>{}},context=new Proxy({}, {get:(_t,k)=>k==='createLinearGradient'||k==='createRadialGradient' ? ()=>gradient:k==='measureText' ? ()=>({width:100}):()=>{}});
   vi.stubGlobal('document',{createElement:()=>({width:128,height:128,getContext:()=>context})});
 });
 afterAll(()=>{vi.restoreAllMocks();vi.unstubAllGlobals();});
-describe('Reachable Bici, Bici2 and Bici3 transfers',()=>{
+describe('Reachable Bici and Bici3 transfers',()=>{
   it('keeps both wheel tops level with their receiving platforms and gives time to board at each end',()=>{
     for(const data of courses) {
       const h=data.spawn.y-1.05,wheels=data.objects.filter(o=>o.properties?.movementType==='bike_wheel_vertical');expect(wheels).toHaveLength(2);
@@ -28,7 +27,7 @@ describe('Reachable Bici, Bici2 and Bici3 transfers',()=>{
     }
   });
   it('upgrades saved original bicycle courses while preserving custom additions',()=>{
-    for(const source of courses.slice(0,2)) {const data=structuredClone(source);delete data.properties!.bikeRevision;data.objects.push({...structuredClone(data.objects[0]),id:'obj-custom-bike'});
+    for(const source of courses.slice(0,1)) {const data=structuredClone(source);delete data.properties!.bikeRevision;data.objects.push({...structuredClone(data.objects[0]),id:'obj-custom-bike'});
       const fixed=applyRequestedStageUpdates(data,data.world,data.level,data.stage);expect(fixed.properties!.bikeRevision).toBe(BIKE_REVISION);expect(fixed.objects.some(o=>o.id==='obj-custom-bike')).toBe(true);
     }
   });

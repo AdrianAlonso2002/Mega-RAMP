@@ -1,6 +1,10 @@
 import type { Plugin } from 'vite';
 import { mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import { join } from 'node:path';
+import {applyCollectibleCorrections} from '../src/levels/CollectibleCorrections';
+import type {LevelData} from '../src/levels/LevelTypes';
+import {upgradeCoastalFinale} from '../src/levels/world-02/CoastalFinale';
+import {rebuildWheelTrain} from '../src/levels/WheelTrainRoute';
 
 /** Development only: same-origin, loopback-only bridge to fixed project data files. */
 export function editorStageSync(): Plugin {
@@ -42,12 +46,18 @@ export function editorStageSync(): Plugin {
             const folder = join(server.config.root, 'src/levels/editor-saved');
             await mkdir(folder, {recursive:true});
             let changed = 0;
-            for (let world = 1; world <= 8; world++) {
+            for (const world of new Set([...incoming.values()].map(data=>data.world as number))) {
               const file = join(folder, `world-${String(world).padStart(2,'0')}.json`);
               const previous = await readFile(file,'utf8');
               const saved = JSON.parse(previous);
               for (const [key, data] of incoming) if (data.world === world) {
-                saved[key] = {...data,properties:{...data.properties,editorPublished:true}};
+                // An already-open tab may still send the previous prize layout after a project update.
+                // Apply the same one-time migration as the game before writing data or HUD budgets.
+                const normalized=rebuildWheelTrain(data as LevelData);
+                upgradeCoastalFinale(normalized);
+                applyCollectibleCorrections(normalized, saved[key]);
+                incoming.set(key, normalized);
+                saved[key] = {...normalized,properties:{...normalized.properties,editorPublished:true}};
               }
               const next = JSON.stringify(Object.fromEntries(Object.entries(saved).sort(([a],[b])=>a.localeCompare(b)))) + '\n';
               if (next !== previous) { await writeFile(file+'.tmp',next); await rename(file+'.tmp',file); changed++; }

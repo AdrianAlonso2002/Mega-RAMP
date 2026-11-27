@@ -1,0 +1,1530 @@
+[
+  {
+    "key": "4_3_3",
+    "name": "Correr4",
+    "before": 9,
+    "target": 10,
+    "after": 10,
+    "added": [
+      {
+        "id": "collectible-audit-4_3_3-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 1.2000000059604645,
+          "z": 46
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_3_4",
+    "name": "Padel3",
+    "before": 3,
+    "target": 6,
+    "after": 6,
+    "added": [
+      {
+        "id": "collectible-audit-4_3_4-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 1.6200000047683716,
+          "z": 11
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_4-2",
+        "reason": "authored-route",
+        "p": {
+          "x": 3.5,
+          "y": 1.2000000059604645,
+          "z": 8
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_4-3",
+        "reason": "padel-launch-arc",
+        "p": {
+          "x": 0,
+          "y": 3.2,
+          "z": 2.190384615384615
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_3_6",
+    "name": "Parque Pirata",
+    "before": 9,
+    "target": 10,
+    "after": 10,
+    "added": [
+      {
+        "id": "collectible-audit-4_3_6-1",
+        "reason": "platform-row",
+        "p": {
+          "x": -1.25,
+          "y": 5.200000005960464,
+          "z": 24
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_3_7",
+    "name": "Carrefour",
+    "before": 9,
+    "target": 12,
+    "after": 12,
+    "added": [
+      {
+        "id": "collectible-audit-4_3_7-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 1.2000000059604645,
+          "z": 19
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_7-2",
+        "reason": "authored-route",
+        "p": {
+          "x": -31,
+          "y": 1.2000000059604643,
+          "z": 8
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_7-3",
+        "reason": "authored-route",
+        "p": {
+          "x": -3,
+          "y": 1.2000000059604643,
+          "z": -7
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_3_9",
+    "name": "Parque Aluche",
+    "before": 3,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-4_3_9-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 57.17936913300599,
+          "z": -5
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_9-2",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 64.59719131200931,
+          "z": 12
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_9-3",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 54.99415917363083,
+          "z": -9
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_9-4",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 67.04716344055785,
+          "z": 16
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_9-5",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 59.09142784745926,
+          "z": -1.5
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_3_10",
+    "name": "Lago",
+    "before": 3,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-4_3_10-1",
+        "reason": "geyser-ascent",
+        "p": {
+          "x": 0,
+          "y": 13,
+          "z": 0
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_10-2",
+        "reason": "geyser-ascent",
+        "p": {
+          "x": 0,
+          "y": 4,
+          "z": 0
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_10-3",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 1.6000000059604647,
+          "z": 23
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_10-4",
+        "reason": "geyser-ascent",
+        "p": {
+          "x": 0,
+          "y": 7,
+          "z": 0
+        }
+      },
+      {
+        "id": "collectible-audit-4_3_10-5",
+        "reason": "geyser-ascent",
+        "p": {
+          "x": 0,
+          "y": 10,
+          "z": 0
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_4_3",
+    "name": "ToyPlanet",
+    "before": 3,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-4_4_3-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 14.499999904632569,
+          "z": 0
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_3-2",
+        "reason": "authored-route",
+        "p": {
+          "x": 3.5,
+          "y": 13.999999904632569,
+          "z": -10
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_3-3",
+        "reason": "platform-row",
+        "p": {
+          "x": -2.5,
+          "y": 11.200000005960465,
+          "z": 22.5
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_3-4",
+        "reason": "platform-row",
+        "p": {
+          "x": 2.5,
+          "y": 11.200000005960465,
+          "z": 25.5
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_3-5",
+        "reason": "spaced-near-route",
+        "p": {
+          "x": 2.4492935982947064e-16,
+          "y": 9.600000000000001,
+          "z": 14
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_4_4",
+    "name": "Muro4",
+    "before": 4,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-4_4_4-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 1.2000000059604645,
+          "z": 24
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_4-2",
+        "reason": "authored-route",
+        "p": {
+          "x": -4,
+          "y": 5.700000005960464,
+          "z": 6
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_4-3",
+        "reason": "authored-route",
+        "p": {
+          "x": 4,
+          "y": 10.200000005960465,
+          "z": -12
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_4-4",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 14.700000005960465,
+          "z": -30
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_4_6",
+    "name": "Rodilla",
+    "before": 9,
+    "target": 10,
+    "after": 10,
+    "added": [
+      {
+        "id": "collectible-audit-4_4_6-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 2.2000000059604643,
+          "z": 79
+        }
+      }
+    ]
+  },
+  {
+    "key": "4_4_8",
+    "name": "TGB",
+    "before": 5,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-4_4_8-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 2,
+          "y": 12.02,
+          "z": -18
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_8-2",
+        "reason": "authored-route",
+        "p": {
+          "x": -4,
+          "y": 9.52,
+          "z": 6
+        }
+      },
+      {
+        "id": "collectible-audit-4_4_8-3",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 14.52,
+          "z": -33
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_1_2",
+    "name": "Bajada Autopista",
+    "before": 4,
+    "target": 10,
+    "after": 10,
+    "added": [
+      {
+        "id": "collectible-audit-5_1_2-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 66.91887410453943,
+          "z": -9.58773
+        }
+      },
+      {
+        "id": "collectible-audit-5_1_2-2",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 52.797402476632456,
+          "z": -41.54685
+        }
+      },
+      {
+        "id": "collectible-audit-5_1_2-3",
+        "reason": "authored-route",
+        "p": {
+          "x": 10.38374,
+          "y": 18.300049096893655,
+          "z": -106.70928
+        }
+      },
+      {
+        "id": "collectible-audit-5_1_2-4",
+        "reason": "authored-route",
+        "p": {
+          "x": 11.86155,
+          "y": 12.281343121759848,
+          "z": -121.81233
+        }
+      },
+      {
+        "id": "collectible-audit-5_1_2-5",
+        "reason": "authored-route",
+        "p": {
+          "x": 20.22446,
+          "y": 39.15148534703318,
+          "z": -66.11366
+        }
+      },
+      {
+        "id": "collectible-audit-5_1_2-6",
+        "reason": "authored-route",
+        "p": {
+          "x": 9.63053,
+          "y": 45.96186618774115,
+          "z": -54.00632
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_1_7",
+    "name": "Alimerka",
+    "before": 10,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_1_8",
+    "name": "Tallarines",
+    "before": 40,
+    "target": 16,
+    "after": 16,
+    "added": []
+  },
+  {
+    "key": "5_1_9",
+    "name": "Mafalda",
+    "before": 10,
+    "target": 6,
+    "after": 6,
+    "added": []
+  },
+  {
+    "key": "5_1_10",
+    "name": "Cachopo",
+    "before": 11,
+    "target": 10,
+    "after": 10,
+    "added": []
+  },
+  {
+    "key": "5_2_1",
+    "name": "Giros Inesperados",
+    "before": 12,
+    "target": 10,
+    "after": 10,
+    "added": []
+  },
+  {
+    "key": "5_2_2",
+    "name": "Salto5",
+    "before": 11,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_2_3",
+    "name": "Aire Acondicionado",
+    "before": 6,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-5_2_3-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 0.7999999868869783,
+          "z": 8
+        }
+      },
+      {
+        "id": "collectible-audit-5_2_3-2",
+        "reason": "authored-route",
+        "p": {
+          "x": -2.7,
+          "y": 0.7999999868869783,
+          "z": -16.2
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_2_4",
+    "name": "Imanes",
+    "before": 9,
+    "target": 6,
+    "after": 6,
+    "added": []
+  },
+  {
+    "key": "5_2_6",
+    "name": "Helado2",
+    "before": 13,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_2_7",
+    "name": "Sendero",
+    "before": 13,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_2_8",
+    "name": "Hórreo",
+    "before": 12,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_2_9",
+    "name": "Fabada",
+    "before": 9,
+    "target": 10,
+    "after": 10,
+    "added": [
+      {
+        "id": "collectible-audit-5_2_9-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 3.88909,
+          "y": -2.3589228374336235,
+          "z": 14.11091
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_2_10",
+    "name": "Puente",
+    "before": 19,
+    "target": 14,
+    "after": 14,
+    "added": []
+  },
+  {
+    "key": "5_3_1",
+    "name": "Canoa",
+    "before": 13,
+    "target": 6,
+    "after": 6,
+    "added": []
+  },
+  {
+    "key": "5_3_2",
+    "name": "Sin Bañador",
+    "before": 8,
+    "target": 4,
+    "after": 4,
+    "added": []
+  },
+  {
+    "key": "5_3_3",
+    "name": "Correr5",
+    "before": 23,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_3_4",
+    "name": "Bajada al Descenso",
+    "before": 2,
+    "target": 10,
+    "after": 10,
+    "added": [
+      {
+        "id": "collectible-audit-5_3_4-1",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": -1.3286557483884744,
+          "y": 14.56480457006575,
+          "z": -323.96060476274954
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_4-2",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0.12824651298212653,
+          "y": 120.49632051865396,
+          "z": 11.578054290640303
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_4-3",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": -16.154642357902496,
+          "y": 39.57876015810915,
+          "z": -239.50409577852076
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_4-4",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": -2.97593499489585,
+          "y": 115.0567238482955,
+          "z": -38.89677446723694
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_4-5",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 4.7194604547393535,
+          "y": 54.73524756190055,
+          "z": -195.2006568697058
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_4-6",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": -11.242676344067798,
+          "y": 24.845295525831325,
+          "z": -288.1189667174725
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_4-7",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": -8.64290410149487,
+          "y": 84.73051834029442,
+          "z": -117.8489384666145
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_4-8",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": -12.892981299723289,
+          "y": 107.18608586259626,
+          "z": -61.27511671481324
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_3_5",
+    "name": "Objetos19",
+    "before": 16,
+    "target": 24,
+    "after": 24,
+    "added": [
+      {
+        "id": "collectible-audit-5_3_5-1",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 12.8,
+          "z": 16.88888888888889
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_5-2",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 12.8,
+          "z": -116.44444444444446
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_5-3",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 12.8,
+          "z": -127.55555555555554
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_5-4",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 12.8,
+          "z": 3.5555555555555554
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_5-5",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 12.8,
+          "z": -7.555555555555557
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_5-6",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 12.8,
+          "z": -16.444444444444443
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_5-7",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 12.8,
+          "z": -27.555555555555557
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_5-8",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 12.8,
+          "z": -36.44444444444444
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_3_6",
+    "name": "Recta del Descenso",
+    "before": 19,
+    "target": 10,
+    "after": 10,
+    "added": []
+  },
+  {
+    "key": "5_3_7",
+    "name": "SuperBajada",
+    "before": 0,
+    "target": 6,
+    "after": 6,
+    "added": [
+      {
+        "id": "collectible-audit-5_3_7-1",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 125.02222222222221,
+          "z": 13.000000000000002
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_7-2",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 30.577777777777776,
+          "z": -157
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_7-3",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 80.57777777777778,
+          "z": -67.00000000000001
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_7-4",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 52.800000000000004,
+          "z": -116.99999999999999
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_7-5",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 102.8,
+          "z": -27.000000000000014
+        }
+      },
+      {
+        "id": "collectible-audit-5_3_7-6",
+        "reason": "canoe-river-centre",
+        "p": {
+          "x": 0,
+          "y": 69.46666666666665,
+          "z": -87.00000000000003
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_3_8",
+    "name": "Piedras",
+    "before": 9,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_3_9",
+    "name": "Caída Libre",
+    "before": 14,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_3_10",
+    "name": "MegaBajada",
+    "before": 18,
+    "target": 16,
+    "after": 16,
+    "added": []
+  },
+  {
+    "key": "5_4_1",
+    "name": "Bus Asturiano",
+    "before": 15,
+    "target": 6,
+    "after": 6,
+    "added": []
+  },
+  {
+    "key": "5_4_2",
+    "name": "Curvas en Bus",
+    "before": 13,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_4_3",
+    "name": "Curvas y Vacas en Bus",
+    "before": 23,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_4_5",
+    "name": "Objetos20",
+    "before": 14,
+    "target": 20,
+    "after": 20,
+    "added": [
+      {
+        "id": "collectible-audit-5_4_5-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 1.71447,
+          "y": 0.9000000007450581,
+          "z": 2.44773
+        }
+      },
+      {
+        "id": "collectible-audit-5_4_5-2",
+        "reason": "authored-route",
+        "p": {
+          "x": -1.71447,
+          "y": 0.9000000007450581,
+          "z": -2.44773
+        }
+      },
+      {
+        "id": "collectible-audit-5_4_5-3",
+        "reason": "authored-route",
+        "p": {
+          "x": 12.71447,
+          "y": 0.8000000059604645,
+          "z": -2.44773
+        }
+      },
+      {
+        "id": "collectible-audit-5_4_5-4",
+        "reason": "authored-route",
+        "p": {
+          "x": 7.09983,
+          "y": 0.8000000059604645,
+          "z": 13.79974
+        }
+      },
+      {
+        "id": "collectible-audit-5_4_5-5",
+        "reason": "authored-route",
+        "p": {
+          "x": -11.28555,
+          "y": 0.8000000059604645,
+          "z": -6.85839
+        }
+      },
+      {
+        "id": "collectible-audit-5_4_5-6",
+        "reason": "authored-route",
+        "p": {
+          "x": 11.28555,
+          "y": 0.8000000059604645,
+          "z": 6.85839
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_4_6",
+    "name": "Mina",
+    "before": 16,
+    "target": 18,
+    "after": 18,
+    "added": [
+      {
+        "id": "collectible-audit-5_4_6-1",
+        "reason": "mine-cart-route",
+        "p": {
+          "x": 6.647279628209253,
+          "y": 64.34998547371771,
+          "z": -719.7275717630065
+        }
+      },
+      {
+        "id": "collectible-audit-5_4_6-2",
+        "reason": "mine-cart-route",
+        "p": {
+          "x": 49.79157078671865,
+          "y": 40.73158944115599,
+          "z": -1368.5656358192705
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_4_7",
+    "name": "Vaques",
+    "before": 14,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "5_4_8",
+    "name": "Fuente 7 caños",
+    "before": 7,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-5_4_8-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 2.4,
+          "y": 4.800000005960464,
+          "z": 0
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_4_9",
+    "name": "Covadonga",
+    "before": 3,
+    "target": 4,
+    "after": 4,
+    "added": [
+      {
+        "id": "collectible-audit-5_4_9-1",
+        "reason": "authored-route",
+        "p": {
+          "x": -4,
+          "y": 30.800000005960467,
+          "z": 15
+        }
+      }
+    ]
+  },
+  {
+    "key": "5_4_10",
+    "name": "Picos de Covadonga",
+    "before": 25,
+    "target": 12,
+    "after": 12,
+    "added": []
+  },
+  {
+    "key": "6_1_1",
+    "name": "Cuadrado6",
+    "before": 7,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-6_1_1-1",
+        "reason": "authored-route",
+        "p": {
+          "x": -3.8,
+          "y": 0.8000000059604645,
+          "z": 10
+        }
+      }
+    ]
+  },
+  {
+    "key": "6_1_4",
+    "name": "M&S",
+    "before": 14,
+    "target": 10,
+    "after": 10,
+    "added": []
+  },
+  {
+    "key": "6_1_5",
+    "name": "Objetos21",
+    "before": 10,
+    "target": 20,
+    "after": 20,
+    "added": [
+      {
+        "id": "collectible-audit-6_1_5-1",
+        "reason": "path-centre",
+        "p": {
+          "x": -3.7142857142857135,
+          "y": 8.8,
+          "z": -34.57142857142857
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-2",
+        "reason": "path-centre",
+        "p": {
+          "x": 9.166666666666666,
+          "y": 8.8,
+          "z": -56.666666666666664
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-3",
+        "reason": "path-centre",
+        "p": {
+          "x": 4.857142857142857,
+          "y": 8.8,
+          "z": -27.714285714285715
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-4",
+        "reason": "path-centre",
+        "p": {
+          "x": 4.166666666666666,
+          "y": 8.8,
+          "z": -66.66666666666667
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-5",
+        "reason": "path-centre",
+        "p": {
+          "x": 3.5999999999999996,
+          "y": 8.8,
+          "z": -13.6
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-6",
+        "reason": "path-centre",
+        "p": {
+          "x": 3.571428571428573,
+          "y": 8.8,
+          "z": -48.92857142857143
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-7",
+        "reason": "path-centre",
+        "p": {
+          "x": -4.142857142857143,
+          "y": 8.8,
+          "z": -41.642857142857146
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-8",
+        "reason": "path-centre",
+        "p": {
+          "x": 0,
+          "y": 8.8,
+          "z": -4.899999999999999
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-9",
+        "reason": "path-centre",
+        "p": {
+          "x": 10.8,
+          "y": 8.8,
+          "z": -20.8
+        }
+      },
+      {
+        "id": "collectible-audit-6_1_5-10",
+        "reason": "path-centre",
+        "p": {
+          "x": 0,
+          "y": 8.839999994039538,
+          "z": 5.3
+        }
+      }
+    ]
+  },
+  {
+    "key": "6_1_6",
+    "name": "Freaking Cold",
+    "before": 17,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "6_1_7",
+    "name": "Crows",
+    "before": 15,
+    "target": 12,
+    "after": 12,
+    "added": []
+  },
+  {
+    "key": "6_1_9",
+    "name": "Plancha de pelo",
+    "before": 20,
+    "target": 10,
+    "after": 10,
+    "added": []
+  },
+  {
+    "key": "6_1_10",
+    "name": "Tinieblas",
+    "before": 16,
+    "target": 14,
+    "after": 14,
+    "added": []
+  },
+  {
+    "key": "6_2_1",
+    "name": "Library",
+    "before": 10,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "6_2_4",
+    "name": "Ancient Greece",
+    "before": 12,
+    "target": 10,
+    "after": 10,
+    "added": []
+  },
+  {
+    "key": "6_2_5",
+    "name": "Objetos22",
+    "before": 9,
+    "target": 20,
+    "after": 20,
+    "added": [
+      {
+        "id": "collectible-audit-6_2_5-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 7.03553,
+          "y": 13.630000030994417,
+          "z": -104
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-2",
+        "reason": "authored-route",
+        "p": {
+          "x": 3.53553,
+          "y": 12.8,
+          "z": -102.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-3",
+        "reason": "authored-route",
+        "p": {
+          "x": 4.93844,
+          "y": 12.900000381469727,
+          "z": -117.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-4",
+        "reason": "authored-route",
+        "p": {
+          "x": -0.78217,
+          "y": 12.900000381469727,
+          "z": -42.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-5",
+        "reason": "authored-route",
+        "p": {
+          "x": 2.26995,
+          "y": 12.900000381469727,
+          "z": 2.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-6",
+        "reason": "authored-route",
+        "p": {
+          "x": -4.45503,
+          "y": 12.900000381469727,
+          "z": -72.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-7",
+        "reason": "authored-route",
+        "p": {
+          "x": 3.53553,
+          "y": 12.900000381469727,
+          "z": -27.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-8",
+        "reason": "authored-route",
+        "p": {
+          "x": -4.45503,
+          "y": 12.8,
+          "z": -57.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-9",
+        "reason": "authored-route",
+        "p": {
+          "x": 2.26995,
+          "y": 12.8,
+          "z": -132.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-10",
+        "reason": "authored-route",
+        "p": {
+          "x": -0.78217,
+          "y": 12.8,
+          "z": -87.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_5-11",
+        "reason": "authored-route",
+        "p": {
+          "x": 4.93844,
+          "y": 12.8,
+          "z": -12.5
+        }
+      }
+    ]
+  },
+  {
+    "key": "6_2_6",
+    "name": "Ancient Roma",
+    "before": 19,
+    "target": 12,
+    "after": 12,
+    "added": []
+  },
+  {
+    "key": "6_2_9",
+    "name": "Precious Gems",
+    "before": 3,
+    "target": 6,
+    "after": 6,
+    "added": [
+      {
+        "id": "collectible-audit-6_2_9-1",
+        "reason": "authored-route",
+        "p": {
+          "x": -13,
+          "y": 16.568750071525574,
+          "z": -15
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_9-2",
+        "reason": "authored-route",
+        "p": {
+          "x": 13,
+          "y": 16.568750071525574,
+          "z": -15
+        }
+      },
+      {
+        "id": "collectible-audit-6_2_9-3",
+        "reason": "authored-route",
+        "p": {
+          "x": -13,
+          "y": 16.568750071525574,
+          "z": -65
+        }
+      }
+    ]
+  },
+  {
+    "key": "6_2_10",
+    "name": "Night at the Museum",
+    "before": 55,
+    "target": 12,
+    "after": 12,
+    "added": []
+  },
+  {
+    "key": "6_3_1",
+    "name": "Missed Train",
+    "before": 11,
+    "target": 10,
+    "after": 10,
+    "added": []
+  },
+  {
+    "key": "6_3_2",
+    "name": "BuzzBallz",
+    "before": 3,
+    "target": 6,
+    "after": 6,
+    "added": [
+      {
+        "id": "collectible-audit-6_3_2-1",
+        "reason": "authored-route",
+        "p": {
+          "x": -2,
+          "y": -12.199999994039535,
+          "z": -27
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_2-2",
+        "reason": "authored-route",
+        "p": {
+          "x": 2,
+          "y": -12.199999994039535,
+          "z": -32
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_2-3",
+        "reason": "platform-row",
+        "p": {
+          "x": -2.5,
+          "y": 13.800000005960465,
+          "z": 34
+        }
+      }
+    ]
+  },
+  {
+    "key": "6_3_3",
+    "name": "Correr6",
+    "before": 10,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "6_3_4",
+    "name": "Bici3",
+    "before": 12,
+    "target": 10,
+    "after": 10,
+    "added": []
+  },
+  {
+    "key": "6_3_5",
+    "name": "Objetos23",
+    "before": 24,
+    "target": 20,
+    "after": 20,
+    "added": []
+  },
+  {
+    "key": "6_3_7",
+    "name": "The Bear Inn 1242",
+    "before": 5,
+    "target": 8,
+    "after": 8,
+    "added": [
+      {
+        "id": "collectible-audit-6_3_7-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 12.800000005960465,
+          "z": -0.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_7-2",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 12.800000005960465,
+          "z": -17.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_7-3",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 12.800000005960465,
+          "z": -34.5
+        }
+      }
+    ]
+  },
+  {
+    "key": "6_3_8",
+    "name": "Moo-Moos",
+    "before": 20,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "6_3_9",
+    "name": "University",
+    "before": 9,
+    "target": 8,
+    "after": 8,
+    "added": []
+  },
+  {
+    "key": "6_3_10",
+    "name": "The Great Hall",
+    "before": 8,
+    "target": 14,
+    "after": 14,
+    "added": [
+      {
+        "id": "collectible-audit-6_3_10-1",
+        "reason": "authored-route",
+        "p": {
+          "x": 2.8,
+          "y": 12.650130848694538,
+          "z": -13.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_10-2",
+        "reason": "authored-route",
+        "p": {
+          "x": -2.7,
+          "y": 12.751207383995144,
+          "z": -8
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_10-3",
+        "reason": "authored-route",
+        "p": {
+          "x": -3.88909,
+          "y": 12.272984219199172,
+          "z": 13.88909
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_10-4",
+        "reason": "authored-route",
+        "p": {
+          "x": -3.88909,
+          "y": 12.352040040848289,
+          "z": 6.11091
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_10-5",
+        "reason": "authored-route",
+        "p": {
+          "x": -2.8,
+          "y": 11.990069183485327,
+          "z": -86.5
+        }
+      },
+      {
+        "id": "collectible-audit-6_3_10-6",
+        "reason": "authored-route",
+        "p": {
+          "x": 0,
+          "y": 12.234387683868409,
+          "z": -155.5
+        }
+      }
+    ]
+  }
+]

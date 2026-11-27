@@ -99,28 +99,13 @@ describe("World 4: Carabanchel - Level 3: Las Cruces (10 Stages Validation)", ()
   // ---------------------------------------------------------------------------
   // ETAPA 1: Bici2
   // ---------------------------------------------------------------------------
-  it("E1 (Bici2) should feature large vertical bike wheels, frame, pedals and goal dock", () => {
-    const e1 = WORLD_04_LEVEL_03_STAGES[1];
-    expect(e1.name).toBe("Bici2");
-
-    const verticalWheels = e1.objects.filter(o => o.properties?.variant === "bike_wheel_vertical");
-    expect(verticalWheels.length).toBeGreaterThanOrEqual(2);
-
-    const r1 = verticalWheels[0].properties?.radius as number;
-    const r2 = verticalWheels[1].properties?.radius as number;
-    expect(Math.max(r1, r2)).toBeGreaterThanOrEqual(6.0);
-    expect(Math.min(r1, r2)).toBeGreaterThanOrEqual(5.5);
-
-    const pedals = e1.objects.filter(o => o.properties?.variant === "bike_pedal");
-    expect(pedals.length).toBeGreaterThanOrEqual(2);
-
-    const frameBars = e1.objects.filter(o => 
-      o.id?.startsWith("w4s31-top-tube") || 
-      o.id?.startsWith("w4s31-chainstays") || 
-      o.id?.startsWith("w4s31-handlebar") || 
-      o.id?.startsWith("w4s31-front-fork")
-    );
-    expect(frameBars.length).toBeGreaterThanOrEqual(2);
+  it("E1 (Bici2) has four forward rotating wheels with sidewalls and two docks", () => {
+    const e1=WORLD_04_LEVEL_03_STAGES[1],wheels=e1.objects.filter(o=>o.properties?.variant==='bike_wheel_vertical');
+    expect(wheels).toHaveLength(4);
+    for(const wheel of wheels){expect(wheel.properties?.continuousRoll).toBe(true);expect(Number(wheel.properties?.speed)).toBeLessThan(0);expect(wheel.position.y+Number(wheel.properties?.radius)).toBeCloseTo(12);}
+    expect(e1.objects.filter(o=>o.properties?.variant==='bike_pedal')).toHaveLength(0);
+    expect(e1.objects.filter(o=>o.type==='collectible')).toHaveLength(8);
+    expect(e1.objects.find(o=>o.type==='goal')!.position.z).toBeLessThan(wheels[3].position.z);
   });
 
   // ---------------------------------------------------------------------------

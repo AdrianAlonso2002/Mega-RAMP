@@ -1,3 +1,4 @@
+import {createWheelTrainMesh} from '../levels/WheelTrain';
 import {createConcertModel,concertLift} from "../levels/world-01/ConcertModel";
 import {AURORA_DECORATIONS} from '../levels/world-08/AuroraRoutes';
 import {OSLO_DECORATIONS} from '../levels/world-08/OsloRoutes';
@@ -1616,7 +1617,7 @@ export class LevelEditor {
       return LevelBuilder.createCasinoRouletteMesh((obj.scale.x || 15) / 2, obj.scale.y || 0.6).group;
     }
     if (v === "bike_wheel_vertical" || mov === "bike_wheel_vertical") {
-      return LevelBuilder.createVerticalWheelMesh((obj.properties?.radius as number) || 3.5, obj.scale.x || 2.4).group;
+      return obj.properties?.continuousRoll ? createWheelTrainMesh(Number(obj.properties.radius??5.5),obj.scale.x||4.6).group : LevelBuilder.createVerticalWheelMesh((obj.properties?.radius as number) || 3.5, obj.scale.x || 2.4).group;
     }
     if (v === "bike_pedal" || mov === "bike_pedal") {
       return LevelBuilder.createBicyclePedalMesh(obj.scale.x || 2.0, obj.scale.y || 0.35, obj.scale.z || 1.8, (obj.properties?.phase as number) !== 0).group;
@@ -5395,6 +5396,9 @@ export class LevelEditor {
     if(previewCanoe) previewCanoe.updateWorldMatrix(true,false);
     for (const item of this.movingObjects) {
       const { obj, group } = item;
+      if(obj.properties?.movementType==='bike_wheel_vertical' && obj.properties.continuousRoll) {
+        group.position.copy(item.basePosition);group.quaternion.setFromEuler(new THREE.Euler(obj.rotation.x,obj.rotation.y,obj.rotation.z,'YXZ'));group.rotateX(this.editorAnimTime*Number(obj.properties.speed??-.4));continue;
+      }
       if(obj.properties?.movementType==='bike_wheel_vertical') {
         const pose=bikeWheelPose(this.editorAnimTime,Number(obj.properties.distance??12),Number(obj.properties.speed??1),Number(obj.properties.radius??3.5));
         group.position.copy(item.basePosition);group.position.z+=pose.offset;group.rotation.x=pose.pitch;continue;

@@ -1,3 +1,4 @@
+import {createWheelTrainMesh} from './WheelTrain';
 import {createConcertModel,concertLift,createPlazaGarland} from "./world-01/ConcertModel";
 import { createClosedTramRails, TramPassengerGuard, tramTrack } from './TramTrack';
 import {fanMotion} from './FanMotion';
@@ -127,6 +128,7 @@ export interface ActiveMovingPlatform {
     | "quesarito_roll"
     | "vivagym_treadmill"
     | "vivagym_obstacle";
+  continuousRoll?: boolean;
   side?: "left" | "right";
   eliminatesPlayer?: boolean;
   direction?: number;
@@ -3633,7 +3635,7 @@ export class LevelBuilder {
           if (isVerticalWheel) {
             const radius = typeof obj.properties?.radius === "number" ? obj.properties.radius : 3.5;
             const width = obj.scale.x || 2.4;
-            const wheelRes = LevelBuilder.createVerticalWheelMesh(radius, width, activeQuality);
+            const wheelRes = obj.properties?.continuousRoll ? createWheelTrainMesh(radius,width,activeQuality) : LevelBuilder.createVerticalWheelMesh(radius, width, activeQuality);
             const wheelGroup = wheelRes.group;
             wheelGroup.position.set(obj.position.x, obj.position.y, obj.position.z);
             wheelGroup.rotation.copy(tempEuler);
@@ -3641,6 +3643,13 @@ export class LevelBuilder {
             root.add(wheelGroup);
             collidableMeshes.push(...wheelRes.meshes);
             platformMeshes.push({ mesh: wheelRes.tireMesh, isMoving: true, properties: obj.properties, objIndex: objIdx });
+
+            if(obj.properties?.continuousRoll) {
+              const shape=meshColliderData(wheelRes.meshes,wheelGroup);
+              const kinematic=physics.createKinematicTrimesh(obj.position,shape.vertices,shape.indices,0,.9,tempQuat);
+              if(kinematic)movingPlatforms.push({id:obj.id,mesh:wheelGroup as any,body:kinematic.body,basePosition:new THREE.Vector3().copy(obj.position),baseQuaternion:tempQuat.clone(),axis:'none',distance:0,speed:Number(obj.properties.speed??-.4),radius,continuousRoll:true,movementType:'bike_wheel_vertical'});
+              break;
+            }
 
             // Kinematic body located at the wheel axle center so it rotates (pitch) and translates synchronously!
             const halfW = width / 2;
@@ -5857,7 +5866,7 @@ export class LevelBuilder {
           const dist = p.distance || 10.0;
           const spd = p.speed || 2.4;
           const r = p.radius || 3.5;
-          const pose=bikeWheelPose(effectiveTime,dist,spd,r),offsetZ=pose.offset;
+          const pose=p.continuousRoll ? {offset:0,pitch:effectiveTime*p.speed} : bikeWheelPose(effectiveTime,dist,spd,r),offsetZ=pose.offset;
           const targetX = p.basePosition.x;
           const targetY = p.basePosition.y;
           const targetZ = p.basePosition.z + offsetZ;
@@ -5866,6 +5875,7 @@ export class LevelBuilder {
           const pitch = pose.pitch;
           tempEuler.set(pitch, 0, 0, "XYZ");
           tempQuat.setFromEuler(tempEuler);
+          if(p.continuousRoll && p.baseQuaternion)tempQuat.premultiply(p.baseQuaternion);
 
           p.mesh.position.set(targetX, targetY, targetZ);
           p.mesh.quaternion.copy(tempQuat);
@@ -15494,7 +15504,7 @@ static createYorkshireRonyMesh(
     group.name = "yorkshire_rony_statue_group";
     const meshes: THREE.Mesh[] = [];
 
-    const seg = quality === "low" ? 10 : quality === "medium" ? 16 : 24;
+    const seg = quality === "low" ? 16 : quality === "medium" ? 24 : 32;
 
     // Materiales auténticos del personaje Rony el Yorkshire Terrier
     const tanFurMat = new THREE.MeshStandardMaterial({ color: 0xedb868, roughness: 0.65, metalness: 0.05 });
@@ -15518,13 +15528,20 @@ static createYorkshireRonyMesh(
     // =======================================================================
     // 1. ESTRUCTURA ARQUITECTÓNICA DEL ARCO PORTAL (CARRILOS Y DINTEL)
     // =======================================================================
-    // Columnas laterales de los carrillos (pelaje rubio canela de Rony)
-    const cheekL = new THREE.Mesh(new THREE.BoxGeometry(1.8, 4.0, headD), tanFurMat);
-    cheekL.position.set(-2.8, 2.5, 0.0);
-    const cheekR = new THREE.Mesh(new THREE.BoxGeometry(1.8, 4.0, headD), tanFurMat);
-    cheekR.position.set(2.8, 2.5, 0.0);
-    group.add(cheekL, cheekR);
-    meshes.push(cheekL, cheekR);
+    // One continuous portal avoids coplanar cheek/header faces at the upper corners.
+    const outline = new THREE.Shape();
+    outline.moveTo(-3.7, .5); outline.lineTo(-1.9, .5);
+    outline.lineTo(-1.9, 4.4); outline.lineTo(1.9, 4.4);
+    outline.lineTo(1.9, .5); outline.lineTo(3.7, .5);
+    outline.lineTo(3.7, 6); outline.lineTo(-3.7, 6); outline.closePath();
+    const portalGeo = new THREE.ExtrudeGeometry(outline, {
+      depth: headD - .12, steps: 1, bevelEnabled: true,
+      bevelThickness: .06, bevelSize: .06, bevelSegments: 2
+    });
+    portalGeo.translate(0, 0, -headD / 2 + .06);
+    const portalFrame = new THREE.Mesh(portalGeo, tanFurMat);
+    portalFrame.name = "rony-continuous-portal";
+    group.add(portalFrame); meshes.push(portalFrame);
 
     // Almohadillas frontales redondeadas de los mofletes
     const cheekPadL = new THREE.Mesh(new THREE.SphereGeometry(1.0, seg, seg), tanFurMat);
@@ -15536,14 +15553,8 @@ static createYorkshireRonyMesh(
     group.add(cheekPadL, cheekPadR);
     meshes.push(cheekPadL, cheekPadR);
 
-    // Dintel frontal superior de la frente (pelaje rubio canela)
-    const browHeader = new THREE.Mesh(new THREE.BoxGeometry(headW, 1.6, headD), tanFurMat);
-    browHeader.position.set(0, 5.2, 0.0);
-    group.add(browHeader);
-    meshes.push(browHeader);
-
     // Manto occipital y cráneo superior (manto gris azulado / pizarra de Yorkie)
-    const cranialCap = new THREE.Mesh(new THREE.BoxGeometry(headW + 0.1, 0.8, headD + 0.1), blueSteelFurMat);
+    const cranialCap = new THREE.Mesh(new RoundedBoxGeometry(headW + 0.1, 0.8, headD + 0.1, 2, .12), blueSteelFurMat);
     cranialCap.position.set(0, 6.4, 0.0);
     const napeDrape = new THREE.Mesh(new THREE.BoxGeometry(headW, 2.4, 0.2), blueSteelFurMat);
     napeDrape.position.set(0, 5.2, -1.8);
@@ -15563,12 +15574,19 @@ static createYorkshireRonyMesh(
       earOuter.position.set(earX, 7.4, 0.0);
 
       // Terciopelo interior melocotón suave (colocado de forma frontal limpia sin superposición)
-      const earInner = new THREE.Mesh(new THREE.BoxGeometry(0.7, 1.4, 0.04), pinkEarMat);
+      const earInsetGeo = new THREE.BufferGeometry();
+      // Follow the sloped front of the four-sided ear, with a real surface gap.
+      const earFront = (y: number) => Math.SQRT1_2 * 1.15 * (1.2 - y) / 2.4 + .035;
+      earInsetGeo.setAttribute("position", new THREE.Float32BufferAttribute([
+        -.48, -.85, earFront(-.85), .48, -.85, earFront(-.85), 0, .65, earFront(.65)
+      ], 3));
+      earInsetGeo.computeVertexNormals();
+      const earInner = new THREE.Mesh(earInsetGeo, pinkEarMat);
       earInner.rotation.z = earSign * -0.25;
-      earInner.position.set(earX * 0.95, 7.2, 0.35);
+      earInner.position.copy(earOuter.position);
 
       // Mechón interior de pelo crema suave en la base
-      const earTuft = new THREE.Mesh(new THREE.SphereGeometry(0.35, 8, 8), creamTuftMat);
+      const earTuft = new THREE.Mesh(new THREE.SphereGeometry(0.35, seg, 12), creamTuftMat);
       earTuft.scale.set(0.8, 1.3, 0.8);
       earTuft.position.set(earX * 0.85, 6.6, 0.4);
 
@@ -15579,20 +15597,20 @@ static createYorkshireRonyMesh(
     // =======================================================================
     // 3. MOÑO DE PELO TOPKNOT CON LAZO ROJO DE YORKSHIRE
     // =======================================================================
-    const topknot = new THREE.Mesh(new THREE.ConeGeometry(0.65, 1.2, 8), blondeFurMat);
+    const topknot = new THREE.Mesh(new THREE.ConeGeometry(0.65, 1.2, 12), blondeFurMat);
     topknot.rotation.x = 0.2;
     topknot.position.set(0, 7.2, 0.5);
     group.add(topknot);
     meshes.push(topknot);
 
     // Lazo rojo coqueto de Rony
-    const bowKnot = new THREE.Mesh(new THREE.SphereGeometry(0.24, 8, 8), redBowMat);
+    const bowKnot = new THREE.Mesh(new THREE.SphereGeometry(0.24, seg, 12), redBowMat);
     bowKnot.position.set(0, 6.8, 1.3);
-    const bowLoopL = new THREE.Mesh(new THREE.SphereGeometry(0.30, 8, 8), redBowMat);
+    const bowLoopL = new THREE.Mesh(new THREE.SphereGeometry(0.30, seg, 12), redBowMat);
     bowLoopL.scale.set(1.4, 0.8, 0.6);
     bowLoopL.rotation.z = 0.35;
     bowLoopL.position.set(-0.40, 6.9, 1.25);
-    const bowLoopR = new THREE.Mesh(new THREE.SphereGeometry(0.30, 8, 8), redBowMat);
+    const bowLoopR = new THREE.Mesh(new THREE.SphereGeometry(0.30, seg, 12), redBowMat);
     bowLoopR.scale.set(1.4, 0.8, 0.6);
     bowLoopR.rotation.z = -0.35;
     bowLoopR.position.set(0.40, 6.9, 1.25);
@@ -15604,25 +15622,25 @@ static createYorkshireRonyMesh(
     // =======================================================================
     for (const ex of [-1.4, 1.4]) {
       // Iris avellana / ámbar cálido
-      const eyeIris = new THREE.Mesh(new THREE.SphereGeometry(0.50, 16, 12), eyeIrisMat);
+      const eyeIris = new THREE.Mesh(new THREE.SphereGeometry(0.50, seg, 16), eyeIrisMat);
       eyeIris.scale.set(1.0, 1.05, 0.4);
       eyeIris.position.set(ex, 5.2, 1.85);
 
       // Pupila negra brillante
-      const eyePupil = new THREE.Mesh(new THREE.SphereGeometry(0.44, 16, 12), eyeDarkMat);
+      const eyePupil = new THREE.Mesh(new THREE.SphereGeometry(0.44, seg, 16), eyeDarkMat);
       eyePupil.scale.set(1.0, 1.05, 0.3);
-      eyePupil.position.set(ex, 5.2, 1.95);
+      eyePupil.position.set(ex, 5.2, 2.06);
 
       // Destello especular principal superior
       const glint1 = new THREE.Mesh(new THREE.SphereGeometry(0.10, 8, 8), eyeGlintMat);
-      glint1.position.set(ex - 0.12, 5.38, 2.12);
+      glint1.position.set(ex - 0.12, 5.38, 2.21);
 
       // Segundo destello tierno inferior
       const glint2 = new THREE.Mesh(new THREE.SphereGeometry(0.055, 6, 6), eyeGlintMat);
-      glint2.position.set(ex + 0.10, 5.08, 2.12);
+      glint2.position.set(ex + 0.10, 5.08, 2.21);
 
       // Cejas doradas suaves arqueadas
-      const brow = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.18, 0.25), blondeFurMat);
+      const brow = new THREE.Mesh(new RoundedBoxGeometry(0.8, 0.18, 0.25, 2, .06), blondeFurMat);
       brow.rotation.z = (ex > 0 ? -1 : 1) * 0.15;
       brow.position.set(ex, 5.75, 1.85);
 
@@ -15634,7 +15652,7 @@ static createYorkshireRonyMesh(
     // 5. HOCICO, TRUFA NEGRA DE BOTÓN Y BIGOTE SEDOSO PARTIDO DE YORKSHIRE
     // =======================================================================
     // Puente del hocico
-    const snoutBridge = new THREE.Mesh(new THREE.BoxGeometry(2.2, 1.0, 1.2), darkTanFurMat);
+    const snoutBridge = new THREE.Mesh(new RoundedBoxGeometry(2.2, 1.0, 1.2, 2, .15), darkTanFurMat);
     snoutBridge.position.set(0, 4.2, 2.1);
     group.add(snoutBridge);
     meshes.push(snoutBridge);
@@ -15644,7 +15662,7 @@ static createYorkshireRonyMesh(
     nose.scale.set(1.25, 0.85, 0.9);
     nose.position.set(0, 4.4, 2.7);
     const noseGlint = new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 8), eyeGlintMat);
-    noseGlint.position.set(-0.10, 4.55, 2.95);
+    noseGlint.position.set(-0.10, 4.55, 3.07);
     group.add(nose, noseGlint);
     meshes.push(nose, noseGlint);
 
@@ -15670,7 +15688,7 @@ static createYorkshireRonyMesh(
     // Suelo rasante a Y = 0.80 para tránsito suave de la bola sin frenados
     // =======================================================================
     // Paladar superior abovedado
-    const palateRoof = new THREE.Mesh(new THREE.BoxGeometry(3.78, 0.25, headD), mouthCavityMat);
+    const palateRoof = new THREE.Mesh(new THREE.BoxGeometry(3.78, 0.25, headD - .12), mouthCavityMat);
     palateRoof.position.set(0, 4.4, 0.0);
 
     // Dientes caninos superiores y colmillos

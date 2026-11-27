@@ -1,13 +1,13 @@
 import publishedEditorStages from '../editor-saved/world-04.json';
 import {registerStageSet} from '../StageRegistry';
-import {rebuildBikeCourse} from "../BikeCourse";
+import {rebuildWheelTrain} from "../WheelTrainRoute";
 import type { LevelData } from "../LevelTypes";
 
 // =============================================================================
 // MUNDO 4: CARABANCHEL (Madrid) - NIVEL 3: LAS CRUCES
 // Gran Parque Urbano y Lago.
 // 10 Etapas completamente diseñadas, ambientadas e interactivas:
-//  E1: Bici2 (Ruedas colosales de 11m y 12m, pedales y cuadro de bicicleta)
+//  E1: Bici2 (Cuatro ruedas consecutivas con muros y giro continuo hacia la meta)
 //  E2: Alba de Tormes (Plataforma circular repleta de bumpers de dados de membrillo de alto rebote)
 //  E3: Correr4 (Sprint de 90m por el parque con curvas peraltadas y desniveles)
 //  E4: Padel3 (Pista de pádel 100% vertical con pala catapulta hacia terraza superior en el cielo)
@@ -22,187 +22,12 @@ import type { LevelData } from "../LevelTypes";
 export const WORLD_04_LEVEL_03_STAGES: Record<number, LevelData> = {
   // ---------------------------------------------------------------------------
   // ETAPA 1: Bici2
-  // Versión mejorada y más desafiante de Bici: ruedas verticales gigantes
-  // (11m y 12m de diámetro) con radios, cuadro rojo carrera, sillín basculante,
-  // pedales giratorios a cadencia, manillar con frenos y meta en el buje frontal.
+  // Cuatro ejes fijos, muros laterales y coleccionables sobre las ruedas.
   // ---------------------------------------------------------------------------
   1: {
-    id: "world-04-level-03-stage-01",
-    world: 4,
-    level: 3,
-    stage: 1,
-    name: "Bici2",
-    theme: "city",
-    musicTrack: "jungle_groove",
-    timeLimit: 60,
-    spawn: { x: 0.0, y: 12.0, z: 42.0 },
-    objects: [
-      // Muelle de salida elevado a la altura de la cumbre de la rueda trasera
-      {
-        id: "w4s31-start-dock",
-        type: "platform",
-        position: { x: 0.0, y: 11.0, z: 42.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 7.5, y: 0.8, z: 6.0 },
-        properties: { theme: "carabanchel" }
-      },
-      { id: "w4s31-start-curb", type: "platform", position: { x: 0.0, y: 11.6, z: 44.8 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 7.5, y: 0.4, z: 0.4 }, properties: { theme: "custom_color", customColor: "#e53935" } },
-
-      // 1. RUEDA TRASERA VERTICAL GIGANTE (Radio 5.5m = Diámetro 11.0m)
-      {
-        id: "w4s31-rear-vertical-wheel",
-        type: "moving-platform",
-        position: { x: 0.0, y: 5.5, z: 32.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 3.2, y: 0.5, z: 3.2 },
-        properties: {
-          variant: "bike_wheel_vertical",
-          movementType: "bike_wheel_vertical",
-          radius: 5.5,
-          distance: 14.0,
-          speed: 2.0
-        }
-      },
-
-      // 2. VAINAS TRASERAS Y CUADRO DE BICICLETA (Rojo carrera deportivo)
-      {
-        id: "w4s31-chainstays",
-        type: "platform",
-        position: { x: 0.0, y: 9.8, z: 20.0 },
-        rotation: { x: -0.22, y: 0, z: 0 },
-        scale: { x: 2.8, y: 0.7, z: 10.0 },
-        properties: { theme: "custom_color", customColor: "#d32f2f" }
-      },
-
-      // 3. SILLÍN DE BICICLETA (Cuero negro con remaches)
-      {
-        id: "w4s31-saddle",
-        type: "platform",
-        position: { x: 0.0, y: 11.8, z: 14.5 },
-        rotation: { x: 0.06, y: 0, z: 0 },
-        scale: { x: 3.2, y: 0.6, z: 4.8 },
-        properties: { theme: "custom_color", customColor: "#212121" }
-      },
-
-      // 4. EJE DEL PEDALIER Y PLATOS
-      {
-        id: "w4s31-crank-hub",
-        type: "platform",
-        position: { x: 0.0, y: 6.8, z: 11.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 4.2, y: 0.9, z: 4.2 },
-        properties: { theme: "custom_color", customColor: "#37474f", shape: "cylinder" }
-      },
-
-      // 5. PEDALES GIRATORIOS CON CADENCIA REALISTA
-      {
-        id: "w4s31-pedal-left",
-        type: "moving-platform",
-        position: { x: -3.2, y: 6.8, z: 11.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 2.6, y: 0.4, z: 2.0 },
-        properties: {
-          variant: "bike_pedal",
-          movementType: "bike_pedal",
-          radius: 2.2,
-          speed: 2.0,
-          phase: Math.PI
-        }
-      },
-      {
-        id: "w4s31-pedal-right",
-        type: "moving-platform",
-        position: { x: 3.2, y: 6.8, z: 11.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 2.6, y: 0.4, z: 2.0 },
-        properties: {
-          variant: "bike_pedal",
-          movementType: "bike_pedal",
-          radius: 2.2,
-          speed: 2.0,
-          phase: 0.0
-        }
-      },
-
-      // 6. BARRA HORIZONTAL SUPERIOR DEL CUADRO (Tubo superior)
-      {
-        id: "w4s31-top-tube",
-        type: "platform",
-        position: { x: 0.0, y: 11.5, z: 4.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 2.4, y: 0.6, z: 15.0 },
-        properties: { theme: "custom_color", customColor: "#d32f2f" }
-      },
-
-      // 7. MANILLAR GIGANTE DE CARRERAS (Con puños negros y manetas de freno)
-      {
-        id: "w4s31-handlebar-stem",
-        type: "platform",
-        position: { x: 0.0, y: 12.8, z: -4.5 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 8.8, y: 0.6, z: 1.8 },
-        properties: { theme: "custom_color", customColor: "#263238" }
-      },
-      { id: "w4s31-grip-l", type: "platform", position: { x: -4.2, y: 12.8, z: -4.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 1.0, y: 0.7, z: 2.4 }, properties: { theme: "custom_color", customColor: "#e53935" } },
-      { id: "w4s31-grip-r", type: "platform", position: { x: 4.2, y: 12.8, z: -4.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 1.0, y: 0.7, z: 2.4 }, properties: { theme: "custom_color", customColor: "#e53935" } },
-
-      // 8. HORQUILLA DELANTERA DESCENDENTE HACIA EL BUJE
-      {
-        id: "w4s31-front-fork",
-        type: "platform",
-        position: { x: 0.0, y: 9.4, z: -10.5 },
-        rotation: { x: 0.38, y: 0, z: 0 },
-        scale: { x: 2.8, y: 0.6, z: 12.0 },
-        properties: { theme: "custom_color", customColor: "#d32f2f" }
-      },
-
-      // 9. RUEDA DELANTERA VERTICAL COLOSAL (Radio 6.0m = Diámetro 12.0m)
-      {
-        id: "w4s31-front-vertical-wheel",
-        type: "moving-platform",
-        position: { x: 0.0, y: 6.0, z: -18.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 3.2, y: 0.5, z: 3.2 },
-        properties: {
-          variant: "bike_wheel_vertical",
-          movementType: "bike_wheel_vertical",
-          radius: 6.0,
-          distance: 16.0,
-          speed: 2.2
-        }
-      },
-
-      // 10. PLATAFORMA DE META FINAL
-      {
-        id: "w4s31-goal-dock",
-        type: "platform",
-        position: { x: 0.0, y: 11.5, z: -32.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 8.0, y: 0.8, z: 8.0 },
-        properties: { platformShape: "cylinder", theme: "custom_color", customColor: "#ffd54f" }
-      },
-
-      // 10 Coleccionables
-      { id: "w4s31-col-1", type: "collectible", position: { x: 0.0, y: 12.2, z: 36.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-2", type: "collectible", position: { x: 0.0, y: 12.2, z: 28.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-3", type: "collectible", position: { x: 0.0, y: 11.0, z: 20.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-4", type: "collectible", position: { x: 0.0, y: 12.8, z: 14.5 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-5", type: "collectible", position: { x: -3.2, y: 8.0, z: 11.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-6", type: "collectible", position: { x: 3.2, y: 8.0, z: 11.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-7", type: "collectible", position: { x: 0.0, y: 12.6, z: 3.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-8", type: "collectible", position: { x: 0.0, y: 13.8, z: -4.5 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-9", type: "collectible", position: { x: 0.0, y: 13.0, z: -18.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-      { id: "w4s31-col-10", type: "collectible", position: { x: 0.0, y: 12.5, z: -30.0 }, rotation: { x: 0, y: 0, z: 0 }, scale: { x: 0.4, y: 0.4, z: 0.4 } },
-
-      // Meta
-      {
-        id: "w4s31-goal",
-        type: "goal",
-        position: { x: 0.0, y: 12.3, z: -32.0 },
-        rotation: { x: 0, y: 0, z: 0 },
-        scale: { x: 1, y: 1, z: 1 }
-      }
-    ]
+    id: "world-04-level-03-stage-01", world: 4, level: 3, stage: 1,
+    name: "Bici2", theme: "city", musicTrack: "jungle_groove", timeLimit: 110,
+    spawn: {x: 0, y: 13.05, z: 33.5}, objects: []
   },
 
   // ---------------------------------------------------------------------------
@@ -1153,10 +978,10 @@ export const WORLD_04_LEVEL_03_STAGES: Record<number, LevelData> = {
   }
 };
 
-WORLD_04_LEVEL_03_STAGES[1]=rebuildBikeCourse(WORLD_04_LEVEL_03_STAGES[1]);
 // Saved editor designs are the published source of truth.
 for (const [key, saved] of Object.entries(publishedEditorStages)) {
   if (key.startsWith('4_3_')) Object.assign(WORLD_04_LEVEL_03_STAGES[Number(key.split('_')[2])], structuredClone(saved));
 }
+WORLD_04_LEVEL_03_STAGES[1]=rebuildWheelTrain(WORLD_04_LEVEL_03_STAGES[1]);
 registerStageSet(4,3,WORLD_04_LEVEL_03_STAGES);
 

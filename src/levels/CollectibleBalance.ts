@@ -1,3 +1,4 @@
+import {applyCollectibleCorrections} from './CollectibleCorrections';
 import {getRegisteredStage,stageMetadata,setStageNormalizer} from './StageRegistry';
 import type {LevelData,LevelObjectData,Vector3Data} from './LevelTypes';
 import layouts from './CollectibleLayouts.json';
@@ -7,7 +8,8 @@ interface Placement {id:string;p:Vector3Data;properties:Record<string,unknown>;a
 const plans:Record<string,Placement[]>=layouts;
 /** Baked placements have no geometry sampling or randomness at game runtime. */
 export function applyCollectibleBalance(data:LevelData,world=data.world,level=data.level,stage=data.stage):LevelData {
- if(data.properties?.editorPublished || data.customSaved || data.properties?.userSaved)return data;
+ applyCollectibleCorrections(data,getRegisteredStage(world,level,stage)??undefined);
+ if(data.properties?.collectibleAuditRevision || data.properties?.editorPublished || data.customSaved || data.properties?.userSaved)return data;
  const official=getRegisteredStage(world,level,stage);
  const plan=plans[`${world}_${level}_${stage}`]??official?.objects.filter(o=>o.type==='collectible').map(o=>({id:o.id,p:o.position,properties:o.properties??{},anchor:o.id,offset:{x:0,y:0,z:0}}));
  if(!plan)return data;
