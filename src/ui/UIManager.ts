@@ -291,7 +291,12 @@ export class UIManager {
     screen?.classList.remove('is-title-intro');
     screen?.setAttribute('aria-label','Menú principal');
     if(panel){panel.inert=false;panel.removeAttribute('inert');panel.removeAttribute('aria-hidden');}
-    if(button){button.inert=true;button.setAttribute('aria-hidden','true');}
+    if(button){
+      // Release focus before hiding Play; focus enters the menu after its transition.
+      if(button.contains(document.activeElement))button.blur();
+      button.inert=true;
+      button.setAttribute('aria-hidden','true');
+    }
     const reduce=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches??false;
     this.titleEntryFocusTimer=setTimeout(()=>{
       this.titleEntryFocusTimer=undefined;
@@ -709,10 +714,10 @@ export class UIManager {
 
     this.root.innerHTML = `
       <section class="screen victory-screen level-clear-screen">
-        <div class="modal-card victory-card" style="position: relative; overflow: hidden; max-width: 520px; border: 2px solid #ffd700; box-shadow: 0 0 35px rgba(255, 215, 0, 0.45);">
+        <div class="modal-card victory-card level-clear-card ${skinRewards.length?'has-skin-reward':''}" style="position: relative; overflow: hidden; max-width: 520px; border: 2px solid #ffd700; box-shadow: 0 0 35px rgba(255, 215, 0, 0.45);">
           <canvas id="confetti-canvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
           
-          <div style="position: relative; z-index: 2;">
+          <div class="level-clear-content" style="position: relative; z-index: 2;">
             <div class="goal-ribbon-badge" style="background: linear-gradient(90deg, #ff1744, #d500f9); font-size: 1.3rem;">
               🎉 ¡ENHORABUENA! 🎉
             </div>

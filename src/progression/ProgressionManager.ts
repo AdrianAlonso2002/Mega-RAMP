@@ -572,6 +572,7 @@ export class ProgressionManager {
     try {
       if (typeof localStorage !== "undefined") {
         const val = localStorage.getItem("mega-ramp-fps-limit");
+        if (val === "40") { this.setFPSLimit("60"); return "60"; }
         if (val === "60" || val === "30") {
           return val;
         }

@@ -1,47 +1,31 @@
 [
   {
-    "screen": "hud",
-    "width": 390,
-    "height": 844,
+    "screen": "character-select",
+    "width": 1280,
+    "height": 720,
     "horizontalOverflow": false,
     "outside": [],
     "errors": []
   },
   {
-    "screen": "hud",
-    "width": 320,
-    "height": 568,
+    "screen": "title-transition",
+    "width": 640,
+    "height": 280,
     "horizontalOverflow": false,
     "outside": [],
     "errors": []
   },
   {
-    "screen": "hud",
-    "width": 740,
-    "height": 360,
+    "screen": "character-select",
+    "width": 640,
+    "height": 280,
     "horizontalOverflow": false,
     "outside": [],
     "errors": []
   },
   {
-    "screen": "pause",
-    "width": 740,
-    "height": 360,
-    "horizontalOverflow": false,
-    "outside": [],
-    "errors": []
-  },
-  {
-    "screen": "title",
-    "width": 740,
-    "height": 360,
-    "horizontalOverflow": false,
-    "outside": [],
-    "errors": []
-  },
-  {
-    "screen": "options",
-    "width": 740,
+    "screen": "title-transition",
+    "width": 780,
     "height": 360,
     "horizontalOverflow": false,
     "outside": [],
@@ -49,8 +33,16 @@
   },
   {
     "screen": "character-select",
-    "width": 740,
+    "width": 780,
     "height": 360,
+    "horizontalOverflow": false,
+    "outside": [],
+    "errors": []
+  },
+  {
+    "screen": "character-select",
+    "width": 390,
+    "height": 844,
     "horizontalOverflow": false,
     "outside": [],
     "errors": []

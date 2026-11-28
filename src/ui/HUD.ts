@@ -1,3 +1,4 @@
+import {bombFuse} from "./BombFuse";
 import { SpriteTextures } from "../rendering/SpriteTextures";
 
 export interface GoalBeamOrigin {
@@ -37,6 +38,7 @@ export class HUD {
   private readonly timeoutCard:HTMLElement;
   private bombLimit=60;
   private lastBombTick=-1;
+  private lastBombElapsed=-1;
 
   private bannerTimeout = 0;
   private teleportTimeout: number | null = null;
@@ -143,7 +145,7 @@ export class HUD {
 
   private currentStageMax = 10;
 
-  setBombLimit(seconds:number):void {this.bombLimit=seconds;this.lastBombTick=-1;this.hideTimeout();}
+  setBombLimit(seconds:number):void {this.bombLimit=seconds;this.lastBombTick=-1;this.lastBombElapsed=-1;this.hideTimeout();}
   showTimeout():void {this.timeoutCard.hidden=false;}
   hideTimeout():void {this.timeoutCard.hidden=true;}
 
@@ -374,13 +376,18 @@ export class HUD {
     this.timeEl.textContent = `${String(minutes).padStart(2, "0")}:${seconds
       .toFixed(2)
       .padStart(5, "0")}`;
-    const tick=Math.floor(bombElapsed*10);
+    const fuse=bombFuse(bombElapsed,this.bombLimit);
+    if(bombElapsed!==this.lastBombElapsed){
+      this.lastBombElapsed=bombElapsed;
+      this.fuse.style.strokeDasharray=fuse.dash;
+      this.fuse.style.strokeDashoffset=fuse.offset;
+      this.fuse.style.visibility=fuse.remaining===0?'hidden':'visible';
+    }
+    const tick=fuse.remaining===0?Infinity:Math.floor(bombElapsed*10);
     if(tick!==this.lastBombTick) {
       this.lastBombTick=tick;
-      const remaining=Math.max(0,this.bombLimit-bombElapsed),whole=Math.ceil(remaining),progress=Math.min(1,bombElapsed/this.bombLimit);
+      const remaining=fuse.remaining,whole=Math.ceil(remaining);
       this.bombTime.textContent=`${String(Math.floor(whole/60)).padStart(2,'0')}:${String(whole%60).padStart(2,'0')}`;
-      this.fuse.style.strokeDasharray=`${1000*(1-progress)} 1000`;
-      this.fuse.style.strokeDashoffset=String(-1000*progress);
       this.bombTime.parentElement!.classList.toggle('is-urgent',remaining<=10);
     }
   }

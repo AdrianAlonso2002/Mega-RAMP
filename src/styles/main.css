@@ -415,7 +415,7 @@ button:active {
 }
 .char-skin {
   width: 48px;
-  height: 38px;
+  height: 22px;
   padding: 0;
   border: 2px solid rgba(255,255,255,.22);
   border-radius: 9px;
@@ -429,7 +429,7 @@ button:active {
 .char-skin:disabled .char-skin-eyes { filter: grayscale(1); }
 .char-skin:disabled:hover { border-color: rgba(255,255,255,.2); }
 .char-skin:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.char-skin-eyes { display: block; position: relative; width: 100%; height: 18px; margin: 8px 0; overflow: hidden; }
+.char-skin-eyes { display: block; position: relative; width: 100%; height: 18px; margin: 0; overflow: hidden; }
 .char-skin-eyes canvas { display: block; width: 100%; height: 100%; pointer-events: none; }
 .char-skin-name { text-align: center; font-size: .72rem; color: #e2e8f0; margin-top: 4px; }
 

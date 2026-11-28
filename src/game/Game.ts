@@ -1,3 +1,4 @@
+import {FramePacer} from "../core/FramePacer";
 import { Renderer } from "../rendering/Renderer";
 import { Camera } from "../rendering/Camera";
 import { InputManager } from "../input/InputManager";
@@ -31,7 +32,7 @@ export class Game {
   private editor: LevelEditor | null = null;
   private animationFrame = 0;
   private previousTime = performance.now();
-  private lastRenderTime = performance.now();
+  private readonly framePacer=new FramePacer();
   private fpsBadgeTimer = 0;
   private speedBadgeTimer = 0;
   private destroyed = false;
@@ -432,20 +433,11 @@ export class Game {
     }
 
     const fpsLimit = this.progression.getFPSLimit();
-    let minIntervalMs = 0;
-    if (fpsLimit === "30") {
-      minIntervalMs = 1000 / 30; // 33.33ms
-    } else if (fpsLimit === "60") {
-      minIntervalMs = 1000 / 60; // 16.66ms
-    }
-
-    const elapsed = currentTime - this.lastRenderTime;
-    if (minIntervalMs > 0 && elapsed < minIntervalMs - 1.0) {
+    if (!this.framePacer.shouldRender(currentTime,Number(fpsLimit))) {
       this.animationFrame = requestAnimationFrame(this.loop);
       return;
     }
 
-    this.lastRenderTime = currentTime;
     const frameDelta = (currentTime - this.previousTime) / 1000;
     const delta = Math.min(frameDelta, 0.05);
     this.previousTime = currentTime;
